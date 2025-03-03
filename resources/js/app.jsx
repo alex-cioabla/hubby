@@ -1,6 +1,5 @@
 import '../css/app.css';
-import './bootstrap';
-
+import 'bootstrap';
 import { createInertiaApp } from '@inertiajs/react';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { createRoot } from 'react-dom/client';
@@ -16,8 +15,8 @@ createInertiaApp({
         ),
     setup({ el, App, props }) {
         const root = createRoot(el);
-
-        root.render(<App {...props} />);
+        const { translations, locale } = props.initialPage.props;
+        root.render(<App {...props} translations={translations} locale={locale}/>);
     },
     progress: {
         color: '#4B5563',
