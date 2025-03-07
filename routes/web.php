@@ -5,6 +5,8 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\App;
+use App\Http\Controllers\HomeController;
+
 
 // Route::get('/', function () {
 //     return Inertia::render('Welcome', [
@@ -15,19 +17,9 @@ use Illuminate\Support\Facades\App;
 //     ]);
 // });x
 
-Route::get('/', function () {
-    return Inertia::render('Home');
-});
-
-Route::get('/{locale}',function (string $locale) {
-    if (! in_array($locale, ['en', 'it'])) {
-        abort(400);
-    }
-
-    App::setLocale($locale);
-
-    return Inertia::render('Home');
-});
+//CHANGE LANGUAGE WITH URL
+Route::get('/{locale?}', [HomeController::class, 'index'])
+    ->where('locale', 'en|it');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');

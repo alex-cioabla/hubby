@@ -2,7 +2,7 @@
 
 return [
     "menu" => [
-        "home" => "Pagina iniziale",
+        "home" => "Home",
         "library" => "Libreria",
         "rank" => "Classifica",
         "shop" => "Compra",
