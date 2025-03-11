@@ -9,6 +9,9 @@ class HomeController extends Controller
 {
     public function index()
     {
-        return Inertia::render('Home');
+
+        return Inertia::render('Home',[
+            'home_img_1' => asset('storage/images/home_img_1.png')
+        ]);
     }
 }
