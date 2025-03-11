@@ -24,7 +24,6 @@ createInertiaApp({
         //     setTranslations(props.initialPage.props.translations || {});
         // }, [props.initialPage.props.translations]);
 
-        // console.log('PROPS', props);
         root.render(<App {...props} /*translations={translations}*/ />);
     },
     progress: {

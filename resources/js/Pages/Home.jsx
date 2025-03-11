@@ -1,12 +1,9 @@
 
 
-import { Head, Link } from '@inertiajs/react';
 import Layout  from "@/Layouts/Layout";
 
-export const Home = () => {
-
+export const Home = (props) => {
     return (<>
-        <Head title="Home" />
         <Layout>
             <section>
                 <div className="container-fluid">

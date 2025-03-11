@@ -40,7 +40,8 @@ class HandleInertiaRequests extends Middleware
                 return App::getLocale();
             },
             'translations' => function () {
-                return __('*');
+                //FIX => prendere tutti i file anzi che solo header.php
+                return __('header');
             }
         ];
     }
