@@ -1,5 +1,5 @@
 
-import { BrowserRouter as Router, NavLink, Link } from 'react-router-dom';
+import { Link } from '@inertiajs/react';
 
 export const Header = ({translations}) => {
 
@@ -12,38 +12,36 @@ export const Header = ({translations}) => {
                 >
                     Logo
                 </a>
-                <Router>
-                    <ul className="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-                        <li>
-                            <NavLink
-                                activeclassname='active'
-                                className='nav-link px-2 link-secondary'
-                                to='/'>
-                                {translations.menu.home}
-                            </NavLink>
-                        </li>
-                        <li>
-                            <a href="#" className="nav-link px-2 link-dark">
-                                {translations.menu.library}
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" className="nav-link px-2 link-dark">
-                                {translations.menu.rank}
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" className="nav-link px-2 link-dark">
-                                {translations.menu.shop}
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" className="nav-link px-2 link-dark">
-                                {translations.menu.profile}
-                            </a>
-                        </li>
-                    </ul>
-                </Router>
+                <ul className="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+                    <li>
+                        <Link
+                            activeclassname='active'
+                            className='nav-link px-2 link-secondary'
+                            to='/'>
+                            {translations.menu.home}
+                        </Link>
+                    </li>
+                    <li>
+                        <a href="#" className="nav-link px-2 link-dark">
+                            {translations.menu.library}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" className="nav-link px-2 link-dark">
+                            {translations.menu.rank}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" className="nav-link px-2 link-dark">
+                            {translations.menu.shop}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" className="nav-link px-2 link-dark">
+                            {translations.menu.profile}
+                        </a>
+                    </li>
+                </ul>
                 <div className="col-md-3 text-end">
                     <button type="button" className="btn btn-outline-primary me-2">
                         {translations.buttons.login}

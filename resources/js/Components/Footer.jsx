@@ -1,11 +1,20 @@
 
 import { router } from '@inertiajs/react';
+import { useState, useEffect } from 'react';
 
-export const Footer = () => {
+export const Footer = ({locale}) => {
+
+    const [currentLanguage, setCurrentLanguage] = useState(locale);
+
+    useEffect(() => {
+        setCurrentLanguage(locale);
+    }, [locale]);
 
     const changeLanguage = (language) => {
-        router.visit(`/${language}`, { preserveState: true });
-    }
+        if (language !== currentLanguage) {
+            router.visit(`/${language}`, { preserveState: true });
+        }
+    };
 
     return (
         <footer>
@@ -24,16 +33,16 @@ export const Footer = () => {
                 <div className="col mb-3">
                     <h5>Lingue</h5>
                     <ul className="nav flex-column">
-                        {/* <li className="nav-item mb-2">
-                            <a href="#" onClick={changeLanguage('it')} className="nav-link p-0 text-body-secondary">
+                        <li className="nav-item mb-2">
+                            <a onClick={() => changeLanguage('it')} className="nav-link p-0 text-body-secondary">
                                 Italiano
                             </a>
                         </li>
                         <li className="nav-item mb-2">
-                            <a href="#" onClick={changeLanguage('en')} className="nav-link p-0 text-body-secondary">
+                            <a onClick={() => changeLanguage('en')} className="nav-link p-0 text-body-secondary">
                                 Inglese
                             </a>
-                        </li> */}
+                        </li>
                     </ul>
                 </div>
                 <ul className="nav col-md-4 justify-content-end list-unstyled d-flex">
@@ -55,7 +64,6 @@ export const Footer = () => {
                 </ul>
             </div>
         </footer>
-
     )
 }
 
