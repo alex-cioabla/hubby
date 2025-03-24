@@ -35,14 +35,6 @@ class HandleInertiaRequests extends Middleware
             'auth' => [
                 'user' => $request->user(),
             ],
-            //Altre props custom
-            'locale' => function () {
-                return App::getLocale();
-            },
-            'translations' => function () {
-                //FIX => prendere tutti i file anzi che solo header.php
-                return __('header');
-            }
         ];
     }
 }

@@ -1,18 +1,19 @@
 
-import { router } from '@inertiajs/react';
-import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from "react-redux";
+import { fetchTranslations } from "@/Store/translationSlice";
 
-export const Footer = ({locale}) => {
+export const Footer = () => {
 
-    const [currentLanguage, setCurrentLanguage] = useState(locale);
+    const { locale } = useSelector((state) => state.localization);
 
-    useEffect(() => {
-        setCurrentLanguage(locale);
-    }, [locale]);
-
-    const changeLanguage = (language) => {
-        if (language !== currentLanguage) {
-            router.visit(`/${language}`, { preserveState: true });
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const changeLanguage = (event, language) => {
+        event.preventDefault();
+        if (language !== locale) {
+            navigate(`/${language}`);
+            dispatch(fetchTranslations(language));
         }
     };
 
@@ -34,12 +35,12 @@ export const Footer = ({locale}) => {
                     <h5>Lingue</h5>
                     <ul className="nav flex-column">
                         <li className="nav-item mb-2">
-                            <a onClick={() => changeLanguage('it')} className="nav-link p-0 text-body-secondary">
+                            <a href="#" role="button" onClick={(e) => changeLanguage(e, 'it')} className="nav-link p-0 text-body-secondary">
                                 Italiano
                             </a>
                         </li>
                         <li className="nav-item mb-2">
-                            <a onClick={() => changeLanguage('en')} className="nav-link p-0 text-body-secondary">
+                            <a href="#" role="button" onClick={(e) => changeLanguage(e, 'en')} className="nav-link p-0 text-body-secondary">
                                 Inglese
                             </a>
                         </li>
@@ -53,12 +54,12 @@ export const Footer = ({locale}) => {
                     </li>
                     <li className="ms-3">
                         <a className="text-body-secondary" href="#">
-                            <i className="bi bi-instagram" width={24} height={24}></i>
+                            <i className="bi bi-facebook" width={24} height={24}></i>
                         </a>
                     </li>
                     <li className="ms-3">
                         <a className="text-body-secondary" href="#">
-                            <i className="bi bi-instagram" width={24} height={24}></i>
+                            <i className="bi bi-twitter" width={24} height={24}></i>
                         </a>
                     </li>
                 </ul>

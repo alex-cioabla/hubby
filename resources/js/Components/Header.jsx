@@ -1,7 +1,10 @@
+import { NavLink, Link, useParams } from 'react-router-dom';
+import { useSelector } from "react-redux";
 
-import { Link } from '@inertiajs/react';
-
-export const Header = ({translations}) => {
+export const Header = () => {
+    const { translations } = useSelector((state) => state.localization);
+    let {lang} = useParams();
+    lang = lang ? lang : '';
 
     return (
         <header>
@@ -14,40 +17,38 @@ export const Header = ({translations}) => {
                 </a>
                 <ul className="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
                     <li>
-                        <Link
-                            activeclassname='active'
-                            className='nav-link px-2 link-secondary'
-                            to='/'>
-                            {translations.menu.home}
-                        </Link>
+                        <NavLink className={({ isActive }) => isActive ? "link-secondary nav-link px-2" : "nav-link px-2" }
+                            to={`${lang}/`}>
+                            {translations.header.menu.home}
+                        </NavLink>
                     </li>
                     <li>
-                        <a href="#" className="nav-link px-2 link-dark">
-                            {translations.menu.library}
-                        </a>
+                        <NavLink to={`${lang}/library`} className={({ isActive }) => isActive ? "link-secondary nav-link px-2" : "nav-link px-2" }>
+                            {translations.header.menu.library}
+                        </NavLink>
                     </li>
                     <li>
-                        <a href="#" className="nav-link px-2 link-dark">
-                            {translations.menu.rank}
-                        </a>
+                        <NavLink to={`${lang}/rank`} className={({ isActive }) => isActive ? "link-secondary nav-link px-2" : "nav-link px-2" }>
+                            {translations.header.menu.rank}
+                        </NavLink>
                     </li>
                     <li>
-                        <a href="#" className="nav-link px-2 link-dark">
-                            {translations.menu.shop}
-                        </a>
+                        <NavLink to={`${lang}/shop`} className={({ isActive }) => isActive ? "link-secondary nav-link px-2" : "nav-link px-2" }>
+                            {translations.header.menu.shop}
+                        </NavLink>
                     </li>
                     <li>
-                        <a href="#" className="nav-link px-2 link-dark">
-                            {translations.menu.profile}
-                        </a>
+                        <NavLink to={`${lang}/profile`} className={({ isActive }) => isActive ? "link-secondary nav-link px-2" : "nav-link px-2" }>
+                            {translations.header.menu.profile}
+                        </NavLink>
                     </li>
                 </ul>
                 <div className="col-md-3 text-end">
                     <button type="button" className="btn btn-outline-primary me-2">
-                        {translations.buttons.login}
+                        {translations.header.buttons.login}
                     </button>
                     <button type="button" className="btn btn-primary">
-                        {translations.buttons.register}
+                        {translations.header.buttons.register}
                     </button>
                 </div>
             </div>

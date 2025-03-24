@@ -123,4 +123,18 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | File Translations
+    |--------------------------------------------------------------------------
+    |
+    */
+
+    'locales' => [
+        'header'
+    ],
+
+    'aliases' => [
+        'Lang' => App\Facades\LangFacade::class,
+    ],
 ];

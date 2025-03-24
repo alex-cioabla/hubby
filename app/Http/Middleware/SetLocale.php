@@ -22,6 +22,7 @@ class SetLocale
             //(setLocale è una fx default di lavavel per impostazione la lingua)
             App::setLocale($locale);
         }
+        //altimenti la lingua resta quella di default, definita nel file env
 
         return $next($request);
     }

@@ -1,10 +1,11 @@
 
 
-import Layout  from "@/Layouts/Layout";
 
-export const Home = (props) => {
+export const Home = () => {
+
+    document.title = "Home - "+window.appconfig.name;
+
     return (<>
-        <Layout>
             <section>
                 <div className="container-fluid">
                     <div className="px-4 py-5 my-5 text-center">
@@ -27,7 +28,7 @@ export const Home = (props) => {
                         <div className="row flex-lg-row-reverse align-items-center g-5 py-5">
                             <div className="col-10 col-sm-8 col-lg-6">
                                 <img
-                                    src={props.home_img_1}
+                                    src=""
                                     className="d-block mx-lg-auto img-fluid"
                                     alt="Bootstrap Themes"
                                     width={700}
@@ -113,7 +114,6 @@ export const Home = (props) => {
                     </div>
                 </div>
             </section>
-        </Layout>
     </>
     )
 }

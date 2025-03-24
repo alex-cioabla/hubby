@@ -1,32 +1,36 @@
-import '../css/app.css';
-import { createInertiaApp } from '@inertiajs/react';
-import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap-icons/font/bootstrap-icons.css";
+
+import React from "react";
 import { createRoot } from 'react-dom/client';
-import React, { useState, useEffect } from "react";
+import { Provider } from "react-redux";
 
-const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import BaseLayout from '@/Layouts/BaseLayout';
+import store from "@/store";
+import Home from '@/pages/Home';
+import Library from "./Pages/Library";
 
-//Inertia è un package esterno che permette di renderizzare pagine create con framework frontend come react mettendolo in comunicazione con uno backend come laravel
-//SETUP SIMIL STORE REDUX
-createInertiaApp({
-    title: (title) => `${title} - ${appName}`,
-    resolve: (name) =>
-        resolvePageComponent(
-            `./Pages/${name}.jsx`,
-            import.meta.glob('./Pages/**/*.jsx'),
-        ),
-    setup({ el, App, props }) {
-        const root = createRoot(el);
-        //const [translations, setTranslations] = useState(props.initialPage.props.translations || {});
+function App() {
+    return (
+        <>
+            <Router>
+                <Routes>
+                    <Route element={<BaseLayout></BaseLayout>}>
+                    <Route path=":lang?/" element={<Home />} />
+                    <Route path=":lang?/library" element={<Library />} />
+                    </Route>
+                </Routes>
+            </Router>
+        </>
+    )
+}
 
-        // useEffect(() => {
-        //     // Ogni volta che cambiano le props di Inertia, aggiorniamo le traduzioni
-        //     setTranslations(props.initialPage.props.translations || {});
-        // }, [props.initialPage.props.translations]);
+const container = document.getElementById('root');
+const root = createRoot(container);
 
-        root.render(<App {...props} /*translations={translations}*/ />);
-    },
-    progress: {
-        color: '#4B5563',
-    },
-});
+root.render(
+    <Provider store={store}>
+        <App />
+    </Provider>
+);
