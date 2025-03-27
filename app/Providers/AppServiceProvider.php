@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Services\LangService;
+use App\Services\HubbyTranslator;
 use Illuminate\Support\Facades\Vite;
 use Illuminate\Support\ServiceProvider;
 
@@ -13,8 +13,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->app->singleton('lang-service', function () {
-            return new LangService();
+        $this->app->singleton('hubby-translator', function () {
+            return new HubbyTranslator();
         });
     }
 

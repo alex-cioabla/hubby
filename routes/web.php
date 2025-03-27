@@ -3,37 +3,28 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Lang;
 
-Route::group(['prefix' => '{locale}', 'where' => ['locale' => 'en|it']], function () {
-    Route::get('/{page}', function ($locale, $page) {
+const ROUTES = ['/', 'library'];
 
-        $allowedPages = ['library'];
-        if (!in_array($page, $allowedPages)) {
+Route::group(['prefix' => '{locale}', 'where' => ['locale' => 'en|it']], function () {
+    Route::get('/{page?}', function ($locale, $page = '/') {
+
+        if (!in_array($page, ROUTES)) {
             abort(404);
         }
 
         Lang::setLocale($locale);
         return view('app');
     });
-
-    Route::get('/', function ($locale) {
-        return view('app');
-    });
 });
 
-Route::get('/{page}', function ($page) {
+Route::get('/{page?}', function ($page = '/') {
 
-    $allowedPages = ['library'];
-    if (!in_array($page, $allowedPages)) {
+    if (!in_array($page, ROUTES)) {
         abort(404);
     }
 
     return view('app');
 });
-
-Route::get('/', function () {
-    return view('app');
-});
-
 
 // Route::get('/dashboard', function () {
 //     return Inertia::render('Dashboard');

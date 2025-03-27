@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" data-bs-theme="auto">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,8 +14,8 @@
         @vite('resources/js/app.jsx')
         <script>
             window.appconfig = {
-                locale: "{{ app()->getLocale() }}",
-                translations: @json(Lang::getAllTrans() ?? []),
+                locale: "{{ \Illuminate\Support\Facades\Lang::getLocale() }}",
+                translations: @json(HubbyLang::getAllTrans() ?? []),
                 name: "{{ config('app.name') }}"
             };
         </script>

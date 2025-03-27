@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-class LangService
+class HubbyTranslator
 {
     public function getAllTrans(): array
     {

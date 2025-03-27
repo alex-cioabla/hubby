@@ -135,6 +135,6 @@ return [
     ],
 
     'aliases' => [
-        'Lang' => App\Facades\LangFacade::class,
+        'HubbyLang' => App\Facades\HubbyLang::class
     ],
 ];
