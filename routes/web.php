@@ -3,7 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Lang;
 
-const ROUTES = ['/', 'library'];
+const ROUTES = ['/', 'library', 'login'];
+
+// require __DIR__.'/auth.php';
 
 Route::group(['prefix' => '{locale}', 'where' => ['locale' => 'en|it']], function () {
     Route::get('/{page?}', function ($locale, $page = '/') {
@@ -36,4 +38,3 @@ Route::get('/{page?}', function ($page = '/') {
 //     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 // });
 
-require __DIR__.'/auth.php';

@@ -1,48 +1,35 @@
 import { NavLink, Link, useParams } from 'react-router-dom';
 import { useSelector } from "react-redux";
-import { useEffect, useState } from 'react';
+import { useReducer } from 'react';
 
 export const Header = () => {
     const { translations, locale } = useSelector((state) => state.localization);
-    const [theme, setTheme] = useState(document.documentElement.getAttribute('data-bs-theme'));
     let { lang } = useParams();
 
     lang = lang === locale ? lang : '';
 
-    useEffect(() => {
-
-        const savedTheme = window.localStorage.getItem('theme') || theme;
-        let colorTheme = getColorTheme(savedTheme);
-
-        setTheme(savedTheme);
-        document.documentElement.setAttribute('data-bs-theme', colorTheme);
-
-    }, []);
-
-    const toggleTheme = (newTheme) => {
-
-        let colorTheme = getColorTheme(newTheme);
-        document.documentElement.setAttribute('data-bs-theme', colorTheme);
-        window.localStorage.setItem('theme', newTheme);
-        setTheme(newTheme);
-    }
-
-    function getColorTheme(theme) {
-        let colorTheme = theme;
-        switch (theme) {
+    function themeReducer(state, action) {
+        switch (action.type) {
             case 'dark':
-                colorTheme = 'dark';
-                break;
             case 'light':
-                colorTheme = 'light';
+                document.documentElement.setAttribute('data-bs-theme', action.type);
                 break;
             case 'auto':
-                colorTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+                const colorTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+                document.documentElement.setAttribute('data-bs-theme', colorTheme);
                 break;
             default:
                 break;
         }
-        return colorTheme;
+        state = action.type;
+        return state;
+    }
+
+    const [theme, dispatch] = useReducer(themeReducer, document.documentElement.getAttribute('data-bs-theme'));
+
+    const toggleTheme = (newTheme) => {
+        window.localStorage.setItem('theme', newTheme);
+        dispatch({type:newTheme});
     }
 
     return (
@@ -76,19 +63,14 @@ export const Header = () => {
                             {translations.header.menu.shop}
                         </NavLink>
                     </li>
-                    <li>
-                        <NavLink to={`${lang}/profile`} className={({ isActive }) => isActive ? "link-secondary nav-link px-2" : "nav-link px-2"}>
-                            {translations.header.menu.profile}
-                        </NavLink>
-                    </li>
                 </ul>
                 <div className="col-md-3 text-end">
-                    <button type="button" className="btn btn-outline-primary me-2">
+                    <Link to={`${lang}/login`} className="btn btn-outline-primary me-2">
                         {translations.header.buttons.login}
-                    </button>
-                    <button type="button" className="btn btn-primary">
+                    </Link>
+                    <Link to={`${lang}/login`} className="btn btn-primary">
                         {translations.header.buttons.register}
-                    </button>
+                    </Link>
                         <button
                             className="btn btn-link dropdown-toggle"
                             type="button"

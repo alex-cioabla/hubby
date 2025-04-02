@@ -11,6 +11,9 @@ import BaseLayout from '@/Layouts/BaseLayout';
 import store from "@/store";
 import Home from '@/pages/Home';
 import Library from "./Pages/Library";
+import Rank from "./Pages/Rank";
+import Shop from "./Pages/Shop";
+import Login from "./Pages/Auth/Login";
 
 function App() {
     return (
@@ -18,9 +21,12 @@ function App() {
             <Router>
                 <Routes>
                     <Route element={<BaseLayout></BaseLayout>}>
-                    <Route path=":lang?/" element={<Home />} />
-                    <Route path=":lang?/library" element={<Library />} />
+                        <Route path=":lang?/" element={<Home />} />
+                        <Route path=":lang?/library" element={<Library />} />
+                        <Route path=":lang?/rank" element={<Rank />} />
+                        <Route path=":lang?/shop" element={<Shop />} />
                     </Route>
+                    <Route path=":lang?/login" element={<Login />} />
                 </Routes>
             </Router>
         </>
