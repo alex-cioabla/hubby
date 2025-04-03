@@ -3,7 +3,7 @@
 
 export const Shop = () => {
 
-    document.title = "Shop - "+window.appconfig.name;
+    document.title = "Shop - "+appConfig.name;
 
     return (<>
             <section>

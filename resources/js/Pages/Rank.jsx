@@ -3,7 +3,7 @@
 
 export const Rank = () => {
 
-    document.title = "Rank - "+window.appconfig.name;
+    document.title = "Rank - "+appConfig.name;
 
     return (<>
             <section>

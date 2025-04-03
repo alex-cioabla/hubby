@@ -16,8 +16,8 @@ const fetchTranslations = createAsyncThunk(
 const translationSlice = createSlice({
     name: "translations",
     initialState: {
-        translations: window.appconfig.translations,
-        locale: window.appconfig.locale,
+        translations: appConfig.translations,
+        locale: appConfig.locale,
         status: "idle",
     },
     reducers: {},

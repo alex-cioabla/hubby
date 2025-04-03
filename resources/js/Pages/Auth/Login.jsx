@@ -3,7 +3,7 @@ import { useLoginMutation } from '@/Store/authApi';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const Login = ({ status, canResetPassword }) => {
+const Login = () => {
 
     const [login, {error, isLoading }] = useLoginMutation();
     const route = useNavigate();
@@ -36,9 +36,9 @@ const Login = ({ status, canResetPassword }) => {
     return (
         <main style={{ maxWidth: "330px", padding: "1rem" }} className="w-100 m-auto">
 
-            {status && (
+            {appConfig.status && (
                 <div className="mb-4 text-sm font-medium text-green-600">
-                    {status}
+                    {appConfig.status}
                 </div>
             )}
             <form onSubmit={submit}>
@@ -84,7 +84,7 @@ const Login = ({ status, canResetPassword }) => {
                         Ricordami
                     </label>
                 </div>
-                {canResetPassword && (
+                {appConfig.canResetPassword && (
                     <a
                         href={route('password/request')}
                         className="rounded-md text-sm text-gray-600 underline hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:text-gray-400 dark:hover:text-gray-100 dark:focus:ring-offset-gray-800"

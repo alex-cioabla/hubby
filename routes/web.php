@@ -1,36 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Lang;
+use App\Http\Controllers\AppController;
 
-const ROUTES = ['/', 'library', 'login'];
-
-// require __DIR__.'/auth.php';
+Route::get('/{page?}', [AppController::class, 'page']);
 
 Route::group(['prefix' => '{locale}', 'where' => ['locale' => 'en|it']], function () {
-    Route::get('/{page?}', function ($locale, $page = '/') {
-
-        if (!in_array($page, ROUTES)) {
-            abort(404);
-        }
-
-        Lang::setLocale($locale);
-        return view('app');
-    });
+    Route::get('/{page?}', [AppController::class, 'locale_page']);
 });
 
-Route::get('/{page?}', function ($page = '/') {
-
-    if (!in_array($page, ROUTES)) {
-        abort(404);
-    }
-
-    return view('app');
-});
-
-// Route::get('/dashboard', function () {
-//     return Inertia::render('Dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
 
 // Route::middleware('auth')->group(function () {
 //     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

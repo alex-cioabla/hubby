@@ -3,7 +3,7 @@
 
 export const Library = () => {
 
-    document.title = "Library - "+window.appconfig.name;
+    document.title = "Library - "+appConfig.name;
 
     return (<>
             <section>

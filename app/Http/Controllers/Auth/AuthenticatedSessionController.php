@@ -13,17 +13,6 @@ use \Illuminate\Http\JsonResponse;
 class AuthenticatedSessionController extends Controller
 {
     /**
-     * Display the login view.
-     */
-    public function create(): JsonResponse
-    {
-        return response()->json([
-            'canResetPassword' => Route::has('password.request'),
-            'status' => session('status'),
-        ]);
-    }
-
-    /**
      * Handle an incoming authentication request.
      */
     public function store(LoginRequest $request): RedirectResponse
