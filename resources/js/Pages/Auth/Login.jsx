@@ -25,7 +25,7 @@ const Login = ({ status, canResetPassword }) => {
     const submit = (e) => {
         e.preventDefault();
         try {
-            const result =login(data);
+            const result = login(data);
             console.log('Login successful:', result);
         } catch (er) {
             console.error('Login failed:', er);
@@ -46,12 +46,13 @@ const Login = ({ status, canResetPassword }) => {
                 <h1 className="h3 mb-3 fw-normal">Login</h1>
                 <div className="form-floating">
                     <input
+                        name="email"
                         type="email"
                         className="form-control"
                         id="floatingInput"
                         placeholder="name@esempio.it"
                         value={data.email}
-                        onChange={(e) => handleChange}
+                        onChange={handleChange}
                     />
                     <label htmlFor="floatingInput">Indirizzo email</label>
                     <InputError message={error} className="mt-2" />
@@ -59,22 +60,25 @@ const Login = ({ status, canResetPassword }) => {
                 <div className="form-floating">
                     <input
                         type="password"
+                        name='password'
                         className="form-control"
                         id="floatingPassword"
                         placeholder="Password"
-                        onChange={(e) => handleChange}
+                        value={data.password}
+                        onChange={handleChange}
                     />
                     <label htmlFor="floatingPassword">Password</label>
                     <InputError message={error} className="mt-2" />
                 </div>
                 <div className="form-check text-start my-3">
                     <input
+                        name='remember'
                         className="form-check-input"
                         type="checkbox"
                         defaultValue="remember-me"
                         id="flexCheckDefault"
                         checked={data.remember}
-                        onChange={(e) => handleChange}
+                        onChange={handleChange}
                     />
                     <label className="form-check-label" htmlFor="flexCheckDefault">
                         Ricordami
