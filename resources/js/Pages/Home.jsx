@@ -1,7 +1,7 @@
 
 
 
-export const Home = () => {
+const Home = () => {
 
     document.title = "Home - "+appConfig.name;
 

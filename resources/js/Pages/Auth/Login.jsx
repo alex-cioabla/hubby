@@ -22,10 +22,11 @@ const Login = () => {
         });
     };
 
-    const submit = (e) => {
+    const submit = async (e) => {
         e.preventDefault();
         try {
-            const result = login(data);
+            const result = await login(data);
+            route('/dashboard');
             console.log('Login successful:', result);
         } catch (er) {
             console.error('Login failed:', er);

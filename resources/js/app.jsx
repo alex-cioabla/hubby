@@ -5,14 +5,17 @@ import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import React from "react";
 import { createRoot } from 'react-dom/client';
 import { Provider } from "react-redux";
-
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import BaseLayout from '@/Layouts/BaseLayout';
+
 import store from "@/store";
+import GuestLayout from '@/Layouts/GuestLayout';
+import AuthenticatedLayout from "./Layouts/AuthenticatedLayout";
+
 import Home from '@/pages/Home';
 import Library from "./Pages/Library";
 import Rank from "./Pages/Rank";
 import Shop from "./Pages/Shop";
+import Dashboard from "./Pages/Dashboard";
 import Login from "./Pages/Auth/Login";
 
 function App() {
@@ -20,11 +23,14 @@ function App() {
         <>
             <Router>
                 <Routes>
-                    <Route element={<BaseLayout></BaseLayout>}>
+                    <Route element={<GuestLayout></GuestLayout>}>
                         <Route path=":lang?/" element={<Home />} />
                         <Route path=":lang?/library" element={<Library />} />
                         <Route path=":lang?/rank" element={<Rank />} />
                         <Route path=":lang?/shop" element={<Shop />} />
+                    </Route>
+                    <Route element={<AuthenticatedLayout></AuthenticatedLayout>}>
+                        <Route path=":lang?/dashboard" element={<Dashboard />} />
                     </Route>
                     <Route path=":lang?/login" element={<Login />} />
                 </Routes>
