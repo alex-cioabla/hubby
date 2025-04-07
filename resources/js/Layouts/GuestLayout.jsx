@@ -82,7 +82,7 @@ export default function GuestLayout() {
                         <Link to={`${lang}/login`} className="btn btn-outline-primary me-2">
                             {translations.header.buttons.login}
                         </Link>
-                        <Link to={`${lang}/login`} className="btn btn-primary">
+                        <Link to={`${lang}/register`} className="btn btn-primary">
                             {translations.header.buttons.register}
                         </Link>
                         <button

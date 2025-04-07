@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 const Login = () => {
 
     const [login, {error, isLoading }] = useLoginMutation();
-    const route = useNavigate();
+    const navigate = useNavigate();
 
     const [data, setData] = useState({
         email: '',
@@ -22,11 +22,11 @@ const Login = () => {
         });
     };
 
-    const submit = async (e) => {
+    const submit = (e) => {
         e.preventDefault();
         try {
-            const result = await login(data);
-            route('/dashboard');
+            const result = login(data);
+            //navigate('/dashboard');
             console.log('Login successful:', result);
         } catch (er) {
             console.error('Login failed:', er);
@@ -87,7 +87,7 @@ const Login = () => {
                 </div>
                 {appConfig.canResetPassword && (
                     <a
-                        href={route('password/request')}
+                        href={navigate('password/request')}
                         className="rounded-md text-sm text-gray-600 underline hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:text-gray-400 dark:hover:text-gray-100 dark:focus:ring-offset-gray-800"
                     >
                         Hai dimenticato la password?
