@@ -17,6 +17,7 @@ import Rank from "./Pages/Rank";
 import Shop from "./Pages/Shop";
 import Dashboard from "./Pages/Dashboard";
 import Login from "./Pages/Auth/Login";
+import PrivateRoute from "./Components/PrivateRoute";
 
 function App() {
     return (
@@ -30,7 +31,7 @@ function App() {
                         <Route path=":lang?/shop" element={<Shop />} />
                     </Route>
                     <Route element={<AuthenticatedLayout></AuthenticatedLayout>}>
-                        <Route path=":lang?/dashboard" element={<Dashboard />} />
+                        <Route path=":lang?/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>}></Route>
                     </Route>
                     <Route path=":lang?/login" element={<Login />} />
                 </Routes>

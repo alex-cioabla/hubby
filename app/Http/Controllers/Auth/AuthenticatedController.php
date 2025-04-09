@@ -10,21 +10,31 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use \Illuminate\Http\JsonResponse;
 
-class AuthenticatedSessionController extends Controller
+class AuthenticatedController extends Controller
 {
     /**
      * Handle an incoming authentication request.
      */
-    public function store(LoginRequest $request): RedirectResponse
+    public function store(LoginRequest $request): JsonResponse
     {
 
-        $request->authenticate();
-        // dd($request->session());
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
 
-        $request->session()->regenerate();
+        if (!Auth::attempt($request->only('email', 'password'))) {
+            return response()->json(['message' => 'Invalid credentials'], 401);
+        }
 
+        $user = Auth::user();
+        $token = $user->createToken('API Token')->plainTextToken;
 
-        return redirect()->intended(route('dashboard', absolute: false));
+        return response()->json([
+            'user' => $user,
+            'token' => $token,
+            'tokenExp' => now()->addMinutes(60),
+        ]);
     }
 
     /**

@@ -1,18 +1,37 @@
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from "react-redux";
+
 import InputError from '@/Components/default/InputError';
 import { useLoginMutation } from '@/Store/authApi';
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { setCredentials, removeCredentials } from '@/Store/authSlice';
 
 const Login = () => {
 
-    const [login, {error, isLoading }] = useLoginMutation();
+    const [login, {error, isLoading, data: loginData }] = useLoginMutation();
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const [data, setData] = useState({
         email: '',
         password: '',
         remember: false,
     });
+
+    useEffect(() => {
+
+        const token = localStorage.getItem("token");
+        const tokenExp = localStorage.getItem("tokenExp");
+
+        if (token && tokenExp) {
+            if (new Date(tokenExp) > new Date()) {
+                dispatch(setCredentials({token: loginData.token, user: loginData.user}));
+            }else{
+                dispatch(removeCredentials());
+            }
+        }
+    }, [dispatch])
+
 
     const handleChange = (e) => {
         const { name, value, type, checked } = e.target;
@@ -25,14 +44,12 @@ const Login = () => {
     const submit = (e) => {
         e.preventDefault();
         try {
-            const result = login(data);
-            //navigate('/dashboard');
-            console.log('Login successful:', result);
+            login(data).unwrap();
+            navigate('/dashboard');
         } catch (er) {
             console.error('Login failed:', er);
         }
     };
-
 
     return (
         <main style={{ maxWidth: "330px", padding: "1rem" }} className="w-100 m-auto">
