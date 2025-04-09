@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
     token: null,
     user: null,
-    tokenExp: null
+    expiresAt: null
   };
 
 const authSlice = createSlice({
@@ -14,13 +14,13 @@ const authSlice = createSlice({
             state.user = action.payload.user;
             state.token = action.payload.token;
             localStorage.setItem("token", action.payload.token);
-            localStorage.setItem("tokenExp", action.payload.tokenExp);
+            localStorage.setItem("expiresAt", action.payload.expiresAt);
         },
         removeCredentials: (state) => {
             state.user = null;
             state.token = null;
             localStorage.removeItem("token");
-            localStorage.removeItem("tokenExp");
+            localStorage.removeItem("expiresAt");
         }
     }
 });

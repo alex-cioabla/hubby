@@ -8,35 +8,41 @@ import { setCredentials, removeCredentials } from '@/Store/authSlice';
 
 const Login = () => {
 
-    const [login, {error, isLoading, data: loginData }] = useLoginMutation();
+    const [login, {error, isLoading, data }] = useLoginMutation();
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    const [data, setData] = useState({
+    const [fields, setFields] = useState({
         email: '',
         password: '',
         remember: false,
     });
 
     useEffect(() => {
-
-        const token = localStorage.getItem("token");
-        const tokenExp = localStorage.getItem("tokenExp");
-
-        if (token && tokenExp) {
-            if (new Date(tokenExp) > new Date()) {
-                dispatch(setCredentials({token: loginData.token, user: loginData.user}));
-            }else{
-                dispatch(removeCredentials());
-            }
+        if (data) {
+            dispatch(setCredentials({token: data.token, user: data.user}));
         }
-    }, [dispatch])
+
+        // const token = window.localStorage.getItem("token");
+        // const expiresAt = window.localStorage.getItem("expiresAt");
+        // if (token && expiresAt) {
+        //     console.log('USEEFFETCT', data);
+
+        //     if (new Date(expiresAt) > new Date()) {
+        //         dispatch(setCredentials({token: data.token, user: data.user}));
+        //         console.log('USEEFFETCT', data);
+
+        //     }else{
+        //         dispatch(removeCredentials());
+        //     }
+        // }
+    }, [dispatch, navigate, data]);
 
 
     const handleChange = (e) => {
         const { name, value, type, checked } = e.target;
-        setData({
-            ...data,
+        setFields({
+            ...fields,
             [name]: type === 'checkbox' ? checked : value,
         });
     };
@@ -44,8 +50,9 @@ const Login = () => {
     const submit = (e) => {
         e.preventDefault();
         try {
-            login(data).unwrap();
-            navigate('/dashboard');
+            login(fields).unwrap();
+            console.log('SUBMIT', fields);
+            // navigate('/dashboard');
         } catch (er) {
             console.error('Login failed:', er);
         }
@@ -69,7 +76,7 @@ const Login = () => {
                         className="form-control"
                         id="floatingInput"
                         placeholder="name@esempio.it"
-                        value={data.email}
+                        value={fields.email}
                         onChange={handleChange}
                     />
                     <label htmlFor="floatingInput">Indirizzo email</label>
@@ -82,7 +89,7 @@ const Login = () => {
                         className="form-control"
                         id="floatingPassword"
                         placeholder="Password"
-                        value={data.password}
+                        value={fields.password}
                         onChange={handleChange}
                     />
                     <label htmlFor="floatingPassword">Password</label>
@@ -95,7 +102,7 @@ const Login = () => {
                         type="checkbox"
                         defaultValue="remember-me"
                         id="flexCheckDefault"
-                        checked={data.remember}
+                        checked={fields.remember}
                         onChange={handleChange}
                     />
                     <label className="form-check-label" htmlFor="flexCheckDefault">

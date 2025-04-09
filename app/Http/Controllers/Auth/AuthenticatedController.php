@@ -28,12 +28,11 @@ class AuthenticatedController extends Controller
         }
 
         $user = Auth::user();
-        $token = $user->createToken('API Token')->plainTextToken;
+        $token = $user->createToken('token-api',  ['*'], now()->addWeek());
 
         return response()->json([
             'user' => $user,
-            'token' => $token,
-            'tokenExp' => now()->addMinutes(60),
+            'token' => $token
         ]);
     }
 
