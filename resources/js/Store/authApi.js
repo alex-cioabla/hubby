@@ -14,15 +14,28 @@ export const authApi = createApi({
             return headers;
         },
     }),
-    endpoints : builder => ({
+    endpoints: builder => ({
         login: builder.mutation({
             query: (body) => ({
                 url: '/login',
                 method: 'POST',
                 body: body
             })
+        }),
+        logout: builder.mutation({
+            queryFn: async (_arg, { getState }, _extraOptions, fetchWithBaseQuery) => {
+                const token = getState().auth.token;
+                const result = await fetchWithBaseQuery({
+                    url: '/logout',
+                    method: 'POST',
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    },
+                });
+                return result;
+            }
         })
     })
 });
 
-export const { useLoginMutation } = authApi;
+export const { useLoginMutation, useLogoutMutation } = authApi;

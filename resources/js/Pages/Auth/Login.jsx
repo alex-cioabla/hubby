@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 
 import InputError from '@/Components/default/InputError';
 import { useLoginMutation } from '@/Store/authApi';
-import { setCredentials, removeCredentials } from '@/Store/authSlice';
+import { setCredentials } from '@/Store/authSlice';
 
 const Login = () => {
 
@@ -23,21 +23,7 @@ const Login = () => {
             dispatch(setCredentials(data));
             navigate('/dashboard');
         }
-
-        // const token = window.localStorage.getItem("token");
-        // const expiresAt = window.localStorage.getItem("expiresAt");
-        // if (token && expiresAt) {
-        //     console.log('USEEFFETCT', data);
-
-        //     if (new Date(expiresAt) > new Date()) {
-        //         dispatch(setCredentials({token: data.token, user: data.user}));
-        //         console.log('USEEFFETCT', data);
-
-        //     }else{
-        //         dispatch(removeCredentials());
-        //     }
-        // }
-    }, [data, dispatch, navigate]);
+    }, [data, dispatch]);
 
 
     const handleChange = (e) => {

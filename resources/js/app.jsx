@@ -11,13 +11,14 @@ import store from "@/store";
 import GuestLayout from '@/Layouts/GuestLayout';
 import AuthenticatedLayout from "./Layouts/AuthenticatedLayout";
 
+import PrivateRoute from "./Components/PrivateRoute";
 import Home from '@/pages/Home';
 import Library from "./Pages/Library";
 import Rank from "./Pages/Rank";
 import Shop from "./Pages/Shop";
 import Dashboard from "./Pages/Dashboard";
 import Login from "./Pages/Auth/Login";
-import PrivateRoute from "./Components/PrivateRoute";
+import Logout from "./Pages/Auth/Logout";
 
 function App() {
     return (
@@ -34,6 +35,7 @@ function App() {
                         <Route path=":lang?/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>}></Route>
                     </Route>
                     <Route path=":lang?/login" element={<Login />} />
+                    <Route path="/logout" element={<Logout />} />
                 </Routes>
             </Router>
         </>

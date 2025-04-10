@@ -1,4 +1,4 @@
-import { NavLink, Link, useParams, useNavigate, Outlet} from 'react-router-dom';
+import { NavLink, Link, Outlet} from 'react-router-dom';
 
 export default function AuthenticatedLayout() {
 
@@ -87,9 +87,9 @@ export default function AuthenticatedLayout() {
                                         </NavLink>
                                     </li>
                                     <li className="nav-item">
-                                        <NavLink className="nav-link d-flex align-items-center gap-2" href="#">
+                                        <NavLink className="nav-link d-flex align-items-center gap-2" to="/logout">
                                             <i className="bi bi-door-closed"></i>
-                                            Sign out
+                                            Disconetti
                                         </NavLink>
                                     </li>
                                 </ul>

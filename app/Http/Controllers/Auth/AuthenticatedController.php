@@ -30,7 +30,7 @@ class AuthenticatedController extends Controller
         $token = $user->createToken('token-api',  ['*'], now()->addWeek());
 
         return response()->json([
-            'user' => $user,
+            // 'user' => $user,
             'token' => $token->plainTextToken,
             'expires_at' => $token->accessToken->expires_at
         ]);
@@ -39,14 +39,11 @@ class AuthenticatedController extends Controller
     /**
      * Destroy an authenticated session.
      */
-    public function destroy(Request $request): RedirectResponse
+    public function destroy(Request $request): JsonResponse
     {
-        Auth::guard('web')->logout();
+        // Cancella il token e disconnette l'utente
+        $request->user()->currentAccessToken()->delete();
 
-        $request->session()->invalidate();
-
-        $request->session()->regenerateToken();
-
-        return redirect('/');
+        return response()->json(['message' => 'Logged out successfully'], 200);
     }
 }

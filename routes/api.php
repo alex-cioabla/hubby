@@ -16,6 +16,10 @@ Route::middleware('guest')->group(function () {
     Route::post('login', [AuthenticatedController::class, 'store']);
 });
 
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('logout', [AuthenticatedController::class, 'destroy']);
+});
+
 
 // Route::get('/user', function (Request $request) {
 //     return $request->user();

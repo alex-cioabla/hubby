@@ -45,7 +45,7 @@ export default function GuestLayout() {
         }
     };
 
-    const user = useSelector(state => state.auth.user);
+    const token = useSelector(state => state.auth.token);
 
     return (
         <>
@@ -82,14 +82,14 @@ export default function GuestLayout() {
                     </ul>
                     <div className="col-md-3 text-end">
                         {
-                            user && (
+                            token && (
                                 <Link to={`${lang}/dashboard`} className="btn btn-outline-primary me-2">
                                     Dashboard
                                 </Link>
                             )
                         }
                         {
-                            !user && (<>
+                            !token && (<>
                                 <Link to={`${lang}/login`} className="btn btn-outline-primary me-2">
                                     {translations.header.buttons.login}
                                 </Link>
