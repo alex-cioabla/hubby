@@ -1,4 +1,4 @@
-import { Outlet } from 'react-router-dom';
+import { NavLink, Link, useParams, useNavigate, Outlet} from 'react-router-dom';
 
 export default function AuthenticatedLayout() {
 
@@ -6,25 +6,12 @@ export default function AuthenticatedLayout() {
         <>
             <header
                 className="navbar sticky-top bg-dark flex-md-nowrap p-0 shadow">
-                <a
+                <Link
                     className="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6 text-white py-3 bg-black shadow-sm"
-                    href="#">
+                    to="/">
                     Hubby
-                </a>
+                </Link>
                 <ul className="navbar-nav flex-row d-md-none">
-                    <li className="nav-item text-nowrap">
-                        <button
-                            className="nav-link px-3 text-white"
-                            type="button"
-                            data-bs-toggle="collapse"
-                            data-bs-target="#navbarSearch"
-                            aria-controls="navbarSearch"
-                            aria-expanded="false"
-                            aria-label="Toggle search"
-                        >
-                            <i className="bi bi-search"></i>
-                        </button>
-                    </li>
                     <li className="nav-item text-nowrap">
                         <button
                             className="nav-link px-3 text-white"
@@ -39,14 +26,6 @@ export default function AuthenticatedLayout() {
                         </button>
                     </li>
                 </ul>
-                <div id="navbarSearch" className="navbar-search w-100 collapse display: block">
-                    <input
-                        className="form-control w-100 rounded-0 border-0 p-2"
-                        type="text"
-                        placeholder="Search"
-                        aria-label="Search"
-                    />
-                </div>
             </header>
             <div className="container-fluid">
                 <div className="row">
@@ -72,14 +51,14 @@ export default function AuthenticatedLayout() {
                             <div className="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto">
                                 <ul className="nav flex-column">
                                     <li className="nav-item">
-                                        <a
+                                        <NavLink
                                             className="nav-link d-flex align-items-center gap-2 active"
                                             aria-current="page"
-                                            href="#"
+                                            to="/dashboard"
                                         >
                                             <i className="bi bi-house-door-fill"></i>
                                             Dashboard
-                                        </a>
+                                        </NavLink>
                                     </li>
                                 </ul>
                                 <h6 className="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-body-secondary text-uppercase">
@@ -102,16 +81,16 @@ export default function AuthenticatedLayout() {
                                 <hr className="my-3" />
                                 <ul className="nav flex-column mb-auto">
                                     <li className="nav-item">
-                                        <a className="nav-link d-flex align-items-center gap-2" href="#">
+                                        <NavLink className="nav-link d-flex align-items-center gap-2" href="#">
                                             <i className="bi bi-person-fill"></i>
                                             Profilo
-                                        </a>
+                                        </NavLink>
                                     </li>
                                     <li className="nav-item">
-                                        <a className="nav-link d-flex align-items-center gap-2" href="#">
+                                        <NavLink className="nav-link d-flex align-items-center gap-2" href="#">
                                             <i className="bi bi-door-closed"></i>
                                             Sign out
-                                        </a>
+                                        </NavLink>
                                     </li>
                                 </ul>
                             </div>

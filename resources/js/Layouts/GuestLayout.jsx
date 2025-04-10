@@ -1,5 +1,5 @@
 import { useReducer } from 'react';
-import { NavLink, Link, useParams, useNavigate, Outlet} from 'react-router-dom';
+import { NavLink, Link, useParams, useNavigate, Outlet } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
 
 import { fetchTranslations } from "@/Store/translationSlice";
@@ -45,6 +45,8 @@ export default function GuestLayout() {
         }
     };
 
+    const user = useSelector(state => state.auth.user);
+
     return (
         <>
             <header>
@@ -79,12 +81,24 @@ export default function GuestLayout() {
                         </li>
                     </ul>
                     <div className="col-md-3 text-end">
-                        <Link to={`${lang}/login`} className="btn btn-outline-primary me-2">
-                            {translations.header.buttons.login}
-                        </Link>
-                        <Link to={`${lang}/register`} className="btn btn-primary">
-                            {translations.header.buttons.register}
-                        </Link>
+                        {
+                            user && (
+                                <Link to={`${lang}/dashboard`} className="btn btn-outline-primary me-2">
+                                    Dashboard
+                                </Link>
+                            )
+                        }
+                        {
+                            !user && (<>
+                                <Link to={`${lang}/login`} className="btn btn-outline-primary me-2">
+                                    {translations.header.buttons.login}
+                                </Link>
+                                <Link to={`${lang}/register`} className="btn btn-primary">
+                                    {translations.header.buttons.register}
+                                </Link></>
+                            )
+                        }
+
                         <button
                             className="btn btn-link dropdown-toggle"
                             type="button"

@@ -20,7 +20,8 @@ const Login = () => {
 
     useEffect(() => {
         if (data) {
-            dispatch(setCredentials({token: data.token, user: data.user}));
+            dispatch(setCredentials(data));
+            navigate('/dashboard');
         }
 
         // const token = window.localStorage.getItem("token");
@@ -36,7 +37,7 @@ const Login = () => {
         //         dispatch(removeCredentials());
         //     }
         // }
-    }, [dispatch, navigate, data]);
+    }, [data, dispatch, navigate]);
 
 
     const handleChange = (e) => {
@@ -47,15 +48,9 @@ const Login = () => {
         });
     };
 
-    const submit = (e) => {
+    const submit = async (e) => {
         e.preventDefault();
-        try {
-            login(fields).unwrap();
-            console.log('SUBMIT', fields);
-            // navigate('/dashboard');
-        } catch (er) {
-            console.error('Login failed:', er);
-        }
+        await login(fields).unwrap();
     };
 
     return (

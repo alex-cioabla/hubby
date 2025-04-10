@@ -2,13 +2,13 @@ import { useSelector } from 'react-redux';
 import { Navigate, useParams } from 'react-router-dom';
 
 const PrivateRoute = (props) => {
-    const user = useSelector(state => state.auth.user);
+    const token = useSelector(state => state.auth.token);
     const { locale } = useSelector((state) => state.localization);
     let { lang } = useParams();
 
     lang = lang === locale ? lang : '';
 
-    if (user){
+    if (token){
         return (props.children);
     }
 

@@ -1,5 +1,3 @@
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
-
 const Dashboard = () => {
 
     document.title = "Dashboard - " + appConfig.name;

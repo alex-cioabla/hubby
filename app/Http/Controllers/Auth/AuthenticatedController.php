@@ -17,7 +17,6 @@ class AuthenticatedController extends Controller
      */
     public function store(LoginRequest $request): JsonResponse
     {
-
         $request->validate([
             'email' => 'required|email',
             'password' => 'required',
@@ -32,7 +31,8 @@ class AuthenticatedController extends Controller
 
         return response()->json([
             'user' => $user,
-            'token' => $token
+            'token' => $token->plainTextToken,
+            'expires_at' => $token->accessToken->expires_at
         ]);
     }
 
