@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from "react-redux";
 
-import InputError from '@/Components/default/InputError';
+import InputError from '@/Components/InputError';
 import { useLoginMutation } from '@/Store/authApi';
 import { setCredentials } from '@/Store/authSlice';
+import { createSelector } from '@reduxjs/toolkit';
 
 const Login = () => {
 
-    const [login, {error, isLoading, data }] = useLoginMutation();
+    const [login, { data, error, isLoading }] = useLoginMutation();
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const status = createSelector((state) => state.auth.status);
 
     const [fields, setFields] = useState({
         email: '',
@@ -42,9 +44,9 @@ const Login = () => {
     return (
         <main style={{ maxWidth: "330px", padding: "1rem" }} className="w-100 m-auto">
 
-            {appConfig.status && (
+            {status && (
                 <div className="mb-4 text-sm font-medium text-green-600">
-                    {appConfig.status}
+                    {status}
                 </div>
             )}
             <form onSubmit={submit}>
@@ -90,14 +92,14 @@ const Login = () => {
                         Ricordami
                     </label>
                 </div>
-                {appConfig.canResetPassword && (
-                    <a
-                        href={navigate('password/request')}
-                        className="rounded-md text-sm text-gray-600 underline hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:text-gray-400 dark:hover:text-gray-100 dark:focus:ring-offset-gray-800"
-                    >
-                        Hai dimenticato la password?
-                    </a>
-                )}
+                <p>
+
+                <Link
+                    to='/forgot-password'
+                >
+                    Hai dimenticato la password?
+                </Link>
+                </p>
                 <button className="btn btn-primary w-100 py-2" type="submit" disabled={isLoading}>
                     Accedi
                 </button>

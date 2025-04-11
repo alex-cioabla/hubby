@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Route;
 
 class AppController extends Controller
 {
-    const ROUTES = ['/', 'library', 'login', 'dashboard'];
+    const ROUTES = ['/', 'library', 'login', 'dashboard', 'forgot-password'];
 
     public function page($page = '/'){
 
@@ -43,14 +43,13 @@ class AppController extends Controller
             'name' => config('app.name')
         ];
 
-        switch ($page) {
-            case 'login':
-                $config['canResetPassword'] = Route::has('password.request');
-                $config['status'] = session('status');
-                break;
-            default:
-                break;
-        }
+        // switch ($page) {
+        //     case 'login':
+        //         $config['canResetPassword'] = Route::has('password.request');
+        //         break;
+        //     default:
+        //         break;
+        // }
         return $config;
     }
 }

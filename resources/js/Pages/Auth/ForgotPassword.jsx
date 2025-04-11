@@ -1,23 +1,38 @@
-import InputError from '@/Components/default/InputError';
-import PrimaryButton from '@/Components/default/PrimaryButton';
-import TextInput from '@/Components/default/TextInput';
-import GuestLayout from '@/Layouts/default/GuestLayout';
-import { Head, useForm } from '@inertiajs/react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from "react-redux";
+import { createSelector } from '@reduxjs/toolkit';
 
-export default function ForgotPassword({ status }) {
-    const { data, setData, post, processing, errors } = useForm({
-        email: '',
-    });
+import InputError from '@/Components/InputError';
+import { useForgotPasswordMutation } from '@/Store/authApi';
+import { setStatus } from '@/Store/authSlice';
+
+const ForgotPassword = () => {
+
+    const [email, setEmail] = useState('');
+    const [forgotPassword, { data, error, isLoading }] = useForgotPasswordMutation();
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const status = createSelector((state) => state.auth.status);
+
+
+    useEffect(() => {
+
+        if (data) {
+            dispatch(setStatus(data));
+        }
+
+    }, [data]);
 
     const submit = (e) => {
         e.preventDefault();
 
-        post(route('password.email'));
+       forgotPassword({email: email});
+       navigate(-1);
     };
 
     return (
-        <GuestLayout>
-            <Head title="Forgot Password" />
+        <main style={{ maxWidth: "330px", padding: "1rem" }} className="w-100 m-auto">
 
             <div className="mb-4 text-sm text-gray-600 dark:text-gray-400">
                 Forgot your password? No problem. Just let us know your email
@@ -32,24 +47,26 @@ export default function ForgotPassword({ status }) {
             )}
 
             <form onSubmit={submit}>
-                <TextInput
-                    id="email"
-                    type="email"
-                    name="email"
-                    value={data.email}
-                    className="mt-1 block w-full"
-                    isFocused={true}
-                    onChange={(e) => setData('email', e.target.value)}
-                />
-
-                <InputError message={errors.email} className="mt-2" />
-
-                <div className="mt-4 flex items-center justify-end">
-                    <PrimaryButton className="ms-4" disabled={processing}>
-                        Email Password Reset Link
-                    </PrimaryButton>
+                <div className="form-floating">
+                    <input
+                        name="email"
+                        type="email"
+                        className="form-control"
+                        id="floatingInput"
+                        placeholder="name@esempio.it"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                    />
+                    <label htmlFor="floatingInput">Indirizzo email</label>
+                    <InputError message={error} className="mt-2" />
                 </div>
+
+                <button className="btn btn-primary w-100 py-2 mt-2" disabled={isLoading}>
+                    Email Password Reset Link
+                </button>
             </form>
-        </GuestLayout>
+        </main>
     );
 }
+
+export default ForgotPassword;
