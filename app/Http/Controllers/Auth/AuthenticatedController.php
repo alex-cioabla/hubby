@@ -3,11 +3,8 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Auth\LoginRequest;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Route;
 use \Illuminate\Http\JsonResponse;
 
 class AuthenticatedController extends Controller
@@ -15,7 +12,7 @@ class AuthenticatedController extends Controller
     /**
      * Handle an incoming authentication request.
      */
-    public function store(LoginRequest $request): JsonResponse
+    public function store(Request $request): JsonResponse
     {
         $request->validate([
             'email' => 'required|email',
@@ -30,7 +27,6 @@ class AuthenticatedController extends Controller
         $token = $user->createToken('token-api',  ['*'], now()->addWeek());
 
         return response()->json([
-            // 'user' => $user,
             'token' => $token->plainTextToken,
             'expires_at' => $token->accessToken->expires_at
         ]);
