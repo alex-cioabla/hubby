@@ -1,18 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import InputError from '@/Components/InputError';
 import { useLoginMutation } from '@/Store/authApi';
 import { setCredentials } from '@/Store/authSlice';
-import { createSelector } from '@reduxjs/toolkit';
 
 const Login = () => {
 
     const [login, { data, error, isLoading }] = useLoginMutation();
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const status = createSelector((state) => state.auth.status);
+    const status = useSelector((state) => state.auth.status);
 
     const [fields, setFields] = useState({
         email: '',
@@ -52,7 +51,7 @@ const Login = () => {
             <form onSubmit={submit}>
                 Logo
                 <h1 className="h3 mb-3 fw-normal">Login</h1>
-                <div className="form-floating">
+                <div className="form-floating mb-3">
                     <input
                         name="email"
                         type="email"

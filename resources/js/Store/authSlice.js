@@ -4,7 +4,8 @@ const initialState = (() => {
     let init = {
         token: window.localStorage.getItem("token"),
         expires_at: window.localStorage.getItem("expires_at"),
-        status: null
+        status: null,
+        // recover_email: null
     }
 
     if (init.token && new Date(init.expires_at) < new Date()) {
@@ -38,6 +39,7 @@ const authSlice = createSlice({
         },
         setStatus: (state, action) => {
             state.status = action.payload.status;
+            // state.recover_email = action.payload.email;
         }
     }
 });

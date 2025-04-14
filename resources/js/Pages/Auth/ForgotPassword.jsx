@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 
 import InputError from '@/Components/InputError';
@@ -11,9 +10,7 @@ const ForgotPassword = () => {
     const [email, setEmail] = useState('');
     const [forgotPassword, { data, error, isLoading }] = useForgotPasswordMutation();
     const dispatch = useDispatch();
-    const navigate = useNavigate();
     const status = useSelector((state) => state.auth.status);
-
 
     useEffect(() => {
 

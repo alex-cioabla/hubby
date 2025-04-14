@@ -1,16 +1,21 @@
-import InputError from '@/Components/InputError';
+import React, { useState, useEffect } from 'react';
 import { useResetPasswordMutation } from '@/Store/authApi';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams, useSearchParams  } from 'react-router-dom';
+import InputError from '@/Components/InputError';
 
-export default function ResetPassword({ token, email }) {
+export default function ResetPassword() {
 
     const [resetPassword, { data, error, isLoading }] = useResetPasswordMutation();
     const navigate = useNavigate();
+    let { token } = useParams();
+    const [searchParams] = useSearchParams();
+    const recover_email = searchParams.get('email');
 
     const [fields, setFields] = useState({
-        email: '',
+        email: recover_email,
         password: '',
-        password_confirmation: ''
+        password_confirmation: '',
+        token: token
     });
 
     const handleChange = (e) => {
@@ -25,15 +30,14 @@ export default function ResetPassword({ token, email }) {
         e.preventDefault();
 
         resetPassword(fields);
-        navigate('/login');
-
+        // navigate('/login');
     };
 
     return (
         <main style={{ maxWidth: "330px", padding: "1rem" }} className="w-100 m-auto">
 
             <form onSubmit={submit}>
-                <div className="form-floating">
+                <div className="form-floating  mb-3">
                     <input
                         name="email"
                         type="email"
@@ -47,7 +51,7 @@ export default function ResetPassword({ token, email }) {
                     <InputError message={error} className="mt-2" />
                 </div>
 
-                <div className="form-floating">
+                <div className="form-floating  mb-3">
                     <input
                         type="password"
                         name='password'
@@ -61,7 +65,7 @@ export default function ResetPassword({ token, email }) {
                     <InputError message={error} className="mt-2" />
                 </div>
 
-                <div className="form-floating">
+                <div className="form-floating  mb-3">
                     <input
                         type="password"
                         name='password_confirmation'

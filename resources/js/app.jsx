@@ -20,6 +20,7 @@ import Dashboard from "./Pages/Dashboard";
 import Login from "./Pages/Auth/Login";
 import Logout from "./Pages/Auth/Logout";
 import ForgotPassword from "./Pages/Auth/ForgotPassword";
+import ResetPassword from "./Pages/Auth/ResetPassword";
 
 function App() {
     return (
@@ -38,6 +39,7 @@ function App() {
                     <Route path=":lang?/login" element={<Login />} />
                     <Route path="/logout" element={<Logout />} />
                     <Route path=":lang?/forgot-password" element={<ForgotPassword/>} />
+                    <Route path=":lang?/reset-password/:token" element={<ResetPassword/>} />
                 </Routes>
             </Router>
         </>

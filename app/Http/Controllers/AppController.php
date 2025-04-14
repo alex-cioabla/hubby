@@ -11,9 +11,9 @@ class AppController extends Controller
 
     public function page($page = '/'){
 
-        if (!in_array($page, self::ROUTES)) {
+        /* if (!in_array($page, self::ROUTES)) {
             abort(404);
-        }
+        } */
 
         $config = $this->getConfig($page);
 
@@ -40,7 +40,7 @@ class AppController extends Controller
         $config = [
             'translations' => HubbyLang::getAllTrans(),
             'locale' => Lang::getLocale(),
-            'name' => config('app.name')
+            'name' => config(key: 'app.name')
         ];
 
         // switch ($page) {
