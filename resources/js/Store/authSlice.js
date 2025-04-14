@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-initialState(() => {
+const initialState = (() => {
     let init = {
         token: window.localStorage.getItem("token"),
         expires_at: window.localStorage.getItem("expires_at"),
