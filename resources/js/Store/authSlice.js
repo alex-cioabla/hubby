@@ -1,12 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-let initialState = {
-    token: window.localStorage.getItem("token"),
-    expires_at: window.localStorage.getItem("expires_at"),
-    status: null
-}
+initialState(() => {
+    let init = {
+        token: window.localStorage.getItem("token"),
+        expires_at: window.localStorage.getItem("expires_at"),
+        status: null
+    }
 
-const checkToken = (() => {
     if (init.token && new Date(init.expires_at) < new Date()) {
         init.token = null;
         init.expires_at = null;
@@ -14,6 +14,8 @@ const checkToken = (() => {
         window.localStorage.removeItem("token");
         window.localStorage.removeItem("expires_at");
     }
+
+    return init;
 });
 
 const authSlice = createSlice({
