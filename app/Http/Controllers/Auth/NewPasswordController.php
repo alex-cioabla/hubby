@@ -11,21 +11,19 @@ use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rules;
 use Illuminate\Validation\ValidationException;
-use Inertia\Inertia;
-use Inertia\Response;
 
 class NewPasswordController extends Controller
 {
     /**
      * Display the password reset view.
      */
-    public function create(Request $request): Response
-    {
-        return Inertia::render('Auth/ResetPassword', [
-            'email' => $request->email,
-            'token' => $request->route('token'),
-        ]);
-    }
+    // public function create(Request $request): Response
+    // {
+    //     return Inertia::render('Auth/ResetPassword', [
+    //         'email' => $request->email,
+    //         'token' => $request->route('token'),
+    //     ]);
+    // }
 
     /**
      * Handle an incoming new password request.
@@ -59,7 +57,9 @@ class NewPasswordController extends Controller
         // the application's home authenticated view. If there is an error we can
         // redirect them back to where they came from with their error message.
         if ($status == Password::PASSWORD_RESET) {
-            return redirect()->route('login')->with('status', __($status));
+            return response()->json([
+                'status' => __($status)
+            ]);
         }
 
         throw ValidationException::withMessages([

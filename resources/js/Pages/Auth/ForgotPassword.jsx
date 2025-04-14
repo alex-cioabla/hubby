@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from "react-redux";
-import { createSelector } from '@reduxjs/toolkit';
+import { useDispatch, useSelector } from "react-redux";
 
 import InputError from '@/Components/InputError';
 import { useForgotPasswordMutation } from '@/Store/authApi';
@@ -13,7 +12,7 @@ const ForgotPassword = () => {
     const [forgotPassword, { data, error, isLoading }] = useForgotPasswordMutation();
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const status = createSelector((state) => state.auth.status);
+    const status = useSelector((state) => state.auth.status);
 
 
     useEffect(() => {
@@ -28,7 +27,6 @@ const ForgotPassword = () => {
         e.preventDefault();
 
        forgotPassword({email: email});
-       navigate(-1);
     };
 
     return (

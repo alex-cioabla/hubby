@@ -1,94 +1,84 @@
-import InputError from '@/Components/default/InputError';
-import InputLabel from '@/Components/default/InputLabel';
-import PrimaryButton from '@/Components/default/PrimaryButton';
-import TextInput from '@/Components/default/TextInput';
-import GuestLayout from '@/Layouts/default/GuestLayout';
-import { Head, useForm } from '@inertiajs/react';
+import InputError from '@/Components/InputError';
+import { useResetPasswordMutation } from '@/Store/authApi';
+import { useNavigate } from 'react-router-dom';
 
 export default function ResetPassword({ token, email }) {
-    const { data, setData, post, processing, errors, reset } = useForm({
-        token: token,
-        email: email,
+
+    const [resetPassword, { data, error, isLoading }] = useResetPasswordMutation();
+    const navigate = useNavigate();
+
+    const [fields, setFields] = useState({
+        email: '',
         password: '',
-        password_confirmation: '',
+        password_confirmation: ''
     });
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFields({
+            ...fields,
+            [name]: value
+        });
+    };
 
     const submit = (e) => {
         e.preventDefault();
 
-        post(route('password.store'), {
-            onFinish: () => reset('password', 'password_confirmation'),
-        });
+        resetPassword(fields);
+        navigate('/login');
+
     };
 
     return (
-        <GuestLayout>
-            <Head title="Reset Password" />
+        <main style={{ maxWidth: "330px", padding: "1rem" }} className="w-100 m-auto">
 
             <form onSubmit={submit}>
-                <div>
-                    <InputLabel htmlFor="email" value="Email" />
-
-                    <TextInput
-                        id="email"
-                        type="email"
+                <div className="form-floating">
+                    <input
                         name="email"
-                        value={data.email}
-                        className="mt-1 block w-full"
-                        autoComplete="username"
-                        onChange={(e) => setData('email', e.target.value)}
+                        type="email"
+                        className="form-control"
+                        id="floatingInput"
+                        placeholder="name@esempio.it"
+                        value={fields.email}
+                        onChange={handleChange}
                     />
-
-                    <InputError message={errors.email} className="mt-2" />
+                    <label htmlFor="floatingInput">Indirizzo email</label>
+                    <InputError message={error} className="mt-2" />
                 </div>
 
-                <div className="mt-4">
-                    <InputLabel htmlFor="password" value="Password" />
-
-                    <TextInput
-                        id="password"
+                <div className="form-floating">
+                    <input
                         type="password"
-                        name="password"
-                        value={data.password}
-                        className="mt-1 block w-full"
-                        autoComplete="new-password"
-                        isFocused={true}
-                        onChange={(e) => setData('password', e.target.value)}
+                        name='password'
+                        className="form-control"
+                        id="floatingPassword"
+                        placeholder="Password"
+                        value={fields.password}
+                        onChange={handleChange}
                     />
-
-                    <InputError message={errors.password} className="mt-2" />
+                    <label htmlFor="floatingPassword">Password</label>
+                    <InputError message={error} className="mt-2" />
                 </div>
 
-                <div className="mt-4">
-                    <InputLabel
-                        htmlFor="password_confirmation"
-                        value="Confirm Password"
-                    />
-
-                    <TextInput
+                <div className="form-floating">
+                    <input
                         type="password"
-                        id="password_confirmation"
-                        name="password_confirmation"
-                        value={data.password_confirmation}
-                        className="mt-1 block w-full"
+                        name='password_confirmation'
+                        className="form-control"
+                        id="floatingPasswordConfirmation"
                         autoComplete="new-password"
-                        onChange={(e) =>
-                            setData('password_confirmation', e.target.value)
-                        }
+                        value={fields.password_confirmation}
+                        onChange={handleChange}
                     />
-
-                    <InputError
-                        message={errors.password_confirmation}
-                        className="mt-2"
-                    />
+                    <label htmlFor="floatingPasswordConfirmation">Password</label>
+                    <InputError message={error} className="mt-2" />
                 </div>
 
-                <div className="mt-4 flex items-center justify-end">
-                    <PrimaryButton className="ms-4" disabled={processing}>
+                <button className="btn btn-primary w-100 py-2 mt-2" disabled={isLoading}>
                         Reset Password
-                    </PrimaryButton>
-                </div>
+                </button>
             </form>
-        </GuestLayout>
+        </main>
     );
 }
