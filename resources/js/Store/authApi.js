@@ -22,6 +22,13 @@ export const authApi = createApi({
                 body: body
             })
         }),
+        register: builder.mutation({
+            query: (body) => ({
+                url: '/register',
+                method: 'POST',
+                body: body
+            })
+        }),
         logout: builder.mutation({
             queryFn: async (_arg, { getState }, _extraOptions, fetchWithBaseQuery) => {
                 const token = getState().auth.token;
@@ -52,4 +59,4 @@ export const authApi = createApi({
     })
 });
 
-export const { useLoginMutation, useLogoutMutation, useForgotPasswordMutation, useResetPasswordMutation } = authApi;
+export const { useLoginMutation, useLogoutMutation, useForgotPasswordMutation, useResetPasswordMutation, useRegisterMutation } = authApi;

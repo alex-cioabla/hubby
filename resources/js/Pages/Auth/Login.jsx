@@ -60,12 +60,12 @@ const Login = () => {
                         name="email"
                         type="email"
                         className="form-control"
-                        id="floatingInput"
+                        id="floatingEmail"
                         placeholder="name@esempio.it"
                         value={fields.email}
                         onChange={handleChange}
                     />
-                    <label htmlFor="floatingInput">Indirizzo email</label>
+                    <label htmlFor="floatingEmail">Indirizzo email</label>
                     <InputError messages={emailErrors} className="mt-2" />
                 </div>
                 <div className="form-floating">

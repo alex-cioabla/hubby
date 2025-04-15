@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Route;
 
 class AppController extends Controller
 {
-    const ROUTES = ['/', 'library', 'login', 'dashboard', 'forgot-password', 'reset-password'];
+    const ROUTES = ['/', 'library', 'login', 'register', 'dashboard', 'forgot-password', 'reset-password'];
 
     public function page($page = '/'){
 

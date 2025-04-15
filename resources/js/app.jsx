@@ -21,6 +21,7 @@ import Login from "./Pages/Auth/Login";
 import Logout from "./Pages/Auth/Logout";
 import ForgotPassword from "./Pages/Auth/ForgotPassword";
 import ResetPassword from "./Pages/Auth/ResetPassword";
+import Register from "./Pages/Auth/Register";
 
 function App() {
     return (
@@ -37,6 +38,7 @@ function App() {
                         <Route path=":lang?/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>}></Route>
                     </Route>
                     <Route path=":lang?/login" element={<Login />} />
+                    <Route path=":lang?/register" element={<Register />} />
                     <Route path="/logout" element={<Logout />} />
                     <Route path=":lang?/forgot-password" element={<ForgotPassword/>} />
                     <Route path=":lang?/reset-password/:token" element={<ResetPassword/>} />

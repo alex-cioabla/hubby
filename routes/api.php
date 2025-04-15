@@ -6,6 +6,7 @@ use App\Facades\HubbyLang;
 use App\Http\Controllers\Auth\AuthenticatedController;
 use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
+use App\Http\Controllers\Auth\RegisteredUserController;
 
 Route::get('translations/{locale}', function ($locale) {
 
@@ -14,6 +15,7 @@ Route::get('translations/{locale}', function ($locale) {
 });
 
 Route::middleware('guest')->group(function () {
+    Route::post('register', [RegisteredUserController::class, 'store']);
     Route::post('login', [AuthenticatedController::class, 'store']);
     Route::post('forgot-password', [PasswordResetLinkController::class, 'store']);
     Route::post('reset-password', [NewPasswordController::class, 'store'])->name('password.store');
