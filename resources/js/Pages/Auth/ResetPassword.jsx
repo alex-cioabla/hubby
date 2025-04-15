@@ -30,8 +30,17 @@ export default function ResetPassword() {
         e.preventDefault();
 
         resetPassword(fields);
-        // navigate('/login');
     };
+
+    useEffect(() => {
+        if (data) {
+            navigate('/login');
+        }
+    }, [resetPassword, data, error]);
+
+    const emailErrors = error?.data?.errors?.email ?? [];
+    const passwordErrors = error?.data?.errors?.password ?? [];
+    const passwordConfirmationErrors = error?.data?.errors?.password_confirmation ?? [];
 
     return (
         <main style={{ maxWidth: "330px", padding: "1rem" }} className="w-100 m-auto">
@@ -48,7 +57,7 @@ export default function ResetPassword() {
                         onChange={handleChange}
                     />
                     <label htmlFor="floatingInput">Indirizzo email</label>
-                    <InputError message={error} className="mt-2" />
+                    <InputError messages={emailErrors} className="mt-2" />
                 </div>
 
                 <div className="form-floating  mb-3">
@@ -62,7 +71,7 @@ export default function ResetPassword() {
                         onChange={handleChange}
                     />
                     <label htmlFor="floatingPassword">Password</label>
-                    <InputError message={error} className="mt-2" />
+                    <InputError messages={passwordErrors} className="mt-2" />
                 </div>
 
                 <div className="form-floating  mb-3">
@@ -76,7 +85,7 @@ export default function ResetPassword() {
                         onChange={handleChange}
                     />
                     <label htmlFor="floatingPasswordConfirmation">Password</label>
-                    <InputError message={error} className="mt-2" />
+                    <InputError messages={passwordConfirmationErrors} className="mt-2" />
                 </div>
 
                 <button className="btn btn-primary w-100 py-2 mt-2" disabled={isLoading}>

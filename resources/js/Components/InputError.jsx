@@ -1,10 +1,10 @@
-export default function InputError({ message, className = '', ...props }) {
-    return message ? (
-        <p
-            {...props}
-            className={'text-sm text-red-600 dark:text-red-400 ' + className}
-        >
-            {message}
-        </p>
-    ) : null;
+const FieldError = ({ messages = [] }) => {
+    if (!messages.length) {
+        return null;
+    }
+    return (
+        <div className='alert alert-danger mt-2' role="alert">{messages.map((message, index) => <p key={index}> {message} </p>)}</div>
+    )
 }
+
+export default FieldError;

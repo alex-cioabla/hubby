@@ -4,7 +4,7 @@ export const authApi = createApi({
     reducerPath: 'authService',
     tagTypes: ['AUTH'],
     baseQuery: fetchBaseQuery({
-        baseUrl: 'api',
+        baseUrl: 'http://localhost:8000/api',
         prepareHeaders: (headers) => {
             const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
             if (csrfToken) {

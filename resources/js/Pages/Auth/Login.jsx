@@ -13,6 +13,9 @@ const Login = () => {
     const dispatch = useDispatch();
     const status = useSelector((state) => state.auth.status);
 
+    const emailErrors = error?.data?.errors?.email ?? [];
+    const passwordErrors = error?.data?.errors?.password ?? [];
+
     const [fields, setFields] = useState({
         email: '',
         password: '',
@@ -24,7 +27,7 @@ const Login = () => {
             dispatch(setCredentials(data));
             navigate('/dashboard');
         }
-    }, [data, dispatch]);
+    }, [data, dispatch, history]);
 
 
     const handleChange = (e) => {
@@ -35,9 +38,10 @@ const Login = () => {
         });
     };
 
-    const submit = async (e) => {
+    const submit = (e) => {
         e.preventDefault();
-        await login(fields).unwrap();
+
+        login(fields);
     };
 
     return (
@@ -62,7 +66,7 @@ const Login = () => {
                         onChange={handleChange}
                     />
                     <label htmlFor="floatingInput">Indirizzo email</label>
-                    <InputError message={error} className="mt-2" />
+                    <InputError messages={emailErrors} className="mt-2" />
                 </div>
                 <div className="form-floating">
                     <input
@@ -75,7 +79,7 @@ const Login = () => {
                         onChange={handleChange}
                     />
                     <label htmlFor="floatingPassword">Password</label>
-                    <InputError message={error} className="mt-2" />
+                    <InputError messages={passwordErrors} className="mt-2" />
                 </div>
                 <div className="form-check text-start my-3">
                     <input
