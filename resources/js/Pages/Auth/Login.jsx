@@ -23,7 +23,7 @@ const Login = () => {
     });
 
     useEffect(() => {
-        if (data) {
+        if (data) { //Da controllare presenza errori non data
             dispatch(setCredentials(data));
             navigate('/dashboard');
         }

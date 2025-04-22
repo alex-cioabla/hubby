@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import InputError from '@/Components/InputError';
 import { useRegisterMutation } from '@/Store/authApi';
 import { setCredentials } from '@/Store/authSlice';
+import TextInput from '@/Components/TextInput';
 
 const Register = () => {
 
@@ -25,11 +26,11 @@ const Register = () => {
     });
 
     useEffect(() => {
-        if (data) {
+        if (data) { //Da controllare presenza errori non data
             dispatch(setCredentials(data));
             navigate('/dashboard');
         }
-    }, [data, dispatch, history]);
+    }, [data, dispatch, navigate]);
 
     const handleChange = (e) => {
         const { name, value, type, checked } = e.target;
@@ -42,7 +43,7 @@ const Register = () => {
     const submit = (e) => {
         e.preventDefault();
 
-        register(register);
+        register(fields);
     };
 
     return (
@@ -50,17 +51,16 @@ const Register = () => {
 
             <form onSubmit={submit}>
                 <div className="form-floating mb-3">
-                    <input
+                    <TextInput
                         name="name"
                         type="name"
                         className="form-control"
                         autoComplete="name"
-                        isFocused={true}
                         id="name"
+                        isFocused={true}
                         value={fields.name}
                         onChange={handleChange}
-                        required
-                    />
+                        required/>
                     <label htmlFor="name">Nome</label>
                     <InputError messages={nameErrors} className="mt-2" />
                 </div>
@@ -112,11 +112,11 @@ const Register = () => {
                 <Link
                     to='/login'
                 >
-                    Already registered?
+                    Già registrato?
                 </Link>
 
                 <button className="btn btn-primary w-100 py-2 mt-2" type="submit" disabled={isLoading}>
-                    Register
+                    Registrati
                 </button>
             </form>
         </main>

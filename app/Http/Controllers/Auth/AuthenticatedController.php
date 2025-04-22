@@ -19,12 +19,13 @@ class AuthenticatedController extends Controller
             'password' => 'required',
         ]);
 
+        // Verifico e autentico l'utente (la sessione che avvia non mi serve perchè uso il personal access token)
         if (!Auth::attempt($request->only('email', 'password'))) {
             return response()->json(['message' => 'Invalid credentials'], 401);
         }
 
         $user = Auth::user();
-        $token = $user->createToken('token-api',  ['*'], now()->addWeek());
+        $token = $user->createToken('PAT',  ['*'], now()->addWeek());
 
         return response()->json([
             'token' => $token->plainTextToken,

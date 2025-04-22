@@ -1,5 +1,6 @@
 import { forwardRef, useEffect, useImperativeHandle, useRef } from 'react';
 
+// forwardRef è deprecato 
 export default forwardRef(function TextInput(
     { type = 'text', className = '', isFocused = false, ...props },
     ref,
@@ -7,6 +8,7 @@ export default forwardRef(function TextInput(
     const localRef = useRef(null);
 
     useImperativeHandle(ref, () => ({
+
         focus: () => localRef.current?.focus(),
     }));
 

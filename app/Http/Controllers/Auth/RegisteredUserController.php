@@ -32,9 +32,16 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
+        //Registered è una classe che rappresenta l'evento predefinito laravel di registrazione di un utente
+        //SendEmailVerificationNotification è una classe che rappresenta il listener predefinito lavarel che ascolta l'evento registered (
+        //(fa partire l'azione di notifica via email della registrazione avvenuta)
+
+        //event è un metodo predefinito di laravel che permette di lanciare un evento
         event(new Registered($user));
 
-        $token = Auth::login($user);
+        Auth::login($user);
+
+        $token = $user->createToken('PAT',  ['*'], now()->addWeek());
 
         return response()->json([
             'token' => $token->plainTextToken,
