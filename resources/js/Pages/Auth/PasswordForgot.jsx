@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 
 import InputError from '@/Components/InputError';
-import { useForgotPasswordMutation } from '@/Store/authApi';
+import { usePasswordForgotMutation } from '@/Store/authApi';
 import { setStatus } from '@/Store/authSlice';
 
-const ForgotPassword = () => {
+const PasswordForgot = () => {
 
     const [email, setEmail] = useState('');
-    const [forgotPassword, { data, error, isLoading }] = useForgotPasswordMutation();
+    const [passwordForgot, { data, error, isLoading }] = usePasswordForgotMutation();
     const dispatch = useDispatch();
     const status = useSelector((state) => state.auth.status);
 
@@ -23,7 +23,7 @@ const ForgotPassword = () => {
     const submit = (e) => {
         e.preventDefault();
 
-       forgotPassword({email: email});
+       passwordForgot({email: email});
     };
 
     return (
@@ -64,4 +64,4 @@ const ForgotPassword = () => {
     );
 }
 
-export default ForgotPassword;
+export default PasswordForgot;

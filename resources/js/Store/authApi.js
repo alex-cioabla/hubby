@@ -42,23 +42,23 @@ export const authApi = createApi({
                 return result;
             }
         }),
-        forgotPassword: builder.mutation({
+        passwordForgot: builder.mutation({
             query: (body) => ({
-                url: '/forgot-password',
+                url: '/password-forgot',
                 method: 'POST',
                 body: body
             })
         }),
-        resetPassword: builder.mutation({
+        passwordReset: builder.mutation({
             query: (body) => ({
-                url: '/reset-password',
+                url: '/password-reset',
                 method: 'POST',
                 body: body
             })
         }),
-        notifyEmailVerification: builder.mutation({
+        emailVerificationResend: builder.mutation({
             query: (body) => ({
-                url: '/email-verification-notification',
+                url: '/email-verification-resend',
                 method: 'POST',
                 body: body,
                 headers: {
@@ -71,8 +71,8 @@ export const authApi = createApi({
 
 export const { useLoginMutation,
     useLogoutMutation,
-    useForgotPasswordMutation,
-    useResetPasswordMutation,
+    usePasswordForgotMutation,
+    usePasswordResetMutation,
     useRegisterMutation,
-    useNotifyEmailVerificationMutation
+    useEmailVerificationResendMutation
 } = authApi;

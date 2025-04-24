@@ -28,7 +28,7 @@ const Register = () => {
     useEffect(() => {
         if (data) { //Da controllare presenza errori non data
             dispatch(setCredentials(data));
-            // navigate('/dashboard');
+            navigate('/email-verification-request');
         }
     }, [data, dispatch, navigate]);
 

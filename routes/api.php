@@ -7,7 +7,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\PasswordResetController;
 use App\Http\Controllers\Auth\PasswordResetRequestController;
 use App\Http\Controllers\Auth\RegisterController;
-use App\Http\Controllers\Auth\EmailVerificationNotificationController;
+use App\Http\Controllers\Auth\EmailVerificationResendController;
 
 Route::get('translations/{locale}', function ($locale) {
 
@@ -18,14 +18,14 @@ Route::get('translations/{locale}', function ($locale) {
 Route::middleware('guest')->group(function () {
     Route::post('register', [RegisterController::class, 'store']);
     Route::post('login', [LoginController::class, 'store']);
-    Route::post('forgot-password', [PasswordResetRequestController::class, 'store']);
-    Route::post('reset-password', [PasswordResetController::class, 'store'])->name('password.store');
+    Route::post('password-forgot', [PasswordResetRequestController::class, 'store']);
+    Route::post('password-reset', [PasswordResetController::class, 'store'])->name('password.store');
 });
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('logout', [LoginController::class, 'destroy']);
 
-    Route::post('/email-verification-notification', [EmailVerificationNotificationController::class, 'store'])
+    Route::post('/email-verification-resend', [EmailVerificationResendController::class, 'store'])
     ->middleware('throttle:6,1')->name('verification.send');
 });
 

@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use \Illuminate\Http\JsonResponse;
 
-class EmailVerificationPromptController extends Controller
+class EmailVerificationRequestController extends Controller
 {
     /**
      * Display the email verification prompt.

@@ -19,10 +19,10 @@ import Shop from "./Pages/Shop";
 import Dashboard from "./Pages/Dashboard";
 import Login from "./Pages/Auth/Login";
 import Logout from "./Pages/Auth/Logout";
-import ForgotPassword from "./Pages/Auth/ForgotPassword";
-import ResetPassword from "./Pages/Auth/ResetPassword";
+import PasswordForgot from "./Pages/Auth/PasswordForgot";
+import PasswordReset from "./Pages/Auth/PasswordReset";
 import Register from "./Pages/Auth/Register";
-import VerifyEmail from "./Pages/Auth/VerifyEmail";
+import EmailVerificationRequest from "./Pages/Auth/EmailVerificationRequest";
 
 function App() {
     return (
@@ -37,13 +37,14 @@ function App() {
                     </Route>
                     <Route element={<AuthenticatedLayout></AuthenticatedLayout>}>
                         <Route path=":lang?/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>}></Route>
-                        <Route path=":lang?/email-verification/:id/:hash" element={<PrivateRoute><VerifyEmail /></PrivateRoute>}></Route>
                     </Route>
                     <Route path=":lang?/login" element={<Login />} />
                     <Route path=":lang?/register" element={<Register />} />
                     <Route path="/logout" element={<Logout />} />
-                    <Route path=":lang?/forgot-password" element={<ForgotPassword/>} />
-                    <Route path=":lang?/reset-password/:token" element={<ResetPassword/>} />
+                    <Route path=":lang?/password-forgot" element={<PasswordForgot/>} />
+                    <Route path=":lang?/password-reset/:token" element={<PasswordReset/>} />
+                    <Route path=":lang?/email-verification-request/" element={<PrivateRoute><EmailVerificationRequest /></PrivateRoute>}></Route>
+                    <Route path=":lang?/email-verification-request/:id/:hash" element={<PrivateRoute><EmailVerificationRequest /></PrivateRoute>}></Route>
                 </Routes>
             </Router>
         </>

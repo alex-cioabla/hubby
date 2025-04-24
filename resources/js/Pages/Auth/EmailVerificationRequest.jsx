@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 
-import { useNotifyEmailVerificationMutation } from '@/Store/authApi';
+import { useEmailVerificationResendMutation } from '@/Store/authApi';
 
-const VerifyEmail = () => {
+const EmailVerificationRequest = () => {
 
-    const [verifyEmail, { data, error, isLoading }] = useNotifyEmailVerificationMutation();
+    const [emailVerificationResend, { data, error, isLoading }] = useEmailVerificationResendMutation();
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const status = useSelector((state) => state.auth.status);
@@ -14,15 +14,21 @@ const VerifyEmail = () => {
     useEffect(() => {
 
         if (data) {
-            dispatch(setStatus(data));
+
+            if (data.verified) {
+                navigate('/dashboard');
+            }else{
+                dispatch(setStatus(data));
+                navigate(-1);
+            }
         }
 
-    }, [data, dispatch, navigate]);
+    }, [data]);
 
     const submit = (e) => {
         e.preventDefault();
 
-        verifyEmail();
+        emailVerificationResend();
     };
 
     return (
@@ -59,4 +65,4 @@ const VerifyEmail = () => {
     );
 }
 
-export default VerifyEmail;
+export default EmailVerificationRequest;

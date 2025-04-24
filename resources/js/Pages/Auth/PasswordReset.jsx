@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { useResetPasswordMutation } from '@/Store/authApi';
+import { usePasswordResetMutation } from '@/Store/authApi';
 import { useNavigate, useParams, useSearchParams  } from 'react-router-dom';
 import InputError from '@/Components/InputError';
 
-export default function ResetPassword() {
+export default function PasswordReset() {
 
-    const [resetPassword, { data, error, isLoading }] = useResetPasswordMutation();
+    const [passwordReset, { data, error, isLoading }] = usePasswordResetMutation();
     const navigate = useNavigate();
     let { token } = useParams();
     const [searchParams] = useSearchParams();
@@ -29,14 +29,14 @@ export default function ResetPassword() {
     const submit = (e) => {
         e.preventDefault();
 
-        resetPassword(fields);
+        passwordReset(fields);
     };
 
     useEffect(() => {
         if (data) {
             navigate('/login');
         }
-    }, [resetPassword, data, error]);
+    }, [data, error]);
 
     const emailErrors = error?.data?.errors?.email ?? [];
     const passwordErrors = error?.data?.errors?.password ?? [];

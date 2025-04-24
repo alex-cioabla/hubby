@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use \Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
-class EmailVerificationNotificationController extends Controller
+class EmailVerificationResendController extends Controller
 {
     /**
      * Send a new email verification notification.
