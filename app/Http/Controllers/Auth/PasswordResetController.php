@@ -12,7 +12,7 @@ use Illuminate\Support\Str;
 use Illuminate\Validation\Rules;
 use Illuminate\Validation\ValidationException;
 
-class NewPasswordController extends Controller
+class PasswordResetController extends Controller
 {
     /**
      * Handle an incoming new password request.

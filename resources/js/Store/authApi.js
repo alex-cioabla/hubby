@@ -56,7 +56,23 @@ export const authApi = createApi({
                 body: body
             })
         }),
+        notifyEmailVerification: builder.mutation({
+            query: (body) => ({
+                url: '/email-verification-notification',
+                method: 'POST',
+                body: body,
+                headers: {
+                    Authorization: `Bearer ${token}`
+                },
+            })
+        }),
     })
 });
 
-export const { useLoginMutation, useLogoutMutation, useForgotPasswordMutation, useResetPasswordMutation, useRegisterMutation } = authApi;
+export const { useLoginMutation,
+    useLogoutMutation,
+    useForgotPasswordMutation,
+    useResetPasswordMutation,
+    useRegisterMutation,
+    useNotifyEmailVerificationMutation
+} = authApi;

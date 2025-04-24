@@ -14,7 +14,7 @@ const ForgotPassword = () => {
 
     useEffect(() => {
 
-        if (data) {
+        if (data) { //Da controllare presenza errori non data
             dispatch(setStatus(data));
         }
 
@@ -29,14 +29,14 @@ const ForgotPassword = () => {
     return (
         <main style={{ maxWidth: "330px", padding: "1rem" }} className="w-100 m-auto">
 
-            <div className="mb-4 text-sm text-gray-600 dark:text-gray-400">
+            <div className="mb-4 fw-bolder fs-5 text-muted">
                 Forgot your password? No problem. Just let us know your email
                 address and we will email you a password reset link that will
                 allow you to choose a new one.
             </div>
 
             {status && (
-                <div className="mb-4 text-sm font-medium text-green-600 dark:text-green-400">
+                <div className="mb-4 fw-bolder fs-4 text-muted text-success">
                     {status}
                 </div>
             )}

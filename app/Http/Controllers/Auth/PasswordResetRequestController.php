@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Validation\ValidationException;
 
-class PasswordResetLinkController extends Controller
+class PasswordResetRequestController extends Controller
 {
     /**
      * Handle an incoming password reset link request.

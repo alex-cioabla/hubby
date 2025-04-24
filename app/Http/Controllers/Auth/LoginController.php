@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use \Illuminate\Http\JsonResponse;
 
-class AuthenticatedController extends Controller
+class LoginController extends Controller
 {
     /**
      * Handle an incoming authentication request.

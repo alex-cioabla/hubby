@@ -22,6 +22,7 @@ import Logout from "./Pages/Auth/Logout";
 import ForgotPassword from "./Pages/Auth/ForgotPassword";
 import ResetPassword from "./Pages/Auth/ResetPassword";
 import Register from "./Pages/Auth/Register";
+import VerifyEmail from "./Pages/Auth/VerifyEmail";
 
 function App() {
     return (
@@ -36,6 +37,7 @@ function App() {
                     </Route>
                     <Route element={<AuthenticatedLayout></AuthenticatedLayout>}>
                         <Route path=":lang?/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>}></Route>
+                        <Route path=":lang?/email-verification/:id/:hash" element={<PrivateRoute><VerifyEmail /></PrivateRoute>}></Route>
                     </Route>
                     <Route path=":lang?/login" element={<Login />} />
                     <Route path=":lang?/register" element={<Register />} />
