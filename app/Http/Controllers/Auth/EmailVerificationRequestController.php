@@ -15,7 +15,7 @@ class EmailVerificationRequestController extends Controller
      */
     public function __invoke(Request $request): View
     {
-        dd($request);
+        dd($request->user());
         $request->merge(['verified' => $request->user()->hasVerifiedEmail()]);
 
         $appController = new AppController();
