@@ -5,11 +5,17 @@ export const authApi = createApi({
     tagTypes: ['AUTH'],
     baseQuery: fetchBaseQuery({
         baseUrl: 'http://localhost:8000/api',
-        prepareHeaders: (headers) => {
+        prepareHeaders: (headers, { getState }) => {
             const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
             if (csrfToken) {
                 headers.set('X-CSRF-TOKEN', csrfToken);
             }
+
+            const token = getState().auth?.token;
+            if (token) {
+                headers.set('Authorization', `Bearer ${token}`);
+            }
+
             headers.set('Accept', 'application/json');
             return headers;
         },
@@ -30,17 +36,10 @@ export const authApi = createApi({
             })
         }),
         logout: builder.mutation({
-            queryFn: async (_arg, { getState }, _extraOptions, fetchWithBaseQuery) => {
-                const token = getState().auth.token;
-                const result = await fetchWithBaseQuery({
-                    url: '/logout',
-                    method: 'POST',
-                    headers: {
-                        Authorization: `Bearer ${token}`
-                    },
-                });
-                return result;
-            }
+            query: (body) => ({
+                url: '/logout',
+                method: 'POST'
+            })
         }),
         passwordForgot: builder.mutation({
             query: (body) => ({
@@ -60,10 +59,7 @@ export const authApi = createApi({
             query: (body) => ({
                 url: '/email-verification-resend',
                 method: 'POST',
-                body: body,
-                headers: {
-                    Authorization: `Bearer ${token}`
-                },
+                body: body
             })
         }),
     })

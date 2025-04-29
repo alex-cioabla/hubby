@@ -16,7 +16,11 @@
     @vite('resources/js/app.jsx')
 
     <script>
-        const appConfig = @json($config);
+        const appConfig = @json([
+            'translations' => \App\Facades\HubbyLang::getAllTrans(),
+            'locale' => \Illuminate\Support\Facades\Lang::getLocale(),
+            'name' => config('app.name')
+        ]);
     </script>
 
 </head>

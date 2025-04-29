@@ -17,7 +17,7 @@ class AppController extends Controller
 
         $config = $this->getConfig($page);
 
-        return view('app',  compact('config'));
+    return view('app',  /*compact('config')*/);
     }
 
     public function locale_page($locale = null, $page = '/')

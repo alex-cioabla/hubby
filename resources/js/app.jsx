@@ -43,6 +43,7 @@ function App() {
                     <Route path="/logout" element={<Logout />} />
                     <Route path=":lang?/password-forgot" element={<PasswordForgot/>} />
                     <Route path=":lang?/password-reset/:token" element={<PasswordReset/>} />
+
                     <Route path=":lang?/email-verification-request/" element={<PrivateRoute><EmailVerificationRequest /></PrivateRoute>}></Route>
                     <Route path=":lang?/email-verification-request/:id/:hash" element={<PrivateRoute><EmailVerificationRequest /></PrivateRoute>}></Route>
                 </Routes>

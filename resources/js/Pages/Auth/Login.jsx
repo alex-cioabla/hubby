@@ -98,7 +98,7 @@ const Login = () => {
                 <p>
 
                 <Link
-                    to='/forgot-password'
+                    to='/password-forgot'
                 >
                     Hai dimenticato la password?
                 </Link>
