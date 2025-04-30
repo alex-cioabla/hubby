@@ -36,7 +36,7 @@ export default function PasswordReset() {
         if (data) {
             navigate('/login');
         }
-    }, [data, error]);
+    }, [data]);
 
     const emailErrors = error?.data?.errors?.email ?? [];
     const passwordErrors = error?.data?.errors?.password ?? [];

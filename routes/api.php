@@ -27,7 +27,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/email-verification-resend', [EmailController::class, 'resend'])
     ->middleware('throttle:6,1')->name('verification.send');
 
-    Route::post('password-confirm', [PasswordController::class, 'store']);
+    Route::post('password-confirm', [PasswordController::class, 'confirm']);
     Route::put('password-update', [PasswordController::class, 'update']);
 });
 

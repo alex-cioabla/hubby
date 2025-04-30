@@ -20,7 +20,6 @@ export default function TextInput({ ref, isFocused = false, ...props }){
     return (
         <input
             {...props}
-            type="text"
             ref={localRef}
         />
     );

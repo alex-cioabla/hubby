@@ -3,65 +3,55 @@ import { Transition } from '@headlessui/react';
 
 import React, { useState, useEffect } from 'react';
 import { usePasswordUpdateMutation } from '@/Store/userApi';
-import { useNavigate  } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import InputError from '@/Components/InputError';
 
 const PasswordUpdate = () => {
 
-    const [passwordUpdate, {data, error, isLoading}] = usePasswordUpdateMutation();
+    const [passwordUpdate, {isSuccess, data, error, isLoading}] = usePasswordUpdateMutation();
 
     const currentPasswordErrors = error?.data?.errors?.current_password ?? [];
+    const passwordConfirmErrors = error?.data?.errors?.password_confirm ?? [];
+    const passwordErrors = error?.data?.errors?.password ?? [];
 
     const [fields, setFields] = useState({
-        email: '',
         password: '',
-        remember: false,
+        current_password: '',
+        password_confirm: '',
     });
     const navigate = useNavigate();
 
     const handleChange = (e) => {
-        const { name, value  } = e.target;
+        const { name, value } = e.target;
         setFields({
             ...fields,
             [name]: value
         });
     };
 
-    // const passwordInput = useRef();
-    // const currentPasswordInput = useRef();
+    useEffect(() => {
 
-    // const {
-    //     data,
-    //     setData,
-    //     errors,
-    //     put,
-    //     reset,
-    //     processing,
-    //     recentlySuccessful,
-    // } = useForm({
-    //     current_password: '',
-    //     password: '',
-    //     password_confirmation: '',
-    // });
+        if (error) {
+            console.log('ENTRO');
+            if (currentPasswordErrors.lenght) {
+                setFields({...fields, current_password: ''});
+                getElementById('currentPassword').focus();
+            }
+            if (passwordConfirmErrors.lenght) {
+                setFields({...fields, password_confirm: ''});
+                getElementById('passwordConfirm').focus();
+            }
+        }
+        if (data) {
+            navigate(-1);
+        }
+
+    }, [error])
 
     const submit = (e) => {
         e.preventDefault();
 
-        // put(route('password.update'), {
-        //     preserveScroll: true,
-        //     onSuccess: () => reset(),
-        //     onError: (errors) => {
-        //         if (errors.password) {
-        //             reset('password', 'password_confirmation');
-        //             passwordInput.current.focus();
-        //         }
-
-        //         if (errors.current_password) {
-        //             reset('current_password');
-        //             currentPasswordInput.current.focus();
-        //         }
-        //     },
-        // });
+        passwordUpdate(fields);
     };
 
     return (
@@ -79,29 +69,29 @@ const PasswordUpdate = () => {
 
             <form onSubmit={submit} className="mt-6">
 
-                <div className="form-floating">
+                <div className="form-floating mb-3">
                     <input
                         type="password"
-                        name='current_password"'
+                        name="current_password"
                         className="form-control"
-                        id="floatingcurrentPassword"
+                        id="currentPassword"
                         value={fields.current_password}
                         onChange={handleChange}
                     />
-                    <label htmlFor="floatingcurrentPassword">Current password"</label>
+                    <label htmlFor="currentPassword">Current password</label>
                     <InputError messages={currentPasswordErrors} className="mt-2" />
                 </div>
 
-                <div className="form-floating">
+                <div className="form-floating mb-3">
                     <input
                         type="password"
-                        name='password"'
+                        name="password"
                         className="form-control"
-                        id="floatingPassword"
+                        id="password"
                         value={fields.password}
                         onChange={handleChange}
                     />
-                    <label htmlFor="floatingPassword">New password"</label>
+                    <label htmlFor="password">New password</label>
                     <InputError messages={passwordErrors} className="mt-2" />
                 </div>
 
@@ -110,11 +100,11 @@ const PasswordUpdate = () => {
                         type="password"
                         name='password_confirm'
                         className="form-control"
-                        id="floatingPasswordCorfim"
+                        id="passwordConfirm"
                         value={fields.password_confirm}
                         onChange={handleChange}
                     />
-                    <label htmlFor="floatingPasswordCorfim">Password confirmation"</label>
+                    <label htmlFor="passwordConfirm">Password confirmation</label>
                     <InputError messages={passwordConfirmErrors} className="mt-2" />
                 </div>
 
@@ -123,7 +113,7 @@ const PasswordUpdate = () => {
                 </button>
 
                 <Transition
-                    show={recentlySuccessful}
+                    show={isSuccess}
                     enter="transition ease-in-out"
                     enterFrom="opacity-0"
                     leave="transition ease-in-out"

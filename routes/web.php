@@ -30,7 +30,8 @@ Route::middleware('guest')->group(function () {
 //CONTROLLI AUTH REACT
 Route::view('dashboard', 'app')->name('dashboard');
 Route::view('email-verification-request', 'app'); //CONTROLLI VERIFIED REACT (DA FARE)
-Route::view('confirm-password', 'app')->name('password.confirm');
+Route::view('password-confirm', 'app');
+Route::view('password-update', 'app');
 
 //CONTROLLI LARAVEL
 //Link email generato per la verifica dell'email
