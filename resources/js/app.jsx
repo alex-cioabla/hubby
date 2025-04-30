@@ -23,6 +23,7 @@ import PasswordForgot from "./Pages/Auth/PasswordForgot";
 import PasswordReset from "./Pages/Auth/PasswordReset";
 import Register from "./Pages/Auth/Register";
 import EmailVerificationRequest from "./Pages/Auth/EmailVerificationRequest";
+import PasswordConfirm from "./Pages/Auth/PasswordConfirm";
 
 function App() {
     return (
@@ -44,6 +45,7 @@ function App() {
                     <Route path=":lang?/password-forgot" element={<PasswordForgot/>} />
                     <Route path=":lang?/password-reset/:token" element={<PasswordReset/>} />
 
+                    <Rounte path=":lang?/password-confirm" element={<PrivateRoute><PasswordConfirm/></PrivateRoute>}/>
                     <Route path=":lang?/email-verification-request/" element={<PrivateRoute><EmailVerificationRequest /></PrivateRoute>}></Route>
                     <Route path=":lang?/email-verification-request/:id/:hash" element={<PrivateRoute><EmailVerificationRequest /></PrivateRoute>}></Route>
                 </Routes>

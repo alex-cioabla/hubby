@@ -1,9 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AppController;
-use App\Http\Controllers\Auth\EmailVerificationController;
-use App\Http\Controllers\Auth\EmailVerificationRequestController;
+// use App\Http\Controllers\AppController;
+use App\Http\Controllers\Auth\EmailController;
 
 // Route::get('email-verification-request', EmailVerificationRequestController::class)
 //     ->name('verification.notice');
@@ -30,13 +29,12 @@ Route::middleware('guest')->group(function () {
 
 //CONTROLLI AUTH REACT
 Route::view('dashboard', 'app')->name('dashboard');
-
-//CONTROLLI VERIFIED REACT (DA FARE)
-Route::view('email-verification-request', 'app');
+Route::view('email-verification-request', 'app'); //CONTROLLI VERIFIED REACT (DA FARE)
+Route::view('confirm-password', 'app')->name('password.confirm');
 
 //CONTROLLI LARAVEL
 //Link email generato per la verifica dell'email
-Route::get('email-verification-request/{id}/{hash}', EmailVerificationController::class)
+Route::get('email-verification-request/{id}/{hash}', EmailController::class)
     ->middleware(['signed', 'throttle:6,1'])
     ->name('verification.verify');
 

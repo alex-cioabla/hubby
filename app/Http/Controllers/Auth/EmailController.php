@@ -6,10 +6,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Auth\Events\Verified;
 use Illuminate\Http\Request;
 use App\Models\User;
-use App\Http\Controllers\AppController;
+use \Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 
-class EmailVerificationController extends Controller
+class EmailController extends Controller
 {
     /**
      * Mark the authenticated user's email address as verified.
@@ -27,5 +27,24 @@ class EmailVerificationController extends Controller
         }
 
         return redirect()->intended(route('dashboard', absolute: false).'?verified=1');
+    }
+
+    /**
+     * Send a new email verification notification.
+     */
+    public function resend(Request $request): JsonResponse
+    {
+        if ($request->user()->hasVerifiedEmail()) {
+            return response()->json([
+                'message' => 'Email successfully verified.',
+                'verified' => true,
+            ], 200);
+        }
+
+        $request->user()->sendEmailVerificationNotification();
+
+        return response()->json([
+            'status' => 'verification-link-sent'
+        ], 200);
     }
 }
