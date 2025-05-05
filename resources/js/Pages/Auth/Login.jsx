@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 
-import InputError from '@/Components/InputError';
+import ErrorAlert from '@/Components/ErrorAlert';
 import { useLoginMutation } from '@/Store/authApi';
 import { setCredentials } from '@/Store/authSlice';
 
@@ -38,10 +38,14 @@ const Login = () => {
         });
     };
 
-    const submit = (e) => {
+    const submit = async (e) => {
         e.preventDefault();
 
-        login(fields);
+        try {
+            await login(fields).unwrap();
+        } catch (error) {
+            console.error('Login failed:', error.data.message);
+        }
     };
 
     return (
@@ -66,7 +70,7 @@ const Login = () => {
                         onChange={handleChange}
                     />
                     <label htmlFor="floatingEmail">Indirizzo email</label>
-                    <InputError messages={emailErrors} className="mt-2" />
+                    <ErrorAlert messages={emailErrors} className="mt-2" />
                 </div>
                 <div className="form-floating">
                     <input
@@ -79,7 +83,7 @@ const Login = () => {
                         onChange={handleChange}
                     />
                     <label htmlFor="floatingPassword">Password</label>
-                    <InputError messages={passwordErrors} className="mt-2" />
+                    <ErrorAlert messages={passwordErrors} className="mt-2" />
                 </div>
                 <div className="form-check text-start my-3">
                     <input

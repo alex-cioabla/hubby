@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { usePasswordResetMutation } from '@/Store/authApi';
 import { useNavigate, useParams, useSearchParams  } from 'react-router-dom';
-import InputError from '@/Components/InputError';
+import ErrorAlert from '@/Components/ErrorAlert';
 
 export default function PasswordReset() {
 
@@ -57,7 +57,7 @@ export default function PasswordReset() {
                         onChange={handleChange}
                     />
                     <label htmlFor="floatingInput">Indirizzo email</label>
-                    <InputError messages={emailErrors} className="mt-2" />
+                    <ErrorAlert messages={emailErrors} className="mt-2" />
                 </div>
 
                 <div className="form-floating  mb-3">
@@ -71,7 +71,7 @@ export default function PasswordReset() {
                         onChange={handleChange}
                     />
                     <label htmlFor="floatingPassword">Password</label>
-                    <InputError messages={passwordErrors} className="mt-2" />
+                    <ErrorAlert messages={passwordErrors} className="mt-2" />
                 </div>
 
                 <div className="form-floating  mb-3">
@@ -85,7 +85,7 @@ export default function PasswordReset() {
                         onChange={handleChange}
                     />
                     <label htmlFor="floatingPasswordConfirmation">Password</label>
-                    <InputError messages={passwordConfirmationErrors} className="mt-2" />
+                    <ErrorAlert messages={passwordConfirmationErrors} className="mt-2" />
                 </div>
 
                 <button className="btn btn-primary w-100 py-2 mt-2" disabled={isLoading}>

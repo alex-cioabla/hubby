@@ -1,4 +1,4 @@
-const FieldError = ({ messages = [] }) => {
+const ErrorAlert = ({ messages = [] }) => {
     if (!messages.length) {
         return null;
     }
@@ -7,4 +7,4 @@ const FieldError = ({ messages = [] }) => {
     )
 }
 
-export default FieldError;
+export default ErrorAlert;

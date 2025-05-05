@@ -1,6 +1,6 @@
 import { useEffect, useImperativeHandle, useRef } from 'react';
 
-export default function TextInput({ ref, isFocused = false, ...props }){
+export default function Input({ ref, isFocused = false, ...props }){
 
     const localRef = useRef(null);
 

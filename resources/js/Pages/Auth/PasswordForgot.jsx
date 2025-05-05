@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 
-import InputError from '@/Components/InputError';
+import ErrorAlert from '@/Components/ErrorAlert';
 import { usePasswordForgotMutation } from '@/Store/authApi';
 import { setStatus } from '@/Store/authSlice';
 
@@ -53,7 +53,7 @@ const PasswordForgot = () => {
                         onChange={(e) => setEmail(e.target.value)}
                     />
                     <label htmlFor="floatingInput">Indirizzo email</label>
-                    <InputError message={error} className="mt-2" />
+                    <ErrorAlert message={error} className="mt-2" />
                 </div>
 
                 <button className="btn btn-primary w-100 py-2 mt-2" disabled={isLoading}>

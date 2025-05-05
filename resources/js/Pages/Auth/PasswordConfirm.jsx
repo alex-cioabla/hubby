@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { usePasswordConfirmMutation } from '@/Store/authApi';
 import { useNavigate  } from 'react-router-dom';
-import InputError from '@/Components/InputError';
-
-import TextInput from '@/Components/TextInput';
+import ErrorAlert from '@/Components/ErrorAlert';
 
 const PasswordConfirm = () => {
 
@@ -14,6 +12,8 @@ const PasswordConfirm = () => {
     const passwordErrors = error?.data?.errors?.password ?? [];
 
     useEffect(() => {
+        getElementById('password').focus();
+
         if (data) {
             navigate('/dashboard');
         }
@@ -35,18 +35,17 @@ const PasswordConfirm = () => {
 
             <form onSubmit={submit}>
                 <div className="form-floating mb-3">
-                    <TextInput
+                    <input
                         name="password"
                         type="password"
                         className="form-control"
                         autoComplete="password"
                         id="password"
-                        isFocused={true}
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         required />
                     <label htmlFor="password">Password</label>
-                    <InputError messages={passwordErrors} className="mt-2" />
+                    <ErrorAlert messages={passwordErrors} className="mt-2" />
                 </div>
 
                 <button className="btn btn-primary w-100 py-2 mt-2" disabled={isLoading}>
