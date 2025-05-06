@@ -1,12 +1,13 @@
 import ErrorAlert from '@/Components/ErrorAlert';
 import { useUserDeleteMutation } from '@/Store/userApi';
-import { useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import { Modal } from 'bootstrap';
 
 const UserDelete = () => {
 
     const password = useRef('');
     const [userDelete, {data, reset, error, isLoading}] = useUserDeleteMutation();
-    const userDeleteModal = bootstrap.Modal.getInstance(document.getElementById('userDeleteModal'));
+    const userDeleteModal = Modal.getInstance(document.getElementById('userDeleteModal'));
 
     const passwordErrors = error?.data?.errors?.password ?? [];
 
@@ -20,10 +21,12 @@ const UserDelete = () => {
         const handleModalClose = () => {
             reset();
         };
-        modalElement.addEventListener('hidden.bs.modal', handleModalClose);
+        if (userDeleteModal) {
+            userDeleteModal.addEventListener('hidden.bs.modal', handleModalClose);
+        }
 
       return () => {
-        modalElement.removeEventListener('hidden.bs.modal', handleModalClose);
+        userDeleteModal.removeEventListener('hidden.bs.modal', handleModalClose);
       }
     }, [])
 
@@ -63,7 +66,7 @@ const UserDelete = () => {
                 </p>
             </header>
 
-            <button type="button" className="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={confirmUserDeletion}>
+            <button type="button" className="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 Delete account
             </button>
 
@@ -102,7 +105,7 @@ const UserDelete = () => {
                                     id="password"
                                     placeholder="Password"
                                     ref={password}
-                                    value={password}
+                                    value={password.current.value}
                                 />
                                 <label htmlFor="password">Indirizzo email</label>
                                 <ErrorAlert message={passwordErrors} className="mt-2" />

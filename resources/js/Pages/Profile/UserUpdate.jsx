@@ -1,6 +1,6 @@
 import ErrorAlert from '@/Components/ErrorAlert';
-import { userUpdateMutation } from '@/Store/userApi';
-import { useState } from 'react';
+import { useUserUpdateMutation } from '@/Store/userApi';
+import React, { useState, useEffect } from 'react';
 import { Transition } from '@headlessui/react';
 
 const UserUpdate = ({ mustVerifyEmail, status }) => {
@@ -13,13 +13,16 @@ const UserUpdate = ({ mustVerifyEmail, status }) => {
     //         email: user.email,
     //     });
 
-    const [userUpdate, { data, error, isLoading, isSuccess }] = userUpdateMutation();
+    const [userUpdate, { data, error, isLoading, isSuccess }] = useUserUpdateMutation();
 
     const [fields, setFields] = useState({
         password: '',
         current_password: '',
         password_confirmation: '',
     });
+
+    const nameErrors = error?.data?.errors?.name ?? [];
+    const emailErrors = error?.data?.errors?.email ?? [];
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -36,13 +39,8 @@ const UserUpdate = ({ mustVerifyEmail, status }) => {
     };
 
     useEffect(() => {
-        getElementById('name').focus();
-
-
-      return () => {
-        second
-      }
-    }, [third])
+        document.getElementById('name').focus();
+    }, [data])
 
 
     return (
@@ -89,18 +87,18 @@ const UserUpdate = ({ mustVerifyEmail, status }) => {
                     <ErrorAlert messages={emailErrors} className="mt-2" />
                 </div>
 
-                {mustVerifyEmail && user.email_verified_at === null && (
+                {/* {mustVerifyEmail && user.email_verified_at === null && ( */}
                     <div>
                         <p className="mt-2 fs-6 text-secondary">
                             Your email address is unverified.
-                            <Link
+                            {/* <Link
                                 href={route('verification.send')}
                                 method="post"
                                 as="button"
                                 className="rounded-md text-sm text-gray-600 underline hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:text-gray-400 dark:hover:text-gray-100 dark:focus:ring-offset-gray-800"
                             >
                                 Click here to re-send the verification email.
-                            </Link>
+                            </Link> */}
                         </p>
 
                         {status === 'verification-link-sent' && (
@@ -110,7 +108,7 @@ const UserUpdate = ({ mustVerifyEmail, status }) => {
                             </div>
                         )}
                     </div>
-                )}
+                {/* )} */}
 
                 <div className="flex items-center gap-4">
 

@@ -81,7 +81,7 @@ export default function AuthenticatedLayout() {
                                 <hr className="my-3" />
                                 <ul className="nav flex-column mb-auto">
                                     <li className="nav-item">
-                                        <NavLink className="nav-link d-flex align-items-center gap-2" href="#">
+                                        <NavLink className="nav-link d-flex align-items-center gap-2" to="/profile">
                                             <i className="bi bi-person-fill"></i>
                                             Profilo
                                         </NavLink>

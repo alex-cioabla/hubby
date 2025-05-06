@@ -1,7 +1,7 @@
 
 import { Transition } from '@headlessui/react';
 
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { usePasswordUpdateMutation } from '@/Store/userApi';
 import { useNavigate } from 'react-router-dom';
 import ErrorAlert from '@/Components/ErrorAlert';

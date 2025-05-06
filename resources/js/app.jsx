@@ -25,6 +25,7 @@ import Register from "./Pages/Auth/Register";
 import EmailVerificationRequest from "./Pages/Auth/EmailVerificationRequest";
 import PasswordConfirm from "./Pages/Auth/PasswordConfirm";
 import PasswordUpdate from "./Pages/Profile/PasswordUpdate";
+import Profile from "./Pages/Profile/Profile";
 
 function App() {
     return (
@@ -39,6 +40,7 @@ function App() {
                     </Route>
                     <Route element={<AuthenticatedLayout></AuthenticatedLayout>}>
                         <Route path=":lang?/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>}></Route>
+                        <Route path=":lang?/profile" element={<PrivateRoute><Profile/></PrivateRoute>}></Route>
                     </Route>
                     <Route path=":lang?/login" element={<Login />} />
                     <Route path=":lang?/register" element={<Register />} />

@@ -32,6 +32,7 @@ Route::view('dashboard', 'app')->name('dashboard');
 Route::view('email-verification-request', 'app'); //CONTROLLI VERIFIED REACT (DA FARE)
 Route::view('password-confirm', 'app');
 Route::view('password-update', 'app');
+Route::view('profile', 'app');
 
 //CONTROLLI LARAVEL
 //Link email generato per la verifica dell'email

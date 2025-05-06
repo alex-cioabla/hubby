@@ -48,5 +48,5 @@ export const userApi = createApi({
 export const {
     usePasswordUpdateMutation,
     useUserDeleteMutation,
-    userUpdateMutation
+    useUserUpdateMutation
 } = userApi;

@@ -1,6 +1,6 @@
-import UpdatePasswordForm from './PasswordUpdate';
-import DeleteUserForm from './UserDelete';
-import UpdateProfileInformationForm from './UserUpdate';
+import PasswordUpdate from './PasswordUpdate';
+import UserDelete from './UserDelete';
+import UserUpdate from './UserUpdate';
 
 const Profile = ({ mustVerifyEmail, status }) => {
     return (<>
@@ -8,15 +8,15 @@ const Profile = ({ mustVerifyEmail, status }) => {
             Profile
         </h2>
         <div className="py-12">
-            <UpdateProfileInformationForm
+            <UserUpdate
                 mustVerifyEmail={mustVerifyEmail}
                 status={status}
                 className="max-w-xl"
             />
 
-            <UpdatePasswordForm />
+            <PasswordUpdate />
 
-            <DeleteUserForm/>
+            <UserDelete/>
 
         </div>
     </>
