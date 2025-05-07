@@ -3,8 +3,11 @@ import { useUserUpdateMutation } from '@/Store/userApi';
 import { useEmailVerificationResendMutation } from '@/Store/authApi';
 import React, { useState, useEffect } from 'react';
 import { Transition } from '@headlessui/react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { setStatus } from '@/Store/authSlice';
 
-const UserUpdate = ({ mustVerifyEmail, status }) => {
+const UserUpdate = ({ mustVerifyEmail }) => {
 
     // const user = usePage().props.auth.user;
 
@@ -15,7 +18,7 @@ const UserUpdate = ({ mustVerifyEmail, status }) => {
     //     });
 
     const [userUpdate, { data, error, isLoading, isSuccess }] = useUserUpdateMutation();
-    const [emailVerificationResend, { data, error, isLoading }] = useEmailVerificationResendMutation();
+    const [emailVerificationResend, { data : emailData, error: emailError, isLoading: emailIsLoading, isSuccess: emailIsSuccess }] = useEmailVerificationResendMutation();
 
     const [fields, setFields] = useState({
         password: '',
@@ -25,6 +28,10 @@ const UserUpdate = ({ mustVerifyEmail, status }) => {
 
     const nameErrors = error?.data?.errors?.name ?? [];
     const emailErrors = error?.data?.errors?.email ?? [];
+
+    const dispatch = useDispatch();
+
+    const status = useSelector((state) => state.auth.status);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -43,6 +50,16 @@ const UserUpdate = ({ mustVerifyEmail, status }) => {
     useEffect(() => {
         document.getElementById('name').focus();
     }, [data])
+
+    const click = (e) => {
+        e.preventDefault();
+
+        emailVerificationResend();
+
+        if (emailIsSuccess) {
+            dispatch(setStatus(emailData.status));
+        }
+    }
 
 
     return (
@@ -93,14 +110,9 @@ const UserUpdate = ({ mustVerifyEmail, status }) => {
                     <div>
                         <p className="mt-2 fs-6 text-secondary">
                             Your email address is unverified.
-                            {/* <Link
-                                href={route('verification.send')}
-                                method="post"
-                                as="button"
-                                className="rounded-md text-sm text-gray-600 underline hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:text-gray-400 dark:hover:text-gray-100 dark:focus:ring-offset-gray-800"
-                            >
+                            <a onClick={click} as="button">
                                 Click here to re-send the verification email.
-                            </Link> */}
+                            </a>
                         </p>
 
                         {status === 'verification-link-sent' && (
