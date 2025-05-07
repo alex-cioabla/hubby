@@ -28,8 +28,10 @@ Route::middleware('guest')->group(function () {
 });
 
 //CONTROLLI AUTH REACT
+//(DA FARE) ->middleware(['verified'])
 Route::view('dashboard', 'app')->name('dashboard');
-Route::view('email-verification-request', 'app'); //CONTROLLI VERIFIED REACT (DA FARE)
+//(DA FARE) $request->user()->hasVerifiedEmail() ? redirect()->intended(route('dashboard', absolute: false)) : Inertia::render('Auth/VerifyEmail', ['status' => session('status')]);
+Route::view('email-verification-request', 'app');
 Route::view('password-confirm', 'app');
 Route::view('password-update', 'app');
 Route::view('profile', 'app');

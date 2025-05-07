@@ -1,5 +1,6 @@
 import ErrorAlert from '@/Components/ErrorAlert';
 import { useUserUpdateMutation } from '@/Store/userApi';
+import { useEmailVerificationResendMutation } from '@/Store/authApi';
 import React, { useState, useEffect } from 'react';
 import { Transition } from '@headlessui/react';
 
@@ -14,6 +15,7 @@ const UserUpdate = ({ mustVerifyEmail, status }) => {
     //     });
 
     const [userUpdate, { data, error, isLoading, isSuccess }] = useUserUpdateMutation();
+    const [emailVerificationResend, { data, error, isLoading }] = useEmailVerificationResendMutation();
 
     const [fields, setFields] = useState({
         password: '',
@@ -113,7 +115,7 @@ const UserUpdate = ({ mustVerifyEmail, status }) => {
                 <div className="flex items-center gap-4">
 
                     <button type="button" className="btn btn-primary" disabled={isLoading}>
-                        Delete account
+                        Save
                     </button>
 
                     <Transition

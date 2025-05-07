@@ -18,7 +18,7 @@ const EmailVerificationRequest = () => {
             if (data.verified) {
                 navigate('/dashboard');
             }else{
-                dispatch(setStatus(data));
+                dispatch(setStatus(data.status));
                 navigate(-1);
             }
         }
