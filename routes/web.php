@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 // use App\Http\Controllers\AppController;
 use App\Http\Controllers\Auth\EmailController;
@@ -41,6 +42,7 @@ Route::view('profile', 'app');
 Route::get('email-verification-request/{id}/{hash}', EmailController::class)
     ->middleware(['signed', 'throttle:6,1'])
     ->name('verification.verify');
+Route::get('profile', ProfileController::class);
 
 // Route::middleware('auth')->group(function () {
 //     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
