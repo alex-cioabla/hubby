@@ -38,8 +38,6 @@ class RegisterController extends Controller
         event(new Registered($user));
         //(fa partire l'azione di notifica via email della registrazione avvenuta)
 
-        Auth::login($user);
-
         $token = $user->createToken('PAT',  ['*'], now()->addWeek());
 
         return response()->json([

@@ -10,23 +10,18 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 use Inertia\Response;
-use \Illuminate\Contracts\View\View;
 
 class ProfileController extends Controller
 {
     /**
      * Display the user's profile form.
      */
-    public function __invoke(Request $request): View
+    public function edit(Request $request): Response
     {
-        //posso far passare la route /profile prima per il controller ProfileController per effetttuare il controllo
-        //ma non ho l'id dell'utente
-        // return Inertia::render('Profile/Edit', [
-        //     'mustVerifyEmail' => $request->user() instanceof MustVerifyEmail,
-        //     'status' => session('status'),
-        // ]);
-
-        return view('app', ['mustVerifyEmail' => $request->user() instanceof MustVerifyEmail]);
+        return Inertia::render('Profile/Edit', props: [
+            'mustVerifyEmail' => $request->user() instanceof MustVerifyEmail,
+            'status' => session('status'),
+        ]);
     }
 
     /**

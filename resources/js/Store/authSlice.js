@@ -5,7 +5,7 @@ const initialState = (() => {
         token: window.localStorage.getItem("token"),
         expires_at: window.localStorage.getItem("expires_at"),
         status: null,
-        // recover_email: null
+        must_verify_email: window.localStorage.getItem("verified"),
     }
 
     if (init.token && new Date(init.expires_at) < new Date()) {
@@ -39,12 +39,15 @@ const authSlice = createSlice({
         },
         setStatus: (state, action) => {
             state.status = action.payload.status;
-            // state.recover_email = action.payload.email;
+        },
+        setVerified: (state) => {
+            state.must_verify_email = false;
+            window.localStorage.setItem("must_verify_email", false);
         }
     }
 });
 
 const { actions, reducer } = authSlice;
-export const { setCredentials, removeCredentials, setStatus } = actions;
+export const { setCredentials, removeCredentials, setStatus, setVerified } = actions;
 export default reducer;
 

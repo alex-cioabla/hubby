@@ -7,7 +7,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { setStatus } from '@/Store/authSlice';
 
-const UserUpdate = ({ mustVerifyEmail }) => {
+const UserUpdate = () => {
 
     // const user = usePage().props.auth.user;
 
@@ -16,6 +16,8 @@ const UserUpdate = ({ mustVerifyEmail }) => {
     //         name: user.name,
     //         email: user.email,
     //     });
+
+    const mustVerifyEmail = useSelector((state) => state.auth.must_verify_email);
 
     const [userUpdate, { data, error, isLoading, isSuccess }] = useUserUpdateMutation();
     const [emailVerificationResend, { data : emailData, error: emailError, isLoading: emailIsLoading, isSuccess: emailIsSuccess }] = useEmailVerificationResendMutation();
@@ -110,7 +112,7 @@ const UserUpdate = ({ mustVerifyEmail }) => {
                     <div>
                         <p className="mt-2 fs-6 text-secondary">
                             Your email address is unverified.
-                            <a onClick={click} as="button">
+                            <a onClick={click} href="#">
                                 Click here to re-send the verification email.
                             </a>
                         </p>
