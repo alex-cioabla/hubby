@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch } from "react-redux";
 
 import { useLogoutMutation } from '@/Store/authApi';
-import { removeCredentials } from '@/Store/authSlice';
+import { removeSession } from '@/Store/authSlice';
 
 const Logout = () => {
 
@@ -14,7 +14,7 @@ const Logout = () => {
 
     useEffect(() => {
       logout();
-      dispatch(removeCredentials());
+      dispatch(removeSession());
 
       navigate('/');
     }, [])

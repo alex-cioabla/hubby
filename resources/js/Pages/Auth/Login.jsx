@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import ErrorAlert from '@/Components/ErrorAlert';
 import { useLoginMutation } from '@/Store/authApi';
-import { setCredentials } from '@/Store/authSlice';
+import { setSession } from '@/Store/authSlice';
 
 const Login = () => {
 
@@ -24,7 +24,7 @@ const Login = () => {
 
     useEffect(() => {
         if (data) { //Da controllare presenza errori non data
-            dispatch(setCredentials(data));
+            dispatch(setSession(data));
             navigate('/dashboard');
         }
     }, [data, dispatch, history]);

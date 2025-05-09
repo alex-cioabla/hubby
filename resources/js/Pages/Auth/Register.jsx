@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 
 import ErrorAlert from '@/Components/ErrorAlert';
 import { useRegisterMutation } from '@/Store/authApi';
-import { setCredentials } from '@/Store/authSlice';
+import { setSession } from '@/Store/authSlice';
 
 const Register = () => {
 
@@ -28,7 +28,7 @@ const Register = () => {
         getElementById('name').focus();
 
         if (data) { //Da controllare presenza errori non data
-            dispatch(setCredentials(data));
+            dispatch(setSession(data));
             navigate('/email-verification-request');
         }
     }, [data, dispatch, navigate]);

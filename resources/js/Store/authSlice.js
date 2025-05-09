@@ -1,53 +1,56 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = (() => {
-    let init = {
-        token: window.localStorage.getItem("token"),
-        expires_at: window.localStorage.getItem("expires_at"),
-        status: null,
-        must_verify_email: window.localStorage.getItem("verified"),
+
+    const data = JSON.parse(window.localStorage.getItem('data'));
+    // let init = {
+    //     token: window.localStorage.getItem("token"),
+    //     expires_at: window.localStorage.getItem("expires_at"),
+    //     must_verified_email: window.localStorage.getItem("must_verified_email"),
+    //     verified: window.localStorage.getItem("verified"),
+    //     status: null,
+    // }
+
+    if (data.token && new Date(data.expires_at) < new Date()) {
+        Object.keys(data).forEach(key => { data[key] = null; });
+
+        window.localStorage.clear();
     }
 
-    if (init.token && new Date(init.expires_at) < new Date()) {
-        init.token = null;
-        init.expires_at = null;
-
-        window.localStorage.removeItem("token");
-        window.localStorage.removeItem("expires_at");
-    }
-
-    return init;
+    return data;
 });
 
 const authSlice = createSlice({
     name: "auth",
     initialState: initialState,
     reducers: {
-        setCredentials: (state, action) => {
-            state.token = action.payload.token;
-            state.expires_at = action.payload.expires_at;
+        setSession: (state, action) => {
 
-            window.localStorage.setItem("token", action.payload.token);
-            window.localStorage.setItem("expires_at", action.payload.expires_at);
+            const data = action.payload;
+
+            state.token = data.token;
+            state.expires_at = data.expires_at;
+            state.user = {name: data.name, email: data.email};
+            state.must_verified_email = data.must_verified_email;
+            state.verified = data.verified;
+
+            window.localStorage.setItem('data', JSON.stringify(data));
         },
-        removeCredentials: (state) => {
-            state.token = null;
-            state.expires_at = null;
-
-            window.localStorage.removeItem("token");
-            window.localStorage.removeItem("expires_at");
+        removeSession: (state) => {
+            Object.keys(state).forEach(key => { state[key] = null; });
+            window.localStorage.clear();
         },
         setStatus: (state, action) => {
             state.status = action.payload.status;
         },
-        setVerified: (state) => {
-            state.must_verify_email = false;
-            window.localStorage.setItem("must_verify_email", false);
+        setVerified: (state, action) => {
+            state.verified = action.payload;
+            window.localStorage.setItem("verified", action.payload);
         }
     }
 });
 
 const { actions, reducer } = authSlice;
-export const { setCredentials, removeCredentials, setStatus, setVerified } = actions;
+export const { setSession, removeSession, setStatus, setVerified } = actions;
 export default reducer;
 

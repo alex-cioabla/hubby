@@ -8,18 +8,18 @@ const PrivateRoute = (props) => {
     const { locale } = useSelector((state) => state.localization);
     let { lang } = useParams();
 
-    const [searchParams] = useSearchParams();
-    const verified = searchParams.get('verified');
-    const dispatch = useDispatch();
+    // const [searchParams] = useSearchParams();
+    // const verified = searchParams.get('verified');
+    // const dispatch = useDispatch();
 
     lang = lang === locale ? lang : '';
 
-    if (verified){
-        dispatch(setVerified());
+    // if (verified){
+    //     dispatch(setVerified(true));
 
-        const newUrl = window.location.pathname; // Mantieni solo il percorso senza query string
-        window.history.replaceState(null, '', newUrl);
-    }
+    //     const newUrl = window.location.pathname; // Mantieni solo il percorso senza query string
+    //     window.history.replaceState(null, '', newUrl);
+    // }
 
     if (token){
         return (props.children);

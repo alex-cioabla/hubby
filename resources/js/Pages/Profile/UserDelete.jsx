@@ -2,6 +2,9 @@ import ErrorAlert from '@/Components/ErrorAlert';
 import { useUserDeleteMutation } from '@/Store/userApi';
 import { useState, useEffect, useRef } from 'react';
 import { Modal } from 'bootstrap';
+import { Link, useNavigate } from 'react-router-dom';
+import { removeSession } from '@/Store/authSlice';
+import { useDispatch } from "react-redux";
 
 const UserDelete = () => {
 
@@ -10,6 +13,8 @@ const UserDelete = () => {
     const userDeleteModal = Modal.getInstance(document.getElementById('userDeleteModal'));
 
     const passwordErrors = error?.data?.errors?.password ?? [];
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const submit = (e) => {
         e.preventDefault();
@@ -36,6 +41,8 @@ const UserDelete = () => {
         history.scrollRestoration = 'auto';
         if (data) {
             userDeleteModal.hide();
+            dispatch(removeSession());
+            navigate('/');
         }
         if(error) {
             password.current.focus();

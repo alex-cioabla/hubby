@@ -14,17 +14,6 @@ use Inertia\Response;
 class ProfileController extends Controller
 {
     /**
-     * Display the user's profile form.
-     */
-    public function edit(Request $request): Response
-    {
-        return Inertia::render('Profile/Edit', props: [
-            'mustVerifyEmail' => $request->user() instanceof MustVerifyEmail,
-            'status' => session('status'),
-        ]);
-    }
-
-    /**
      * Update the user's profile information.
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
@@ -37,7 +26,9 @@ class ProfileController extends Controller
 
         $request->user()->save();
 
-        return Redirect::route('profile.edit');
+        return response()->json([
+            'message' => 'Update profile success', 200
+        ]);
     }
 
     /**
@@ -51,13 +42,13 @@ class ProfileController extends Controller
 
         $user = $request->user();
 
-        Auth::logout();
+        //Auth::logout();
 
         $user->delete();
 
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
+        //$request->session()->invalidate();
+        //$request->session()->regenerateToken();
 
-        return Redirect::to('/');
+        return response()->json(['message' => 'Profile deleted successfully'], 200);
     }
 }

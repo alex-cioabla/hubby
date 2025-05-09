@@ -18,9 +18,11 @@ const UserUpdate = () => {
     //     });
 
     const mustVerifyEmail = useSelector((state) => state.auth.must_verify_email);
+    const user = useSelector((state) => state.auth.user);
 
     const [userUpdate, { data, error, isLoading, isSuccess }] = useUserUpdateMutation();
     const [emailVerificationResend, { data : emailData, error: emailError, isLoading: emailIsLoading, isSuccess: emailIsSuccess }] = useEmailVerificationResendMutation();
+    const navigate = useNavigate();
 
     const [fields, setFields] = useState({
         password: '',
@@ -51,6 +53,9 @@ const UserUpdate = () => {
 
     useEffect(() => {
         document.getElementById('name').focus();
+        if (data) { //Da verificare messaggio e non data
+            navigate('/profile');
+        }
     }, [data])
 
     const click = (e) => {
@@ -85,7 +90,7 @@ const UserUpdate = () => {
                         className="form-control"
                         autoComplete="name"
                         id="name"
-                        value={fields.name}
+                        value={user.name}
                         onChange={handleChange}
                         required />
                     <label htmlFor="name">Nome</label>
@@ -100,7 +105,7 @@ const UserUpdate = () => {
                         className="form-control"
                         id="email"
                         autoComplete="username"
-                        value={fields.email}
+                        value={user.email}
                         onChange={handleChange}
                         required
                     />
