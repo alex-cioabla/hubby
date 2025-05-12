@@ -17,9 +17,8 @@ const UserUpdate = () => {
     const navigate = useNavigate();
 
     const [fields, setFields] = useState({
-        password: '',
-        current_password: '',
-        password_confirmation: '',
+        name: user.name,
+        email: user.email,
     });
 
     const nameErrors = error?.data?.errors?.name ?? [];
@@ -60,48 +59,47 @@ const UserUpdate = () => {
         }
     }
 
-
     return (
         <section>
             <header>
                 <h2 className="fw-bolder fs-5 text-muted">
-                    Profile Information
+                    Informazioni profilo
                 </h2>
 
                 <p className="mt-1 fw-bolder fs-6 text-muted">
-                    Update your account's profile information and email address.
+                    Aggiorna le informazioni del tuo proflo e l'indirzzo email.
                 </p>
             </header>
 
             <form onSubmit={submit}>
-                <div>
-
+                <div className="mb-3">
+                    <label htmlFor="name">Nome</label>
                     <input
                         name="name"
-                        type="name"
+                        type="text"
                         className="form-control"
                         autoComplete="name"
                         id="name"
-                        value={user.name}
+                        value={fields.name}
                         onChange={handleChange}
                         required />
-                    <label htmlFor="name">Nome</label>
 
                     <ErrorAlert messages={nameErrors} className="mt-2" />
                 </div>
 
-                <div>
+                <div className="mb-3">
+                    <label htmlFor="email">Indirizzo email</label>
+
                 <input
                         name="email"
                         type="email"
                         className="form-control"
                         id="email"
                         autoComplete="username"
-                        value={user.email}
+                        value={fields.email}
                         onChange={handleChange}
                         required
                     />
-                    <label htmlFor="email">Indirizzo email</label>
                     <ErrorAlert messages={emailErrors} className="mt-2" />
                 </div>
 
@@ -109,15 +107,15 @@ const UserUpdate = () => {
                     <div>
                         <p className="mt-2 fs-6 text-secondary">
                             Your email address is unverified.
+                            La tua email non è stata verificata.
                             <a onClick={click} href="#">
-                                Click here to re-send the verification email.
+                                Clicca qui per inviare nuovamente la verifica via email.
                             </a>
                         </p>
 
                         {status === 'verification-link-sent' && (
                             <div className="mb-4 fw-bolder fs-4 text-muted text-succes">
-                                A new verification link has been sent to your
-                                email address.
+                                Un nuovo link di verifica è stato inviato al tuo indirizzo email.
                             </div>
                         )}
                     </div>
@@ -125,21 +123,10 @@ const UserUpdate = () => {
 
                 <div className="flex items-center gap-4">
 
-                    <button type="button" className="btn btn-primary" disabled={isLoading}>
-                        Save
+                    <button type="submit" className="btn btn-primary" disabled={isLoading}>
+                        Salva
                     </button>
-
-                    <Transition
-                        show={isSuccess}
-                        enter="transition ease-in-out"
-                        enterFrom="opacity-0"
-                        leave="transition ease-in-out"
-                        leaveTo="opacity-0"
-                    >
-                        <p className="fs-6 text-secondary">
-                            Saved.
-                        </p>
-                    </Transition>
+                    <ErrorAlert messages={data?.message ?? ''} className="mt-2" />
                 </div>
             </form>
         </section>

@@ -57,12 +57,11 @@ const PasswordUpdate = () => {
         <main style={{ maxWidth: "330px", padding: "1rem" }} className="w-100 m-auto">
             <header>
                 <h2 className="fs-4 fw-normal text-dark">
-                    Update Password
+                    Aggiorna password
                 </h2>
 
                 <p className="mt-1 fs-5 text-muted">
-                    Ensure your account is using a long, random password to stay
-                    secure.
+                    Assicurati che il tuo account utilizzi una password lunga, random per essere al sicuro.
                 </p>
             </header>
 
@@ -77,7 +76,7 @@ const PasswordUpdate = () => {
                         value={fields.current_password}
                         onChange={handleChange}
                     />
-                    <label htmlFor="currentPassword">Current password</label>
+                    <label htmlFor="currentPassword">Password attuale</label>
                     <ErrorAlert messages={currentPasswordErrors} className="mt-2" />
                 </div>
 
@@ -90,7 +89,7 @@ const PasswordUpdate = () => {
                         value={fields.password}
                         onChange={handleChange}
                     />
-                    <label htmlFor="password">New password</label>
+                    <label htmlFor="password">Nuova password</label>
                     <ErrorAlert messages={passwordErrors} className="mt-2" />
                 </div>
 
@@ -103,12 +102,12 @@ const PasswordUpdate = () => {
                         value={fields.password_confirmation}
                         onChange={handleChange}
                     />
-                    <label htmlFor="passwordConfirmation">Password confirmation</label>
+                    <label htmlFor="passwordConfirmation">Password di conferma</label>
                     <ErrorAlert messages={passwordConfirmationErrors} className="mt-2" />
                 </div>
 
                 <button className="btn btn-primary w-100 py-2 mt-2" disabled={isLoading}>
-                    Save
+                    Salva
                 </button>
 
                 <Transition
@@ -119,7 +118,7 @@ const PasswordUpdate = () => {
                     leaveTo="opacity-0"
                 >
                     <p className="fs-6 text-secondary">
-                        Saved.
+                        Salvato.
                     </p>
                 </Transition>
             </form>

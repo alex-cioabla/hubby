@@ -8,7 +8,7 @@ const Dashboard = () => {
                 <h1 className="h2">Dashboard</h1>
 
             </div>
-            <p>You're logged in!</p>
+            <p>Sei autenticato!</p>
         </>
     );
 }

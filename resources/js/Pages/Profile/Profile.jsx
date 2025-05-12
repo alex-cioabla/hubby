@@ -5,7 +5,7 @@ import UserUpdate from './UserUpdate';
 const Profile = ({ mustVerifyEmail, status }) => {
     return (<>
         <h2 className="fw-bolder fs-5 text-muted">
-            Profile
+            Profilo
         </h2>
         <div className="py-12">
             <UserUpdate

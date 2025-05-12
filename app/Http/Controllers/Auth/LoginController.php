@@ -31,8 +31,10 @@ class LoginController extends Controller
             'token' => $token->plainTextToken,
             'expires_at' => $token->accessToken->expires_at,
             'must_verified_email' => $request->user() instanceof MustVerifyEmail,
-            'name' => $user->name,
-            'email' => $user->email
+            'user' => [
+                'name' => $user->name,
+                'email' => $user->email
+            ]
         ]);
     }
 

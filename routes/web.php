@@ -30,22 +30,14 @@ Route::middleware('guest')->group(function () {
 
 //CONTROLLI AUTH REACT
 //(DA FARE) ->middleware(['verified'])
-Route::view('dashboard', 'app')->name('dashboard'); //AUTH
+//Il middleware verified verifica se la data di conferma salvata del db è valida e indirizza alla pagina desiderata se si altrimenti su email-verification-request
+Route::view('dashboard', 'app')->name('dashboard');
 //(DA FARE) $request->user()->hasVerifiedEmail() ? redirect()->intended(route('dashboard', absolute: false)) : Inertia::render('Auth/VerifyEmail', ['status' => session('status')]);
-Route::view('email-verification-request', 'app'); //AUTH
+Route::view('email-verification-request', 'app');
 Route::view('password-confirm', 'app');
 Route::view('password-update', 'app');
-Route::view('profile', 'app'); //AUTH
-
-//CONTROLLI LARAVEL
+Route::view('profile', 'app');
 //Link email generato per la verifica dell'email
-Route::get('email-verification-request/{id}/{hash}', EmailController::class) //AUTH
+Route::get('email-verification-request/{id}/{hash}', EmailController::class)
     ->middleware(['signed', 'throttle:6,1'])
     ->name('verification.verify');
-// Route::get('profile', ProfileController::class);
-
-// Route::middleware('auth')->group(function () {
-//     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-//     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-//     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-// });

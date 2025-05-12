@@ -16,10 +16,10 @@ const Home = () => {
                             </p>
                             <div className="d-grid gap-2 d-sm-flex justify-content-sm-center">
                                 <button type="button" className="btn btn-primary btn-lg px-4 gap-3">
-                                    Primary button
+                                    Bottone principale
                                 </button>
                                 <button type="button" className="btn btn-outline-secondary btn-lg px-4">
-                                    Secondary
+                                    Bottone secondario
                                 </button>
                             </div>
                         </div>
@@ -45,10 +45,10 @@ const Home = () => {
                                 </p>
                                 <div className="d-grid gap-2 d-md-flex justify-content-md-start">
                                     <button type="button" className="btn btn-primary btn-lg px-4 me-md-2">
-                                        Primary
+                                        Bottone principale
                                     </button>
                                     <button type="button" className="btn btn-outline-secondary btn-lg px-4">
-                                        Default
+                                        Bottone secondario
                                     </button>
                                 </div>
                             </div>

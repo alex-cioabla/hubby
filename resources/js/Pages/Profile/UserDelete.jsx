@@ -62,19 +62,18 @@ const UserDelete = () => {
         <section>
             <header>
                 <h2 className="fw-bolder fs-5 text-muted">
-                    Delete Account
+                    Cancellazione account
                 </h2>
 
                 <p className="mt-1 fw-bolder fs-6 text-muted">
-                    Once your account is deleted, all of its resources and data
-                    will be permanently deleted. Before deleting your account,
-                    please download any data or information that you wish to
-                    retain.
+                    Una volta che il tuo account è cancellato, tutte le tue risorse e dati
+                    saranno cancellato per sempre. Prima di cancellare il tuo account,
+                    per favore scarica ogni dato o informatizione che desideri mantenere.
                 </p>
             </header>
 
             <button type="button" className="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                Delete account
+                Cancella account
             </button>
 
             <div
@@ -88,7 +87,7 @@ const UserDelete = () => {
                     <div className="modal-content">
                         <div className="modal-header">
                             <h1 className="modal-title fs-5" id="userDeleteModalLabel">
-                                Are you sure you want to delete your account?
+                                Sei sicuro di volere cancellato il tuo account?
                             </h1>
                             <button
                                 type="button"
@@ -99,10 +98,9 @@ const UserDelete = () => {
                         </div>
                         <div className="modal-body">
                             <p>
-                                Once your account is deleted, all of its resources and
-                                data will be permanently deleted. Please enter your
-                                password to confirm you would like to permanently delete
-                                your account.
+                                Una volta che l'account è cancellato, tutte le sue risors e dati
+                                saranno cancellati per sempre. Per favore inserisci la tua
+                                password per confermare se vuoi cancellare per sempre il tuo account.
                             </p>
                             <form onSubmit={submit} className="p-6">
                                 <input
@@ -124,10 +122,10 @@ const UserDelete = () => {
                                 className="btn btn-secondary"
                                 data-bs-dismiss="modal"
                             >
-                                Cancel
+                                Cancella
                             </button>
                             <button type="button" className="btn btn-primary" disabled={isLoading}>
-                                Delete Account
+                                Cancella account
                             </button>
                         </div>
                     </div>

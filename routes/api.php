@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\App;
 use App\Facades\HubbyLang;
@@ -29,9 +30,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::post('password-confirm', [PasswordController::class, 'confirm']);
     Route::put('password-update', [PasswordController::class, 'update']);
+
+    Route::put('user-update', [ProfileController::class, 'update']);
+    Route::put('user-delete', [ProfileController::class, 'destroy']);
 });
-
-
-// Route::get('/user', function (Request $request) {
-//     return $request->user();
-// })->middleware('auth:sanctum');
