@@ -9,14 +9,6 @@ import { setStatus } from '@/Store/authSlice';
 
 const UserUpdate = () => {
 
-    // const user = usePage().props.auth.user;
-
-    // const { data, setData, patch, errors, processing, recentlySuccessful } =
-    //     useForm({
-    //         name: user.name,
-    //         email: user.email,
-    //     });
-
     const mustVerifyEmail = useSelector((state) => state.auth.must_verify_email);
     const user = useSelector((state) => state.auth.user);
 
@@ -113,7 +105,7 @@ const UserUpdate = () => {
                     <ErrorAlert messages={emailErrors} className="mt-2" />
                 </div>
 
-                {/* {mustVerifyEmail && user.email_verified_at === null && ( */}
+                {mustVerifyEmail && user.email_verified_at === null && (
                     <div>
                         <p className="mt-2 fs-6 text-secondary">
                             Your email address is unverified.
@@ -129,7 +121,7 @@ const UserUpdate = () => {
                             </div>
                         )}
                     </div>
-                {/* )} */}
+                )}
 
                 <div className="flex items-center gap-4">
 

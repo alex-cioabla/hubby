@@ -2,22 +2,23 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = (() => {
 
-    const data = JSON.parse(window.localStorage.getItem('data'));
-    // let init = {
-    //     token: window.localStorage.getItem("token"),
-    //     expires_at: window.localStorage.getItem("expires_at"),
-    //     must_verified_email: window.localStorage.getItem("must_verified_email"),
-    //     verified: window.localStorage.getItem("verified"),
-    //     status: null,
-    // }
+    let init = {
+        token: null,
+        expires_at: null,
+        status: null,
+        must_verified_email: true,
+        verified: false,
+        user: null
+    }
+    const session = JSON.parse(window.localStorage.getItem('session')) ?? init;
 
-    if (data.token && new Date(data.expires_at) < new Date()) {
-        Object.keys(data).forEach(key => { data[key] = null; });
+    if (session && new Date(session.expires_at) < new Date()) {
+        window.localStorage.removeItem('session');
 
-        window.localStorage.clear();
+        return init;
     }
 
-    return data;
+    return session;
 });
 
 const authSlice = createSlice({
@@ -26,19 +27,19 @@ const authSlice = createSlice({
     reducers: {
         setSession: (state, action) => {
 
-            const data = action.payload;
+            const session = action.payload;
 
-            state.token = data.token;
-            state.expires_at = data.expires_at;
-            state.user = {name: data.name, email: data.email};
-            state.must_verified_email = data.must_verified_email;
-            state.verified = data.verified;
+            state.token = session.token;
+            state.expires_at = session.expires_at;
+            state.user = {name: session.user.name, email: session.user.email};
+            state.must_verified_email = session.must_verified_email;
+            state.verified = session.verified;
 
-            window.localStorage.setItem('data', JSON.stringify(data));
+            window.localStorage.setItem('session', JSON.stringify(session));
         },
         removeSession: (state) => {
             Object.keys(state).forEach(key => { state[key] = null; });
-            window.localStorage.clear();
+            window.localStorage.removeItem('session');
         },
         setStatus: (state, action) => {
             state.status = action.payload.status;
