@@ -16,9 +16,10 @@ const UserDelete = () => {
     const userDeleteModal = document.getElementById('userDeleteModal');
 
     useEffect(() => {
-
+        //Eventi chiusura del modal
         const handleModalClose = () => {
             reset();
+            password.current.value = '';
         };
         if (userDeleteModal) {
             userDeleteModal.addEventListener('hidden.bs.modal', handleModalClose);
@@ -43,7 +44,7 @@ const UserDelete = () => {
         history.scrollRestoration = 'auto';
 
         if (data) {
-            userDeleteModal.modal('hide');
+            //onSuccess: () => closeModal() (DA VERIFICARE)
             dispatch(removeSession());
             navigate('/');
         }
@@ -52,6 +53,7 @@ const UserDelete = () => {
         }
         if (data || error) {
             reset();
+            password.current.value = '';
         }
 
         return () => {
@@ -115,7 +117,6 @@ const UserDelete = () => {
                                     id="password"
                                     placeholder="Password"
                                     ref={password}
-                                    value={password.current.value}
                                 />
                                 <ErrorAlert message={passwordErrors} className="mt-2" />
                         </div>

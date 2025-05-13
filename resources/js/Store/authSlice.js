@@ -46,7 +46,11 @@ const authSlice = createSlice({
         },
         setVerified: (state, action) => {
             state.verified = action.payload;
-            window.localStorage.setItem("verified", action.payload);
+
+            const session = JSON.parse(window.localStorage.getItem('session'));
+            session.verified = action.payload;
+
+            window.localStorage.setItem("session", JSON.stringify(session));
         }
     }
 });

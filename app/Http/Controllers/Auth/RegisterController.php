@@ -44,6 +44,7 @@ return response()->json([
             'token' => $token->plainTextToken,
             'expires_at' => $token->accessToken->expires_at,
             'must_verified_email' => $request->user() instanceof MustVerifyEmail,
+            'verified' => $user->hasVerifiedEmail(),
             'user' => [
                 'name' => $user->name,
                 'email' => $user->email
