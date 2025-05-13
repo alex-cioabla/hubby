@@ -2,8 +2,7 @@ import ErrorAlert from '@/Components/ErrorAlert';
 import { useUserUpdateMutation } from '@/Store/userApi';
 import { useEmailVerificationResendMutation } from '@/Store/authApi';
 import React, { useState, useEffect } from 'react';
-import { Transition } from '@headlessui/react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { setStatus } from '@/Store/authSlice';
 
@@ -126,7 +125,7 @@ const UserUpdate = () => {
                     <button type="submit" className="btn btn-primary" disabled={isLoading}>
                         Salva
                     </button>
-                    <ErrorAlert messages={data?.message ?? ''} className="mt-2" />
+                    <ErrorAlert messages={(data?.message !== undefined ? [data.message] : [])} className="mt-2" />
                 </div>
             </form>
         </section>

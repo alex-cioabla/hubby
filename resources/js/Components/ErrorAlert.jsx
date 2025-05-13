@@ -3,7 +3,9 @@ const ErrorAlert = ({ messages = [] }) => {
         return null;
     }
     return (
-        <div className='alert alert-danger mt-2' role="alert">{messages.map((message, index) => <p key={index}> {message} </p>)}</div>
+        <div className='alert alert-danger mt-2' role="alert">
+            {messages.map((message, index) => <span key={index}> {message} </span>)}
+        </div>
     )
 }
 

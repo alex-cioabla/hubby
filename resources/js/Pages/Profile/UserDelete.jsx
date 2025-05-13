@@ -1,28 +1,22 @@
 import ErrorAlert from '@/Components/ErrorAlert';
 import { useUserDeleteMutation } from '@/Store/userApi';
-import { useState, useEffect, useRef } from 'react';
-import { Modal } from 'bootstrap';
-import { Link, useNavigate } from 'react-router-dom';
+import { useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { removeSession } from '@/Store/authSlice';
 import { useDispatch } from "react-redux";
 
 const UserDelete = () => {
 
     const password = useRef('');
-    const [userDelete, {data, reset, error, isLoading}] = useUserDeleteMutation();
-    const userDeleteModal = Modal.getInstance(document.getElementById('userDeleteModal'));
+    const [userDelete, { data, reset, error, isLoading }] = useUserDeleteMutation();
 
     const passwordErrors = error?.data?.errors?.password ?? [];
     const navigate = useNavigate();
     const dispatch = useDispatch();
-
-    const submit = (e) => {
-        e.preventDefault();
-
-        userDelete({password: password.current.value})
-    };
+    const userDeleteModal = document.getElementById('userDeleteModal');
 
     useEffect(() => {
+
         const handleModalClose = () => {
             reset();
         };
@@ -30,21 +24,30 @@ const UserDelete = () => {
             userDeleteModal.addEventListener('hidden.bs.modal', handleModalClose);
         }
 
-      return () => {
-        userDeleteModal.removeEventListener('hidden.bs.modal', handleModalClose);
-      }
-    }, [])
+        return () => {
+            if (userDeleteModal) {
+                userDeleteModal.removeEventListener('hidden.bs.modal', handleModalClose);
+            }
+        }
+    }, []);
 
+    const submit = (e) => {
+        e.preventDefault();
+
+        userDelete({ password: password.current.value })
+    };
 
     useEffect(() => {
+
         password.current.focus();
         history.scrollRestoration = 'auto';
+
         if (data) {
-            userDeleteModal.hide();
+            userDeleteModal.modal('hide');
             dispatch(removeSession());
             navigate('/');
         }
-        if(error) {
+        if (error) {
             password.current.focus();
         }
         if (data || error) {
@@ -55,8 +58,7 @@ const UserDelete = () => {
             history.scrollRestoration = 'manual';
         };
 
-    }, [data, error])
-
+    }, [data, error]);
 
     return (
         <section>
@@ -72,7 +74,7 @@ const UserDelete = () => {
                 </p>
             </header>
 
-            <button type="button" className="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <button type="button" className="btn btn-danger" data-bs-toggle="modal" data-bs-target="#userDeleteModal">
                 Cancella account
             </button>
 
@@ -96,13 +98,16 @@ const UserDelete = () => {
                                 aria-label="Close"
                             />
                         </div>
+                            <form onSubmit={submit} className="p-6">
+
                         <div className="modal-body">
                             <p>
                                 Una volta che l'account è cancellato, tutte le sue risors e dati
                                 saranno cancellati per sempre. Per favore inserisci la tua
                                 password per confermare se vuoi cancellare per sempre il tuo account.
                             </p>
-                            <form onSubmit={submit} className="p-6">
+                                <label htmlFor="password">Indirizzo email</label>
+
                                 <input
                                     name="password"
                                     type="password"
@@ -112,9 +117,7 @@ const UserDelete = () => {
                                     ref={password}
                                     value={password.current.value}
                                 />
-                                <label htmlFor="password">Indirizzo email</label>
                                 <ErrorAlert message={passwordErrors} className="mt-2" />
-                            </form>
                         </div>
                         <div className="modal-footer">
                             <button
@@ -122,12 +125,14 @@ const UserDelete = () => {
                                 className="btn btn-secondary"
                                 data-bs-dismiss="modal"
                             >
-                                Cancella
+                                Annulla
                             </button>
-                            <button type="button" className="btn btn-primary" disabled={isLoading}>
+                            <button type="submit" className="btn btn-danger" disabled={isLoading}>
                                 Cancella account
                             </button>
                         </div>
+                            </form>
+
                     </div>
                 </div>
             </div>

@@ -123,7 +123,7 @@ class PasswordController extends Controller
         ]);
 
         return response()->json([
-            'message' => 'Update password success'
+            'message' => 'Password aggiornata con successo.'
         ]);
 
         // return back();

@@ -25,7 +25,7 @@ const Register = () => {
     });
 
     useEffect(() => {
-        getElementById('name').focus();
+        document.getElementById('name').focus();
 
         if (data) { //Da controllare presenza errori non data
             dispatch(setSession(data));

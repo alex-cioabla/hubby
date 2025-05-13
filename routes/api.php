@@ -31,6 +31,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('password-confirm', [PasswordController::class, 'confirm']);
     Route::put('password-update', [PasswordController::class, 'update']);
 
-    Route::put('user-update', [ProfileController::class, 'update']);
-    Route::put('user-delete', [ProfileController::class, 'destroy']);
+    Route::patch('user-update', [ProfileController::class, 'update']);
+    Route::delete('user-delete', [ProfileController::class, 'destroy']);
 });

@@ -12,7 +12,7 @@ const PasswordConfirm = () => {
     const passwordErrors = error?.data?.errors?.password ?? [];
 
     useEffect(() => {
-        getElementById('password').focus();
+        document.getElementById('password').focus();
 
         if (data) {
             navigate('/dashboard');

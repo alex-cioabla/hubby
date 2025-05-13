@@ -1,6 +1,3 @@
-
-import { Transition } from '@headlessui/react';
-
 import { useState, useEffect } from 'react';
 import { usePasswordUpdateMutation } from '@/Store/userApi';
 import { useNavigate } from 'react-router-dom';
@@ -34,11 +31,11 @@ const PasswordUpdate = () => {
         if (error) {
             if (currentPasswordErrors.lenght) {
                 setFields({...fields, current_password: ''});
-                getElementById('currentPassword').focus();
+                document.getElementById('currentPassword').focus();
             }
             if (passwordConfirmationErrors.lenght) {
                 setFields({...fields, password_confirmation: ''});
-                getElementById('passwordConfirm').focus();
+                document.getElementById('passwordConfirm').focus();
             }
         }
         if (data) {
@@ -93,7 +90,7 @@ const PasswordUpdate = () => {
                     <ErrorAlert messages={passwordErrors} className="mt-2" />
                 </div>
 
-                <div className="form-floating">
+                <div className="form-floating mb-3">
                     <input
                         type="password"
                         name='password_confirmation'
@@ -106,21 +103,11 @@ const PasswordUpdate = () => {
                     <ErrorAlert messages={passwordConfirmationErrors} className="mt-2" />
                 </div>
 
-                <button className="btn btn-primary w-100 py-2 mt-2" disabled={isLoading}>
+                <button className="btn btn-primary w-100 py-2" disabled={isLoading}>
                     Salva
                 </button>
 
-                <Transition
-                    show={isSuccess}
-                    enter="transition ease-in-out"
-                    enterFrom="opacity-0"
-                    leave="transition ease-in-out"
-                    leaveTo="opacity-0"
-                >
-                    <p className="fs-6 text-secondary">
-                        Salvato.
-                    </p>
-                </Transition>
+                <ErrorAlert messages={(data?.message !== undefined ? [data.message] : [])} className="mt-2" />
             </form>
         </main>
     );
