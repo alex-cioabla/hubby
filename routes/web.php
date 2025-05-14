@@ -18,8 +18,6 @@ Route::middleware('guest')->group(function () {
 });
 
 //CONTROLLI AUTH REACT
-//(DA VERIFICARE) ->middleware(['verified'])
-//Il middleware verified verifica se la data di conferma salvata del db è valida e indirizza alla pagina desiderata se si altrimenti su email-verification-request
 Route::view('dashboard', 'app')->name('dashboard');
 //(DA VERIFICARE) $request->user()->hasVerifiedEmail() ? redirect()->intended(route('dashboard', absolute: false)) : Inertia::render('Auth/VerifyEmail', ['status' => session('status')]);
 Route::view('email-verification-request', 'app');

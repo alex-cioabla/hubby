@@ -44,10 +44,10 @@ class RegisterController extends Controller
             'token' => $token->plainTextToken,
             'expires_at' => $token->accessToken->expires_at,
             'must_verify_email' => $user instanceof MustVerifyEmail,
-            'verified' => $user->hasVerifiedEmail(),
             'user' => [
                 'name' => $user->name,
-                'email' => $user->email
+                'email' => $user->email,
+                'email_verified_at' => $user->email_verified_at
             ]
         ]);
     }
