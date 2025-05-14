@@ -7,7 +7,7 @@ import { removeSession } from '@/Store/authSlice';
 
 const Logout = () => {
 
-    const [logout, {error, isLoading }] = useLogoutMutation();
+    const [logout] = useLogoutMutation();
     const navigate = useNavigate();
 
     const dispatch = useDispatch();

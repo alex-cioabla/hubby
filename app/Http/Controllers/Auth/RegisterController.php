@@ -22,7 +22,7 @@ class RegisterController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|string|lowercase|email|max:255|unique:'.User::class,
+            'email' => 'required|string|lowercase|email|max:255|unique:' . User::class,
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
@@ -38,9 +38,9 @@ class RegisterController extends Controller
         event(new Registered($user));
         //(fa partire l'azione di notifica via email della registrazione avvenuta)
 
-        $token = $user->createToken('PAT',  ['*'], now()->addWeek());
+        $token = $user->createToken('PAT', ['*'], now()->addWeek());
 
-return response()->json([
+        return response()->json([
             'token' => $token->plainTextToken,
             'expires_at' => $token->accessToken->expires_at,
             'must_verify_email' => $user instanceof MustVerifyEmail,

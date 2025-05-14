@@ -27,7 +27,7 @@ const Register = () => {
     useEffect(() => {
         document.getElementById('name').focus();
 
-        if (data) { //Da controllare presenza errori non data
+        if (data) { //(DA VERIFICARE)
             dispatch(setSession(data));
             navigate('/email-verification-request');
         }

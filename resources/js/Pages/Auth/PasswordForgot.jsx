@@ -14,7 +14,7 @@ const PasswordForgot = () => {
 
     useEffect(() => {
 
-        if (data) { //Da controllare presenza errori non data
+        if (data) { //(DA VERIFICARE)
             dispatch(setStatus(data));
         }
 

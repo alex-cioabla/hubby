@@ -5,7 +5,7 @@ import ErrorAlert from '@/Components/ErrorAlert';
 
 const PasswordUpdate = () => {
 
-    const [passwordUpdate, {isSuccess, data, error, isLoading}] = usePasswordUpdateMutation();
+    const [passwordUpdate, {data, error, isLoading}] = usePasswordUpdateMutation();
 
     const currentPasswordErrors = error?.data?.errors?.current_password ?? [];
     const passwordConfirmationErrors = error?.data?.errors?.password_confirmation ?? [];

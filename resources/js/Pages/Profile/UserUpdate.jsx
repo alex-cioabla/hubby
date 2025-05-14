@@ -44,7 +44,7 @@ const UserUpdate = () => {
 
     useEffect(() => {
         document.getElementById('name').focus();
-        if (data) { //Da verificare messaggio e non data
+        if (data) { //(DA VERIFICARE)
             navigate('/profile');
         }
     }, [data])

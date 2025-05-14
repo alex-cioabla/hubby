@@ -19,10 +19,10 @@ class SetLocale
         $locale = $request->segment(1);
 
         if (in_array($locale, ['en', 'it'])) {
-            //(setLocale è una fx default di lavavel per impostazione la lingua)
+            //setLocale è una fx default di lavavel per impostazione la lingua
+            //(altimenti la lingua resta quella di default, definita nel file env)
             App::setLocale($locale);
         }
-        //altimenti la lingua resta quella di default, definita nel file env
 
         return $next($request);
     }

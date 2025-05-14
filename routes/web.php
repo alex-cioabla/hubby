@@ -1,18 +1,7 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-// use App\Http\Controllers\AppController;
 use App\Http\Controllers\Auth\EmailController;
-
-// Route::get('email-verification-request', EmailVerificationRequestController::class)
-//     ->name('verification.notice');
-
-// Route::group(['prefix' => '{locale}', 'where' => ['locale' => 'en|it']], function () {
-//     Route::get('/{page?}', [AppController::class, 'locale_page']);
-// });
-
-// Route::get('/{page?}', [AppController::class, 'page'])->where('page', '.*');
 
 Route::view('/', 'app');
 Route::view('library', 'app');
@@ -29,10 +18,10 @@ Route::middleware('guest')->group(function () {
 });
 
 //CONTROLLI AUTH REACT
-//(DA FARE) ->middleware(['verified'])
+//(DA VERIFICARE) ->middleware(['verified'])
 //Il middleware verified verifica se la data di conferma salvata del db è valida e indirizza alla pagina desiderata se si altrimenti su email-verification-request
 Route::view('dashboard', 'app')->name('dashboard');
-//(DA FARE) $request->user()->hasVerifiedEmail() ? redirect()->intended(route('dashboard', absolute: false)) : Inertia::render('Auth/VerifyEmail', ['status' => session('status')]);
+//(DA VERIFICARE) $request->user()->hasVerifiedEmail() ? redirect()->intended(route('dashboard', absolute: false)) : Inertia::render('Auth/VerifyEmail', ['status' => session('status')]);
 Route::view('email-verification-request', 'app');
 Route::view('password-confirm', 'app');
 Route::view('password-update', 'app');

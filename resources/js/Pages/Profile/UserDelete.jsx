@@ -16,6 +16,7 @@ const UserDelete = () => {
     const userDeleteModal = document.getElementById('userDeleteModal');
 
     useEffect(() => {
+
         //Eventi chiusura del modal
         const handleModalClose = () => {
             reset();
