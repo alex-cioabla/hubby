@@ -7,9 +7,9 @@ use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use \Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 
 class RegisterController extends Controller
 {
@@ -43,7 +43,7 @@ class RegisterController extends Controller
 return response()->json([
             'token' => $token->plainTextToken,
             'expires_at' => $token->accessToken->expires_at,
-            'must_verified_email' => $request->user() instanceof MustVerifyEmail,
+            'must_verify_email' => $user instanceof MustVerifyEmail,
             'verified' => $user->hasVerifiedEmail(),
             'user' => [
                 'name' => $user->name,
