@@ -16,12 +16,12 @@
     @vite('resources/js/app.jsx')
 
     <script>
-        const appConfig = @json([
-            'translations' => \App\Facades\HubbyLang::getAllTrans(),
-            'locale' => \Illuminate\Support\Facades\Lang::getLocale(),
-            'name' => config('app.name'),
-            'canResetPassword' => \Illuminate\Support\Facades\Route::has('password.request')
-        ]);
+    const appConfig = {!! json_encode([
+        'translations' => \App\Facades\HubbyLang::getAllTrans(),
+        'locale' => \Illuminate\Support\Facades\Lang::getLocale(),
+        'name' => config('app.name'),
+        'canResetPassword' => \Illuminate\Support\Facades\Route::has('password.request'),
+    ]) !!};
     </script>
 
 </head>

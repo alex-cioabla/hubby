@@ -19,14 +19,13 @@ const VerifiedRoute = (props) => {
         }
     }, [verified_url_param, dispatch]);
 
-
     const email_verified_at = new Date(user.email_verified_at);
-    console.log(email_verified_at);
-    if (isNaN(email_verified_at.getTime())) {
+    // console.log(user.email_verified_at);
+        if (isNaN(email_verified_at.getTime())) {
         return (<Navigate to={'/email-verification-request'} replace />);
     }
 
-    return (props.children);
+    return (<Navigate to={'/dashboard'} replace />);
 }
 
 export default VerifiedRoute;

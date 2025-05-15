@@ -23,7 +23,7 @@ Route::view('dashboard', 'app')->name('dashboard');
 Route::view('password-confirm', 'app');
 Route::view('password-update', 'app');
 Route::view('profile', 'app');
-Route::get('email-verification-request', EmailController::class);
+Route::view('email-verification-request', 'app');
 //Link email generato per la verifica dell'email
 Route::get('email-verification-request/{id}/{hash}', [EmailController::class, 'verify'])
     ->middleware(['signed', 'throttle:6,1'])

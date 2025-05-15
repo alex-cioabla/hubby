@@ -13,16 +13,6 @@ use Illuminate\Contracts\View\View;
 class EmailController extends Controller
 {
     /**
-     * Display the email verification prompt.
-     */
-    public function __invoke(Request $request): RedirectResponse|View
-    {
-        return $request->user()->hasVerifiedEmail()
-                    ? redirect()->intended(route('dashboard', absolute: false))
-                    : view('app');
-    }
-
-    /**
      * Mark the authenticated user's email address as verified.
      */
     public function verify(Request $request): RedirectResponse
