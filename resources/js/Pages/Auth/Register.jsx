@@ -29,6 +29,8 @@ const Register = () => {
 
         if (data) { //(DA VERIFICARE)
             dispatch(setSession(data));
+            document.getElementById('password').value = '';
+            document.getElementById('password_confirmation').value = '';
             navigate('/email-verification-request');
         }
     }, [data, dispatch, navigate]);

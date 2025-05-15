@@ -6,7 +6,7 @@ import { setStatus } from '@/Store/authSlice';
 
 const EmailVerificationRequest = () => {
 
-    const [emailVerificationResend, { data, error, isLoading }] = useEmailVerificationResendMutation();
+    const [emailVerificationResend, { data, isLoading }] = useEmailVerificationResendMutation();
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const status = useSelector((state) => state.auth.status);

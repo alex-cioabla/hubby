@@ -38,6 +38,8 @@ export default function PasswordReset() {
     useEffect(() => {
         if (data) {
             dispatch(setStatus(data.status));
+            document.getElementById('floatingPassword').value = '';
+            document.getElementById('floatingPasswordConfirmation').value = '';
             navigate('/login');
         }
     }, [data]);

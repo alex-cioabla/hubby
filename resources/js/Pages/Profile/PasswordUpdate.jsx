@@ -5,7 +5,7 @@ import ErrorAlert from '@/Components/ErrorAlert';
 
 const PasswordUpdate = () => {
 
-    const [passwordUpdate, {data, error, isLoading}] = usePasswordUpdateMutation();
+    const [passwordUpdate, {data, error, isLoading, isSuccess}] = usePasswordUpdateMutation();
 
     const currentPasswordErrors = error?.data?.errors?.current_password ?? [];
     const passwordConfirmationErrors = error?.data?.errors?.password_confirmation ?? [];
@@ -27,7 +27,7 @@ const PasswordUpdate = () => {
     };
 
     useEffect(() => {
-
+        history.scrollRestoration = 'auto';
         if (error) {
             if (currentPasswordErrors.lenght) {
                 setFields({...fields, current_password: ''});
@@ -39,8 +39,15 @@ const PasswordUpdate = () => {
             }
         }
         if (data) {
+            document.getElementById('password').value = '';
+            document.getElementById('current_password').value = '';
+            document.getElementById('password_confirmation').value = '';
             navigate(-1);
         }
+
+        return () => {
+            history.scrollRestoration = 'manual';
+        };
 
     }, [data, error])
 
@@ -107,7 +114,8 @@ const PasswordUpdate = () => {
                     Salva
                 </button>
 
-                <ErrorAlert messages={(data?.message !== undefined ? [data.message] : [])} className="mt-2" />
+                {/* DA VERIFICARE */}
+                <ErrorAlert messages={(isSuccess && data?.message !== undefined ? [data.message] : [])} className="mt-2" />
             </form>
         </main>
     );

@@ -15,6 +15,7 @@ const PasswordConfirm = () => {
         document.getElementById('password').focus();
 
         if (data) {
+            document.getElementById('password').value = '';
             navigate('/dashboard');
         }
     }, [data, error]);

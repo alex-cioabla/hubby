@@ -124,7 +124,8 @@ const UserUpdate = () => {
                     <button type="submit" className="btn btn-primary" disabled={isLoading}>
                         Salva
                     </button>
-                    <ErrorAlert messages={(data?.message !== undefined ? [data.message] : [])} className="mt-2" />
+                    {/* DA VERIFICARE */}
+                    <ErrorAlert messages={(isSuccess && data?.message !== undefined ? [data.message] : [])} className="mt-2" />
                 </div>
             </form>
         </section>

@@ -25,6 +25,7 @@ const Login = () => {
     useEffect(() => {
         if (data) { //(DA VERIFICARE)
             dispatch(setSession(data));
+            document.getElementById('floatingPassword').value = '';
             navigate('/dashboard');
         }
     }, [data, dispatch, history]);
@@ -44,7 +45,7 @@ const Login = () => {
         try {
             await login(fields).unwrap();
         } catch (error) {
-            console.error('Login failed:', error.data.message);
+            console.error('Login failed:', error.data.message); //(DA VERIFICARE)
         }
     };
 
