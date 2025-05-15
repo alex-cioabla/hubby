@@ -1,22 +1,28 @@
-import { useSelector } from 'react-redux';
-import { useSearchParams } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Navigate, useSearchParams } from 'react-router-dom';
+import { useSelector, useDispatch } from "react-redux";
+import { setEmailVerifiedAt } from '@/Store/authSlice';
 
 const VerifiedRoute = (props) => {
 
     const { user } = useSelector(state => state.auth);
     const [searchParams] = useSearchParams();
     const verified_url_param = searchParams.get('verified');
+    const dispatch = useDispatch();
 
-    if (verified_url_param) {
-        const email_verified_at = new Date(user.email_verified_at);
-        const newUrl = window.location.pathname;
+    useEffect(() => {
+        if (verified_url_param) {
+            const newUrl = window.location.pathname;
+            window.history.replaceState(null, '', newUrl);
 
-        window.history.replaceState(null, '', newUrl);
-    }else{
-        const email_verified_at = new Date(user.email_verified_at);
-        if (isNaN(email_verified_at.getTime())) {
-            return (<Navigate to={'/email-verification-request'} replace />);
+            dispatch(setEmailVerifiedAt(new Date()));
         }
+    }, [verified_url_param, dispatch]);
+
+
+    const email_verified_at = new Date(user.email_verified_at);
+    if (isNaN(email_verified_at.getTime())) {
+        return (<Navigate to={'/email-verification-request'} replace />);
     }
 
     return (props.children);

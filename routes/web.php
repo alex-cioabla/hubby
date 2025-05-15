@@ -17,7 +17,7 @@ Route::middleware('guest')->group(function () {
     Route::view('/password-reset/{token}', 'app')->name('password.reset');
 });
 
-//CONTROLLI AUTH REACT
+//CONTROLLI MIDDLEWARE AUTH E VERIFIED CON REACT
 Route::view('dashboard', 'app')->name('dashboard');
 //(DA VERIFICARE) $request->user()->hasVerifiedEmail() ? redirect()->intended(route('dashboard', absolute: false)) : Inertia::render('Auth/VerifyEmail', ['status' => session('status')]);
 Route::view('email-verification-request', 'app');

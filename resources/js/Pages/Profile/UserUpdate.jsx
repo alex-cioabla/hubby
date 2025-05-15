@@ -101,7 +101,7 @@ const UserUpdate = () => {
                     <ErrorAlert messages={emailErrors} className="mt-2" />
                 </div>
 
-                {mustVerifyEmail && user.email_verified_at === null && (
+                {must_verify_email && user.email_verified_at === null && (
                     <div>
                         <p className="mt-2 fs-6 text-secondary">
                             Your email address is unverified.

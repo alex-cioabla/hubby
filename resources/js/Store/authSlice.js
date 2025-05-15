@@ -7,7 +7,6 @@ const initialState = (() => {
         expires_at: null,
         status: null,
         must_verified_email: true,
-        verified: false,
         user: null
     }
     const session = JSON.parse(window.localStorage.getItem('session')) ?? init;
@@ -44,11 +43,11 @@ const authSlice = createSlice({
         setStatus: (state, action) => {
             state.status = action.payload.status;
         },
-        setVerified: (state, action) => {
-            state.verified = action.payload;
+        setEmailVerifiedAt: (state, action) => {
+            state.user.email_verified_at = action.payload;
 
             const session = JSON.parse(window.localStorage.getItem('session'));
-            session.verified = action.payload;
+            session.user.email_verified_at = action.payload;
 
             window.localStorage.setItem("session", JSON.stringify(session));
         }
@@ -56,6 +55,6 @@ const authSlice = createSlice({
 });
 
 const { actions, reducer } = authSlice;
-export const { setSession, removeSession, setStatus, setVerified } = actions;
+export const { setSession, removeSession, setStatus, setEmailVerifiedAt } = actions;
 export default reducer;
 
