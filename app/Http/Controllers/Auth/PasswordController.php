@@ -83,7 +83,8 @@ class PasswordController extends Controller
      */
     public function confirm(Request $request): JsonResponse
     {
-        if (!Auth::guard('web')->validate([
+        //Uso Auth::guard(name: 'web')->validate per validare le credenziali dell'utente connesso
+        if (!Auth::guard(name: 'web')->validate([
                 'email' => $request->user()->email,
                 'password' => $request->password])
         ) {
@@ -92,10 +93,8 @@ class PasswordController extends Controller
             ]);
         }
 
-        //$request->session()->put('auth.password_confirmed_at', time());
-        //return redirect()->intended(route('dashboard', absolute: false));
         return response()->json([
-            'password_confirmed_at' => time()
+            'password_confirmed_at' => time() //(DA VERIFICARE)
         ]);
     }
 
@@ -113,7 +112,6 @@ class PasswordController extends Controller
             'password' => Hash::make($validated['password']),
         ]);
 
-        // return back();
         return response()->json([
             'message' => 'Password aggiornata con successo.'
         ]);

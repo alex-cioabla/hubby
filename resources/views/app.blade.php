@@ -19,7 +19,8 @@
         const appConfig = @json([
             'translations' => \App\Facades\HubbyLang::getAllTrans(),
             'locale' => \Illuminate\Support\Facades\Lang::getLocale(),
-            'name' => config('app.name')
+            'name' => config('app.name'),
+            'canResetPassword' => \Illuminate\Support\Facades\Route::has('password.request')
         ]);
     </script>
 

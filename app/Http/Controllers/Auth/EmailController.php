@@ -8,13 +8,24 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use \Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Contracts\View\View;
 
 class EmailController extends Controller
 {
     /**
+     * Display the email verification prompt.
+     */
+    public function __invoke(Request $request): RedirectResponse|View
+    {
+        return $request->user()->hasVerifiedEmail()
+                    ? redirect()->intended(route('dashboard', absolute: false))
+                    : view('app');
+    }
+
+    /**
      * Mark the authenticated user's email address as verified.
      */
-    public function __invoke(Request $request): RedirectResponse
+    public function verify(Request $request): RedirectResponse
     {
         $user = User::findOrFail($request['id']);
 

@@ -100,12 +100,13 @@ const Login = () => {
                     </label>
                 </div>
                 <p>
-
-                <Link
-                    to='/password-forgot'
-                >
-                    Hai dimenticato la password?
-                </Link>
+                    {appConfig.canResetPassword && (
+                        <Link
+                            to='/password-forgot'
+                        >
+                            Hai dimenticato la password?
+                        </Link>
+                    )}
                 </p>
                 <button className="btn btn-primary w-100 py-2" type="submit" disabled={isLoading}>
                     Accedi

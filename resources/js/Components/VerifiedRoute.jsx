@@ -21,6 +21,7 @@ const VerifiedRoute = (props) => {
 
 
     const email_verified_at = new Date(user.email_verified_at);
+    console.log(email_verified_at);
     if (isNaN(email_verified_at.getTime())) {
         return (<Navigate to={'/email-verification-request'} replace />);
     }

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-
+import { useNavigate  } from 'react-router-dom';
 import ErrorAlert from '@/Components/ErrorAlert';
 import { usePasswordForgotMutation } from '@/Store/authApi';
 import { setStatus } from '@/Store/authSlice';
@@ -11,11 +11,13 @@ const PasswordForgot = () => {
     const [passwordForgot, { data, error, isLoading }] = usePasswordForgotMutation();
     const dispatch = useDispatch();
     const status = useSelector((state) => state.auth.status);
+     const navigate = useNavigate();
 
     useEffect(() => {
 
         if (data) { //(DA VERIFICARE)
-            dispatch(setStatus(data));
+            dispatch(setStatus(data.status));
+            navigate(-1);
         }
 
     }, [data]);

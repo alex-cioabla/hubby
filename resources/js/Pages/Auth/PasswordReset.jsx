@@ -2,14 +2,17 @@ import React, { useState, useEffect } from 'react';
 import { usePasswordResetMutation } from '@/Store/authApi';
 import { useNavigate, useParams, useSearchParams  } from 'react-router-dom';
 import ErrorAlert from '@/Components/ErrorAlert';
+import { setStatus } from '@/Store/authSlice';
 
 export default function PasswordReset() {
 
     const [passwordReset, { data, error, isLoading }] = usePasswordResetMutation();
     const navigate = useNavigate();
     let { token } = useParams();
+    const dispatch = useDispatch();
     const [searchParams] = useSearchParams();
     const recover_email = searchParams.get('email');
+    const status = useSelector((state) => state.auth.status);
 
     const [fields, setFields] = useState({
         email: recover_email,
@@ -34,6 +37,7 @@ export default function PasswordReset() {
 
     useEffect(() => {
         if (data) {
+            dispatch(setStatus(data.status));
             navigate('/login');
         }
     }, [data]);

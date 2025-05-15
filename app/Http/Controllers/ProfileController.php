@@ -39,6 +39,8 @@ class ProfileController extends Controller
 
         $user->delete();
 
+        $user->currentAccessToken()->delete();
+
         return response()->json(['message' => 'Profile deleted successfully'], 200);
     }
 }
