@@ -51,7 +51,7 @@ function App() {
 
                     <Route path=":lang?/password-confirm" element={<PrivateRoute><PasswordConfirm/></PrivateRoute>}/>
                     <Route path=":lang?/password-update" element={<PrivateRoute><PasswordUpdate/></PrivateRoute>}/>
-                    <Route path=":lang?/email-verification-request/" element={<PrivateRoute><VerifiedRoute><EmailVerificationRequest /></VerifiedRoute></PrivateRoute>}></Route>
+                    <Route path=":lang?/email-verification-request" element={<PrivateRoute><VerifiedRoute><EmailVerificationRequest /></VerifiedRoute></PrivateRoute>}></Route>
                     <Route path=":lang?/email-verification-request/:id/:hash" element={<PrivateRoute><EmailVerificationRequest /></PrivateRoute>}></Route>
                 </Routes>
             </Router>

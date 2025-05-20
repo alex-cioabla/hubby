@@ -10,6 +10,9 @@ const UserUpdate = () => {
 
     const { must_verify_email, user } = useSelector((state) => state.auth);
 
+    console.log('email', must_verify_email);
+    console.log('user', user.email_verified_at);
+
     const [userUpdate, { data, error, isLoading, isSuccess }] = useUserUpdateMutation();
     const [emailVerificationResend, { data : emailData, error: emailError, isLoading: emailIsLoading, isSuccess: emailIsSuccess }] = useEmailVerificationResendMutation();
     const navigate = useNavigate();
@@ -65,7 +68,7 @@ const UserUpdate = () => {
                 </h2>
 
                 <p className="mt-1 fw-bolder fs-6 text-muted">
-                    Aggiorna le informazioni del tuo proflo e l'indirzzo email.
+                    Aggiorna le informazioni del tuo proflo e l'indirizzo email.
                 </p>
             </header>
 

@@ -27,7 +27,6 @@ const authSlice = createSlice({
         setSession: (state, action) => {
 
             const session = action.payload;
-            console.log('session', session);
 
             state.token = session.token;
             state.expires_at = session.expires_at;
@@ -42,7 +41,7 @@ const authSlice = createSlice({
             window.localStorage.removeItem('session');
         },
         setStatus: (state, action) => {
-            state.status = action.payload.status;
+            state.status = action.payload;
         },
         setEmailVerifiedAt: (state, action) => {
             state.user.email_verified_at = action.payload;
