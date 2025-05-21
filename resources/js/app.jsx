@@ -1,6 +1,10 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
+import "isotope-layout";
+import "owl.carousel/dist/owl.carousel";
+import "jquery.leanmodal";
+import "./theme-assets/hubby.js";
 
 import React from "react";
 import { createRoot } from 'react-dom/client';

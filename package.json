@@ -21,9 +21,15 @@
         "vite": "^6.2.0"
     },
     "dependencies": {
+        "@fortawesome/fontawesome-free": "^6.7.2",
         "@reduxjs/toolkit": "^2.6.1",
+        "@types/jquery.leanmodal": "^1.1.33",
+        "animate.css": "^4.1.1",
         "bootstrap": "^5.3.6",
         "bootstrap-icons": "^1.11.3",
+        "flexslider": "^2.7.2",
+        "isotope-layout": "^3.0.6",
+        "owl.carousel": "^2.3.4",
         "react-redux": "^9.2.0",
         "react-router-dom": "^7.2.0",
         "redux": "^5.0.1"
