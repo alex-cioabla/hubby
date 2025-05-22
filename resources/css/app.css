@@ -3,5 +3,6 @@
 @import "owl.carousel/dist/assets/owl.carousel.min.css";
 @import "flexslider/flexslider.css";
 @import "@fortawesome/fontawesome-free/css/fontawesome.min.css";
+@import "animate.css/animate.min.css";
+@import "swiper/swiper-bundle.min.css";
 @import "./hubby.css";
-@import "animate.css/animate.min.css"

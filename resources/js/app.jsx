@@ -1,9 +1,6 @@
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap-icons/font/bootstrap-icons.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
-import "isotope-layout";
-import "owl.carousel/dist/owl.carousel";
-import "jquery.leanmodal";
+import "jquery-ui";
+import "./theme-assets/popup.js";
 import "./theme-assets/hubby.js";
 
 import React from "react";
@@ -16,6 +13,8 @@ import GuestLayout from '@/Layouts/GuestLayout';
 import AuthenticatedLayout from "./Layouts/AuthenticatedLayout";
 
 import PrivateRoute from "./Components/PrivateRoute";
+import VerifiedRoute from "./Components/VerifiedRoute";
+
 import Home from '@/pages/Home';
 import Library from "./Pages/Library";
 import Rank from "./Pages/Rank";
@@ -30,7 +29,6 @@ import EmailVerificationRequest from "./Pages/Auth/EmailVerificationRequest";
 import PasswordConfirm from "./Pages/Auth/PasswordConfirm";
 import PasswordUpdate from "./Pages/Profile/PasswordUpdate";
 import Profile from "./Pages/Profile/Profile";
-import VerifiedRoute from "./Components/VerifiedRoute";
 
 function App() {
     return (
