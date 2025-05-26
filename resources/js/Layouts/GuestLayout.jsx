@@ -49,105 +49,152 @@ export default function GuestLayout() {
 
     return (
         <>
-            <header>
-                <div className="container-fluid d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
-                    <a
-                        href="/"
-                        className="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none"
-                    >
-                        Logo
-                    </a>
-                    <ul className="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-                        <li>
-                            <NavLink className={({ isActive }) => isActive ? "link-secondary nav-link px-2" : "nav-link px-2"}
-                                to={`${lang}/`} end>
-                                {translations.header.menu.home}
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink to={`${lang}/library`} className={({ isActive }) => isActive ? "link-secondary nav-link px-2" : "nav-link px-2"}>
-                                {translations.header.menu.library}
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink to={`${lang}/rank`} className={({ isActive }) => isActive ? "link-secondary nav-link px-2" : "nav-link px-2"}>
-                                {translations.header.menu.rank}
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink to={`${lang}/shop`} className={({ isActive }) => isActive ? "link-secondary nav-link px-2" : "nav-link px-2"}>
-                                {translations.header.menu.shop}
-                            </NavLink>
-                        </li>
-                    </ul>
-                    <div className="col-md-3 text-end">
-                        {
-                            token && (
-                                <Link to={`${lang}/dashboard`} className="btn btn-outline-primary me-2">
-                                    Dashboard
-                                </Link>
-                            )
-                        }
-                        {
-                            !token && (<>
-                                <Link to={`${lang}/login`} className="btn btn-outline-primary me-2">
-                                    {translations.header.buttons.login}
-                                </Link>
-                                <Link to={`${lang}/register`} className="btn btn-primary">
-                                    {translations.header.buttons.register}
-                                </Link></>
-                            )
-                        }
-
-                        <button
-                            className="btn btn-link dropdown-toggle"
-                            type="button"
-                            data-bs-toggle="dropdown"
-                            aria-expanded="false"
-                        >
-                            <i className="bi bi-circle-half"></i>
-                            <span className="d-lg-none ms-2" id="bd-theme-text">Toggle theme</span>
-                        </button>
-                        <ul className="dropdown-menu">
-                            <li>
-                                <button
-                                    type="button"
-                                    className={theme === 'light' ? "active dropdown-item d-flex align-items-center" : "dropdown-item d-flex align-items-center"}
-                                    onClick={() => toggleTheme('light')}
-                                >
-                                    <i className="bi bi-sun-fill me-2 opacity-50"></i>
-                                    Light
-                                    <i className="bi bi-check2 ms-auto d-none"></i>
-                                </button>
-
-                            </li>
-                            <li>
-                                <button
-                                    type="button"
-                                    className={theme === 'dark' ? "active dropdown-item d-flex align-items-center" : "dropdown-item d-flex align-items-center"}
-                                    onClick={() => toggleTheme('dark')}
-                                >
-                                    <i className="bi bi-moon-fill me-2 opacity-50"></i>
-                                    Dark
-                                    <i className="bi bi-check2 ms-auto d-none"></i>
-                                </button>
-
-                            </li>
-                            <li>
-                                <button
-                                    type="button"
-                                    className={theme === 'auto' ? "active dropdown-item d-flex align-items-center" : "dropdown-item d-flex align-items-center"}
-                                    onClick={() => toggleTheme('auto')}
-                                >
-                                    <i className="bi bi-circle-half me-2 opacity-50"></i>
-                                    Auto
-                                    <i className="bi bi-check2 ms-auto d-none"></i>
-                                </button>
-
-                            </li>
-                        </ul>
+            <div id="js-preloader" className="js-preloader">
+                <div className="preloader-inner">
+                    <span className="dot" />
+                    <div className="dots">
+                        <span />
+                        <span />
+                        <span />
                     </div>
                 </div>
+            </div>
+
+            <header>
+                <nav className="navbar navbar-expand-lg">
+                    <div className="container">
+                        <a className="navbar-brand"
+                            href="/"
+                        >
+                            <img src="storage/images/logo.png" alt="logo" className="border-end" />
+                        </a>
+                        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span className="navbar-toggler-icon"></span>
+                        </button>
+                        <div className="collapse navbar-collapse" id="navbarContent">
+                            <form className="me-auto" id="search" role="search" data-bs-theme={theme}>
+                                <input
+                                    className="form-control me-2 border rounded-5 py-0 ps-5 pe-2"
+                                    type="search"
+                                    placeholder="Type Something"
+                                    aria-label="Search"
+                                    id='searchText'
+                                    name="searchKeyword"
+                                />
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width={18}
+                                    height={18}
+                                    fill="currentColor"
+                                    className="bi bi-search"
+                                    viewBox="0 0 16 16"
+                                >
+                                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+                                </svg>
+
+                            </form>
+
+
+                            <ul className="navbar-nav mb-2 mb-lg-0">
+                                <li className="nav-item">
+                                    <NavLink className={({ isActive }) => isActive ? "active nav-link" : "nav-link"}
+                                        to={`${lang}/`} end>
+                                        {translations.header.menu.home}
+                                    </NavLink>
+                                </li>
+                                <li className="nav-item">
+                                    <NavLink to={`${lang}/library`} className={({ isActive }) => isActive ? "active nav-link" : "nav-link"}>
+                                        {translations.header.menu.library}
+                                    </NavLink>
+                                </li>
+                                <li className="nav-item">
+                                    <NavLink to={`${lang}/rank`} className={({ isActive }) => isActive ? "active nav-link" : "nav-link"}>
+                                        {translations.header.menu.rank}
+                                    </NavLink>
+                                </li>
+                                <li className="nav-item">
+                                    <NavLink to={`${lang}/shop`} className={({ isActive }) => isActive ? "active nav-link" : "nav-link"}>
+                                        {translations.header.menu.shop}
+                                    </NavLink>
+                                </li>
+                                {
+                                    token && (
+                                        <li className="nav-item">
+                                            <Link to={`${lang}/dashboard`} className="btn btn-outline-primary me-2">
+                                                Dashboard
+                                            </Link>
+                                        </li>
+                                    )
+                                }
+                                {
+                                    !token && (<>
+                                        <li className="nav-item">
+                                            <Link to={`${lang}/login`} className="btn btn-outline-primary me-2">
+                                                {translations.header.buttons.login}
+                                            </Link>
+                                        </li>
+                                        <li className="nav-item">
+                                            <Link to={`${lang}/register`} className="btn btn-primary">
+                                                {translations.header.buttons.register}
+                                            </Link></li></>
+
+                                    )
+                                }
+                                <li className="nav-item dropdown">
+                                    <button
+                                        className="btn btn-link dropdown-toggle"
+                                        type="button"
+                                        data-bs-toggle="dropdown"
+                                        aria-expanded="false"
+                                    >
+                                        {theme === 'dark' && <i className="bi bi-moon-fill"></i>}
+                                        {theme === 'light' && <i className="bi bi-sun-fill"></i>}
+                                        {theme === 'auto' && <i className="bi bi-circle-half"></i>}
+                                        <span className="d-lg-none ms-2" id="bd-theme-text">Toggle theme</span>
+                                    </button>
+                                    <ul className="dropdown-menu">
+                                        <li>
+                                            <button
+                                                type="button"
+                                                className={theme === 'light' ? "active dropdown-item d-flex align-items-center" : "dropdown-item d-flex align-items-center"}
+                                                onClick={() => toggleTheme('light')}
+                                            >
+                                                <i className="bi bi-sun-fill me-2 opacity-50"></i>
+                                                Light
+                                                <i className="bi bi-check2 ms-auto d-none"></i>
+                                            </button>
+
+                                        </li>
+                                        <li>
+                                            <button
+                                                type="button"
+                                                className={theme === 'dark' ? "active dropdown-item d-flex align-items-center" : "dropdown-item d-flex align-items-center"}
+                                                onClick={() => toggleTheme('dark')}
+                                            >
+                                                <i className="bi bi-moon-fill me-2 opacity-50"></i>
+                                                Dark
+                                                <i className="bi bi-check2 ms-auto d-none"></i>
+                                            </button>
+
+                                        </li>
+                                        <li>
+                                            <button
+                                                type="button"
+                                                className={theme === 'auto' ? "active dropdown-item d-flex align-items-center" : "dropdown-item d-flex align-items-center"}
+                                                onClick={() => toggleTheme('auto')}
+                                            >
+                                                <i className="bi bi-circle-half me-2 opacity-50"></i>
+                                                Auto
+                                                <i className="bi bi-check2 ms-auto d-none"></i>
+                                            </button>
+
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
             </header>
             <main className="container-fluid">
                 <Outlet />

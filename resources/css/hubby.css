@@ -1,0 +1,51 @@
+/*
+---------------------------------------------
+Theme
+---------------------------------------------
+*/
+#search[data-bs-theme="dark"] input {
+    background-color: #27292a;
+}
+
+/*
+---------------------------------------------
+Bootstrap
+---------------------------------------------
+*/
+.navbar-nav .nav-link {
+    color: #666;
+}
+
+.navbar-nav .nav-link.active {
+    color: #6AADF3;
+}
+
+/*
+---------------------------------------------
+Common
+---------------------------------------------
+*/
+#search input, #search input::placeholder, #search svg {
+    color: #666;
+}
+
+/*
+---------------------------------------------
+Custom
+---------------------------------------------
+*/
+#search {
+    position: relative;
+}
+
+#search input {
+    height: 46px;
+    font-size: 14px;
+}
+
+#search svg {
+    position: absolute;
+    left: 20px;
+    top: 16px;
+}
+
