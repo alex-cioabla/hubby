@@ -1,8 +1,9 @@
-import { useReducer } from 'react';
-import { NavLink, Link, useParams, useNavigate, Outlet } from 'react-router-dom';
+import { NavLink, useParams, useNavigate, Outlet } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
 
 import { fetchTranslations } from "@/Store/translationSlice";
+import DarkBtnSecondary from '@/Components/DarkBtnSecondary';
+import { setTheme } from '@/Store/themeSlice';
 
 export default function GuestLayout() {
 
@@ -11,28 +12,11 @@ export default function GuestLayout() {
 
     lang = lang === locale ? lang : '';
 
-    function themeReducer(state, action) {
-        switch (action.type) {
-            case 'dark':
-            case 'light':
-                document.documentElement.setAttribute('data-bs-theme', action.type);
-                break;
-            case 'auto':
-                const colorTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-                document.documentElement.setAttribute('data-bs-theme', colorTheme);
-                break;
-            default:
-                break;
-        }
-        state = action.type;
-        return state;
-    }
-
-    const [theme, dispatchTheme] = useReducer(themeReducer, document.documentElement.getAttribute('data-bs-theme'));
+    const dispatchTheme = useDispatch();
+    const theme = useSelector(state => state.theme.value);
 
     const toggleTheme = (newTheme) => {
-        window.localStorage.setItem('theme', newTheme);
-        dispatchTheme({ type: newTheme });
+        dispatchTheme(setTheme(newTheme));
     }
 
     const navigate = useNavigate();
@@ -60,8 +44,8 @@ export default function GuestLayout() {
                 </div>
             </div>
 
-            <header>
-                <nav className="navbar navbar-expand-lg">
+            <header className="header-area">
+                <nav className="navbar navbar-expand-lg bg-body-tertiary">
                     <div className="container">
                         <a className="navbar-brand"
                             href="/"
@@ -93,9 +77,7 @@ export default function GuestLayout() {
                                 </svg>
 
                             </form>
-
-
-                            <ul className="navbar-nav mb-2 mb-lg-0">
+                            <ul className="navbar-nav mb-2 mb-lg-0 nav">
                                 <li className="nav-item">
                                     <NavLink className={({ isActive }) => isActive ? "active nav-link" : "nav-link"}
                                         to={`${lang}/`} end>
@@ -120,29 +102,30 @@ export default function GuestLayout() {
                                 {
                                     token && (
                                         <li className="nav-item">
-                                            <Link to={`${lang}/dashboard`} className="btn btn-outline-primary me-2">
+                                            <DarkBtnSecondary to={`${lang}/dashboard`} className="me-2">
                                                 Dashboard
-                                            </Link>
+                                            </DarkBtnSecondary>
                                         </li>
                                     )
                                 }
                                 {
                                     !token && (<>
                                         <li className="nav-item">
-                                            <Link to={`${lang}/login`} className="btn btn-outline-primary me-2">
+                                            <DarkBtnSecondary to={`${lang}/login`} className="me-2">
                                                 {translations.header.buttons.login}
-                                            </Link>
+                                            </DarkBtnSecondary>
                                         </li>
                                         <li className="nav-item">
-                                            <Link to={`${lang}/register`} className="btn btn-primary">
+                                            <DarkBtnSecondary to={`${lang}/register`}>
                                                 {translations.header.buttons.register}
-                                            </Link></li></>
-
+                                            </DarkBtnSecondary>
+                                        </li>
+                                    </>
                                     )
                                 }
                                 <li className="nav-item dropdown">
                                     <button
-                                        className="btn btn-link dropdown-toggle"
+                                        className="btn btn-link nav-link dropdown-toggle"
                                         type="button"
                                         data-bs-toggle="dropdown"
                                         aria-expanded="false"
@@ -196,7 +179,7 @@ export default function GuestLayout() {
                     </div>
                 </nav>
             </header>
-            <main className="container-fluid">
+            <main>
                 <Outlet />
             </main>
             <footer>

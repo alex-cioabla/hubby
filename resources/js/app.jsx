@@ -10,12 +10,12 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import store from "@/store";
 import GuestLayout from '@/Layouts/GuestLayout';
-import AuthenticatedLayout from "./Layouts/AuthenticatedLayout";
+import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 
 import PrivateRoute from "./Components/PrivateRoute";
 import VerifiedRoute from "./Components/VerifiedRoute";
 
-import Home from '@/pages/Home';
+import Home from "./Pages/Home";
 import Library from "./Pages/Library";
 import Rank from "./Pages/Rank";
 import Shop from "./Pages/Shop";

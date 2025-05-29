@@ -52,7 +52,7 @@ import Isotope from "isotope-layout";
         //   })
         });
 
-        var $grid = $(".grid").isotope({
+    var $grid = $(".grid").isotope({
           	itemSelector: ".all",
           	percentPosition: true,
           	masonry: {
@@ -69,8 +69,6 @@ import Isotope from "isotope-layout";
 				location.reload();
 			}
 	})
-
-
 
 	$(document).on("click", ".naccs .menu div", function() {
 		var numberIndex = $(this).index();
@@ -152,10 +150,6 @@ import Isotope from "isotope-layout";
 		}
 	})
 
-
-
-
-
 	// Menu Dropdown Toggle
 	if($('.menu-trigger').length){
 		$(".menu-trigger").on('click', function() {
@@ -163,7 +157,6 @@ import Isotope from "isotope-layout";
 			$('.header-area .nav').slideToggle(200);
 		});
 	}
-
 
 	// Menu elevator animation
 	$('.scroll-to-section a[href*=\\#]:not([href=\\#])').on('click', function() {
@@ -185,7 +178,7 @@ import Isotope from "isotope-layout";
 	});
 
 	$(document).ready(function () {
-	    $(document).on("scroll", onScroll);
+	    // $(document).on("scroll", onScroll);
 
 	    //smoothscroll
 	    $('.scroll-to-section a[href^="#"]').on('click', function (e) {
@@ -209,21 +202,20 @@ import Isotope from "isotope-layout";
 	    });
 	});
 
-	function onScroll(event){
-	    var scrollPos = $(document).scrollTop();
-	    $('.nav a').each(function () {
-	        var currLink = $(this);
-	        var refElement = $(currLink.attr("href"));
-	        if (refElement.position().top <= scrollPos && refElement.position().top + refElement.height() > scrollPos) {
-	            $('.nav ul li a').removeClass("active");
-	            currLink.addClass("active");
-	        }
-	        else{
-	            currLink.removeClass("active");
-	        }
-	    });
-	}
-
+	// function onScroll(event){
+	//     var scrollPos = $(document).scrollTop();
+	//     $('.nav a').each(function () {
+	//         var currLink = $(this);
+	//         var refElement = $(currLink.attr("href"));
+	//         if (refElement.position().top <= scrollPos && refElement.position().top + refElement.height() > scrollPos) {
+	//             $('.nav ul li a').removeClass("active");
+	//             currLink.addClass("active");
+	//         }
+	//         else{
+	//             currLink.removeClass("active");
+	//         }
+	//     });
+	// }
 
 	// Page loading animation
 	$(window).on('load', function() {
@@ -242,8 +234,6 @@ import Isotope from "isotope-layout";
 			}, 300);
 		});
 	});
-
-
 
 	const dropdownOpener = $('.main-nav ul.nav .has-sub > a');
 
@@ -281,9 +271,5 @@ import Isotope from "isotope-layout";
             });
         });
     }
-
-
-
-
 
 // })(window.jQuery);
