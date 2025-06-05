@@ -44,7 +44,7 @@ export default function GuestLayout() {
                 </div>
             </div>
 
-            <header className="header-area">
+            <header className="header">
                 <nav className="navbar navbar-expand-lg bg-body-tertiary">
                     <div className="container">
                         <a className="navbar-brand"
@@ -56,13 +56,13 @@ export default function GuestLayout() {
                             <span className="navbar-toggler-icon"></span>
                         </button>
                         <div className="collapse navbar-collapse" id="navbarContent">
-                            <form className="me-auto" id="search" role="search" data-bs-theme={theme}>
+                            <form className="me-auto" id="form-search" role="search" data-bs-theme={theme}>
                                 <input
                                     className="form-control me-2 border rounded-5 py-0 ps-5 pe-2"
                                     type="search"
                                     placeholder="Type Something"
                                     aria-label="Search"
-                                    id='searchText'
+                                    id='search'
                                     name="searchKeyword"
                                 />
                                 <svg
@@ -180,19 +180,21 @@ export default function GuestLayout() {
                 </nav>
             </header>
             <main>
-                <Outlet />
+                <div className="container mt-4 p-5 rounded-4 container-main" data-bs-theme={theme}>
+                    <Outlet />
+                </div>
             </main>
-            <footer>
-                <div className="container-fluid d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-
+            <footer className="my-4">
+                <div className="container py-3 border-top">
+                                <div className="row flex-wrap justify-content-between align-items-center">
                     <div className="col-md-4 d-flex align-items-center">
                         <a
                             href="/"
                             className="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1"
                         >
-                            Logo
+                            <img src="storage/images/logo.png" alt="logo" className="img-fluid img-thumbnail"/>
                         </a>
-                        <span className="mb-3 mb-md-0 text-body-secondary">© {new Date().getFullYear()} Hubby</span>
+                        <span className="mb-3 mb-md-0 text-body-secondary">Copyright © {new Date().getFullYear()} Hubby. All rights reserved.</span>
                     </div>
 
                     <div className="col mb-3">
@@ -227,6 +229,8 @@ export default function GuestLayout() {
                             </a>
                         </li>
                     </ul>
+
+                                </div>
                 </div>
             </footer>
         </>

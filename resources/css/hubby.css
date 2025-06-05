@@ -7,10 +7,16 @@ Dark theme
     --bs-body-bg: #1F2122;
 }
 
-#search[data-bs-theme="dark"] input,
-.page-content[data-bs-theme="dark"],
-.btn-secondary[data-bs-theme="dark"] {
+#form-search[data-bs-theme="dark"] input,
+.container-main[data-bs-theme="dark"],
+.btn-secondary[data-bs-theme="dark"],
+.card-info[data-bs-theme="dark"],
+.card-category[data-bs-theme="dark"] {
     background-color: #27292a;
+}
+
+.container-section[data-bs-theme="dark"] {
+    background-color: #1F2122;
 }
 
 /*
@@ -18,9 +24,6 @@ Dark theme
 Bootstrap
 ---------------------------------------------
 */
-/* .navbar {
-    padding-top: 1.5rem;
-} */
 .navbar-nav .nav-link {
     color: #666;
 }
@@ -47,10 +50,15 @@ Bootstrap
     background-color: #6358ED;
     border-radius: 50rem;
     padding: 8px 20px;
+    border-color: #565e64
 }
 
 .btn-primary:hover {
     /* background-color: #6358ED; */
+}
+
+.img-thumbnail {
+    border: none;
 }
 
 /*
@@ -58,21 +66,21 @@ Bootstrap
 Header
 ---------------------------------------------
 */
-#search input,
-#search input::placeholder,
-#search svg {
+#form-search input,
+#form-search input::placeholder,
+#form-search svg {
     color: #666;
 }
 
-#search {
+#form-search {
     position: relative;
 }
 
-#search input {
+#form-search input {
     height: 45px;
 }
 
-#search svg {
+#form-search svg {
     position: absolute;
     left: 20px;
     top: 16px;
@@ -83,14 +91,40 @@ Header
 Page
 ---------------------------------------------
 */
-
-.header-text {
+#banner {
     /* background-image: url('http://localhost:8000/storage/images/home_img_1.png'); */
     background-position: center center;
     background-size: cover;
 }
 
-/* .header-area {
+.container-section {
+    padding: 1.5rem;
+    border-radius: 1rem;
+}
+
+.card-category {
+    border: none;
+    height: 100%;
+    border-radius: 1rem;
+}
+
+.card-category .card-body {
+    padding: 30px 15px;
+}
+
+.card-info {
+    border-radius: 1rem;
+}
+
+.card-info p {
+    color: #666;
+}
+
+.card-info svg {
+    color: #6358ED;
+}
+
+/* .header {
   background-color: transparent;
   position: absolute;
   top: 15px;
