@@ -1,4 +1,3 @@
-
 import { useSelector } from "react-redux";
 
 const Home = () => {
@@ -8,7 +7,7 @@ const Home = () => {
 
     return (<>
         <section>
-            <div className="bg-body-tertiary p-5 mb-4 rounded-4" id="banner">
+            <div className="bg-body-secondary p-5 mb-4 rounded-4" id="banner">
                 <div className="container-fluid py-5">
                     <h5>Welcome To hubby</h5>
                     <h4 className="display-5 fw-bold mb-3 text-uppercase">Browse Our Popular <br /> Games Here</h4>
@@ -17,20 +16,20 @@ const Home = () => {
             </div>
         </section>
         <section className="mt-5">
-            <div className="container-fluid container-section" data-bs-theme={theme}>
+            <div className="container-fluid p-4 rounded-4 bg-body-secondary">
                 <h2 className="mb-4">Category</h2>
                 <div className="row row-cols-1 row-cols-md-4 g-4">
                     <div className="col">
-                        <div className="card card-category" data-bs-theme={theme}>
-                            <div className="card-body">
+                        <div className="card border border-0 h-100 rounded-3 bg-body-tertiary">
+                            <div className="card-body py-4 px-3">
                                 <img src="storage/images/console_category.jpg" className="card-img-top rounded-5" alt="..." />
                                 <h5 className="card-title mt-3">Console</h5>
                             </div>
                         </div>
                     </div>
                     <div className="col">
-                        <div className="card card-category" data-bs-theme={theme}>
-                            <div className="card-body">
+                        <div className="card border border-0 h-100 rounded-3 bg-body-tertiary">
+                            <div className="card-body py-4 px-3">
                                 <img src="storage/images/console_category.jpg" className="card-img-top rounded-5" alt="..." />
                                 <h5 className="card-title mt-3">Videogiochi</h5>
                             </div>
@@ -40,7 +39,7 @@ const Home = () => {
             </div>
         </section>
         <section className="mt-5">
-            <div className="container-fluid container-section" data-bs-theme={theme}>
+            <div className="container-fluid p-4 rounded-4 bg-body-secondary">
 
                         <div className="card text-center text-bg-light">
                             <div className="card-body py-5">
@@ -64,7 +63,7 @@ const Home = () => {
                 <h2 className="mb-4 text-center">Informazioni</h2>
                 <div className="row">
                     <div className="col-sm-4 mb-3 mb-sm-0">
-                        <div className="card card-info" data-bs-theme={theme}>
+                        <div className="card rounded-4 bg-body-tertiary">
                             <div className="card-body p-4">
                                 <div className="icon d-inline-block bg-white rounded-circle p-2">
                                     <svg
@@ -91,7 +90,7 @@ const Home = () => {
                         </div>
                     </div>
                     <div className="col-sm-4 mb-3 mb-sm-0">
-                        <div className="card card-info" data-bs-theme={theme}>
+                        <div className="card rounded-4 bg-body-tertiary">
                             <div className="card-body p-4">
                                 <div className="icon d-inline-block bg-white rounded-circle p-2">
                                     <svg
@@ -118,7 +117,7 @@ const Home = () => {
                         </div>
                     </div>
                     <div className="col-sm-4 mb-3 mb-sm-0">
-                        <div className="card card-info" data-bs-theme={theme}>
+                        <div className="card rounded-4 bg-body-tertiary">
                             <div className="card-body p-4">
                                 <div className="icon d-inline-block bg-white rounded-circle p-2">
                                     <svg

@@ -4,19 +4,15 @@ Dark theme
 ---------------------------------------------
 */
 [data-bs-theme="dark"] {
-    --bs-body-bg: #1F2122;
+    --bs-body-bg: #1F2122!important;
 }
 
-#form-search[data-bs-theme="dark"] input,
-.container-main[data-bs-theme="dark"],
-.btn-secondary[data-bs-theme="dark"],
-.card-info[data-bs-theme="dark"],
-.card-category[data-bs-theme="dark"] {
-    background-color: #27292a;
+[data-bs-theme="dark"] .bg-body-tertiary {
+    background-color: #27292a!important;
 }
 
-.container-section[data-bs-theme="dark"] {
-    background-color: #1F2122;
+[data-bs-theme="dark"] .bg-body-secondary {
+    background-color: #1F2122!important;
 }
 
 /*
@@ -25,7 +21,7 @@ Bootstrap
 ---------------------------------------------
 */
 .navbar-nav .nav-link {
-    color: #666;
+    /* color: #666;      */
 }
 
 .navbar-nav .nav-link.active,
@@ -37,7 +33,8 @@ Bootstrap
 .btn-secondary {
     border-radius: 50rem;
     padding: 8px 20px;
-    color:#666;
+    /* background-color: #27292a; */
+    /* color:#666; */
 }
 
 .btn-secondary:hover,
@@ -48,13 +45,14 @@ Bootstrap
 
 .btn-primary {
     background-color: #6358ED;
+    border: none;
     border-radius: 50rem;
     padding: 8px 20px;
     border-color: #565e64
 }
 
 .btn-primary:hover {
-    /* background-color: #6358ED; */
+    background-color: #27292a;
 }
 
 .img-thumbnail {
@@ -97,30 +95,11 @@ Page
     background-size: cover;
 }
 
-.container-section {
-    padding: 1.5rem;
-    border-radius: 1rem;
-}
-
-.card-category {
-    border: none;
-    height: 100%;
-    border-radius: 1rem;
-}
-
-.card-category .card-body {
-    padding: 30px 15px;
-}
-
-.card-info {
-    border-radius: 1rem;
-}
-
-.card-info p {
+.card-body p {
     color: #666;
 }
 
-.card-info svg {
+.card-body svg {
     color: #6358ED;
 }
 

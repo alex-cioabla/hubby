@@ -180,57 +180,56 @@ export default function GuestLayout() {
                 </nav>
             </header>
             <main>
-                <div className="container mt-4 p-5 rounded-4 container-main" data-bs-theme={theme}>
+                <div className="container mt-4 p-5 rounded-4 bg-body-tertiary">
                     <Outlet />
                 </div>
             </main>
             <footer className="my-4">
                 <div className="container py-3 border-top">
-                                <div className="row flex-wrap justify-content-between align-items-center">
-                    <div className="col-md-4 d-flex align-items-center">
-                        <a
-                            href="/"
-                            className="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1"
-                        >
-                            <img src="storage/images/logo.png" alt="logo" className="img-fluid img-thumbnail"/>
-                        </a>
-                        <span className="mb-3 mb-md-0 text-body-secondary">Copyright © {new Date().getFullYear()} Hubby. All rights reserved.</span>
-                    </div>
+                    <div className="row flex-wrap justify-content-between align-items-center">
+                        <div className="col-md-4 d-flex align-items-center">
+                            <a
+                                href="/"
+                                className="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1"
+                            >
+                                <img src="storage/images/logo.png" alt="logo" className="img-fluid img-thumbnail" />
+                            </a>
+                            <span className="mb-3 mb-md-0 text-body-secondary">Copyright © {new Date().getFullYear()} Hubby. All rights reserved.</span>
+                        </div>
 
-                    <div className="col mb-3">
-                        <h5>Lingue</h5>
-                        <ul className="nav flex-column">
-                            <li className="nav-item mb-2">
-                                <a href="#" role="button" onClick={(e) => changeLanguage(e, 'it')} className="nav-link p-0 text-body-secondary">
-                                    Italiano
+                        <div className="col mb-3">
+                            <h5>Lingue</h5>
+                            <ul className="nav flex-column">
+                                <li className="nav-item mb-2">
+                                    <a href="#" role="button" onClick={(e) => changeLanguage(e, 'it')} className="nav-link p-0 text-body-secondary">
+                                        Italiano
+                                    </a>
+                                </li>
+                                <li className="nav-item mb-2">
+                                    <a href="#" role="button" onClick={(e) => changeLanguage(e, 'en')} className="nav-link p-0 text-body-secondary">
+                                        Inglese
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <ul className="nav col-md-4 justify-content-end list-unstyled d-flex">
+                            <li className="ms-3">
+                                <a className="text-body-secondary" href="#">
+                                    <i className="bi bi-instagram" width={24} height={24}></i>
                                 </a>
                             </li>
-                            <li className="nav-item mb-2">
-                                <a href="#" role="button" onClick={(e) => changeLanguage(e, 'en')} className="nav-link p-0 text-body-secondary">
-                                    Inglese
+                            <li className="ms-3">
+                                <a className="text-body-secondary" href="#">
+                                    <i className="bi bi-facebook" width={24} height={24}></i>
+                                </a>
+                            </li>
+                            <li className="ms-3">
+                                <a className="text-body-secondary" href="#">
+                                    <i className="bi bi-twitter" width={24} height={24}></i>
                                 </a>
                             </li>
                         </ul>
                     </div>
-                    <ul className="nav col-md-4 justify-content-end list-unstyled d-flex">
-                        <li className="ms-3">
-                            <a className="text-body-secondary" href="#">
-                                <i className="bi bi-instagram" width={24} height={24}></i>
-                            </a>
-                        </li>
-                        <li className="ms-3">
-                            <a className="text-body-secondary" href="#">
-                                <i className="bi bi-facebook" width={24} height={24}></i>
-                            </a>
-                        </li>
-                        <li className="ms-3">
-                            <a className="text-body-secondary" href="#">
-                                <i className="bi bi-twitter" width={24} height={24}></i>
-                            </a>
-                        </li>
-                    </ul>
-
-                                </div>
                 </div>
             </footer>
         </>
