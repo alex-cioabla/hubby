@@ -1,5 +1,6 @@
-import { NavLink, useParams, useNavigate, Outlet } from 'react-router-dom';
+import { useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
+import { NavLink, useParams, useNavigate, Outlet } from 'react-router-dom';
 
 import { fetchTranslations } from "@/Store/translationSlice";
 import DarkBtnSecondary from '@/Components/DarkBtnSecondary';
@@ -30,6 +31,29 @@ export default function GuestLayout() {
     };
 
     const token = useSelector(state => state.auth.token);
+
+    useEffect(() => {
+      const handleLoad = () => {
+        const preloader = document.getElementById('js-preloader');
+        preloader.classList.add('loaded');
+      }
+
+      const handleScroll = () => {
+        const header = document.querySelector('header');
+        if (window.scrollY > 15) {
+            header.classList.add('header-alt');
+        } else {
+            header.classList.remove('header-alt');
+        }
+      }
+
+      window.addEventListener('load', handleLoad);
+      window.addEventListener('scroll', handleScroll);
+      return () => {
+        window.removeEventListener('load', handleLoad);
+        window.removeEventListener('scroll', handleScroll);
+      }
+    }, [])
 
     return (
         <>

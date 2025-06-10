@@ -4,15 +4,15 @@ Dark theme
 ---------------------------------------------
 */
 [data-bs-theme="dark"] {
-    --bs-body-bg: #1F2122!important;
+    --bs-body-bg: #1F2122 !important;
 }
 
 [data-bs-theme="dark"] .bg-body-tertiary {
-    background-color: #27292a!important;
+    background-color: #27292a !important;
 }
 
 [data-bs-theme="dark"] .bg-body-secondary {
-    background-color: #1F2122!important;
+    background-color: #1F2122 !important;
 }
 
 /*
@@ -26,7 +26,8 @@ Bootstrap
 
 .navbar-nav .nav-link.active,
 .navbar-nav .nav-link.show,
-.navbar-nav .nav-link:hover {
+.navbar-nav .nav-link:hover,
+.bi-check-circle-fill {
     color: #6358ED;
 }
 
@@ -61,7 +62,26 @@ Bootstrap
 
 /*
 ---------------------------------------------
-Header
+Bootstrap
+---------------------------------------------
+*/
+.owl-prev span:hover, .owl-next span:hover {
+    color: #6358ED;
+}
+
+.owl-prev span {
+    font-size: 36px;
+    color: #666;
+}
+
+.owl-next span {
+    font-size: 36px;
+    color: #666;
+}
+
+/*
+---------------------------------------------
+Common
 ---------------------------------------------
 */
 #form-search input,
@@ -103,26 +123,40 @@ Page
     color: #6358ED;
 }
 
-/* .header {
-  background-color: transparent;
-  position: absolute;
-  top: 15px;
-  left: 0;
-  right: 0;
-  margin-top: 15px;
-  transition: all .15s ease 0s;
-  -webkit-transition: all .15s ease 0s;
-  -moz-transition: all .15s ease 0s;
-  -o-transition: all .15s ease 0s;
+.header {
+    transform: translateY(0);
+    /* background-color: transparent; */
+    transition: all .5s ease 0s;
+    -webkit-transition: all .5s ease 0s;
+    -moz-transition: all .5s ease 0s;
+    -o-transition: all .5s ease 0s;
 }
 
-.background-header {
-  background-color: #fff !important;
-  position: fixed!important;
-  top: 0!important;
-  left: 0;
-  right: 0;
-  display: none;
-} */
+.header-alt {
+    transform: translateY(-100%);
+    /* background-color: #fff !important; */
+}
 
+.thumb {
+    position: relative;
+   overflow: hidden;
+}
 
+.title-animated {
+    position: absolute;
+    visibility: hidden;
+    /* transform: translateY(100px); */
+    bottom: -100px;
+    transition: all .4s;
+}
+
+.owl-carousel .thumb:hover .title-animated {
+    visibility: visible;
+    /* transform: translateY(-60px); */
+    bottom: 15px;
+}
+
+.title-animated h6 {
+    color: #6358ED;
+    background-color: rgba(31, 33, 34, 0.95);
+}

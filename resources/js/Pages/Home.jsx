@@ -1,9 +1,6 @@
-import { useSelector } from "react-redux";
-
 const Home = () => {
 
     document.title = "Home - " + appConfig.name;
-    const theme = useSelector(state => state.theme.value);
 
     return (<>
         <section>
@@ -20,17 +17,17 @@ const Home = () => {
                 <h2 className="mb-4">Category</h2>
                 <div className="row row-cols-1 row-cols-md-4 g-4">
                     <div className="col">
-                        <div className="card border border-0 h-100 rounded-3 bg-body-tertiary">
+                        <div className="card border border-0 h-100 rounded-4 bg-body-tertiary">
                             <div className="card-body py-4 px-3">
-                                <img src="storage/images/console_category.jpg" className="card-img-top rounded-5" alt="..." />
+                                <img src="storage/images/console_category.jpg" className="card-img-top rounded-4" alt="..." />
                                 <h5 className="card-title mt-3">Console</h5>
                             </div>
                         </div>
                     </div>
                     <div className="col">
-                        <div className="card border border-0 h-100 rounded-3 bg-body-tertiary">
+                        <div className="card border border-0 h-100 rounded-4 bg-body-tertiary">
                             <div className="card-body py-4 px-3">
-                                <img src="storage/images/console_category.jpg" className="card-img-top rounded-5" alt="..." />
+                                <img src="storage/images/console_category.jpg" className="card-img-top rounded-4" alt="..." />
                                 <h5 className="card-title mt-3">Videogiochi</h5>
                             </div>
                         </div>

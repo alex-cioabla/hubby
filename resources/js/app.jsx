@@ -1,7 +1,6 @@
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import "jquery-ui";
 import "./theme-assets/popup.js";
-import "./theme-assets/cyborg.js";
 
 import React from "react";
 import { createRoot } from 'react-dom/client';
