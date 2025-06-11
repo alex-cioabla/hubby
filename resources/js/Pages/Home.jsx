@@ -8,7 +8,7 @@ const Home = () => {
                 <div className="container-fluid py-5">
                     <h5>Welcome To hubby</h5>
                     <h4 className="display-5 fw-bold mb-3 text-uppercase">Browse Our Popular <br /> Games Here</h4>
-                    <button className="btn btn-primary" type="button">Browse now</button>
+                    <a href="#" className="btn btn-primary" role="button">Browse now</a>
                 </div>
             </div>
         </section>
@@ -37,22 +37,20 @@ const Home = () => {
         </section>
         <section className="mt-5">
             <div className="container-fluid p-4 rounded-4 bg-body-secondary">
-
-                        <div className="card text-center text-bg-light">
-                            <div className="card-body py-5">
-                                <h5 className="card-title">Scarica l’App ufficiale di Subito.</h5>
-                                <p className="card-text">
-                                    Cerca tra migliaia di annunci e inserisci i tuoi, ovunque tu sia.
-                                </p>
-                                <a href="#" className="btn btn-outline-primary me-2">
-                                    <i className="bi bi-google-play"> Disponibile su Google Play</i>
-                                </a>
-                                <a href="#" className="btn btn-outline-primary">
-                                    <i className="bi bi-apple"> Scarica su Apple Store</i>
-                                </a>
-                            </div>
-                        </div>
-
+                <div className="card text-center text-bg-light">
+                    <div className="card-body py-5">
+                        <h5 className="card-title">Scarica l’App ufficiale di Subito.</h5>
+                        <p className="card-text">
+                            Cerca tra migliaia di annunci e inserisci i tuoi, ovunque tu sia.
+                        </p>
+                        <a href="#" className="btn btn-outline-primary me-2" role="button">
+                            <i className="bi bi-google-play"> Disponibile su Google Play</i>
+                        </a>
+                        <a href="#" className="btn btn-outline-primary" role="button">
+                            <i className="bi bi-apple"> Scarica su Apple Store</i>
+                        </a>
+                    </div>
+                </div>
             </div>
         </section>
         <section className="mt-5">
@@ -68,7 +66,7 @@ const Home = () => {
                                         width={35}
                                         height={35}
                                         fill="currentColor"
-                                        className="bi bi-controller"
+                                        className="bi bi-controller color-hb"
                                         viewBox="0 0 16 16"
                                     >
                                         <path d="M11.5 6.027a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0m-1.5 1.5a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1m2.5-.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0m-1.5 1.5a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1m-6.5-3h1v1h1v1h-1v1h-1v-1h-1v-1h1z" />
@@ -95,7 +93,7 @@ const Home = () => {
                                         width={35}
                                         height={35}
                                         fill="currentColor"
-                                        className="bi bi-controller"
+                                        className="bi bi-controller color-hb"
                                         viewBox="0 0 16 16"
                                     >
                                         <path d="M11.5 6.027a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0m-1.5 1.5a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1m2.5-.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0m-1.5 1.5a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1m-6.5-3h1v1h1v1h-1v1h-1v-1h-1v-1h1z" />
@@ -122,7 +120,7 @@ const Home = () => {
                                         width={35}
                                         height={35}
                                         fill="currentColor"
-                                        className="bi bi-controller"
+                                        className="bi bi-controller color-hb"
                                         viewBox="0 0 16 16"
                                     >
                                         <path d="M11.5 6.027a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0m-1.5 1.5a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1m2.5-.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0m-1.5 1.5a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1m-6.5-3h1v1h1v1h-1v1h-1v-1h-1v-1h1z" />

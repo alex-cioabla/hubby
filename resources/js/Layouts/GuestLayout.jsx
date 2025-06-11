@@ -3,8 +3,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { NavLink, useParams, useNavigate, Outlet } from 'react-router-dom';
 
 import { fetchTranslations } from "@/Store/translationSlice";
-import DarkBtnSecondary from '@/Components/DarkBtnSecondary';
 import { setTheme } from '@/Store/themeSlice';
+import Preloader from '@/Components/Preloader';
 
 export default function GuestLayout() {
 
@@ -33,10 +33,6 @@ export default function GuestLayout() {
     const token = useSelector(state => state.auth.token);
 
     useEffect(() => {
-      const handleLoad = () => {
-        const preloader = document.getElementById('js-preloader');
-        preloader.classList.add('loaded');
-      }
 
       const handleScroll = () => {
         const header = document.querySelector('header');
@@ -47,27 +43,15 @@ export default function GuestLayout() {
         }
       }
 
-      window.addEventListener('load', handleLoad);
       window.addEventListener('scroll', handleScroll);
       return () => {
-        window.removeEventListener('load', handleLoad);
         window.removeEventListener('scroll', handleScroll);
       }
     }, [])
 
     return (
         <>
-            <div id="js-preloader" className="js-preloader">
-                <div className="preloader-inner">
-                    <span className="dot" />
-                    <div className="dots">
-                        <span />
-                        <span />
-                        <span />
-                    </div>
-                </div>
-            </div>
-
+            <Preloader></Preloader>
             <header className="header">
                 <nav className="navbar navbar-expand-lg bg-body-tertiary">
                     <div className="container">
@@ -80,13 +64,13 @@ export default function GuestLayout() {
                             <span className="navbar-toggler-icon"></span>
                         </button>
                         <div className="collapse navbar-collapse" id="navbarContent">
-                            <form className="me-auto" id="form-search" role="search" data-bs-theme={theme}>
+                            <form className="me-auto" id="header-form-search" role="search" data-bs-theme={theme}>
                                 <input
                                     className="form-control me-2 border rounded-5 py-0 ps-5 pe-2"
                                     type="search"
                                     placeholder="Type Something"
                                     aria-label="Search"
-                                    id='search'
+                                    id='header-search'
                                     name="searchKeyword"
                                 />
                                 <svg
@@ -126,23 +110,17 @@ export default function GuestLayout() {
                                 {
                                     token && (
                                         <li className="nav-item">
-                                            <DarkBtnSecondary to={`${lang}/dashboard`} className="me-2">
-                                                Dashboard
-                                            </DarkBtnSecondary>
+                                            <NavLink to={`${lang}/dashboard`} className="btn btn-secondary me-2">Dashboard</NavLink>
                                         </li>
                                     )
                                 }
                                 {
                                     !token && (<>
                                         <li className="nav-item">
-                                            <DarkBtnSecondary to={`${lang}/login`} className="me-2">
-                                                {translations.header.buttons.login}
-                                            </DarkBtnSecondary>
+                                            <NavLink to={`${lang}/login`} className="btn btn-secondary me-2">{translations.header.buttons.login}</NavLink>
                                         </li>
                                         <li className="nav-item">
-                                            <DarkBtnSecondary to={`${lang}/register`}>
-                                                {translations.header.buttons.register}
-                                            </DarkBtnSecondary>
+                                            <NavLink to={`${lang}/register`} className="btn btn-secondary">{translations.header.buttons.register}</NavLink>
                                         </li>
                                     </>
                                     )

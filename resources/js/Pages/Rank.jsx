@@ -37,7 +37,7 @@ export const Rank = () => {
                                     <div className="item">
                                         <div className="thumb">
                                             <img src="storage/images/carousel_dummy.jpg" className="rounded-4" alt="carousel_pic" />
-                                            <div className="title-animated w-100 text-center">
+                                            <div className="title-animated w-100 text-center color-hb">
                                                 <h6 className="rounded-pill d-inline-block px-3 py-2">2.4K Library</h6>
                                             </div>
                                         </div>
@@ -47,7 +47,7 @@ export const Rank = () => {
                                     <div className="item">
                                         <div className="thumb">
                                             <img src="storage/images/carousel_dummy.jpg" className="rounded-4" alt="carousel_pic" />
-                                            <div className="title-animated w-100 text-center">
+                                            <div className="title-animated w-100 text-center color-hb">
                                                 <h6 className="rounded-pill d-inline-block px-3 py-2">2.4K Library</h6>
                                             </div>
                                         </div>
@@ -57,7 +57,7 @@ export const Rank = () => {
                                     <div className="item">
                                         <div className="thumb">
                                             <img src="storage/images/carousel_dummy.jpg" className="rounded-4" alt="carousel_pic" />
-                                            <div className="title-animated w-100 text-center">
+                                            <div className="title-animated w-100 text-center color-hb">
                                                 <h6 className="rounded-pill d-inline-block px-3 py-2">2.4K Library</h6>
                                             </div>
                                         </div>
@@ -67,7 +67,7 @@ export const Rank = () => {
                                     <div className="item">
                                         <div className="thumb">
                                             <img src="storage/images/carousel_dummy.jpg" className="rounded-4" alt="carousel_pic" />
-                                            <div className="title-animated w-100 text-center">
+                                            <div className="title-animated w-100 text-center color-hb">
                                                 <h6 className="rounded-pill d-inline-block px-3 py-2">2.4K Library</h6>
                                             </div>
                                         </div>
@@ -87,9 +87,9 @@ export const Rank = () => {
                                     <span className="fw-bold">01</span>
                                     <img src="storage/images/avatar_dummy.jpg" className="img-thumbnail rounded-circle" alt="..." />
                                     <i className="bi bi-check-circle-fill"> Profile name</i>
-                                    <a href="#" className="btn btn-primary">
+                                    <button type="button" className="btn btn-primary">
                                         Follow
-                                    </a>
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -98,6 +98,76 @@ export const Rank = () => {
 
             </div>
         </section>
+        <section className="mt-5">
+            <div className="container-fluid p-4 rounded-4 bg-body-secondary">
+                <h2 className="mb-4">Category</h2>
+                <div className="row">
+                    <div className="col-12 col-sm-3">
+                        <div className="card border border-0 h-100">
+                            <img src="storage/images/rank_dummy.jpg" className="card-img-top rounded-4" alt="..."></img>
+                            <div className="card-body py-3 px-0">
+                                <div className="d-flex align-items-start">
+                                    <img src="storage/images/avatar_dummy.jpg" className="img-thumbnail rounded-circle me-2" alt="..." />
+                                    <div>
+                                        <i className="bi bi-check-circle-fill"> Profile name</i>
+                                        <h5>La più bella collezione</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-12 col-sm-3">
+                        <div className="card border border-0 h-100">
+                            <img src="storage/images/rank_dummy.jpg" className="card-img-top rounded-4" alt="..."></img>
+                            <div className="card-body py-3 px-0">
+                                <div className="d-flex align-items-start">
+                                    <img src="storage/images/avatar_dummy.jpg" className="img-thumbnail rounded-circle me-2" alt="..." />
+                                    <div>
+                                        <i className="bi bi-check-circle-fill"> Profile name</i>
+                                        <h5>La più bella collezione</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-12 col-sm-3">
+                        <div className="card border border-0 h-100">
+                            <img src="storage/images/rank_dummy.jpg" className="card-img-top rounded-4" alt="..."></img>
+                            <div className="card-body py-3 px-0">
+                                <div className="d-flex align-items-start">
+                                    <img src="storage/images/avatar_dummy.jpg" className="img-thumbnail rounded-circle me-2" alt="..." />
+                                    <div>
+                                        <i className="bi bi-check-circle-fill"> Profile name</i>
+                                        <h5>La più bella collezione</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-12 col-sm-3">
+                        <div className="card border border-0 h-100">
+                            <img src="storage/images/rank_dummy.jpg" className="card-img-top rounded-4" alt="..."></img>
+                            <div className="card-body py-3 px-0">
+                                <div className="d-flex align-items-start">
+                                    <img src="storage/images/avatar_dummy.jpg" className="img-thumbnail rounded-circle me-2" alt="..." />
+                                    <div>
+                                        <i className="bi bi-check-circle-fill"> Profile name</i>
+                                        <h5>La più bella collezione</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div className="row mt-n4">
+                <div className="col-12 text-center">
+                    <button type="button" className="btn btn-primary">Carica più collezionisti</button>
+                </div>
+            </div>
+        </section>
+
     </>
     )
 }

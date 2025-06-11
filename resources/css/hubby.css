@@ -20,40 +20,66 @@ Dark theme
 Bootstrap
 ---------------------------------------------
 */
-.navbar-nav .nav-link {
-    /* color: #666;      */
-}
-
 .navbar-nav .nav-link.active,
 .navbar-nav .nav-link.show,
 .navbar-nav .nav-link:hover,
-.bi-check-circle-fill {
+.bi-check-circle-fill,
+.btn-outline-primary {
     color: #6358ED;
 }
 
-.btn-secondary {
-    border-radius: 50rem;
-    padding: 8px 20px;
-    /* background-color: #27292a; */
-    /* color:#666; */
-}
-
+.btn-primary,
 .btn-secondary:hover,
 .dropdown-item.active,
 .dropdown-item:active {
     background-color: #6358ED;
 }
 
+.btn-outline-primary {
+    border-color: #6358ED;
+}
+
+.btn-outline-secondary,
+.btn-outline-secondary:hover {
+    color:#565e64;
+}
+
+.btn-primary,
+.btn-outline-secondary,
+.btn-outline-secondary:hover {
+    border-color: #565e64;
+}
+
+.btn-primary:hover,
+.btn-outline-primary:hover {
+    background-color: #27292a;
+}
+
+.btn-outline-primary:hover {
+    border-color: #27292a;
+}
+
 .btn-primary {
-    background-color: #6358ED;
     border: none;
     border-radius: 50rem;
     padding: 8px 20px;
-    border-color: #565e64
 }
 
-.btn-primary:hover {
-    background-color: #27292a;
+.btn-secondary {
+    border-radius: 50rem;
+    padding: 8px 20px;
+}
+
+.btn-outline-primary {
+    border-radius: 50rem;
+    padding: 8px 20px;
+}
+
+.btn-outline-secondary,
+.btn-outline-secondary:hover {
+    border-radius: 50rem;
+    padding: 8px 20px;
+    background-color: transparent;
 }
 
 .img-thumbnail {
@@ -62,21 +88,17 @@ Bootstrap
 
 /*
 ---------------------------------------------
-Bootstrap
+Owl carousel
 ---------------------------------------------
 */
-.owl-prev span:hover, .owl-next span:hover {
+.owl-prev span:hover,
+.owl-next span:hover {
     color: #6358ED;
 }
 
-.owl-prev span {
-    font-size: 36px;
+.owl-prev span, .owl-next span {
     color: #666;
-}
-
-.owl-next span {
     font-size: 36px;
-    color: #666;
 }
 
 /*
@@ -84,24 +106,51 @@ Bootstrap
 Common
 ---------------------------------------------
 */
-#form-search input,
-#form-search input::placeholder,
-#form-search svg {
+.color-hb {
+    color: #6358ED;
+}
+
+.card-clickable:hover,
+.card-clickable:hover i {
+   border-color: #6358ED!important;
+}
+
+
+#header-form-search input,
+#header-form-search input::placeholder,
+#header-form-search svg,
+.card-body p {
     color: #666;
 }
 
-#form-search {
+#header-form-search {
     position: relative;
 }
 
-#form-search input {
+#header-form-search input {
     height: 45px;
 }
 
-#form-search svg {
+#header-form-search svg {
     position: absolute;
     left: 20px;
     top: 16px;
+}
+
+.mt-n1 {
+  margin-top: -0.25rem !important;
+}
+
+.mt-n2 {
+  margin-top: -0.5rem !important;
+}
+
+.mt-n3 {
+  margin-top: -1rem !important;
+}
+
+.mt-n4 {
+  margin-top: -1.5rem !important;
 }
 
 /*
@@ -115,17 +164,8 @@ Page
     background-size: cover;
 }
 
-.card-body p {
-    color: #666;
-}
-
-.card-body svg {
-    color: #6358ED;
-}
-
 .header {
     transform: translateY(0);
-    /* background-color: transparent; */
     transition: all .5s ease 0s;
     -webkit-transition: all .5s ease 0s;
     -moz-transition: all .5s ease 0s;
@@ -134,29 +174,33 @@ Page
 
 .header-alt {
     transform: translateY(-100%);
-    /* background-color: #fff !important; */
 }
 
 .thumb {
-    position: relative;
+   position: relative;
    overflow: hidden;
 }
 
 .title-animated {
     position: absolute;
     visibility: hidden;
-    /* transform: translateY(100px); */
     bottom: -100px;
     transition: all .4s;
 }
 
 .owl-carousel .thumb:hover .title-animated {
     visibility: visible;
-    /* transform: translateY(-60px); */
     bottom: 15px;
 }
 
 .title-animated h6 {
-    color: #6358ED;
     background-color: rgba(31, 33, 34, 0.95);
+}
+
+.card-clickable:hover {
+    background-color: rgba(99, 88, 237, 0.2);
+}
+
+.card-clickable i {
+   background-color: rgba(99, 88, 237, 0.5);
 }
