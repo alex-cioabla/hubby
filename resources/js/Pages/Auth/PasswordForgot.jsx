@@ -4,6 +4,7 @@ import { useNavigate  } from 'react-router-dom';
 import ErrorAlert from '@/Components/ErrorAlert';
 import { usePasswordForgotMutation } from '@/Store/authApi';
 import { setStatus } from '@/Store/authSlice';
+import Preloader from '@/Components/Preloader';
 
 const PasswordForgot = () => {
 
@@ -29,12 +30,12 @@ const PasswordForgot = () => {
     };
 
     return (
-        <main style={{ maxWidth: "330px", padding: "1rem" }} className="w-100 m-auto">
-
-            <div className="mb-4 fw-bolder fs-5 text-muted">
-                Forgot your password? No problem. Just let us know your email
-                address and we will email you a password reset link that will
-                allow you to choose a new one.
+        <>
+            <a href="/" className="d-block mb-3"><img src="storage/images/logo.png" alt="logo" className="img-fluid img-thumbnail" /></a>
+            <div className="mb-3 fw-bolder text-muted text-center">
+                Forgot your password? No problem. <br />
+                Just let us know your email address
+                and we will email you a password reset link that will allow you to choose a new one.
             </div>
 
             {status && (
@@ -44,7 +45,7 @@ const PasswordForgot = () => {
             )}
 
             <form onSubmit={submit}>
-                <div className="form-floating">
+                <div className="form-floating mb-3">
                     <input
                         name="email"
                         type="email"
@@ -58,11 +59,11 @@ const PasswordForgot = () => {
                     <ErrorAlert message={error} className="mt-2" />
                 </div>
 
-                <button className="btn btn-primary w-100 py-2 mt-2" disabled={isLoading}>
+                <button className="btn btn-primary w-100" disabled={isLoading}>
                     Email Password Reset Link
                 </button>
             </form>
-        </main>
+        </>
     );
 }
 

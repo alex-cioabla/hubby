@@ -6,7 +6,7 @@ import { fetchTranslations } from "@/Store/translationSlice";
 import { setTheme } from '@/Store/themeSlice';
 import Preloader from '@/Components/Preloader';
 
-export default function GuestLayout() {
+export default function MainLayout() {
 
     const { translations, locale } = useSelector((state) => state.localization);
     let { lang } = useParams();
@@ -34,19 +34,19 @@ export default function GuestLayout() {
 
     useEffect(() => {
 
-      const handleScroll = () => {
-        const header = document.querySelector('header');
-        if (window.scrollY > 15) {
-            header.classList.add('header-alt');
-        } else {
-            header.classList.remove('header-alt');
+        const handleScroll = () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 15) {
+                header.classList.add('header-alt');
+            } else {
+                header.classList.remove('header-alt');
+            }
         }
-      }
 
-      window.addEventListener('scroll', handleScroll);
-      return () => {
-        window.removeEventListener('scroll', handleScroll);
-      }
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        }
     }, [])
 
     return (
@@ -83,7 +83,6 @@ export default function GuestLayout() {
                                 >
                                     <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
                                 </svg>
-
                             </form>
                             <ul className="navbar-nav mb-2 mb-lg-0 nav">
                                 <li className="nav-item">
@@ -110,7 +109,34 @@ export default function GuestLayout() {
                                 {
                                     token && (
                                         <li className="nav-item">
-                                            <NavLink to={`${lang}/dashboard`} className="btn btn-secondary me-2">Dashboard</NavLink>
+                                            <div className="dropdown">
+                                                <button
+                                                    className="btn btn-secondary dropdown-toggle me-2"
+                                                    type="button"
+                                                    data-bs-toggle="dropdown"
+                                                    aria-expanded="false"
+                                                >
+                                                    <span className="me-2">Profilo</span>
+                                                    <img src="storage/images/avatar_dummy.jpg" className="rounded-circle w-25" alt="..." />
+                                                </button>
+                                                <ul className="dropdown-menu">
+                                                    <li>
+                                                        <NavLink to={`${lang}/profile`} className="dropdown-item">
+                                                            Profilo
+                                                        </NavLink>
+                                                    </li>
+                                                    <li>
+                                                        <NavLink to={`${lang}/user-settings`} className="dropdown-item">
+                                                            Impostazioni
+                                                        </NavLink>
+                                                    </li>
+                                                    <li>
+                                                        <NavLink to="/logout" className="dropdown-item">
+                                                            Disconetti
+                                                        </NavLink>
+                                                    </li>
+                                                </ul>
+                                            </div>
                                         </li>
                                     )
                                 }
@@ -192,7 +218,6 @@ export default function GuestLayout() {
                         <div className="col-md-4 d-flex align-items-center">
                             <a
                                 href="/"
-                                className="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1"
                             >
                                 <img src="storage/images/logo.png" alt="logo" className="img-fluid img-thumbnail" />
                             </a>

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { usePasswordResetMutation } from '@/Store/authApi';
 import { useNavigate, useParams, useSearchParams  } from 'react-router-dom';
+import { useDispatch, useSelector } from "react-redux";
+import { usePasswordResetMutation } from '@/Store/authApi';
 import ErrorAlert from '@/Components/ErrorAlert';
 import { setStatus } from '@/Store/authSlice';
 
@@ -49,8 +50,8 @@ export default function PasswordReset() {
     const passwordConfirmationErrors = error?.data?.errors?.password_confirmation ?? [];
 
     return (
-        <main style={{ maxWidth: "330px", padding: "1rem" }} className="w-100 m-auto">
-
+        <>
+            <a href="/" className="d-block mb-3"><img src="/storage/images/logo.png" alt="logo" className="img-fluid img-thumbnail" /></a>
             <form onSubmit={submit}>
                 <div className="form-floating  mb-3">
                     <input
@@ -98,6 +99,6 @@ export default function PasswordReset() {
                         Reset Password
                 </button>
             </form>
-        </main>
+        </>
     );
 }

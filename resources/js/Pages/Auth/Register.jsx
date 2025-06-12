@@ -50,8 +50,8 @@ const Register = () => {
     };
 
     return (
-        <main style={{ maxWidth: "330px", padding: "1rem" }} className="w-100 m-auto">
-
+        <>
+            <a href="/" className="d-block mb-3"><img src="storage/images/logo.png" alt="logo" className="img-fluid img-thumbnail" /></a>
             <form onSubmit={submit}>
                 <div className="form-floating mb-3">
                     <input
@@ -62,7 +62,7 @@ const Register = () => {
                         id="name"
                         value={fields.name}
                         onChange={handleChange}
-                        required/>
+                        required />
                     <label htmlFor="name">Nome</label>
                     <ErrorAlert messages={nameErrors} className="mt-2" />
                 </div>
@@ -107,21 +107,22 @@ const Register = () => {
                         onChange={handleChange}
                         required
                     />
-                    <label htmlFor="password_confirmation">Conferma assword</label>
+                    <label htmlFor="password_confirmation">Conferma password</label>
                     <ErrorAlert messages={passwordConfirmationErrors} className="mt-2" />
                 </div>
 
                 <Link
                     to='/login'
+                    className="d-block my-3"
                 >
                     Già registrato?
                 </Link>
 
-                <button className="btn btn-primary w-100 py-2 mt-2" type="submit" disabled={isLoading}>
+                <button className="btn btn-primary w-100 py-2" type="submit" disabled={isLoading}>
                     Registrati
                 </button>
             </form>
-        </main>
+        </>
     );
 }
 

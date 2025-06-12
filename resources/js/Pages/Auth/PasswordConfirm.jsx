@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { usePasswordConfirmMutation } from '@/Store/authApi';
 import { useNavigate  } from 'react-router-dom';
 import ErrorAlert from '@/Components/ErrorAlert';
+import Preloader from '@/Components/Preloader';
 
 const PasswordConfirm = () => {
 
@@ -27,11 +28,11 @@ const PasswordConfirm = () => {
     };
 
     return (
-        <main style={{ maxWidth: "330px", padding: "1rem" }} className="w-100 m-auto">
-
-            <div className="mb-4 fw-bolder fs-5 text-muted">
-                This is a secure area of the application. Please confirm your
-                password before continuing.
+        <>
+        <a href="/" className="d-block mb-3"><img src="storage/images/logo.png" alt="logo" className="img-fluid img-thumbnail" /></a>
+            <div className="mb-3 fw-bolder text-muted text-center">
+                This is a secure area of the application. <br />
+                Please confirm your password before continuing.
             </div>
 
             <form onSubmit={submit}>
@@ -50,10 +51,10 @@ const PasswordConfirm = () => {
                 </div>
 
                 <button className="btn btn-primary w-100 py-2 mt-2" disabled={isLoading}>
-                        Confirm
+                        Conferma
                 </button>
             </form>
-        </main>
+        </>
     );
 }
 

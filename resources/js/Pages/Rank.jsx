@@ -83,14 +83,16 @@ export const Rank = () => {
                         <div className="card p-4 border border-0 h-100 rounded-4">
                             <div className="card-body">
                                 <h2 className="card-title mb-4">Top Collector's</h2>
-                                <div className="d-flex justify-content-between align-items-center pb-3 border-bottom">
-                                    <span className="fw-bold">01</span>
-                                    <img src="storage/images/avatar_dummy.jpg" className="img-thumbnail rounded-circle" alt="..." />
-                                    <i className="bi bi-check-circle-fill"> Profile name</i>
-                                    <button type="button" className="btn btn-primary">
-                                        Follow
-                                    </button>
-                                </div>
+                                <ul className="ps-0">
+                                    <li className="d-flex justify-content-between align-items-center pb-3 border-bottom">
+                                        <span className="fw-bold">01</span>
+                                        <img src="storage/images/avatar_dummy.jpg" className="img-thumbnail rounded-circle" alt="..." />
+                                        <i className="bi bi-check-circle-fill"> Profile name</i>
+                                        <button type="button" className="btn btn-primary">
+                                            Follow
+                                        </button>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                     </div>
@@ -104,7 +106,14 @@ export const Rank = () => {
                 <div className="row">
                     <div className="col-12 col-sm-3">
                         <div className="card border border-0 h-100">
-                            <img src="storage/images/rank_dummy.jpg" className="card-img-top rounded-4" alt="..."></img>
+                            <div className="thumb position-relative">
+                                <img src="storage/images/rank_dummy.jpg" className="card-img-top rounded-4" alt="..."></img>
+                                <span className="badge rounded-pill text-bg-primary position-absolute top-0 end-0 m-3 bagde-animated">Online</span>
+                                <div className="position-absolute bottom-0 start-50 translate-middle-x w-100 text-center p-3">
+                                    <span className="badge rounded-pill text-bg-primary me-3 bagde-animated"><i className="bi bi-eye-fill"> 1.2K</i></span>
+                                    <span className="badge rounded-pill text-bg-primary bagde-animated"><i className="bi bi-dpad-fill"> Games</i></span>
+                                </div>
+                            </div>
                             <div className="card-body py-3 px-0">
                                 <div className="d-flex align-items-start">
                                     <img src="storage/images/avatar_dummy.jpg" className="img-thumbnail rounded-circle me-2" alt="..." />

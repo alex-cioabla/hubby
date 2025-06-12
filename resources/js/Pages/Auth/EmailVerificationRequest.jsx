@@ -32,13 +32,12 @@ const EmailVerificationRequest = () => {
     };
 
     return (
-        <main style={{ maxWidth: "330px", padding: "1rem" }} className="w-100 m-auto">
-
-            <div className="mb-4 fw-bolder fs-5 text-muted">
-                Thanks for signing up! Before getting started, could you verify
-                your email address by clicking on the link we just emailed to
-                you? If you didn't receive the email, we will gladly send you
-                another.
+        <>
+            <a href="/" className="d-block mb-3"><img src="storage/images/logo.png" alt="logo" className="img-fluid img-thumbnail" /></a>
+            <div className="mb-3 fw-bolder text-muted text-center">
+                Thanks for signing up! <br />
+                Before getting started, could you verify your email address by clicking on the link we just emailed to you? <br />
+                If you didn't receive the email, we will gladly send you another.
             </div>
 
             {status === 'verification-link-sent' && (
@@ -48,20 +47,18 @@ const EmailVerificationRequest = () => {
                 </div>
             )}
 
-            <form onSubmit={submit}>
-                <div className="mt-4 flex items-center justify-between">
-                    <button className="btn btn-primary w-100 py-2 mt-2" disabled={isLoading}>
-                        Resend Verification Email
-                    </button>
+            <form onSubmit={submit} className="text-center">
+                <button className="btn btn-primary w-100 py-2 mb-2" disabled={isLoading}>
+                    Resend Verification Email
+                </button>
 
-                    <Link
-                        to='/logout'
-                    >
-                        Log Out
-                    </Link>
-                </div>
+                <Link
+                    to='/logout'
+                >
+                    Log Out
+                </Link>
             </form>
-        </main>
+        </>
     );
 }
 

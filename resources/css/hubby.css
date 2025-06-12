@@ -28,11 +28,13 @@ Bootstrap
     color: #6358ED;
 }
 
+.btn.btn-secondary.active,
 .btn-primary,
 .btn-secondary:hover,
 .dropdown-item.active,
-.dropdown-item:active {
-    background-color: #6358ED;
+.dropdown-item:active,
+.badge {
+    background-color: #6358ED!important;
 }
 
 .btn-outline-primary {
@@ -65,10 +67,10 @@ Bootstrap
     padding: 8px 20px;
 }
 
-.btn-secondary {
+/* .btn-secondary {
     border-radius: 50rem;
     padding: 8px 20px;
-}
+} */
 
 .btn-outline-primary {
     border-radius: 50rem;
@@ -84,6 +86,11 @@ Bootstrap
 
 .img-thumbnail {
     border: none;
+}
+
+.badge {
+    padding: 0.75rem;
+    font-weight: normal;
 }
 
 /*
@@ -106,6 +113,10 @@ Owl carousel
 Common
 ---------------------------------------------
 */
+html, body, #root {
+    height: 100%;
+}
+
 .color-hb {
     color: #6358ED;
 }
@@ -114,7 +125,6 @@ Common
 .card-clickable:hover i {
    border-color: #6358ED!important;
 }
-
 
 #header-form-search input,
 #header-form-search input::placeholder,
@@ -201,6 +211,15 @@ Page
     background-color: rgba(99, 88, 237, 0.2);
 }
 
-.card-clickable i {
-   background-color: rgba(99, 88, 237, 0.5);
+/* .card-clickable:hover i {
+   background-color: #6358ED;
+} */
+
+.bagde-animated {
+    opacity: 0;
+    transition: all .4s;
+}
+
+.card .thumb:hover .bagde-animated {
+    opacity: 1;
 }

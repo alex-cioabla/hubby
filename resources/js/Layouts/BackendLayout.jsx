@@ -1,6 +1,6 @@
 import { NavLink, Link, Outlet} from 'react-router-dom';
 
-export default function AuthenticatedLayout() {
+export default function BackendLayout() {
 
     return (
         <>

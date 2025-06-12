@@ -75,7 +75,7 @@ export const Shop = () => {
                         <div className="card card-clickable">
                             <div className="card-body">
                                 <div className="d-flex align-items-center justify-content-center">
-                                    <i className="bi bi-controller rounded-circle p-2 fs-2 d-inline-flex me-2 border"></i>
+                                    <i className="bi bi-controller rounded-circle p-2 fs-2 d-inline-flex me-2 border bg-secondary"></i>
                                     <h4>Videogiochi</h4>
                                 </div>
                             </div>
@@ -85,7 +85,7 @@ export const Shop = () => {
                         <div className="card card-clickable">
                             <div className="card-body">
                                 <div className="d-flex align-items-center justify-content-center">
-                                    <i className="bi bi-controller rounded-circle p-2 fs-2 d-inline-flex me-2 border"></i>
+                                    <i className="bi bi-controller rounded-circle p-2 fs-2 d-inline-flex me-2 border bg-secondary"></i>
                                     <h4>Console</h4>
                                 </div>
                             </div>
