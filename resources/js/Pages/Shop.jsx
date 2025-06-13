@@ -71,7 +71,7 @@ export const Shop = () => {
             </section>
             <section className="mt-5">
                 <div className="container-fluid p-4 rounded-4 bg-body-secondary">
-                    <div className="row">
+                    <div className="row g-3">
                         <div className="col-12 col-sm-3">
                             <div className="card card-clickable">
                                 <div className="card-body">
@@ -99,11 +99,11 @@ export const Shop = () => {
                 <div className="container-fluid p-4 rounded-4 bg-body-secondary">
                     <div className="card">
                         <div className="card-body">
-                            <div className="row">
-                                <div className="col-lg-4">
+                            <div className="row g-2">
+                                <div className="col-12 col-lg-4">
                                     <img src="storage/images/shop_dummy_1.jpg" className="img-thumbnail" alt="..." />
                                 </div>
-                                <div className="col-lg-8 d-flex justify-content-between align-items-center">
+                                <div className="col-12 col-lg-8 d-sm-flex justify-content-sm-between align-items-sm-center">
                                     <div>
                                         <h4> Comincia a guadagnare </h4>
                                         <p>
@@ -118,7 +118,6 @@ export const Shop = () => {
 
                                     </button>
                                 </div>
-
                             </div>
                         </div>
                     </div>
@@ -126,7 +125,7 @@ export const Shop = () => {
             </section>
             <section className="mt-5">
                 <div className="container-fluid p-4 rounded-4 bg-body-secondary">
-                    <div className="row align-items-center">
+                    <div className="row align-items-center g-2">
                         <div className="col-10 col-sm-8 col-lg-6">
                             <img
                                 src="storage/images/shop_dummy_2.jpg"

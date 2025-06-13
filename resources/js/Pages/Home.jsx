@@ -6,8 +6,8 @@ const Home = () => {
         <div className="container mt-4 p-5 rounded-4 bg-body-tertiary">
             <section>
                 <div className="bg-body-secondary p-5 mb-4 rounded-4" id="banner">
-                    <div className="container-fluid py-5">
-                        <h5>Benvenuto su Hubby</h5>
+                    <div className="container-fluid py-5 text-center text-sm-start">
+                        <p className="lead">Benvenuto su Hubby</p>
                         <h4 className="display-5 fw-bold mb-3 text-uppercase">Cerca i tuoi giochi preferiti <br /> proprio qui</h4>
                         <a href="#" className="btn btn-primary" role="button">Inizia ricerca</a>
                     </div>

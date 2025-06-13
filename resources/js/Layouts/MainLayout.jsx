@@ -55,16 +55,14 @@ export default function MainLayout() {
             <header className="header">
                 <nav className="navbar navbar-expand-lg bg-body-tertiary">
                     <div className="container">
-                        <a className="navbar-brand"
-                            href="/"
-                        >
+                        <a className="navbar-brand" href="/">
                             <img src="storage/images/logo.png" alt="logo" className="border-end" />
                         </a>
                         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span className="navbar-toggler-icon"></span>
                         </button>
                         <div className="collapse navbar-collapse" id="navbarContent">
-                            <form className="me-auto" id="header-form-search" role="search" data-bs-theme={theme}>
+                            <form className="me-auto d-none d-sm-block" id="header-form-search" role="search" data-bs-theme={theme}>
                                 <input
                                     className="form-control me-2 border rounded-5 py-0 ps-5 pe-2"
                                     type="search"
@@ -84,7 +82,7 @@ export default function MainLayout() {
                                     <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
                                 </svg>
                             </form>
-                            <ul className="navbar-nav mb-2 mb-lg-0 nav">
+                            <ul className="navbar-nav nav text-center text-sm-start">
                                 <li className="nav-item">
                                     <NavLink className={({ isActive }) => isActive ? "active nav-link" : "nav-link"}
                                         to={`${lang}/`} end>
@@ -109,7 +107,7 @@ export default function MainLayout() {
                                 {
                                     token && (
                                         <li className="nav-item">
-                                            <div className="dropdown">
+                                            <div className="dropdown py-2 py-sm-0">
                                                 <button
                                                     className="btn btn-secondary dropdown-toggle me-2"
                                                     type="button"
@@ -151,56 +149,58 @@ export default function MainLayout() {
                                     </>
                                     )
                                 }
-                                <li className="nav-item dropdown">
-                                    <button
-                                        className="btn btn-link nav-link dropdown-toggle"
-                                        type="button"
-                                        data-bs-toggle="dropdown"
-                                        aria-expanded="false"
-                                    >
-                                        {theme === 'dark' && <i className="bi bi-moon-fill"></i>}
-                                        {theme === 'light' && <i className="bi bi-sun-fill"></i>}
-                                        {theme === 'auto' && <i className="bi bi-circle-half"></i>}
-                                        <span className="d-lg-none ms-2" id="bd-theme-text">Toggle theme</span>
-                                    </button>
-                                    <ul className="dropdown-menu">
-                                        <li>
-                                            <button
-                                                type="button"
-                                                className={theme === 'light' ? "active dropdown-item d-flex align-items-center" : "dropdown-item d-flex align-items-center"}
-                                                onClick={() => toggleTheme('light')}
-                                            >
-                                                <i className="bi bi-sun-fill me-2 opacity-50"></i>
-                                                Light
-                                                <i className="bi bi-check2 ms-auto d-none"></i>
-                                            </button>
+                                <li className="nav-item">
+                                    <div className="dropdown">
+                                        <button
+                                            className="btn btn-link nav-link dropdown-toggle d-inline-block"
+                                            type="button"
+                                            data-bs-toggle="dropdown"
+                                            aria-expanded="false"
+                                        >
+                                            {theme === 'dark' && <i className="bi bi-moon-fill"></i>}
+                                            {theme === 'light' && <i className="bi bi-sun-fill"></i>}
+                                            {theme === 'auto' && <i className="bi bi-circle-half"></i>}
+                                            <span className="d-lg-none ms-2" id="bd-theme-text">Toggle theme</span>
+                                        </button>
+                                        <ul className="dropdown-menu">
+                                            <li>
+                                                <button
+                                                    type="button"
+                                                    className={theme === 'light' ? "active dropdown-item d-flex align-items-center" : "dropdown-item d-flex align-items-center"}
+                                                    onClick={() => toggleTheme('light')}
+                                                >
+                                                    <i className="bi bi-sun-fill me-2 opacity-50"></i>
+                                                    Light
+                                                    <i className="bi bi-check2 ms-auto d-none"></i>
+                                                </button>
 
-                                        </li>
-                                        <li>
-                                            <button
-                                                type="button"
-                                                className={theme === 'dark' ? "active dropdown-item d-flex align-items-center" : "dropdown-item d-flex align-items-center"}
-                                                onClick={() => toggleTheme('dark')}
-                                            >
-                                                <i className="bi bi-moon-fill me-2 opacity-50"></i>
-                                                Dark
-                                                <i className="bi bi-check2 ms-auto d-none"></i>
-                                            </button>
+                                            </li>
+                                            <li>
+                                                <button
+                                                    type="button"
+                                                    className={theme === 'dark' ? "active dropdown-item d-flex align-items-center" : "dropdown-item d-flex align-items-center"}
+                                                    onClick={() => toggleTheme('dark')}
+                                                >
+                                                    <i className="bi bi-moon-fill me-2 opacity-50"></i>
+                                                    Dark
+                                                    <i className="bi bi-check2 ms-auto d-none"></i>
+                                                </button>
 
-                                        </li>
-                                        <li>
-                                            <button
-                                                type="button"
-                                                className={theme === 'auto' ? "active dropdown-item d-flex align-items-center" : "dropdown-item d-flex align-items-center"}
-                                                onClick={() => toggleTheme('auto')}
-                                            >
-                                                <i className="bi bi-circle-half me-2 opacity-50"></i>
-                                                Auto
-                                                <i className="bi bi-check2 ms-auto d-none"></i>
-                                            </button>
+                                            </li>
+                                            <li>
+                                                <button
+                                                    type="button"
+                                                    className={theme === 'auto' ? "active dropdown-item d-flex align-items-center" : "dropdown-item d-flex align-items-center"}
+                                                    onClick={() => toggleTheme('auto')}
+                                                >
+                                                    <i className="bi bi-circle-half me-2 opacity-50"></i>
+                                                    Auto
+                                                    <i className="bi bi-check2 ms-auto d-none"></i>
+                                                </button>
 
-                                        </li>
-                                    </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </li>
                             </ul>
                         </div>
@@ -213,16 +213,14 @@ export default function MainLayout() {
             <footer className="my-4">
                 <div className="container py-3 border-top">
                     <div className="row flex-wrap justify-content-between align-items-center">
-                        <div className="col-md-4 d-flex align-items-center">
-                            <a
-                                href="/"
-                            >
+                        <div className="col-md-4 text-center text-sm-start">
+                            <a href="/">
                                 <img src="storage/images/logo.png" alt="logo" className="img-fluid img-thumbnail" />
                             </a>
-                            <span className="mb-3 mb-md-0 text-body-secondary">Copyright © {new Date().getFullYear()} Hubby. All rights reserved.</span>
+                            <p className="text-body-secondary">Copyright © {new Date().getFullYear()} Hubby. All rights reserved.</p>
                         </div>
 
-                        <div className="col mb-3">
+                        <div className="col mb-3 text-center text-sm-left">
                             <h5>Lingue</h5>
                             <ul className="nav flex-column">
                                 <li className="nav-item mb-2">
@@ -237,7 +235,7 @@ export default function MainLayout() {
                                 </li>
                             </ul>
                         </div>
-                        <ul className="nav col-md-4 justify-content-end list-unstyled d-flex">
+                        <ul className="col-md-4 list-unstyled d-flex justify-content-center justify-content-sm-end">
                             <li className="ms-3">
                                 <a className="text-body-secondary" href="#">
                                     <i className="bi bi-instagram" width={24} height={24}></i>

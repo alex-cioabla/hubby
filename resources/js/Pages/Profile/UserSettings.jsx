@@ -5,9 +5,11 @@ import UserUpdate from './UserUpdate';
 const UserSettings = () => {
     return (
         <>
+        <div className="container-fluid">
             <UserUpdate />
             <PasswordUpdate />
             <UserDelete />
+        </div>
         </>
     );
 }

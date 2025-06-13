@@ -10,9 +10,9 @@ export const Profile = () => {
         <div className="container mt-4 p-5 rounded-4 bg-body-tertiary">
             <section>
                 <div className="container-fluid p-4 rounded-4 bg-body-secondary">
-                    <div className="row align-items-center">
+                    <div className="row align-items-center g-3">
                         <div className="col-12 col-sm-4">
-                            <img src="storage/images/profile_dummy.jpg" className="rounded-2" alt="..." />
+                            <img src="storage/images/profile_dummy.jpg" className="img-fluid rounded-2" alt="..." />
                         </div>
                         <div className="col-12 col-sm-4">
                             <button className="btn btn-primary">Offline</button>
