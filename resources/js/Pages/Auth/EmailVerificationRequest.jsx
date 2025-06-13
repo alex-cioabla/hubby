@@ -35,21 +35,21 @@ const EmailVerificationRequest = () => {
         <>
             <a href="/" className="d-block mb-3"><img src="storage/images/logo.png" alt="logo" className="img-fluid img-thumbnail" /></a>
             <div className="mb-3 fw-bolder text-muted text-center">
-                Thanks for signing up! <br />
-                Before getting started, could you verify your email address by clicking on the link we just emailed to you? <br />
-                If you didn't receive the email, we will gladly send you another.
+                Grazie per esserti iscritto! <br />
+                Prima di iniziare, potresti verificare il tuo indirizzo e-mail cliccando sul link che ti abbiamo appena inviato via email? <br />
+                Se non hai ricevuto l'e-mail, saremo lieti di inviartene un'altra.
             </div>
 
             {status === 'verification-link-sent' && (
                 <div className="mb-4 fw-bolder fs-4 text-muted text-success">
-                    A new verification link has been sent to the email address
-                    you provided during registration.
+                    Un nuovo link di verifica è stato inviato all'indirizzo e-mail
+                    fornito durante la registrazione.
                 </div>
             )}
 
             <form onSubmit={submit} className="text-center">
                 <button className="btn btn-primary w-100 py-2 mb-2" disabled={isLoading}>
-                    Resend Verification Email
+                    Invia nuovamente l'e-mail di verifica
                 </button>
 
                 <Link

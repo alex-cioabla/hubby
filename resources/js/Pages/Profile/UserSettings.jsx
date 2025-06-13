@@ -3,19 +3,12 @@ import UserDelete from './UserDelete';
 import UserUpdate from './UserUpdate';
 
 const UserSettings = () => {
-    return (<>
-        <h2 className="fw-bolder fs-5 text-muted">
-            Profilo
-        </h2>
-        <div className="py-12">
+    return (
+        <>
             <UserUpdate />
-
             <PasswordUpdate />
-
-            <UserDelete/>
-
-        </div>
-    </>
+            <UserDelete />
+        </>
     );
 }
 

@@ -33,9 +33,9 @@ const PasswordForgot = () => {
         <>
             <a href="/" className="d-block mb-3"><img src="storage/images/logo.png" alt="logo" className="img-fluid img-thumbnail" /></a>
             <div className="mb-3 fw-bolder text-muted text-center">
-                Forgot your password? No problem. <br />
-                Just let us know your email address
-                and we will email you a password reset link that will allow you to choose a new one.
+                Hai dimenticato la password? Nessun problema. <br />
+                Facci sapere il tuo indirizzo email
+                e ti invieremo un link per reimpostare la password che ti permetterà di sceglierne una nuova.e.
             </div>
 
             {status && (
@@ -60,7 +60,7 @@ const PasswordForgot = () => {
                 </div>
 
                 <button className="btn btn-primary w-100" disabled={isLoading}>
-                    Email Password Reset Link
+                    Reset Password
                 </button>
             </form>
         </>

@@ -1,6 +1,5 @@
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
-import "jquery-ui";
-import "./theme-assets/popup.js";
+import * as $ from "jquery";
 
 import React from "react";
 import { createRoot } from 'react-dom/client';

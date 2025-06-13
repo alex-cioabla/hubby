@@ -208,9 +208,7 @@ export default function MainLayout() {
                 </nav>
             </header>
             <main>
-                <div className="container mt-4 p-5 rounded-4 bg-body-tertiary">
-                    <Outlet />
-                </div>
+                <Outlet />
             </main>
             <footer className="my-4">
                 <div className="container py-3 border-top">

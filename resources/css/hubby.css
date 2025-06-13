@@ -54,7 +54,7 @@ Bootstrap
 
 .btn-primary:hover,
 .btn-outline-primary:hover {
-    background-color: #27292a;
+    background-color: #27292a!important;
 }
 
 .btn-outline-primary:hover {

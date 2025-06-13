@@ -26,13 +26,14 @@ export const Rank = () => {
     }
 
     return (<>
+    <div className="container mt-4 p-5 rounded-4 bg-body-tertiary">
         <section>
             <div className="container-fluid">
                 <div className="row">
                     <div className="col-sm-8 mb-3 mb-sm-0">
                         <div className="card p-4 border border-0 h-100 rounded-4">
                             <div className="card-body">
-                                <h2 className="card-title mb-3">Collector's</h2>
+                                <h2 className="card-title mb-3">Collezionisti</h2>
                                 <OwlCarousel className='owl-theme' {...options}>
                                     <div className="item">
                                         <div className="thumb">
@@ -87,7 +88,7 @@ export const Rank = () => {
                                     <li className="d-flex justify-content-between align-items-center pb-3 border-bottom">
                                         <span className="fw-bold">01</span>
                                         <img src="storage/images/avatar_dummy.jpg" className="img-thumbnail rounded-circle" alt="..." />
-                                        <i className="bi bi-check-circle-fill"> Profile name</i>
+                                        <i className="bi bi-check-circle-fill"> Nome profilo</i>
                                         <button type="button" className="btn btn-primary">
                                             Follow
                                         </button>
@@ -102,7 +103,7 @@ export const Rank = () => {
         </section>
         <section className="mt-5">
             <div className="container-fluid p-4 rounded-4 bg-body-secondary">
-                <h2 className="mb-4">Category</h2>
+                <h2 className="mb-4">Categorie</h2>
                 <div className="row">
                     <div className="col-12 col-sm-3">
                         <div className="card border border-0 h-100">
@@ -118,7 +119,7 @@ export const Rank = () => {
                                 <div className="d-flex align-items-start">
                                     <img src="storage/images/avatar_dummy.jpg" className="img-thumbnail rounded-circle me-2" alt="..." />
                                     <div>
-                                        <i className="bi bi-check-circle-fill"> Profile name</i>
+                                        <i className="bi bi-check-circle-fill"> Nome profilo</i>
                                         <h5>La più bella collezione</h5>
                                     </div>
                                 </div>
@@ -132,7 +133,7 @@ export const Rank = () => {
                                 <div className="d-flex align-items-start">
                                     <img src="storage/images/avatar_dummy.jpg" className="img-thumbnail rounded-circle me-2" alt="..." />
                                     <div>
-                                        <i className="bi bi-check-circle-fill"> Profile name</i>
+                                        <i className="bi bi-check-circle-fill"> Nome profilo</i>
                                         <h5>La più bella collezione</h5>
                                     </div>
                                 </div>
@@ -146,7 +147,7 @@ export const Rank = () => {
                                 <div className="d-flex align-items-start">
                                     <img src="storage/images/avatar_dummy.jpg" className="img-thumbnail rounded-circle me-2" alt="..." />
                                     <div>
-                                        <i className="bi bi-check-circle-fill"> Profile name</i>
+                                        <i className="bi bi-check-circle-fill"> Nome profilo</i>
                                         <h5>La più bella collezione</h5>
                                     </div>
                                 </div>
@@ -160,7 +161,7 @@ export const Rank = () => {
                                 <div className="d-flex align-items-start">
                                     <img src="storage/images/avatar_dummy.jpg" className="img-thumbnail rounded-circle me-2" alt="..." />
                                     <div>
-                                        <i className="bi bi-check-circle-fill"> Profile name</i>
+                                        <i className="bi bi-check-circle-fill"> Nome profilo</i>
                                         <h5>La più bella collezione</h5>
                                     </div>
                                 </div>
@@ -176,6 +177,8 @@ export const Rank = () => {
                 </div>
             </div>
         </section>
+
+    </div>
 
     </>
     )
