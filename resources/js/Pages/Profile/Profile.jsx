@@ -73,45 +73,57 @@ export const Profile = () => {
             <section className="mt-5">
                 <div className="container-fluid p-4 rounded-4 bg-body-secondary">
                     <h2 className="mb-4">La tua libreria</h2>
-                    <div className="d-flex justify-content-between align-items-center">
-                        <img src="storage/images/avatar_dummy.jpg" className="img-thumbnail rounded-2" alt="..." />
-                        <div>
+                    <div className="row gy-2 mb-4 mb-0">
+                        <div className="col-12 col-sm-2 text-center">
+                            <img src="storage/images/avatar_dummy.jpg" className="img-thumbnail rounded-2" alt="..." />
+
+                        </div>
+                        <div className="col-6 col-sm-2">
                             <h5>Fortnite</h5>
                             <p>Battle royale</p>
                         </div>
-                        <div>
+                        <div className="col-6 col-sm-2">
                             <h5>Data</h5>
                             <p>10/06/2025</p>
                         </div>
-                        <div>
+                        <div className="col-6 col-sm-2">
                             <h5>Ore giocate</h5>
                             <p>634 H 22 Mins</p>
                         </div>
-                        <div>
+                        <div className="col-6 col-sm-2">
                             <h5>Stato</h5>
                             <p>Scaricato</p>
                         </div>
-                        <button type="button" className="btn btn-outline-primary">Download</button>
+                        <div className="col-12 col-sm-2 text-center">
+                            <button type="button" className="btn btn-outline-primary">Download</button>
+
+                        </div>
                     </div>
-                    <div className="d-flex justify-content-between align-items-center">
-                        <img src="storage/images/avatar_dummy.jpg" className="img-thumbnail rounded-2" alt="..." />
-                        <div>
+                    <div className="row gy-2 mb-4 mb-0">
+                        <div className="col-12 col-sm-2 text-center">
+                            <img src="storage/images/avatar_dummy.jpg" className="img-thumbnail rounded-2" alt="..." />
+
+                        </div>
+                        <div className="col-6 col-sm-2">
                             <h5>Fortnite</h5>
                             <p>Battle royale</p>
                         </div>
-                        <div>
+                        <div className="col-6 col-sm-2">
                             <h5>Data</h5>
                             <p>10/06/2025</p>
                         </div>
-                        <div>
+                        <div className="col-6 col-sm-2">
                             <h5>Ore giocate</h5>
                             <p>634 H 22 Mins</p>
                         </div>
-                        <div>
+                        <div className="col-6 col-sm-2">
                             <h5>Stato</h5>
                             <p>Scaricato</p>
                         </div>
-                        <button type="button" className="btn btn-outline-secondary">Downloaded</button>
+                        <div className="col-12 col-sm-2 text-center">
+                            <button type="button" className="btn btn-outline-primary">Download</button>
+
+                        </div>
                     </div>
                 </div>
                 <div className="row mt-n4">
