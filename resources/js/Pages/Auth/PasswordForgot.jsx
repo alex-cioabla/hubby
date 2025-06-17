@@ -4,7 +4,6 @@ import { useNavigate  } from 'react-router-dom';
 import ErrorAlert from '@/Components/ErrorAlert';
 import { usePasswordForgotMutation } from '@/Store/authApi';
 import { setStatus } from '@/Store/authSlice';
-import Preloader from '@/Components/Preloader';
 
 const PasswordForgot = () => {
 

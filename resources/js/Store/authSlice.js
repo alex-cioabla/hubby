@@ -39,6 +39,14 @@ const authSlice = createSlice({
             Object.keys(state).forEach(key => { state[key] = null; });
             window.localStorage.removeItem('session');
         },
+        updateSession: (state, action) => {
+            state.user = action.payload;
+
+            const session = JSON.parse(window.localStorage.getItem('session'));
+            session.user = action.payload;
+
+            window.localStorage.setItem("session", JSON.stringify(session));
+        },
         setStatus: (state, action) => {
             state.status = action.payload;
         },
@@ -54,6 +62,6 @@ const authSlice = createSlice({
 });
 
 const { actions, reducer } = authSlice;
-export const { setSession, removeSession, setStatus, setEmailVerifiedAt } = actions;
+export const { setSession, removeSession, updateSession, setStatus, setEmailVerifiedAt } = actions;
 export default reducer;
 

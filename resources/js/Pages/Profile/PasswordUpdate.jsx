@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { usePasswordUpdateMutation } from '@/Store/userApi';
 import { useNavigate } from 'react-router-dom';
 import ErrorAlert from '@/Components/ErrorAlert';
+import { Alert } from 'bootstrap';
 
 const PasswordUpdate = () => {
 
@@ -42,18 +43,27 @@ const PasswordUpdate = () => {
             document.getElementById('password').value = '';
             document.getElementById('current_password').value = '';
             document.getElementById('password_confirmation').value = '';
-            navigate(-1);
+            // navigate(-1);
+        }
+
+        if (isSuccess) {
+            const alert = document.querySelector('#alert-password-update');
+            alert.classList.add('show');
+            alert.classList.remove('d-none');
+            setTimeout(() => {
+                const bsAlert = new Alert(alert);
+                bsAlert.close();
+            }, 3000);
         }
 
         return () => {
             history.scrollRestoration = 'manual';
         };
 
-    }, [data, error])
+    }, [data, error, isSuccess])
 
     const submit = (e) => {
         e.preventDefault();
-
         passwordUpdate(fields);
     };
 
@@ -77,11 +87,11 @@ const PasswordUpdate = () => {
                                     type="password"
                                     name="current_password"
                                     className="form-control"
-                                    id="currentPassword"
+                                    id="current_password"
                                     value={fields.current_password}
                                     onChange={handleChange}
                                 />
-                                <label htmlFor="currentPassword">Password attuale</label>
+                                <label htmlFor="current_password">Password attuale</label>
                                 <ErrorAlert messages={currentPasswordErrors} className="mt-2" />
                             </div>
 
@@ -103,11 +113,11 @@ const PasswordUpdate = () => {
                                     type="password"
                                     name='password_confirmation'
                                     className="form-control"
-                                    id="passwordConfirmation"
+                                    id="password_confirmation"
                                     value={fields.password_confirmation}
                                     onChange={handleChange}
                                 />
-                                <label htmlFor="passwordConfirmation">Password di conferma</label>
+                                <label htmlFor="password_confirmation">Password di conferma</label>
                                 <ErrorAlert messages={passwordConfirmationErrors} className="mt-2" />
                             </div>
 
@@ -115,8 +125,10 @@ const PasswordUpdate = () => {
                                 Salva
                             </button>
 
-                            {/* DA VERIFICARE */}
-                            <ErrorAlert messages={(isSuccess && data?.message !== undefined ? [data.message] : [])} className="mt-2" />
+                            <div id="alert-password-update" className="alert alert-success alert-dismissible fade mt-2 mb-0 d-none" role="alert">
+                                {(data?.message !== undefined ? [data.message] : [])}
+                                <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
                         </form>
                     </div>
                 </div>

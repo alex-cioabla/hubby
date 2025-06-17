@@ -2,20 +2,17 @@ import ErrorAlert from '@/Components/ErrorAlert';
 import { useUserUpdateMutation } from '@/Store/userApi';
 import { useEmailVerificationResendMutation } from '@/Store/authApi';
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { setStatus } from '@/Store/authSlice';
+import { updateSession, setStatus } from '@/Store/authSlice';
+
+import { Alert } from 'bootstrap';
 
 const UserUpdate = () => {
 
     const { must_verify_email, user } = useSelector((state) => state.auth);
 
-    console.log('email', must_verify_email);
-    console.log('user', user.email_verified_at);
-
     const [userUpdate, { data, error, isLoading, isSuccess }] = useUserUpdateMutation();
     const [emailVerificationResend, { data: emailData, error: emailError, isLoading: emailIsLoading, isSuccess: emailIsSuccess }] = useEmailVerificationResendMutation();
-    const navigate = useNavigate();
 
     const [fields, setFields] = useState({
         name: user.name,
@@ -29,6 +26,23 @@ const UserUpdate = () => {
 
     const status = useSelector((state) => state.auth.status);
 
+    useEffect(() => {
+        document.getElementById('name').focus();
+        if (data) { //(DA VERIFICARE)
+            dispatch(updateSession(fields));
+        }
+
+        if (isSuccess) {
+            const alert = document.querySelector('#alert-user-update');
+            alert.classList.add('show');
+            alert.classList.remove('d-none');
+            setTimeout(() => {
+                const bsAlert = new Alert(alert);
+                bsAlert.close();
+            }, 3000);
+        }
+    }, [data, isSuccess]);
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFields({
@@ -39,16 +53,8 @@ const UserUpdate = () => {
 
     const submit = (e) => {
         e.preventDefault();
-
         userUpdate(fields);
     };
-
-    useEffect(() => {
-        document.getElementById('name').focus();
-        if (data) { //(DA VERIFICARE)
-            navigate('/profile');
-        }
-    }, [data])
 
     const click = (e) => {
         e.preventDefault();
@@ -125,8 +131,10 @@ const UserUpdate = () => {
                             <button type="submit" className="btn btn-primary" disabled={isLoading}>
                                 Salva
                             </button>
-                            {/* DA VERIFICARE */}
-                            <ErrorAlert messages={(isSuccess && data?.message !== undefined ? [data.message] : [])} className="mt-2" />
+                            <div id="alert-user-update" className="alert alert-success alert-dismissible fade mt-2 mb-0 d-none" role="alert">
+                                {(data?.message !== undefined ? [data.message] : [])}
+                                <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
                         </form>
                     </div>
                 </div>

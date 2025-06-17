@@ -113,10 +113,10 @@ const UserDelete = () => {
                                             <label htmlFor="password">Indirizzo email</label>
 
                                             <input
-                                                name="password"
+                                                name="passwordModal"
                                                 type="password"
                                                 className="form-control"
-                                                id="password"
+                                                id="passwordModal"
                                                 placeholder="Password"
                                                 ref={password}
                                             />
