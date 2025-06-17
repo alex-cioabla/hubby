@@ -26,7 +26,7 @@ const Login = () => {
         if (data) { //(DA VERIFICARE)
             dispatch(setSession(data));
             document.getElementById('floatingPassword').value = '';
-            navigate('/dashboard');
+            navigate('/profile');
         }
     }, [data, dispatch, history]);
 

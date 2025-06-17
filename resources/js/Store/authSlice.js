@@ -31,8 +31,7 @@ const authSlice = createSlice({
             state.token = session.token;
             state.expires_at = session.expires_at;
             state.must_verified_email = session.must_verified_email;
-            state.user = {name: session.user.name, email: session.user.email, email_verified_at: session.email_verified_at};
-
+            state.user = {...session.user};
 
             window.localStorage.setItem('session', JSON.stringify(session));
         },

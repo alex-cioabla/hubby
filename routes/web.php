@@ -19,6 +19,7 @@ Route::middleware('guest')->group(function () {
 });
 
 //CONTROLLI MIDDLEWARE AUTH E VERIFIED CON REACT
+Route::view('profile', 'app');
 Route::view('dashboard', 'app')->name('dashboard');
 Route::view('password-confirm', 'app');
 Route::view('password-update', 'app');

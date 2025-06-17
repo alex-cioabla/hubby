@@ -20,14 +20,14 @@ const VerifiedRoute = (props) => {
             const newDate = new Date();
             dispatch(setEmailVerifiedAt(newDate));
 
-            navigate('/dashboard');
+            navigate('/profile');
         }
 
-    if (!user.email_verified_at || isNaN(email_verified_at.getTime())) {
+        if (!user.email_verified_at || isNaN(email_verified_at.getTime())) {
 
-        navigate('/email-verification-request');
-    }
-    }, [verified_url_param,dispatch]);
+            navigate('/email-verification-request');
+        }
+    }, [verified_url_param, dispatch]);
 
     return (props.children);
 }

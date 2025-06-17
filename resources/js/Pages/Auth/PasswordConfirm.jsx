@@ -17,7 +17,7 @@ const PasswordConfirm = () => {
 
         if (data) {
             document.getElementById('password').value = '';
-            navigate('/dashboard');
+            navigate('/profile');
         }
     }, [data, error]);
 

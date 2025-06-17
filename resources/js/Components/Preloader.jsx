@@ -1,36 +1,39 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
 const Preloader = () => {
 
     const location = useLocation();
-    const [loaded, setLoaded] = useState('');
 
     useEffect(() => {
 
-        const handleLoad = () => {
-            setLoaded('loaded');
+        const preloader = document.getElementById('preloader');
+
+        const togglePreloader = () => {
+            preloader.hidden = true;
         }
 
-        window.addEventListener('load', handleLoad);
+        window.addEventListener('load', togglePreloader);
 
         if (document.readyState === "complete") {
-            setLoaded('loaded');
+            togglePreloader();
         }
         return () => {
-            setLoaded('');
-            window.removeEventListener('load', handleLoad);
+            window.removeEventListener('load', togglePreloader);
         }
     }, [location])
 
     return (
-        <div id="js-preloader" className={`js-preloader ${loaded}`}>
-            <div className="preloader-inner">
-                <span className="dot" />
-                <div className="dots">
-                    <span />
-                    <span />
-                    <span />
+        <div id="preloader" className="position-fixed z-1 bg-dark h-100 w-100">
+            <div id="spinner" className="position-absolute top-50 start-50 translate-middle">
+                <div className="spinner-grow color-hb" role="status">
+                    <span className="visually-hidden">Loading...</span>
+                </div>
+                <div className="spinner-grow color-hb" role="status">
+                    <span className="visually-hidden">Loading...</span>
+                </div>
+                <div className="spinner-grow color-hb" role="status">
+                    <span className="visually-hidden">Loading...</span>
                 </div>
             </div>
         </div>

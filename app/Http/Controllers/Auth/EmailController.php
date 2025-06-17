@@ -20,14 +20,14 @@ class EmailController extends Controller
         $user = User::findOrFail($request['id']);
 
         if ($user->hasVerifiedEmail()) {
-            return redirect()->intended(route('dashboard', absolute: false).'?verified=1');
+            return redirect()->intended(route('profile', absolute: false).'?verified=1');
         }
 
         if ($user->markEmailAsVerified()) {
             event(new Verified($user));
         }
 
-        return redirect()->intended(route('dashboard', absolute: false).'?verified=1');
+        return redirect()->intended(route('profile', absolute: false).'?verified=1');
     }
 
     /**

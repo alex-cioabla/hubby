@@ -40,11 +40,11 @@ function App() {
                         <Route path=":lang?/library" element={<Library />} />
                         <Route path=":lang?/rank" element={<Rank />} />
                         <Route path=":lang?/shop" element={<Shop />} />
-                        <Route path=":lang?/profile" element={<PrivateRoute><Profile /></PrivateRoute>}></Route>
+                        <Route path=":lang?/profile" element={<PrivateRoute><VerifiedRoute><Profile /></VerifiedRoute></PrivateRoute>}></Route>
                         <Route path=":lang?/user-settings" element={<PrivateRoute><UserSettings/></PrivateRoute>}></Route>
                     </Route>
                     <Route element={<BackendLayout></BackendLayout>}>
-                        <Route path=":lang?/dashboard" element={<PrivateRoute><VerifiedRoute><Dashboard/></VerifiedRoute></PrivateRoute>}></Route>
+                        <Route path=":lang?/dashboard" element={<PrivateRoute><Dashboard/></PrivateRoute>}></Route>
                     </Route>
                     <Route path="/logout" element={<Logout />} />
                     <Route element={<AuthenticationLayout></AuthenticationLayout>}>
