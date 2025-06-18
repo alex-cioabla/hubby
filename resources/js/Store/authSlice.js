@@ -7,7 +7,8 @@ const initialState = (() => {
         expires_at: null,
         status: null,
         must_verified_email: true,
-        user: null
+        user: null,
+        remember: false
     }
     const session = JSON.parse(window.localStorage.getItem('session')) ?? init;
 
@@ -27,25 +28,28 @@ const authSlice = createSlice({
         setSession: (state, action) => {
 
             const session = action.payload;
+            const storage = session.remember ? window.localStorage : window.sessionStorage;
 
             state.token = session.token;
             state.expires_at = session.expires_at;
             state.must_verified_email = session.must_verified_email;
             state.user = {...session.user};
 
-            window.localStorage.setItem('session', JSON.stringify(session));
+            storage.setItem('session', JSON.stringify(session));
         },
         removeSession: (state) => {
             Object.keys(state).forEach(key => { state[key] = null; });
-            window.localStorage.removeItem('session');
+            const storage = session.remember ? window.localStorage : window.sessionStorage;
+            storage.removeItem('session');
         },
         updateSession: (state, action) => {
             state.user = action.payload;
 
             const session = JSON.parse(window.localStorage.getItem('session'));
+            const storage = session.remember ? window.localStorage : window.sessionStorage;
             session.user = action.payload;
 
-            window.localStorage.setItem("session", JSON.stringify(session));
+            storage.setItem("session", JSON.stringify(session));
         },
         setStatus: (state, action) => {
             state.status = action.payload;
@@ -54,9 +58,11 @@ const authSlice = createSlice({
             state.user.email_verified_at = action.payload;
 
             const session = JSON.parse(window.localStorage.getItem('session'));
+            const storage = session.remember ? window.localStorage : window.sessionStorage;
+
             session.user.email_verified_at = action.payload;
 
-            window.localStorage.setItem("session", JSON.stringify(session));
+            storage.setItem("session", JSON.stringify(session));
         }
     }
 });

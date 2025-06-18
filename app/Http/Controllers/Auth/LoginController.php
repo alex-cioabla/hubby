@@ -14,27 +14,28 @@ class LoginController extends Controller
     /**
      * Handle an incoming authentication request.
      */
-    public function store(LoginRequest $request): JsonResponse
+    public function store(LoginRequest $request)
     {
-        // $request->validate([
-        //     'email' => 'required|email',
-        //     'password' => 'required',
-        // ]);
-
-        // Uso Auth::attempt solo per verificare l'utente
-        // (la connessione dell'utente avviene tramite il personal access token)
-        // if (!Auth::attempt($request->only('email', 'password'))) {
-        //     return response()->json(['message' => 'Invalid credentials'], 401);
-        // }
-
-        //$user = Auth::user();
+        //Uso Auth::attempt solo per verificare l'utente
+        //(la connessione dell'utente avviene tramite il personal access token)
+        //Passo remember solo per averlo nel json della response e usarlo per setSession
         $request->authenticate();
         $token = $request->user()->createToken('PAT',  ['*'], now()->addWeek());
+
+        //oppure
+        /* $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+        if (!Auth::attempt($request->only('email', 'password'))) {
+            return response()->json(['message' => 'Invalid credentials'], 401);
+        } */
 
         return response()->json([
             'token' => $token->plainTextToken,
             'expires_at' => $token->accessToken->expires_at,
             'must_verify_email' => $request->user() instanceof MustVerifyEmail,
+            'remember' =>  $request->boolean('remember'),
             'user' => [
                 'name' => $request->user()->name,
                 'email' => $request->user()->email,

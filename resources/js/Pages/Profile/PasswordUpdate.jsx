@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { usePasswordUpdateMutation } from '@/Store/userApi';
-import { useNavigate } from 'react-router-dom';
 import ErrorAlert from '@/Components/ErrorAlert';
 import { Alert } from 'bootstrap';
 
@@ -17,7 +16,6 @@ const PasswordUpdate = () => {
         current_password: '',
         password_confirmation: '',
     });
-    const navigate = useNavigate();
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -43,7 +41,6 @@ const PasswordUpdate = () => {
             document.getElementById('password').value = '';
             document.getElementById('current_password').value = '';
             document.getElementById('password_confirmation').value = '';
-            // navigate(-1);
         }
 
         if (isSuccess) {

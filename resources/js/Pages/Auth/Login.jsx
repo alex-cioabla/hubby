@@ -8,13 +8,11 @@ import { setSession } from '@/Store/authSlice';
 
 const Login = () => {
 
-    const [login, { data, error, isLoading }] = useLoginMutation();
+    const [login, { data, isLoading }] = useLoginMutation();
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const status = useSelector((state) => state.auth.status);
-
-    const emailErrors = error?.data?.errors?.email ?? [];
-    const passwordErrors = error?.data?.errors?.password ?? [];
+    const [response, setResponse] = useState('');
 
     const [fields, setFields] = useState({
         email: '',
@@ -23,12 +21,13 @@ const Login = () => {
     });
 
     useEffect(() => {
+
         if (data) { //(DA VERIFICARE)
             dispatch(setSession(data));
             document.getElementById('floatingPassword').value = '';
             navigate('/profile');
         }
-    }, [data, dispatch, history]);
+    }, [data]);
 
     const handleChange = (e) => {
         const { name, value, type, checked } = e.target;
@@ -39,12 +38,13 @@ const Login = () => {
     };
 
     const submit = async (e) => {
+
         e.preventDefault();
 
         try {
             await login(fields).unwrap();
-        } catch (error) {
-            console.error('Login failed:', error.data.message); //(DA VERIFICARE)
+        } catch (responseError) {
+            setResponse(responseError.data.message);
         }
     };
 
@@ -68,7 +68,6 @@ const Login = () => {
                         onChange={handleChange}
                     />
                     <label htmlFor="floatingEmail">Indirizzo email</label>
-                    <ErrorAlert messages={emailErrors} className="mt-2" />
                 </div>
                 <div className="form-floating">
                     <input
@@ -81,7 +80,6 @@ const Login = () => {
                         onChange={handleChange}
                     />
                     <label htmlFor="floatingPassword">Password</label>
-                    <ErrorAlert messages={passwordErrors} className="mt-2" />
                 </div>
                 <div className="form-check text-start my-3">
                     <input
@@ -97,6 +95,7 @@ const Login = () => {
                         Ricordami
                     </label>
                 </div>
+                <ErrorAlert messages={(response ? [response] : [])} className="mt-2" />
                 <p>
                     {appConfig.canResetPassword && (
                         <Link
