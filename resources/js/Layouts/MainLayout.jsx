@@ -53,11 +53,12 @@ export default function MainLayout() {
         <>
             <Preloader></Preloader>
             <header className="header">
-                <nav className="navbar navbar-expand-lg bg-body-tertiary">
+                <nav className="navbar navbar-expand-lg py-4">
                     <div className="container">
-                        <a className="navbar-brand" href="/">
-                            <img src="storage/images/logo.png" alt="logo" className="border-end" />
+                        <a href="/">
+                            <img src="storage/images/logo.png" alt="logo" className="" width="190"/>
                         </a>
+                        <div className="vr mx-4"></div>
                         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span className="navbar-toggler-icon"></span>
                         </button>
@@ -214,8 +215,8 @@ export default function MainLayout() {
                 <div className="container py-3 border-top">
                     <div className="row flex-wrap justify-content-between align-items-center">
                         <div className="col-md-4 text-center text-sm-start">
-                            <a href="/">
-                                <img src="storage/images/logo.png" alt="logo" className="img-fluid img-thumbnail" />
+                            <a href="/" className="d-inline-block mb-2">
+                                <img src="storage/images/logo.png" alt="logo" className="" width="190"/>
                             </a>
                             <p className="text-body-secondary">Copyright © {new Date().getFullYear()} Hubby. All rights reserved.</p>
                         </div>

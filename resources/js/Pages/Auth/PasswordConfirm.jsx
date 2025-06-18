@@ -28,7 +28,9 @@ const PasswordConfirm = () => {
 
     return (
         <>
-        <a href="/" className="d-block mb-3"><img src="storage/images/logo.png" alt="logo" className="img-fluid img-thumbnail" /></a>
+            <a href="/" className="mb-3">
+                <img src="storage/images/logo.png" alt="logo" className="" width="190" />
+            </a>
             <div className="mb-3 fw-bolder text-muted text-center">
                 This is a secure area of the application. <br />
                 Please confirm your password before continuing.

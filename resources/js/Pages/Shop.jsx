@@ -6,7 +6,7 @@ export const Shop = () => {
     document.title = "Shop - " + appConfig.name;
 
     return (<>
-        <div className="container mt-4 p-5 rounded-4 bg-body-tertiary">
+        <div className="container mt-3 p-5 rounded-4 bg-body-tertiary">
             <section>
                 <div className="container-fluid p-4 rounded-4 bg-body-secondary">
                     <div className="card">

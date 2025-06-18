@@ -26,7 +26,7 @@ export const Rank = () => {
     }
 
     return (<>
-    <div className="container mt-4 p-5 rounded-4 bg-body-tertiary">
+    <div className="container mt-3 p-5 rounded-4 bg-body-tertiary">
         <section>
             <div className="container-fluid">
                 <div className="row">

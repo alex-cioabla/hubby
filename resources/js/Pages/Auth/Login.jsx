@@ -55,7 +55,9 @@ const Login = () => {
                     {status}
                 </div>
             )}
-            <a href="/" className="d-block mb-3"><img src="storage/images/logo.png" alt="logo" className="img-fluid img-thumbnail" /></a>
+            <a href="/" className="mb-3">
+                <img src="storage/images/logo.png" alt="logo" className="" width="190" />
+            </a>
             <form onSubmit={submit}>
                 <div className="form-floating mb-3">
                     <input
