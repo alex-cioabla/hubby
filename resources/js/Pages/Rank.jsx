@@ -1,4 +1,4 @@
-import OwlCarousel from 'react-owl-carousel';
+// import OwlCarousel from 'react-owl-carousel';
 
 export const Rank = () => {
 
@@ -34,11 +34,11 @@ export const Rank = () => {
                         <div className="card p-4 border border-0 h-100 rounded-4">
                             <div className="card-body">
                                 <h2 className="card-title mb-3">Collezionisti</h2>
-                                <OwlCarousel className='owl-theme' {...options}>
+                                {/* <OwlCarousel className='owl-theme' {...options}>
                                     <div className="item">
                                         <div className="thumb">
                                             <img src="storage/images/carousel_dummy.jpg" className="rounded-4" alt="carousel_pic" />
-                                            <div className="title-animated w-100 text-center color-hb">
+                                            <div className="title-animated w-100 text-center text-primary">
                                                 <h6 className="rounded-pill d-inline-block px-3 py-2">2.4K Library</h6>
                                             </div>
                                         </div>
@@ -48,7 +48,7 @@ export const Rank = () => {
                                     <div className="item">
                                         <div className="thumb">
                                             <img src="storage/images/carousel_dummy.jpg" className="rounded-4" alt="carousel_pic" />
-                                            <div className="title-animated w-100 text-center color-hb">
+                                            <div className="title-animated w-100 text-center text-primary">
                                                 <h6 className="rounded-pill d-inline-block px-3 py-2">2.4K Library</h6>
                                             </div>
                                         </div>
@@ -58,7 +58,7 @@ export const Rank = () => {
                                     <div className="item">
                                         <div className="thumb">
                                             <img src="storage/images/carousel_dummy.jpg" className="rounded-4" alt="carousel_pic" />
-                                            <div className="title-animated w-100 text-center color-hb">
+                                            <div className="title-animated w-100 text-center text-primary">
                                                 <h6 className="rounded-pill d-inline-block px-3 py-2">2.4K Library</h6>
                                             </div>
                                         </div>
@@ -68,7 +68,7 @@ export const Rank = () => {
                                     <div className="item">
                                         <div className="thumb">
                                             <img src="storage/images/carousel_dummy.jpg" className="rounded-4" alt="carousel_pic" />
-                                            <div className="title-animated w-100 text-center color-hb">
+                                            <div className="title-animated w-100 text-center text-primary">
                                                 <h6 className="rounded-pill d-inline-block px-3 py-2">2.4K Library</h6>
                                             </div>
                                         </div>
@@ -76,7 +76,7 @@ export const Rank = () => {
                                         <p>249K Games</p>
                                     </div>
 
-                                </OwlCarousel>
+                                </OwlCarousel> */}
                             </div>
                         </div>
                     </div>

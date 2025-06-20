@@ -5,8 +5,6 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateSession, setStatus } from '@/Store/authSlice';
 
-import { Alert } from 'bootstrap';
-
 const UserUpdate = () => {
 
     const { must_verify_email, user } = useSelector((state) => state.auth);
@@ -37,7 +35,7 @@ const UserUpdate = () => {
             alert.classList.add('show');
             alert.classList.remove('d-none');
             setTimeout(() => {
-                const bsAlert = new Alert(alert);
+                const bsAlert = new bootstrap.Alert(alert);
                 bsAlert.close();
             }, 3000);
         }

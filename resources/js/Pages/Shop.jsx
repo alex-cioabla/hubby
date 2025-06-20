@@ -71,7 +71,11 @@ export const Shop = () => {
             </section>
             <section className="mt-5">
                 <div className="container-fluid p-4 rounded-4 bg-body-secondary">
-                    <div className="row g-3">
+                    <button type="button" className="btn btn-outline-primary btn-lg d-flex align-items-center">
+                        <i className="bi bi-controller rounded-circle p-2 fs-2 d-inline-flex me-2 bg-primary-subtle"></i>
+                        <h4 className="mb-0">Videogiochi</h4>
+                    </button>
+                    {/* <div className="row g-3">
                         <div className="col-12 col-sm-3">
                             <div className="card card-clickable">
                                 <div className="card-body">
@@ -92,7 +96,7 @@ export const Shop = () => {
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
             </section>
             <section className="mt-5">
@@ -135,7 +139,7 @@ export const Shop = () => {
                             />
                         </div>
                         <div className="col-lg-6">
-                            <p className="color-hb">Hubby</p>
+                            <p className="text-primary">Hubby</p>
                             <h4>
                                 Second hand: l'online conquista il mercato
                             </h4>

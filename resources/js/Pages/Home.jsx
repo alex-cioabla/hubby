@@ -8,8 +8,8 @@ const Home = () => {
                 <div className="bg-body-secondary p-5 mb-4 rounded-4" id="banner">
                     <div className="container-fluid py-5 text-center text-sm-start">
                         <p className="lead">Benvenuto su Hubby</p>
-                        <h1 className="display-5 fw-bold mb-3 text-uppercase">The <span className="color-hb">collector</span>'s <br/> hub</h1>
-                        <a href="#" className="btn btn-primary" role="button">Crea Hub</a>
+                        <h1 className="display-5 fw-bold mb-3 text-uppercase">The <span className="text-primary">collector</span>'s <br/> hub</h1>
+                        <a href="#" className="btn btn-primary" role="button">Crea il tuo Hub</a>
                     </div>
                 </div>
             </section>
@@ -53,9 +53,9 @@ const Home = () => {
                         <div className="col-sm-4 mb-3 mb-sm-0">
                             <div className="card rounded-4 bg-body-tertiary">
                                 <div className="card-body p-4">
-                                    <i className="bi bi-controller rounded-circle p-2 fs-2 d-inline-flex bg-white color-hb"></i>
+                                    <i className="bi bi-controller rounded-circle p-2 fs-2 d-inline-flex bg-white text-primary"></i>
                                     <h4 className="mt-2 mb-3">Videogames</h4>
-                                    <p>
+                                    <p className="text-body-tertiary">
                                         Paragraph of text beneath the heading to explain the heading. We'll add onto
                                         it with another sentence and probably just keep going until we run out of
                                         words.

@@ -26,19 +26,19 @@ export const Profile = () => {
                                     <ul className="list-group list-group-flush">
                                         <li className="list-group-item d-flex justify-content-between align-items-center border-bottom py-3">
                                             <p className="mb-0">Giochi scaricati</p>
-                                            <span className="color-hb">3</span>
+                                            <span className="text-primary">3</span>
                                         </li>
                                         <li className="list-group-item d-flex justify-content-between align-items-center border-bottom py-3">
                                             <p className="mb-0">Amici online</p>
-                                            <span className="color-hb">3</span>
+                                            <span className="text-primary">3</span>
                                         </li>
                                         <li className="list-group-item d-flex justify-content-between align-items-center border-bottom py-3">
                                             <p className="mb-0">Live streams</p>
-                                            <span className="color-hb">3</span>
+                                            <span className="text-primary">3</span>
                                         </li>
                                         <li className="list-group-item d-flex justify-content-between align-items-center py-3">
                                             <p className="mb-0">Clip</p>
-                                            <span className="color-hb">3</span>
+                                            <span className="text-primary">3</span>
                                         </li>
                                     </ul>
                                 </div>

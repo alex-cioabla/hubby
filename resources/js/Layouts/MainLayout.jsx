@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
-import { NavLink, useParams, useNavigate, Outlet } from 'react-router-dom';
+import { NavLink, useParams, useNavigate, Outlet, useLocation } from 'react-router-dom';
 
 import { fetchTranslations } from "@/Store/translationSlice";
 import { setTheme } from '@/Store/themeSlice';
@@ -31,6 +31,7 @@ export default function MainLayout() {
     };
 
     const token = useSelector(state => state.auth.token);
+    const location = useLocation();
 
     useEffect(() => {
 
@@ -56,7 +57,7 @@ export default function MainLayout() {
                 <nav className="navbar navbar-expand-lg py-4">
                     <div className="container">
                         <a href="/">
-                            <img src="storage/images/logo.png" alt="logo" className="" width="190"/>
+                            <img src="storage/images/logo.png" alt="logo" className="" width="190" />
                         </a>
                         <div className="vr mx-4"></div>
                         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -106,104 +107,89 @@ export default function MainLayout() {
                                     </NavLink>
                                 </li>
                                 {
-                                    token && (
-                                        <li className="nav-item">
-                                            <div className="dropdown py-2 py-sm-0">
-                                                <button
-                                                    className="btn btn-secondary dropdown-toggle me-2"
-                                                    type="button"
-                                                    data-bs-toggle="dropdown"
-                                                    aria-expanded="false"
-                                                >
-                                                    <span className="me-2">Profilo</span>
-                                                    <img src="storage/images/avatar_dummy.jpg" className="rounded-circle w-25" alt="..." />
-                                                </button>
-                                                <ul className="dropdown-menu">
-                                                    <li>
-                                                        <NavLink to={`${lang}/profile`} className="dropdown-item">
-                                                            Profilo
-                                                        </NavLink>
-                                                    </li>
-                                                    <li>
-                                                        <NavLink to={`${lang}/user-settings`} className="dropdown-item">
-                                                            Impostazioni
-                                                        </NavLink>
-                                                    </li>
-                                                    <li>
-                                                        <NavLink to="/logout" className="dropdown-item">
-                                                            Disconetti
-                                                        </NavLink>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </li>
-                                    )
-                                }
-                                {
                                     !token && (<>
                                         <li className="nav-item">
-                                            <NavLink to={`${lang}/login`} className="btn btn-secondary me-2">{translations.header.buttons.login}</NavLink>
+                                            <NavLink to={`${lang}/login`} className="btn btn-primary me-2">{translations.header.buttons.login}</NavLink>
                                         </li>
                                         <li className="nav-item">
-                                            <NavLink to={`${lang}/register`} className="btn btn-secondary">{translations.header.buttons.register}</NavLink>
+                                            <NavLink to={`${lang}/register`} className="btn btn-primary">{translations.header.buttons.register}</NavLink>
                                         </li>
                                     </>
                                     )
                                 }
-                                <li className="nav-item">
-                                    <div className="dropdown">
-                                        <button
-                                            className="btn btn-link nav-link dropdown-toggle d-inline-block"
-                                            type="button"
-                                            data-bs-toggle="dropdown"
-                                            aria-expanded="false"
-                                        >
-                                            {theme === 'dark' && <i className="bi bi-moon-fill"></i>}
-                                            {theme === 'light' && <i className="bi bi-sun-fill"></i>}
-                                            {theme === 'auto' && <i className="bi bi-circle-half"></i>}
-                                            <span className="d-lg-none ms-2" id="bd-theme-text">Toggle theme</span>
-                                        </button>
-                                        <ul className="dropdown-menu">
-                                            <li>
-                                                <button
-                                                    type="button"
-                                                    className={theme === 'light' ? "active dropdown-item d-flex align-items-center" : "dropdown-item d-flex align-items-center"}
-                                                    onClick={() => toggleTheme('light')}
-                                                >
-                                                    <i className="bi bi-sun-fill me-2 opacity-50"></i>
-                                                    Light
-                                                    <i className="bi bi-check2 ms-auto d-none"></i>
-                                                </button>
+                                <li className="nav-item dropdown">
+                                    <button className="nav-link dropdown-toggle btn btn-link" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        {theme === 'dark' && <i className="bi bi-moon-fill"></i>}
+                                        {theme === 'light' && <i className="bi bi-sun-fill"></i>}
+                                        {theme === 'auto' && <i className="bi bi-circle-half"></i>}
+                                        <span className="d-lg-none ms-2" id="bd-theme-text">Toggle theme</span>
+                                    </button>
+                                    <ul className="dropdown-menu">
+                                        <li>
+                                            <button
+                                                type="button"
+                                                className={theme === 'light' ? "active dropdown-item d-flex align-items-center" : "dropdown-item d-flex align-items-center"}
+                                                onClick={() => toggleTheme('light')}
+                                            >
+                                                <i className="bi bi-sun-fill me-2 opacity-50"></i>
+                                                Light
+                                                <i className="bi bi-check2 ms-auto d-none"></i>
+                                            </button>
 
-                                            </li>
-                                            <li>
-                                                <button
-                                                    type="button"
-                                                    className={theme === 'dark' ? "active dropdown-item d-flex align-items-center" : "dropdown-item d-flex align-items-center"}
-                                                    onClick={() => toggleTheme('dark')}
-                                                >
-                                                    <i className="bi bi-moon-fill me-2 opacity-50"></i>
-                                                    Dark
-                                                    <i className="bi bi-check2 ms-auto d-none"></i>
-                                                </button>
+                                        </li>
+                                        <li>
+                                            <button
+                                                type="button"
+                                                className={theme === 'dark' ? "active dropdown-item d-flex align-items-center" : "dropdown-item d-flex align-items-center"}
+                                                onClick={() => toggleTheme('dark')}
+                                            >
+                                                <i className="bi bi-moon-fill me-2 opacity-50"></i>
+                                                Dark
+                                                <i className="bi bi-check2 ms-auto d-none"></i>
+                                            </button>
 
-                                            </li>
-                                            <li>
-                                                <button
-                                                    type="button"
-                                                    className={theme === 'auto' ? "active dropdown-item d-flex align-items-center" : "dropdown-item d-flex align-items-center"}
-                                                    onClick={() => toggleTheme('auto')}
-                                                >
-                                                    <i className="bi bi-circle-half me-2 opacity-50"></i>
-                                                    Auto
-                                                    <i className="bi bi-check2 ms-auto d-none"></i>
-                                                </button>
+                                        </li>
+                                        <li>
+                                            <button
+                                                type="button"
+                                                className={theme === 'auto' ? "active dropdown-item d-flex align-items-center" : "dropdown-item d-flex align-items-center"}
+                                                onClick={() => toggleTheme('auto')}
+                                            >
+                                                <i className="bi bi-circle-half me-2 opacity-50"></i>
+                                                Auto
+                                                <i className="bi bi-check2 ms-auto d-none"></i>
+                                            </button>
 
-                                            </li>
-                                        </ul>
-                                    </div>
+                                        </li>
+                                    </ul>
                                 </li>
                             </ul>
+                                                            {
+                                    token && (
+                                        <div className="dropdown">
+                                            <a href="#" className="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <img src="storage/images/avatar_dummy.jpg" className="rounded-circle" alt="..." width="32"/>
+                                            </a>
+                                            <ul className="dropdown-menu">
+                                                <li>
+                                                    <NavLink to={`${lang}/profile`} className="dropdown-item">
+                                                        Profilo
+                                                    </NavLink>
+                                                </li>
+                                                <li>
+                                                    <NavLink to={`${lang}/user-settings`} className="dropdown-item">
+                                                        Impostazioni
+                                                    </NavLink>
+                                                </li>
+                                                <li>
+                                                    <NavLink to="/logout" className="dropdown-item">
+                                                        Disconetti
+                                                    </NavLink>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    )
+                                }
                         </div>
                     </div>
                 </nav>
@@ -216,7 +202,7 @@ export default function MainLayout() {
                     <div className="row flex-wrap justify-content-between align-items-center">
                         <div className="col-md-4 text-center text-sm-start">
                             <a href="/" className="d-inline-block mb-2">
-                                <img src="storage/images/logo.png" alt="logo" className="" width="190"/>
+                                <img src="storage/images/logo.png" alt="logo" className="" width="190" />
                             </a>
                             <p className="text-body-secondary">Copyright © {new Date().getFullYear()} Hubby. All rights reserved.</p>
                         </div>

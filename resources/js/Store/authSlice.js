@@ -39,7 +39,7 @@ const authSlice = createSlice({
         },
         removeSession: (state) => {
             Object.keys(state).forEach(key => { state[key] = null; });
-            const storage = session.remember ? window.localStorage : window.sessionStorage;
+            const storage = state.remember ? window.localStorage : window.sessionStorage;
             storage.removeItem('session');
         },
         updateSession: (state, action) => {

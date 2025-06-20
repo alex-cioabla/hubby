@@ -1,6 +1,3 @@
-import "bootstrap/dist/js/bootstrap.bundle.min.js";
-import * as $ from "jquery";
-
 import React from "react";
 import { createRoot } from 'react-dom/client';
 import { Provider } from "react-redux";
@@ -29,6 +26,8 @@ import PasswordUpdate from "./Pages/Profile/PasswordUpdate";
 import Profile from "./Pages/Profile/Profile.jsx";
 import UserSettings from "./Pages/Profile/UserSettings.jsx";
 import AuthenticationLayout from "./Layouts/AuthenticationLayout.jsx";
+
+import "../scss/hubby.scss";
 
 function App() {
     return (

@@ -1,105 +1,5 @@
 /*
 ---------------------------------------------
-Dark theme
----------------------------------------------
-*/
-[data-bs-theme="dark"] {
-    --bs-body-bg: #1F2122 !important;
-}
-
-[data-bs-theme="dark"] .bg-body-tertiary {
-    background-color: #27292a !important;
-}
-
-[data-bs-theme="dark"] .bg-body-secondary {
-    background-color: #1F2122 !important;
-}
-
-/*
----------------------------------------------
-Bootstrap
----------------------------------------------
-*/
-.navbar-nav .nav-link.active,
-.navbar-nav .nav-link.show,
-.navbar-nav .nav-link:hover,
-.bi-check-circle-fill,
-.btn-outline-primary {
-    color: #6358ED;
-}
-
-.btn.btn-secondary.active,
-.btn-primary,
-.btn-secondary:hover,
-.dropdown-item.active,
-.dropdown-item:active,
-.badge {
-    background-color: #6358ED!important;
-}
-
-.btn-outline-primary {
-    border-color: #6358ED;
-}
-
-.btn-outline-secondary,
-.btn-outline-secondary:hover {
-    color:#565e64;
-}
-
-.btn-primary,
-.btn-outline-secondary,
-.btn-outline-secondary:hover {
-    border-color: #565e64;
-}
-
-.btn-primary:hover,
-.btn-outline-primary:hover {
-    background-color: #27292a!important;
-}
-
-.btn-outline-primary:hover {
-    border-color: #27292a;
-}
-
-.btn-primary {
-    border: none;
-    border-radius: 50rem;
-    padding: 8px 20px;
-}
-
-/* .btn-secondary {
-    border-radius: 50rem;
-    padding: 8px 20px;
-} */
-
-.btn-outline-primary {
-    border-radius: 50rem;
-    padding: 8px 20px;
-}
-
-.btn-outline-secondary,
-.btn-outline-secondary:hover {
-    border-radius: 50rem;
-    padding: 8px 20px;
-    background-color: transparent;
-}
-
-.img-thumbnail {
-    border: none;
-}
-
-.badge {
-    padding: 0.75rem;
-    font-weight: normal;
-}
-
-.navbar-brand {
-    width: 190px;
-    height: 50px;
-}
-
-/*
----------------------------------------------
 Owl carousel
 ---------------------------------------------
 */
@@ -108,9 +8,44 @@ Owl carousel
     color: #6358ED;
 }
 
-.owl-prev span, .owl-next span {
+.owl-prev span,
+.owl-next span {
     color: #666;
     font-size: 36px;
+}
+
+.thumb {
+    position: relative;
+    overflow: hidden;
+}
+
+.title-animated {
+    position: absolute;
+    visibility: hidden;
+    bottom: -100px;
+    transition: all .4s;
+}
+
+.owl-carousel .thumb:hover .title-animated {
+    visibility: visible;
+    bottom: 15px;
+}
+
+.title-animated h6 {
+    background-color: rgba(31, 33, 34, 0.95);
+}
+
+.card-clickable:hover {
+    background-color: rgba(99, 88, 237, 0.2);
+}
+
+.bagde-animated {
+    opacity: 0;
+    transition: all .4s;
+}
+
+.card .thumb:hover .bagde-animated {
+    opacity: 1;
 }
 
 /*
@@ -118,25 +53,23 @@ Owl carousel
 Common
 ---------------------------------------------
 */
-html, body, #root {
+html,
+body,
+#root {
     height: 100%;
 }
 
-.color-hb {
-    color: #6358ED;
-}
-
-.card-clickable:hover,
+/* .card-clickable:hover,
 .card-clickable:hover i {
-   border-color: #6358ED!important;
-}
+    border-color: #6358ED !important;
+} */
 
-#header-form-search input,
+/* #header-form-search input,
 #header-form-search input::placeholder,
 #header-form-search svg,
 .card-body p {
     color: #666;
-}
+} */
 
 #header-form-search {
     position: relative;
@@ -153,19 +86,19 @@ html, body, #root {
 }
 
 .mt-n1 {
-  margin-top: -0.25rem !important;
+    margin-top: -0.25rem !important;
 }
 
 .mt-n2 {
-  margin-top: -0.5rem !important;
+    margin-top: -0.5rem !important;
 }
 
 .mt-n3 {
-  margin-top: -1rem !important;
+    margin-top: -1rem !important;
 }
 
 .mt-n4 {
-  margin-top: -1.5rem !important;
+    margin-top: -1.5rem !important;
 }
 
 /*
@@ -189,42 +122,4 @@ Page
 
 .header-alt {
     transform: translateY(-100%);
-}
-
-.thumb {
-   position: relative;
-   overflow: hidden;
-}
-
-.title-animated {
-    position: absolute;
-    visibility: hidden;
-    bottom: -100px;
-    transition: all .4s;
-}
-
-.owl-carousel .thumb:hover .title-animated {
-    visibility: visible;
-    bottom: 15px;
-}
-
-.title-animated h6 {
-    background-color: rgba(31, 33, 34, 0.95);
-}
-
-.card-clickable:hover {
-    background-color: rgba(99, 88, 237, 0.2);
-}
-
-/* .card-clickable:hover i {
-   background-color: #6358ED;
-} */
-
-.bagde-animated {
-    opacity: 0;
-    transition: all .4s;
-}
-
-.card .thumb:hover .bagde-animated {
-    opacity: 1;
 }

@@ -30,6 +30,9 @@
         });
     </script>
 
+    {{-- Importo bootstrap via CDN (oppure uso package bootstrap react) perchè tramite import react non è compatibile --}}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
 </head>
 
 <body class="font-sans antialiased">

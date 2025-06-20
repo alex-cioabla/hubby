@@ -10,10 +10,10 @@ export default defineConfig({
             refresh: true,
         }),
         react(),
-        inject({
-            $: 'jquery',
-            jQuery: 'jquery',
-            'window.jQuery': 'jquery',
-        }),
+        // inject({
+        //     $: 'jquery',
+        //     jQuery: 'jquery',
+        //     'window.jQuery': 'jquery',
+        // }),
     ],
 });

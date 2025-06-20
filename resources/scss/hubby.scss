@@ -1,0 +1,16 @@
+$primary: #6358ED;
+
+$body-bg-dark: #1F2122;
+$body-tertiary-bg-dark: #27292a;
+$body-tertiary-color-dark: #666;
+
+$btn-border-radius: 50rem;
+$btn-padding-x: 1rem;
+// Custom.scss
+// Option A: Include all of Bootstrap
+
+// Include any default variable overrides here (though functions won’t be available)
+
+@import "bootstrap/scss/bootstrap";
+
+// Then add additional custom code here

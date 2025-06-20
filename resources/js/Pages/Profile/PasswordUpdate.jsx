@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { usePasswordUpdateMutation } from '@/Store/userApi';
 import ErrorAlert from '@/Components/ErrorAlert';
-import { Alert } from 'bootstrap';
 
 const PasswordUpdate = () => {
 
@@ -48,7 +47,7 @@ const PasswordUpdate = () => {
             alert.classList.add('show');
             alert.classList.remove('d-none');
             setTimeout(() => {
-                const bsAlert = new Alert(alert);
+                const bsAlert = new bootstrap.Alert(alert);
                 bsAlert.close();
             }, 3000);
         }
