@@ -64,25 +64,18 @@ export default function MainLayout() {
                             <span className="navbar-toggler-icon"></span>
                         </button>
                         <div className="collapse navbar-collapse" id="navbarContent">
-                            <form className="me-auto d-none d-sm-block" id="header-form-search" role="search" data-bs-theme={theme}>
-                                <input
-                                    className="form-control me-2 border rounded-5 py-0 ps-5 pe-2"
-                                    type="search"
-                                    placeholder="Type Something"
-                                    aria-label="Search"
-                                    id='header-search'
-                                    name="searchKeyword"
-                                />
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width={18}
-                                    height={18}
-                                    fill="currentColor"
-                                    className="bi bi-search"
-                                    viewBox="0 0 16 16"
-                                >
-                                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
-                                </svg>
+                            <form className="me-auto d-none d-sm-block" id="header-form-search" role="search">
+                                <div className="input-group">
+                                    <span className="input-group-text" id="inputGroup-sizing-default">
+                                        <i className="bi bi-search"></i>
+                                    </span>
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        aria-label="Sizing example input"
+                                        aria-describedby="inputGroup-sizing-default"
+                                    />
+                                </div>
                             </form>
                             <ul className="navbar-nav nav text-center text-sm-start">
                                 <li className="nav-item">
@@ -164,32 +157,32 @@ export default function MainLayout() {
                                     </ul>
                                 </li>
                             </ul>
-                                                            {
-                                    token && (
-                                        <div className="dropdown">
-                                            <a href="#" className="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                                                <img src="storage/images/avatar_dummy.jpg" className="rounded-circle" alt="..." width="32"/>
-                                            </a>
-                                            <ul className="dropdown-menu">
-                                                <li>
-                                                    <NavLink to={`${lang}/profile`} className="dropdown-item">
-                                                        Profilo
-                                                    </NavLink>
-                                                </li>
-                                                <li>
-                                                    <NavLink to={`${lang}/user-settings`} className="dropdown-item">
-                                                        Impostazioni
-                                                    </NavLink>
-                                                </li>
-                                                <li>
-                                                    <NavLink to="/logout" className="dropdown-item">
-                                                        Disconetti
-                                                    </NavLink>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    )
-                                }
+                            {
+                                token && (
+                                    <div className="dropdown">
+                                        <a href="#" className="link-body-emphasis dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <img src="storage/images/avatar_dummy.jpg" className="rounded-circle" alt="..." width="32" />
+                                        </a>
+                                        <ul className="dropdown-menu">
+                                            <li>
+                                                <NavLink to={`${lang}/profile`} className="dropdown-item">
+                                                    Profilo
+                                                </NavLink>
+                                            </li>
+                                            <li>
+                                                <NavLink to={`${lang}/user-settings`} className="dropdown-item">
+                                                    Impostazioni
+                                                </NavLink>
+                                            </li>
+                                            <li>
+                                                <NavLink to="/logout" className="dropdown-item">
+                                                    Disconetti
+                                                </NavLink>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                )
+                            }
                         </div>
                     </div>
                 </nav>

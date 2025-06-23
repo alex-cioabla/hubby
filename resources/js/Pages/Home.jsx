@@ -30,7 +30,7 @@ const Home = () => {
             </section>
             <section className="mt-5">
                 <div className="container-fluid p-4 rounded-4 bg-body-secondary">
-                    <div className="card text-center text-bg-light">
+                    <div className="card text-center">
                         <div className="card-body py-5">
                             <h5 className="card-title">Scarica l’App ufficiale di Subito.</h5>
                             <p className="card-text">

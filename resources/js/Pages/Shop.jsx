@@ -129,7 +129,7 @@ export const Shop = () => {
             </section>
             <section className="mt-5">
                 <div className="container-fluid p-4 rounded-4 bg-body-secondary">
-                    <div className="row align-items-center g-2">
+                    <div className="row align-items-center">
                         <div className="col-10 col-sm-8 col-lg-6">
                             <img
                                 src="storage/images/shop_dummy_2.jpg"

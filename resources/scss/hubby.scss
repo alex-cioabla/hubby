@@ -1,4 +1,6 @@
-$primary: #6358ED;
+$enable-negative-margins: true;
+
+$primary: #6EE2F5;
 
 $body-bg-dark: #1F2122;
 $body-tertiary-bg-dark: #27292a;
@@ -6,6 +8,7 @@ $body-tertiary-color-dark: #666;
 
 $btn-border-radius: 50rem;
 $btn-padding-x: 1rem;
+$input-group-addon-bg: #1F2122;
 // Custom.scss
 // Option A: Include all of Bootstrap
 
@@ -13,4 +16,17 @@ $btn-padding-x: 1rem;
 
 @import "bootstrap/scss/bootstrap";
 
-// Then add additional custom code here
+.input-group-text {
+  border-radius: 2rem;
+}
+
+.input-group > .form-control {
+    border-radius: 2rem;
+    border-left: none;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+    color: $primary;
+}
+
