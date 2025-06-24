@@ -110,7 +110,7 @@ const Login = () => {
                 <button className="btn btn-primary w-100 py-2" type="submit" disabled={isLoading}>
                     Accedi
                 </button>
-                <p className="mt-4 mb-3 text-body-secondary">© {new Date().getFullYear()} Hubby</p>
+                <p className="mt-4 mb-3 text-light">© {new Date().getFullYear()} Hubby</p>
             </form>
         </>
     )

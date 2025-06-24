@@ -13,7 +13,7 @@ export const Rank = () => {
                         <div className="col-sm-8 mb-3 mb-sm-0">
                             <div className="card p-4 border border-0 h-100 rounded-4">
                                 <div className="card-body">
-                                    <h2 className="card-title mb-3">Collezionisti</h2>
+                                    <h2 className="card-title mb-3 text-decoration-underline">Collezionisti</h2>
                                     <Swiper
                                         slidesPerView={3}
                                         spaceBetween={30}
@@ -45,12 +45,12 @@ export const Rank = () => {
                         <div className="col-sm-4">
                             <div className="card p-4 border border-0 h-100 rounded-4">
                                 <div className="card-body">
-                                    <h2 className="card-title mb-4">Top Collector's</h2>
+                                    <h2 className="card-title mb-4">Collezionisti <span className="text-decoration-underline">Top</span></h2>
                                     <ul className="ps-0">
                                         <li className="d-flex justify-content-between align-items-center pb-3 border-bottom">
                                             <span className="fw-bold">01</span>
                                             <img src="storage/images/avatar_dummy.jpg" className="img-thumbnail rounded-circle" alt="..." />
-                                            <i className="bi bi-check-circle-fill"> Nome profilo</i>
+                                            <i className="bi bi-check-circle-fill text-primary"> Nome profilo</i>
                                             <button type="button" className="btn btn-primary">
                                                 Follow
                                             </button>
@@ -65,7 +65,7 @@ export const Rank = () => {
             </section>
             <section className="mt-5">
                 <div className="container-fluid p-4 rounded-4 bg-body-secondary">
-                    <h2 className="mb-4">Categorie</h2>
+                    <h2 className="mb-4 text-decoration-underline">Collezioni</h2>
                     <div className="row mb-4">
                         <div className="col-12 col-sm-3">
                             <div className="card border border-0">
@@ -82,7 +82,7 @@ export const Rank = () => {
                             <div className="d-flex align-items-start mt-3">
                                 <img src="storage/images/avatar_dummy.jpg" className="img-thumbnail rounded-circle me-2" alt="..." />
                                 <div>
-                                    <i className="bi bi-check-circle-fill"> Nome profilo</i>
+                                    <i className="bi bi-check-circle-fill text-primary"> Nome profilo</i>
                                     <h5>La più bella collezione</h5>
                                 </div>
                             </div>

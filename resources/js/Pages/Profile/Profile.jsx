@@ -1,4 +1,5 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 export const Profile = () => {
 
@@ -15,29 +16,29 @@ export const Profile = () => {
                             <img src="storage/images/profile_dummy.jpg" className="img-fluid rounded-2" alt="..." />
                         </div>
                         <div className="col-12 col-sm-4">
-                            <button className="btn btn-primary">Offline</button>
+                            <h4><span class="badge text-bg-primary">Offline</span></h4>
                             <h4 className="mt-2">{user.name}</h4>
-                            <p> Non sei ancora andato live. Vai live toccando il pulsante qui sotto.</p>
-                            <button className="btn btn-outline-primary">Start</button>
+                            <p> Tocca il pulsante qui sotto per andare alle tue impostazioni profilo</p>
+                            <button className="btn btn-outline-primary">Impostazioni</button>
                         </div>
                         <div className="col-12 col-sm-4">
                             <div className="card">
                                 <div className="card-body">
                                     <ul className="list-group list-group-flush">
                                         <li className="list-group-item d-flex justify-content-between align-items-center border-bottom py-3">
-                                            <p className="mb-0">Giochi scaricati</p>
+                                            <p className="mb-0">Giochi inseriti</p>
                                             <span className="text-primary">3</span>
                                         </li>
                                         <li className="list-group-item d-flex justify-content-between align-items-center border-bottom py-3">
-                                            <p className="mb-0">Amici online</p>
+                                            <p className="mb-0">Categorie di cui fai parte</p>
                                             <span className="text-primary">3</span>
                                         </li>
                                         <li className="list-group-item d-flex justify-content-between align-items-center border-bottom py-3">
-                                            <p className="mb-0">Live streams</p>
+                                            <p className="mb-0">Amici</p>
                                             <span className="text-primary">3</span>
                                         </li>
                                         <li className="list-group-item d-flex justify-content-between align-items-center py-3">
-                                            <p className="mb-0">Clip</p>
+                                            <p className="mb-0">Seguiti</p>
                                             <span className="text-primary">3</span>
                                         </li>
                                     </ul>
@@ -49,21 +50,13 @@ export const Profile = () => {
             </section>
             <section className="mt-5">
                 <div className="container-fluid p-4 rounded-4 bg-body-secondary">
-                    <h2 className="mb-4">Le tue clip più popolari</h2>
+                    <h2 className="mb-4">I tuoi <span className="text-decoration-underline">annunci</span> più popolari</h2>
                     <div className="row row-cols-1 row-cols-md-4 g-4">
                         <div className="col">
                             <div className="card border border-0 h-100 rounded-4 bg-body-tertiary">
                                 <div className="card-body py-4 px-3">
                                     <img src="storage/images/console_category.jpg" className="card-img-top rounded-4" alt="..." />
-                                    <h6 className="card-title mt-3">Console</h6>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col">
-                            <div className="card border border-0 h-100 rounded-4 bg-body-tertiary">
-                                <div className="card-body py-4 px-3">
-                                    <img src="storage/images/console_category.jpg" className="card-img-top rounded-4" alt="..." />
-                                    <h6 className="card-title mt-3">Videogiochi</h6>
+                                    <h6 className="card-title mt-3">Crash Bandicoot</h6>
                                 </div>
                             </div>
                         </div>
@@ -99,36 +92,10 @@ export const Profile = () => {
 
                         </div>
                     </div>
-                    <div className="row gy-2 mb-4 mb-0">
-                        <div className="col-12 col-sm-2 text-center">
-                            <img src="storage/images/avatar_dummy.jpg" className="img-thumbnail rounded-2" alt="..." />
-
-                        </div>
-                        <div className="col-6 col-sm-2">
-                            <h5>Fortnite</h5>
-                            <p>Battle royale</p>
-                        </div>
-                        <div className="col-6 col-sm-2">
-                            <h5>Data</h5>
-                            <p>10/06/2025</p>
-                        </div>
-                        <div className="col-6 col-sm-2">
-                            <h5>Ore giocate</h5>
-                            <p>634 H 22 Mins</p>
-                        </div>
-                        <div className="col-6 col-sm-2">
-                            <h5>Stato</h5>
-                            <p>Scaricato</p>
-                        </div>
-                        <div className="col-12 col-sm-2 text-center">
-                            <button type="button" className="btn btn-outline-primary">Download</button>
-
-                        </div>
-                    </div>
                 </div>
                 <div className="row mt-n4">
                     <div className="col-12 text-center">
-                        <button type="button" className="btn btn-primary">Carica più contenuti</button>
+                        <Link to="/library" type="button" className="btn btn-primary">Libreria completa</Link>
                     </div>
                 </div>
             </section>

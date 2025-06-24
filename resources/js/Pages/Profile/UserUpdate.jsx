@@ -69,9 +69,9 @@ const UserUpdate = () => {
             <section>
                 <div className="row">
                     <div className="col-12 col-sm-6">
-                        <h2 className="fw-bolder fs-5 text-muted">
+                        <h4>
                             Informazioni profilo
-                        </h2>
+                        </h4>
 
                         <p className="mt-1 fw-bolder fs-6 text-muted">
                             Aggiorna le informazioni del tuo proflo e l'indirizzo email.
@@ -79,7 +79,7 @@ const UserUpdate = () => {
 
                         <form onSubmit={submit}>
                             <div className="mb-3">
-                                <label htmlFor="name">Nome</label>
+                                <label className="form-label" htmlFor="name">Nome</label>
                                 <input
                                     name="name"
                                     type="text"
@@ -94,7 +94,7 @@ const UserUpdate = () => {
                             </div>
 
                             <div className="mb-3">
-                                <label htmlFor="email">Indirizzo email</label>
+                                <label className="form-label" htmlFor="email">Indirizzo email</label>
 
                                 <input
                                     name="email"

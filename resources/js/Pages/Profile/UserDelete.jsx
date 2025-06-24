@@ -68,9 +68,9 @@ const UserDelete = () => {
             <div className="row">
                 <div className="col-12 col-sm-6">
                     <section>
-                        <h2 className="fw-bolder fs-5 text-muted">
+                        <h4>
                             Cancellazione account
-                        </h2>
+                        </h4>
 
                         <p className="mt-1 fw-bolder fs-6 text-muted">
                             Una volta che il tuo account è cancellato, tutte le tue risorse e dati
@@ -110,7 +110,7 @@ const UserDelete = () => {
                                                 saranno cancellati per sempre. Per favore inserisci la tua
                                                 password per confermare se vuoi cancellare per sempre il tuo account.
                                             </p>
-                                            <label htmlFor="password">Indirizzo email</label>
+                                            <label className="form-label" htmlFor="password">Indirizzo email</label>
 
                                             <input
                                                 name="passwordModal"

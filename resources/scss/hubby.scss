@@ -1,18 +1,30 @@
 $enable-negative-margins: true;
 
 $primary: #6EE2F5;
+$navbar-light-active-color: #6EE2F5;
+$navbar-light-hover-color: #6EE2F5;
+$primary-bg-subtle-dark: rgba($primary, 0.1) !default;
 
 $body-bg-dark: #1F2122;
+$body-secondary-bg-dark: #1f2122;
+$input-group-addon-bg: #1F2122;
+
 $body-tertiary-bg-dark: #27292a;
+
+$body-color-dark: #666;
 $body-tertiary-color-dark: #666;
+$input-color: #666;
+$navbar-light-color: #666;
+$dropdown-link-color: #666;
+$dropdown-link-active-color: #666;
+$input-placeholder-color: #666;
 
 $btn-border-radius: 50rem;
 $btn-padding-x: 1rem;
-$input-group-addon-bg: #1F2122;
-// Custom.scss
-// Option A: Include all of Bootstrap
 
-// Include any default variable overrides here (though functions won’t be available)
+$headings-color-dark: #fff;
+$form-label-color: #fff;
+$card-title-color: #fff;
 
 @import "bootstrap/scss/bootstrap";
 

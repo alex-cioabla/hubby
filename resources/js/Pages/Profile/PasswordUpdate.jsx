@@ -68,11 +68,11 @@ const PasswordUpdate = () => {
             <section>
                 <div className="row">
                     <div className="col-12 col-sm-6">
-                        <h2 className="fw-bolder fs-5 text-muted">
+                        <h4>
                             Aggiorna password
-                        </h2>
+                        </h4>
 
-                        <p className="mt-1 fs-5 text-muted">
+                        <p className="mt-1 fw-bolder fs-6 text-muted">
                             Assicurati che il tuo account utilizzi una password lunga, random per essere al sicuro.
                         </p>
 

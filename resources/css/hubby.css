@@ -10,7 +10,7 @@ body,
 }
 
 #banner {
-    background-image: url('http://localhost:8000/storage/images/home_background_1.jpeg');
+    background-image: url('http://localhost:8000/storage/images/home_background_1.jpg');
     background-position: center center;
     background-size: cover;
 }

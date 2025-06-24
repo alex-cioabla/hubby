@@ -85,11 +85,6 @@ export default function MainLayout() {
                                     </NavLink>
                                 </li>
                                 <li className="nav-item">
-                                    <NavLink to={`${lang}/library`} className={({ isActive }) => isActive ? "active nav-link" : "nav-link"}>
-                                        {translations.header.menu.library}
-                                    </NavLink>
-                                </li>
-                                <li className="nav-item">
                                     <NavLink to={`${lang}/rank`} className={({ isActive }) => isActive ? "active nav-link" : "nav-link"}>
                                         {translations.header.menu.rank}
                                     </NavLink>
@@ -197,19 +192,19 @@ export default function MainLayout() {
                             <a href="/" className="d-inline-block mb-2">
                                 <img src="storage/images/logo.png" alt="logo" className="" width="190" />
                             </a>
-                            <p className="text-body-secondary">Copyright © {new Date().getFullYear()} Hubby. All rights reserved.</p>
+                            <p className="text-light">Copyright © {new Date().getFullYear()} Hubby. All rights reserved.</p>
                         </div>
 
                         <div className="col mb-3 text-center text-sm-left">
                             <h5>Lingue</h5>
                             <ul className="nav flex-column">
                                 <li className="nav-item mb-2">
-                                    <a href="#" role="button" onClick={(e) => changeLanguage(e, 'it')} className="nav-link p-0 text-body-secondary">
+                                    <a href="#" role="button" onClick={(e) => changeLanguage(e, 'it')} className="nav-link p-0">
                                         Italiano
                                     </a>
                                 </li>
                                 <li className="nav-item mb-2">
-                                    <a href="#" role="button" onClick={(e) => changeLanguage(e, 'en')} className="nav-link p-0 text-body-secondary">
+                                    <a href="#" role="button" onClick={(e) => changeLanguage(e, 'en')} className="nav-link p-0">
                                         Inglese
                                     </a>
                                 </li>
@@ -217,17 +212,17 @@ export default function MainLayout() {
                         </div>
                         <ul className="col-md-4 list-unstyled d-flex justify-content-center justify-content-sm-end">
                             <li className="ms-3">
-                                <a className="text-body-secondary" href="#">
+                                <a href="#">
                                     <i className="bi bi-instagram" width={24} height={24}></i>
                                 </a>
                             </li>
                             <li className="ms-3">
-                                <a className="text-body-secondary" href="#">
+                                <a href="#">
                                     <i className="bi bi-facebook" width={24} height={24}></i>
                                 </a>
                             </li>
                             <li className="ms-3">
-                                <a className="text-body-secondary" href="#">
+                                <a href="#">
                                     <i className="bi bi-twitter" width={24} height={24}></i>
                                 </a>
                             </li>

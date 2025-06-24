@@ -75,28 +75,6 @@ export const Shop = () => {
                         <i className="bi bi-controller rounded-circle p-2 fs-2 d-inline-flex me-2 bg-primary-subtle"></i>
                         <h4 className="mb-0">Videogiochi</h4>
                     </button>
-                    {/* <div className="row g-3">
-                        <div className="col-12 col-sm-3">
-                            <div className="card card-clickable">
-                                <div className="card-body">
-                                    <div className="d-flex align-items-center justify-content-center">
-                                        <i className="bi bi-controller rounded-circle p-2 fs-2 d-inline-flex me-2 border bg-secondary"></i>
-                                        <h4>Videogiochi</h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-12 col-sm-3">
-                            <div className="card card-clickable">
-                                <div className="card-body">
-                                    <div className="d-flex align-items-center justify-content-center">
-                                        <i className="bi bi-controller rounded-circle p-2 fs-2 d-inline-flex me-2 border bg-secondary"></i>
-                                        <h4>Console</h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> */}
                 </div>
             </section>
             <section className="mt-5">
@@ -109,16 +87,16 @@ export const Shop = () => {
                                 </div>
                                 <div className="col-12 col-lg-8 d-sm-flex justify-content-sm-between align-items-sm-center">
                                     <div>
-                                        <h4> Comincia a guadagnare </h4>
+                                        <h3> Vendi su Hubby </h3>
                                         <p>
-                                            Dai al tuo usato una seconda occasione: vendi quello che non usi più, subito.
+                                            Vuoi vendere la parte o tutta la tua collezione ? Fallo direttamente qui.
                                         </p>
                                     </div>
                                     <button
                                         type="button"
-                                        className="btn btn-primary fw-bold"
+                                        className="btn btn-primary"
                                     >
-                                        <i className="bi bi-plus-square fw-bold"><span className="ps-2">Inserisci annuncio</span></i>
+                                        <i className="bi bi-plus-square"><span className="ps-2">Inserisci annuncio</span></i>
 
                                     </button>
                                 </div>
@@ -139,12 +117,12 @@ export const Shop = () => {
                             />
                         </div>
                         <div className="col-lg-6">
-                            <p className="text-primary">Hubby</p>
-                            <h4>
-                                Second hand: l'online conquista il mercato
-                            </h4>
+                            <p className="text-primary">Acquista su Hubby</p>
+                            <h3>
+                                Lo shop più specializzato per trovare l'oggetto da collezione che stai cercando
+                            </h3>
                             <p className="lead">
-                                L'economia dell'usato vale 27 miliardi
+                                Solo qui puoi trovare quello che cerchi
                             </p>
                         </div>
                     </div>
