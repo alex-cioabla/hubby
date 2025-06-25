@@ -2,8 +2,8 @@ import React from "react";
 import { createRoot } from 'react-dom/client';
 import { Provider } from "react-redux";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-
 import store from "@/store";
+
 import MainLayout from '@/Layouts/MainLayout.jsx';
 import BackendLayout from "@/Layouts/BackendLayout.jsx";
 
@@ -11,7 +11,6 @@ import PrivateRoute from "./Components/PrivateRoute";
 import VerifiedRoute from "./Components/VerifiedRoute";
 
 import Home from "./Pages/Home";
-import Library from "./Pages/Library";
 import Rank from "./Pages/Rank";
 import Shop from "./Pages/Shop";
 import Dashboard from "./Pages/Dashboard";
@@ -35,27 +34,26 @@ function App() {
             <Router>
                 <Routes>
                     <Route element={<MainLayout></MainLayout>}>
-                        <Route path=":lang?/" element={<Home />} />
-                        <Route path=":lang?/library" element={<Library />} />
-                        <Route path=":lang?/rank" element={<Rank />} />
-                        <Route path=":lang?/shop" element={<Shop />} />
-                        <Route path=":lang?/profile" element={<PrivateRoute><VerifiedRoute><Profile /></VerifiedRoute></PrivateRoute>}></Route>
-                        <Route path=":lang?/user-settings" element={<PrivateRoute><UserSettings/></PrivateRoute>}></Route>
+                        <Route path="/" element={<Home />} />
+                        <Route path="/rank" element={<Rank />} />
+                        <Route path="/shop" element={<Shop />} />
+                        <Route path="/profile" element={<PrivateRoute><VerifiedRoute><Profile /></VerifiedRoute></PrivateRoute>}></Route>
+                        <Route path="/user-settings" element={<PrivateRoute><UserSettings/></PrivateRoute>}></Route>
                     </Route>
                     <Route element={<BackendLayout></BackendLayout>}>
-                        <Route path=":lang?/dashboard" element={<PrivateRoute><Dashboard/></PrivateRoute>}></Route>
+                        <Route path="/dashboard" element={<PrivateRoute><Dashboard/></PrivateRoute>}></Route>
                     </Route>
                     <Route path="/logout" element={<Logout />} />
                     <Route element={<AuthenticationLayout></AuthenticationLayout>}>
-                        <Route path=":lang?/login" element={<Login />} />
-                        <Route path=":lang?/register" element={<Register />} />
-                        <Route path=":lang?/password-forgot" element={<PasswordForgot/>} />
-                        <Route path=":lang?/password-reset/:token" element={<PasswordReset/>} />
+                        <Route path="/login" element={<Login />} />
+                        <Route path="/register" element={<Register />} />
+                        <Route path="/password-forgot" element={<PasswordForgot/>} />
+                        <Route path="/password-reset/:token" element={<PasswordReset/>} />
 
-                        <Route path=":lang?/password-confirm" element={<PrivateRoute><PasswordConfirm/></PrivateRoute>}/>
-                        <Route path=":lang?/password-update" element={<PrivateRoute><PasswordUpdate/></PrivateRoute>}/>
-                        <Route path=":lang?/email-verification-request" element={<PrivateRoute><VerifiedRoute><EmailVerificationRequest /></VerifiedRoute></PrivateRoute>}></Route>
-                        <Route path=":lang?/email-verification-request/:id/:hash" element={<PrivateRoute><EmailVerificationRequest /></PrivateRoute>}></Route>
+                        <Route path="/password-confirm" element={<PrivateRoute><PasswordConfirm/></PrivateRoute>}/>
+                        <Route path="/password-update" element={<PrivateRoute><PasswordUpdate/></PrivateRoute>}/>
+                        <Route path="/email-verification-request" element={<PrivateRoute><VerifiedRoute><EmailVerificationRequest /></VerifiedRoute></PrivateRoute>}></Route>
+                        <Route path="/email-verification-request/:id/:hash" element={<PrivateRoute><EmailVerificationRequest /></PrivateRoute>}></Route>
                     </Route>
                 </Routes>
             </Router>

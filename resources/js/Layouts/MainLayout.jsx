@@ -1,17 +1,28 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
-import { NavLink, useParams, useNavigate, Outlet, useLocation } from 'react-router-dom';
+import { NavLink, useParams, useNavigate, Outlet } from 'react-router-dom';
 
-import { fetchTranslations } from "@/Store/translationSlice";
+// import { fetchTranslations } from "@/Store/translationSlice";
 import { setTheme } from '@/Store/themeSlice';
 import Preloader from '@/Components/Preloader';
 
 export default function MainLayout() {
 
-    const { translations, locale } = useSelector((state) => state.localization);
-    let { lang } = useParams();
+    const token = useSelector(state => state.auth.token);
 
-    lang = lang === locale ? lang : '';
+    // const { translations, locale } = useSelector((state) => state.localization);
+    // let { lang } = useParams();
+    // lang = lang === locale ? lang : '';
+
+    // const navigate = useNavigate();
+    // const dispatch = useDispatch();
+    // const changeLanguage = (event, language) => {
+    //     event.preventDefault();
+    //     if (language !== locale) {
+    //         navigate(`/${language}`);
+    //         dispatch(fetchTranslations(language));
+    //     }
+    // };
 
     const dispatchTheme = useDispatch();
     const theme = useSelector(state => state.theme.value);
@@ -19,19 +30,6 @@ export default function MainLayout() {
     const toggleTheme = (newTheme) => {
         dispatchTheme(setTheme(newTheme));
     }
-
-    const navigate = useNavigate();
-    const dispatch = useDispatch();
-    const changeLanguage = (event, language) => {
-        event.preventDefault();
-        if (language !== locale) {
-            navigate(`/${language}`);
-            dispatch(fetchTranslations(language));
-        }
-    };
-
-    const token = useSelector(state => state.auth.token);
-    const location = useLocation();
 
     useEffect(() => {
 
@@ -64,43 +62,45 @@ export default function MainLayout() {
                             <span className="navbar-toggler-icon"></span>
                         </button>
                         <div className="collapse navbar-collapse" id="navbarContent">
-                            <form className="me-auto d-none d-sm-block" id="header-form-search" role="search">
-                                <div className="input-group">
-                                    <span className="input-group-text" id="inputGroup-sizing-default">
-                                        <i className="bi bi-search"></i>
-                                    </span>
-                                    <input
-                                        type="text"
-                                        className="form-control"
-                                        aria-label="Sizing example input"
-                                        aria-describedby="inputGroup-sizing-default"
-                                    />
-                                </div>
-                            </form>
+                            <search className="me-auto d-none d-sm-block">
+                                <form id="header-form-search" role="search">
+                                    <div className="input-group">
+                                        <span className="input-group-text" id="inputGroup-sizing-default">
+                                            <i className="bi bi-search"></i>
+                                        </span>
+                                        <input
+                                            type="text"
+                                            className="form-control"
+                                            aria-label="Sizing example input"
+                                            aria-describedby="inputGroup-sizing-default"
+                                        />
+                                    </div>
+                                </form>
+                            </search>
                             <ul className="navbar-nav nav text-center text-sm-start">
                                 <li className="nav-item">
                                     <NavLink className={({ isActive }) => isActive ? "active nav-link" : "nav-link"}
-                                        to={`${lang}/`} end>
-                                        {translations.header.menu.home}
+                                        to={`/`} end>
+                                        Home
                                     </NavLink>
                                 </li>
                                 <li className="nav-item">
-                                    <NavLink to={`${lang}/rank`} className={({ isActive }) => isActive ? "active nav-link" : "nav-link"}>
-                                        {translations.header.menu.rank}
+                                    <NavLink to={`/rank`} className={({ isActive }) => isActive ? "active nav-link" : "nav-link"}>
+                                        Classifica
                                     </NavLink>
                                 </li>
                                 <li className="nav-item">
-                                    <NavLink to={`${lang}/shop`} className={({ isActive }) => isActive ? "active nav-link" : "nav-link"}>
-                                        {translations.header.menu.shop}
+                                    <NavLink to={`/shop`} className={({ isActive }) => isActive ? "active nav-link" : "nav-link"}>
+                                        Negozio
                                     </NavLink>
                                 </li>
                                 {
                                     !token && (<>
                                         <li className="nav-item">
-                                            <NavLink to={`${lang}/login`} className="btn btn-primary me-2">{translations.header.buttons.login}</NavLink>
+                                            <NavLink to={`/login`} className="btn btn-primary me-2">Accedi</NavLink>
                                         </li>
                                         <li className="nav-item">
-                                            <NavLink to={`${lang}/register`} className="btn btn-primary">{translations.header.buttons.register}</NavLink>
+                                            <NavLink to={`/register`} className="btn btn-primary">Registrati</NavLink>
                                         </li>
                                     </>
                                     )
@@ -160,7 +160,7 @@ export default function MainLayout() {
                                         </a>
                                         <ul className="dropdown-menu">
                                             <li>
-                                                <NavLink to={`${lang}/profile`} className="dropdown-item">
+                                                <NavLink to={`/profile`} className="dropdown-item">
                                                     Profilo
                                                 </NavLink>
                                             </li>
@@ -195,7 +195,7 @@ export default function MainLayout() {
                             <p className="text-light">Copyright © {new Date().getFullYear()} Hubby. All rights reserved.</p>
                         </div>
 
-                        <div className="col mb-3 text-center text-sm-left">
+                        {/* <div className="col mb-3 text-center text-sm-left">
                             <h5>Lingue</h5>
                             <ul className="nav flex-column">
                                 <li className="nav-item mb-2">
@@ -209,7 +209,7 @@ export default function MainLayout() {
                                     </a>
                                 </li>
                             </ul>
-                        </div>
+                        </div> */}
                         <ul className="col-md-4 list-unstyled d-flex justify-content-center justify-content-sm-end">
                             <li className="ms-3">
                                 <a href="#">

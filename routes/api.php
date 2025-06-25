@@ -2,18 +2,18 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\App;
-use App\Facades\HubbyLang;
+// use Illuminate\Support\Facades\App;
+// use App\Facades\HubbyLang;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\EmailController;
 
-Route::get('translations/{locale}', function ($locale) {
+// Route::get('translations/{locale}', function ($locale) {
 
-    App::setLocale($locale);
-    return response()->json(['translations' => HubbyLang::getAllTrans(), 'locale' => App::getLocale()]);
-});
+//     App::setLocale($locale);
+//     return response()->json(['translations' => HubbyLang::getAllTrans(), 'locale' => App::getLocale()]);
+// });
 
 Route::middleware('guest')->group(function () {
     Route::post('register', [RegisterController::class, 'store']);
