@@ -1,0 +1,159 @@
+1. Esempio di file React: App.jsx
+
+import React, { useEffect } from "react";
+import { createRoot } from 'react-dom/client';
+import { Provider, useDispatch, useSelector } from "react-redux";
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import store from "./store";
+import Home from "./Pages/Home";
+import Dashboard from "./Pages/Dashboard";
+import Login from "./Pages/Auth/Login";
+import Register from "./Pages/Auth/Register";
+import { fetchUser } from "./store/authSlice";
+
+function PrivateRoute({ children }) {
+    const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
+    if (!isAuthenticated) {
+        return <Navigate to="/login" />;
+    }
+    return children;
+}
+
+function App() {
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(fetchUser());
+    }, [dispatch]);
+
+    return (
+        <Router>
+            <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
+                <Route path="/dashboard" element={
+                    <PrivateRoute>
+                        <Dashboard />
+                    </PrivateRoute>
+                } />
+            </Routes>
+        </Router>
+    );
+}
+
+const container = document.getElementById('root');
+const root = createRoot(container);
+
+root.render(
+    <Provider store={store}>
+        <App />
+    </Provider>
+);
+
+2. Esempio di Redux Slice: store/authSlice.js
+
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+
+export const fetchUser = createAsyncThunk('auth/fetchUser', async () => {
+    const res = await fetch('/api/user', { credentials: 'include' });
+    if (!res.ok) throw new Error('Not authenticated');
+    return await res.json();
+});
+
+const authSlice = createSlice({
+    name: 'auth',
+    initialState: { user: null, isAuthenticated: false },
+    reducers: {
+        logout(state) {
+            state.user = null;
+            state.isAuthenticated = false;
+        }
+    },
+    extraReducers: builder => {
+        builder
+            .addCase(fetchUser.fulfilled, (state, action) => {
+                state.user = action.payload;
+                state.isAuthenticated = true;
+            })
+            .addCase(fetchUser.rejected, (state) => {
+                state.user = null;
+                state.isAuthenticated = false;
+            });
+    }
+});
+
+export const { logout } = authSlice.actions;
+export default authSlice.reducer;
+
+3. Esempio di Login: Pages/Auth/Login.jsx
+
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { fetchUser } from "../../store/authSlice";
+import { useNavigate } from "react-router-dom";
+
+export default function Login() {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [error, setError] = useState("");
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setError("");
+        const res = await fetch('/api/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            credentials: 'include',
+            body: JSON.stringify({ email, password })
+        });
+        if (res.ok) {
+            await dispatch(fetchUser());
+            navigate("/dashboard");
+        } else {
+            setError("Credenziali non valide");
+        }
+    };
+
+    return (
+        <form onSubmit={handleSubmit}>
+            <input value={email} onChange={e => setEmail(e.target.value)} placeholder="Email" />
+            <input type="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="Password" />
+            <button type="submit">Login</button>
+            {error && <div>{error}</div>}
+        </form>
+    );
+}
+
+4. Esempio di backend Laravel (API):
+
+<?php
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+
+Route::post('/login', [AuthController::class, 'login']);
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return $request->user();
+});
+
+AuthController.php
+
+<?php
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
+class AuthController extends Controller
+{
+    public function login(Request $request)
+    {
+        $credentials = $request->only('email', 'password');
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+            return response()->json(Auth::user());
+        }
+        return response()->json(['error' => 'Unauthorized'], 401);
+    }
+}
