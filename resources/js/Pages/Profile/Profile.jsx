@@ -13,10 +13,10 @@ export const Profile = () => {
                 <div className="container-fluid p-4 rounded-4 bg-body-secondary">
                     <div className="row align-items-center g-3">
                         <div className="col-12 col-sm-4">
-                            <img src="storage/images/profile_dummy.jpg" className="img-fluid rounded-2" alt="..." />
+                            <img src="/storage/images/profile_dummy.jpg" className="img-fluid rounded-2" alt="..." />
                         </div>
                         <div className="col-12 col-sm-4">
-                            <h4><span class="badge text-bg-primary">Offline</span></h4>
+                            <h4><span className="badge text-bg-primary">Offline</span></h4>
                             <h4 className="mt-2">{user.name}</h4>
                             <p> Tocca il pulsante qui sotto per andare alle tue impostazioni profilo</p>
                             <button className="btn btn-outline-primary">Impostazioni</button>
@@ -55,7 +55,7 @@ export const Profile = () => {
                         <div className="col">
                             <div className="card border border-0 h-100 rounded-4 bg-body-tertiary">
                                 <div className="card-body py-4 px-3">
-                                    <img src="storage/images/console_category.jpg" className="card-img-top rounded-4" alt="..." />
+                                    <img src="/storage/images/console_category.jpg" className="card-img-top rounded-4" alt="..." />
                                     <h6 className="card-title mt-3">Crash Bandicoot</h6>
                                 </div>
                             </div>
@@ -68,7 +68,7 @@ export const Profile = () => {
                     <h2 className="mb-4">La tua libreria</h2>
                     <div className="row gy-2 mb-4 mb-0">
                         <div className="col-12 col-sm-2 text-center">
-                            <img src="storage/images/avatar_dummy.jpg" className="img-thumbnail rounded-2" alt="..." />
+                            <img src="/storage/images/avatar_dummy.jpg" className="img-thumbnail rounded-2" alt="..." />
 
                         </div>
                         <div className="col-6 col-sm-2">

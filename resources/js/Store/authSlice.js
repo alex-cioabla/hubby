@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { fetchSession } from "./authThunk";
 
-const initialState = (() => {
+/* const initialState = (() => {
 
     let init = {
         token: null,
@@ -69,5 +70,51 @@ const authSlice = createSlice({
 
 const { actions, reducer } = authSlice;
 export const { setSession, removeSession, updateSession, setStatus, setEmailVerifiedAt } = actions;
-export default reducer;
+export default reducer; */
 
+const authSlice = createSlice({
+    name: 'auth',
+    initialState: {
+        user: null,
+        status: null,
+        error: null,
+        loading: false
+    },
+    reducers: {
+        setUser: (state, action) => {
+            state.user = action.payload;
+        },
+        removeSession: (state) => {
+            state.user = null;
+            state.status = null;
+        },
+        setStatus: (state, action) => {
+            state.status = action.payload;
+        }
+    },
+    extraReducers: builder => {
+        builder
+            .addCase(fetchSession.pending, (state) => {
+                state.error = null;
+                state.loading = true;
+            })
+            .addCase(fetchSession.fulfilled, (state, action) => {
+                state.user = action.payload.user;
+                state.status = action.payload.status;
+                state.error = null;
+                state.loading = false;
+            })
+            .addCase(fetchSession.rejected, (state, action) => {
+                state.user = null;
+                state.status = null;
+                state.error = action.payload;
+                state.loading = false;
+            }
+        )
+    }
+});
+
+export { fetchSession };
+const { actions, reducer } = authSlice;
+export const { setUser, removeSession, setStatus } = actions;
+export default reducer;

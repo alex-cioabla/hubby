@@ -24,7 +24,7 @@ export const Rank = () => {
                                     >
                                         <SwiperSlide>
                                             <div className="card border border-0">
-                                                <img src="storage/images/carousel_dummy.jpg" className="card-img  rounded-4" alt="carousel_pic" />
+                                                <img src="/storage/images/carousel_dummy.jpg" className="card-img  rounded-4" alt="carousel_pic" />
                                                 <div className="card-img-overlay d-flex justify-content-center align-items-end">
                                                     <h4><span className="badge bg-body-tertiary text-primary rounded-pill title-animated">2.4K Library</span></h4>
                                                 </div>
@@ -49,7 +49,7 @@ export const Rank = () => {
                                     <ul className="ps-0">
                                         <li className="d-flex justify-content-between align-items-center pb-3 border-bottom">
                                             <span className="fw-bold">01</span>
-                                            <img src="storage/images/avatar_dummy.jpg" className="img-thumbnail rounded-circle" alt="..." />
+                                            <img src="/storage/images/avatar_dummy.jpg" className="img-thumbnail rounded-circle" alt="..." />
                                             <i className="bi bi-check-circle-fill text-primary"> Nome profilo</i>
                                             <button type="button" className="btn btn-primary">
                                                 Follow
@@ -69,7 +69,7 @@ export const Rank = () => {
                     <div className="row mb-4">
                         <div className="col-12 col-sm-3">
                             <div className="card border border-0">
-                                <img src="storage/images/rank_dummy.jpg" className="card-img" alt="..." />
+                                <img src="/storage/images/rank_dummy.jpg" className="card-img" alt="..." />
                                 <div className="card-img-overlay d-flex flex-column ">
                                     <p className="mb-auto align-self-end"><span className="badge rounded-pill text-bg-primary bagde-animated">Online</span></p>
                                     <p className="align-self-center">
@@ -80,7 +80,7 @@ export const Rank = () => {
                                 </div>
                             </div>
                             <div className="d-flex align-items-start mt-3">
-                                <img src="storage/images/avatar_dummy.jpg" className="img-thumbnail rounded-circle me-2" alt="..." />
+                                <img src="/storage/images/avatar_dummy.jpg" className="img-thumbnail rounded-circle me-2" alt="..." />
                                 <div>
                                     <i className="bi bi-check-circle-fill text-primary"> Nome profilo</i>
                                     <h5>La più bella collezione</h5>

@@ -10,9 +10,19 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\View\View;
 
 class RegisterController extends Controller
 {
+    /**
+     * Display the registration view.
+     */
+    public function index(): View
+    {
+        return view('app');
+    }
+
     /**
      * Handle an incoming registration request.
      *
@@ -38,17 +48,12 @@ class RegisterController extends Controller
         event(new Registered($user));
         //(fa partire l'azione di notifica via email della registrazione avvenuta)
 
-        $token = $user->createToken('PAT', ['*'], now()->addWeek());
+        Auth::login($user);
+        $request->session()->regenerate();
 
         return response()->json([
-            'token' => $token->plainTextToken,
-            'expires_at' => $token->accessToken->expires_at,
-            'must_verify_email' => $user instanceof MustVerifyEmail,
-            'user' => [
-                'name' => $user->name,
-                'email' => $user->email,
-                'email_verified_at' => $user->email_verified_at
-            ]
+            'user' => Auth::user(),
+            'status' => session('status')
         ]);
     }
 }

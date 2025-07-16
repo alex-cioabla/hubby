@@ -1,18 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 
 import ErrorAlert from '@/Components/ErrorAlert';
 import { useLoginMutation } from '@/Store/authApi';
-import { setSession } from '@/Store/authSlice';
+import { fetchSession } from '@/Store/authSlice';
 
 const Login = () => {
 
-    const [login, { data, isLoading }] = useLoginMutation();
+    const [login, { isSuccess, isLoading }] = useLoginMutation();
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const status = useSelector((state) => state.auth.status);
-    const [response, setResponse] = useState('');
+    const [message, setMessage] = useState('');
 
     const [fields, setFields] = useState({
         email: '',
@@ -22,12 +22,35 @@ const Login = () => {
 
     useEffect(() => {
 
-        if (data) { //(DA VERIFICARE)
-            dispatch(setSession(data));
-            document.getElementById('floatingPassword').value = '';
-            navigate('/profile');
+        if (isSuccess) {
+            dispatch(fetchSession())
+                .unwrap()
+                .then(() => {
+                    document.getElementById('floatingPassword').value = '';
+                    navigate('/user/profile');
+                })
+                .catch((error) => {
+                    // Tutti  gli errori di rejectWithValue finiscono qui
+                    console.error('Errore fetchSession:', error);
+
+                    if (error.status === 401) {
+                        setMessage('Sessione scaduta, effettua nuovamente il login');
+                    } else if (error.type === 'NETWORK_ERROR') {
+                        setMessage('Errore di connessione. Controlla la rete.');
+                    } else if (error.status >= 500) {
+                        setMessage('Errore del server. Riprova più tardi.');
+                    } else {
+                        setMessage(error.message || 'Errore nel caricamento della sessione');
+                    }
+                });
         }
-    }, [data]);
+
+        //OPPURE
+        // if (error && error.status !== 401) {
+        //     setMessage(error.data?.message || 'Errore durante il login');
+        // }
+
+    }, [isSuccess, status]);
 
     const handleChange = (e) => {
         const { name, value, type, checked } = e.target;
@@ -38,14 +61,27 @@ const Login = () => {
     };
 
     const submit = async (e) => {
-
         e.preventDefault();
 
-        try {
-            await login(fields).unwrap();
-        } catch (responseError) {
-            setResponse(responseError.data.message);
+        setMessage('');
+        const result = await login(fields);
+
+        if (result.error) { //result.error = [{ error }] di useLoginMutation;
+            if (result.error.status === 401) {
+                setMessage('Credenziali non valide');
+            } else if (result.error.status === 'FETCH_ERROR') {
+                setMessage('Errore di connessione. Riprova.');
+            } else {
+                setMessage(result.error.data?.message || 'Errore durante il login');
+            }
         }
+
+        //OPPURE
+        // if (result.error) {
+        //     if (result.error.status === 401) {
+        //         setMessage('Credenziali non valide');
+        //     }
+        // }
     };
 
     return (
@@ -56,7 +92,7 @@ const Login = () => {
                 </div>
             )}
             <a href="/" className="mb-3">
-                <img src="storage/images/logo.png" alt="logo" className="" width="190" />
+                <img src="/storage/images/logo.png" alt="logo" className="" width="190" />
             </a>
             <form onSubmit={submit}>
                 <div className="form-floating mb-3">
@@ -97,7 +133,7 @@ const Login = () => {
                         Ricordami
                     </label>
                 </div>
-                <ErrorAlert messages={(response ? [response] : [])} className="mt-2" />
+                <ErrorAlert messages={(message ? [message] : [])} className="mt-2" />
                 <p>
                     {appConfig.canResetPassword && (
                         <Link

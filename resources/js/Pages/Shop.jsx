@@ -83,7 +83,7 @@ export const Shop = () => {
                         <div className="card-body">
                             <div className="row g-2">
                                 <div className="col-12 col-lg-4">
-                                    <img src="storage/images/shop_dummy_1.jpg" className="img-thumbnail" alt="..." />
+                                    <img src="/storage/images/shop_dummy_1.jpg" className="img-thumbnail" alt="..." />
                                 </div>
                                 <div className="col-12 col-lg-8 d-sm-flex justify-content-sm-between align-items-sm-center">
                                     <div>
@@ -110,7 +110,7 @@ export const Shop = () => {
                     <div className="row align-items-center">
                         <div className="col-10 col-sm-8 col-lg-6">
                             <img
-                                src="storage/images/shop_dummy_2.jpg"
+                                src="/storage/images/shop_dummy_2.jpg"
                                 className="img-fluid"
                                 alt="Bootstrap Themes"
                                 loading="lazy"

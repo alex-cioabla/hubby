@@ -8,7 +8,7 @@ import { useDispatch } from "react-redux";
 const UserDelete = () => {
 
     const password = useRef('');
-    const [userDelete, { data, reset, error, isLoading }] = useUserDeleteMutation();
+    const [userDelete, { data, reset, error, isLoading, isSuccess }] = useUserDeleteMutation();
 
     const passwordErrors = error?.data?.errors?.password ?? [];
     const navigate = useNavigate();
@@ -33,18 +33,12 @@ const UserDelete = () => {
         }
     }, []);
 
-    const submit = (e) => {
-        e.preventDefault();
-
-        userDelete({ password: password.current.value })
-    };
-
     useEffect(() => {
 
         password.current.focus();
         history.scrollRestoration = 'auto';
 
-        if (data) {
+        if (isSuccess) {
             //onSuccess: () => closeModal() (DA VERIFICARE)
             dispatch(removeSession());
             navigate('/');
@@ -52,16 +46,22 @@ const UserDelete = () => {
         if (error) {
             password.current.focus();
         }
-        if (data || error) {
-            reset();
-            password.current.value = '';
-        }
+        // if (isSuccess || error) {
+        //     reset();
+        //     password.current.value = '';
+        // }
 
         return () => {
             history.scrollRestoration = 'manual';
         };
 
-    }, [data, error]);
+    }, [isSuccess]);
+
+    const submit = (e) => {
+        e.preventDefault();
+
+        userDelete({ password: password.current.value })
+    };
 
     return (
         <div className="container mt-4 p-5 rounded-4 bg-body-tertiary">

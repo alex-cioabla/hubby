@@ -1,35 +1,48 @@
-import { useEffect } from 'react';
-import { useSearchParams, useNavigate } from 'react-router-dom';
-import { useSelector, useDispatch } from "react-redux";
-import { setEmailVerifiedAt } from '@/Store/authSlice';
+import { useState, useEffect } from 'react';
+import { Navigate } from 'react-router-dom';
+import Preloader from '@/Components/Preloader';
 
 const VerifiedRoute = (props) => {
 
-    const { user } = useSelector(state => state.auth);
-    const [searchParams] = useSearchParams();
-    const verified_url_param = searchParams.get('verified');
-    const email_verified_at = new Date(user.email_verified_at);
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
+    const [verified, setVerified] = useState(null);
 
-    useEffect(() => {
+        useEffect(() => {
+            fetch('http://localhost:8000/verified', {
+                method: 'GET',
+                credentials: 'include',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                }
+            })
+            .then(response => {
+                if (response.status === '200') {
+                    return response.json();
+                }
+                if (response.status === '401') {
+                    return false;
+                }
+            })
+            .then(data => {
+                setVerified(data);
+            })
+            .catch(error => {
+                console.error('Auth check failed:', error);
+                setVerified(false);
+            });
+    }, []);
 
-        if (verified_url_param) {
-            const newUrl = window.location.pathname;
-            window.history.replaceState(null, '', newUrl);
-            const newDate = new Date();
-            dispatch(setEmailVerifiedAt(newDate));
+    if (verified === null) {
+        return (
+            <Preloader show={true} />
+        );
+    }
 
-            navigate('/profile');
-        }
+    if (!verified) {
+        return <Navigate to="/email-verification-request" replace />;
+    }
 
-        if (!user.email_verified_at || isNaN(email_verified_at.getTime())) {
-
-            navigate('/email-verification-request');
-        }
-    }, [verified_url_param, dispatch]);
-
-    return (props.children);
-}
+    return props.children;
+};
 
 export default VerifiedRoute;

@@ -7,17 +7,29 @@ import { removeSession } from '@/Store/authSlice';
 
 const Logout = () => {
 
-    const [logout] = useLogoutMutation();
+    const [logout, { isSuccess }] = useLogoutMutation();
     const navigate = useNavigate();
 
     const dispatch = useDispatch();
 
     useEffect(() => {
-      logout();
-      dispatch(removeSession());
 
-      navigate('/');
-    }, [])
+        if (isSuccess) {
+            try {
+                dispatch(removeSession());
+                navigate('/');
+            } catch (error) {
+                console.error('Errore removeSession:', error);
+            }
+        }
+    }, [isSuccess, dispatch, navigate]);
+
+    useEffect(() => {
+        logout();
+    }, []);
+
+
+    return null;
 }
 
 export default Logout;

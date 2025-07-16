@@ -11,7 +11,7 @@ const Home = () => {
                     <div className="container-fluid py-5 text-center text-sm-start">
                         <p className="lead text-light">Benvenuto su Hubby</p>
                         <h1 className="display-5 fw-bold mb-3 text-uppercase">The <span className="text-primary">collector</span>'s <br/> hub</h1>
-                        <Link to="/profile" className="btn btn-primary" role="button">Crea il tuo Hubby</Link>
+                        <Link to="/user/profile" className="btn btn-primary" role="button">Crea il tuo Hubby</Link>
                     </div>
                 </div>
             </section>
@@ -22,7 +22,7 @@ const Home = () => {
                         <div className="col">
                             <div className="card border border-0 h-100 rounded-4 bg-body-tertiary">
                                 <div className="card-body py-4 px-3">
-                                    <img src="storage/images/console_category.jpg" className="card-img-top rounded-4" alt="..." />
+                                    <img src="/storage/images/console_category.jpg" className="card-img-top rounded-4" alt="..." />
                                     <h5 className="card-title mt-3">Console</h5>
                                     <p className="text-body-tertiary">Playstation 1</p>
                                 </div>

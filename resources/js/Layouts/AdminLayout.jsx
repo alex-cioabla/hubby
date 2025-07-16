@@ -1,6 +1,6 @@
 import { NavLink, Link, Outlet} from 'react-router-dom';
 
-export default function BackendLayout() {
+export default function AdminLayout() {
 
     return (
         <>
@@ -81,7 +81,7 @@ export default function BackendLayout() {
                                 <hr className="my-3" />
                                 <ul className="nav flex-column mb-auto">
                                     <li className="nav-item">
-                                        <NavLink className="nav-link d-flex align-items-center gap-2" to="/profile">
+                                        <NavLink className="nav-link d-flex align-items-center gap-2" to="/user/profile">
                                             <i className="bi bi-person-fill"></i>
                                             Profilo
                                         </NavLink>

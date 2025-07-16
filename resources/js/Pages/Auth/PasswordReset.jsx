@@ -15,12 +15,27 @@ export default function PasswordReset() {
     const recover_email = searchParams.get('email');
     const status = useSelector((state) => state.auth.status);
 
+    const emailErrors = error?.data?.errors?.email ?? [];
+    const passwordErrors = error?.data?.errors?.password ?? [];
+    const passwordConfirmationErrors = error?.data?.errors?.password_confirmation ?? [];
+
     const [fields, setFields] = useState({
         email: recover_email,
         password: '',
         password_confirmation: '',
         token: token
     });
+
+    useEffect(() => {
+
+        if (isSuccess) {
+            dispatch(setStatus(data.status));
+            document.getElementById('floatingPassword').value = '';
+            document.getElementById('floatingPasswordConfirmation').value = '';
+            navigate('/login');
+        }
+
+    }, [isSuccess]);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -35,19 +50,6 @@ export default function PasswordReset() {
 
         passwordReset(fields);
     };
-
-    useEffect(() => {
-        if (data) {
-            dispatch(setStatus(data.status));
-            document.getElementById('floatingPassword').value = '';
-            document.getElementById('floatingPasswordConfirmation').value = '';
-            navigate('/login');
-        }
-    }, [data]);
-
-    const emailErrors = error?.data?.errors?.email ?? [];
-    const passwordErrors = error?.data?.errors?.password ?? [];
-    const passwordConfirmationErrors = error?.data?.errors?.password_confirmation ?? [];
 
     return (
         <>

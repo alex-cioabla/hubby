@@ -6,10 +6,9 @@ import { NavLink, useParams, useNavigate, Outlet } from 'react-router-dom';
 import { setTheme } from '@/Store/themeSlice';
 import Preloader from '@/Components/Preloader';
 
-export default function MainLayout() {
+export default function ThemeLayout() {
 
-    const token = useSelector(state => state.auth.token);
-
+    const user = useSelector(state => state.auth.user);
     // const { translations, locale } = useSelector((state) => state.localization);
     // let { lang } = useParams();
     // lang = lang === locale ? lang : '';
@@ -55,7 +54,7 @@ export default function MainLayout() {
                 <nav className="navbar navbar-expand-lg py-4">
                     <div className="container">
                         <a href="/">
-                            <img src="storage/images/logo.png" alt="logo" className="" width="190" />
+                            <img src="/storage/images/logo.png" alt="logo" className="" width="190" />
                         </a>
                         <div className="vr mx-4"></div>
                         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -95,7 +94,7 @@ export default function MainLayout() {
                                     </NavLink>
                                 </li>
                                 {
-                                    !token && (<>
+                                    !user && (<>
                                         <li className="nav-item">
                                             <NavLink to={`/login`} className="btn btn-primary me-2">Accedi</NavLink>
                                         </li>
@@ -153,19 +152,19 @@ export default function MainLayout() {
                                 </li>
                             </ul>
                             {
-                                token && (
+                                user && (
                                     <div className="dropdown">
                                         <a href="#" className="link-body-emphasis dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <img src="storage/images/avatar_dummy.jpg" className="rounded-circle" alt="..." width="32" />
+                                            <img src="/storage/images/avatar_dummy.jpg" className="rounded-circle" alt="..." width="32" />
                                         </a>
                                         <ul className="dropdown-menu">
                                             <li>
-                                                <NavLink to={`/profile`} className="dropdown-item">
+                                                <NavLink to={`user/profile`} className="dropdown-item">
                                                     Profilo
                                                 </NavLink>
                                             </li>
                                             <li>
-                                                <NavLink to={`${lang}/user-settings`} className="dropdown-item">
+                                                <NavLink to={`user/settings`} className="dropdown-item">
                                                     Impostazioni
                                                 </NavLink>
                                             </li>
@@ -190,7 +189,7 @@ export default function MainLayout() {
                     <div className="row flex-wrap justify-content-between align-items-center">
                         <div className="col-md-4 text-center text-sm-start">
                             <a href="/" className="d-inline-block mb-2">
-                                <img src="storage/images/logo.png" alt="logo" className="" width="190" />
+                                <img src="/storage/images/logo.png" alt="logo" className="" width="190" />
                             </a>
                             <p className="text-light">Copyright © {new Date().getFullYear()} Hubby. All rights reserved.</p>
                         </div>

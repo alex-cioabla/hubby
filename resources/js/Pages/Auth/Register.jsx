@@ -4,13 +4,13 @@ import { useDispatch } from "react-redux";
 
 import ErrorAlert from '@/Components/ErrorAlert';
 import { useRegisterMutation } from '@/Store/authApi';
-import { setSession } from '@/Store/authSlice';
+import { fetchSession } from '@/Store/authSlice';
 
 const Register = () => {
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const [register, { data, error, isLoading }] = useRegisterMutation();
+    const [register, { data, error, isLoading, isSuccess }] = useRegisterMutation();
 
     const nameErrors = error?.data?.errors?.name ?? [];
     const emailErrors = error?.data?.errors?.email ?? [];
@@ -27,13 +27,20 @@ const Register = () => {
     useEffect(() => {
         document.getElementById('name').focus();
 
-        if (data) { //(DA VERIFICARE)
-            dispatch(setSession(data));
-            document.getElementById('password').value = '';
-            document.getElementById('password_confirmation').value = '';
-            navigate('/email-verification-request');
+        if (isSuccess) {
+            dispatch(fetchSession())
+                .unwrap()
+                .then(() => {
+                    document.getElementById('password').value = '';
+                    document.getElementById('password_confirmation').value = '';
+                    navigate('/email-verification-request');
+                })
+                .catch((error) => {
+                    // Tutti  gli errori di rejectWithValue finiscono qui
+                    console.error('Errore fetchSession:', error);
+                });
         }
-    }, [data, dispatch, navigate]);
+    }, [isSuccess]);
 
     const handleChange = (e) => {
         const { name, value, type, checked } = e.target;
@@ -52,7 +59,7 @@ const Register = () => {
     return (
         <>
             <a href="/" className="mb-3">
-                <img src="storage/images/logo.png" alt="logo" className="" width="190" />
+                <img src="/storage/images/logo.png" alt="logo" className="" width="190" />
             </a>
             <form onSubmit={submit}>
                 <div className="form-floating mb-3">

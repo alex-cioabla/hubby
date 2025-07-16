@@ -8,40 +8,43 @@ use Illuminate\Support\Facades\Auth;
 use \Illuminate\Http\JsonResponse;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Http\Requests\Auth\LoginRequest;
+use Illuminate\Contracts\View\View;
 
 class LoginController extends Controller
 {
     /**
+     * Display the login view.
+     */
+    public function index(): View
+    {
+        return view('app');
+    }
+
+    /**
      * Handle an incoming authentication request.
      */
-    public function store(LoginRequest $request)
+    public function store(Request $request)
     {
         //Uso Auth::attempt solo per verificare l'utente
         //(la connessione dell'utente avviene tramite il personal access token)
         //Passo remember solo per averlo nel json della response e usarlo per setSession
-        $request->authenticate();
-        $token = $request->user()->createToken('PAT',  ['*'], now()->addWeek());
+        //$request->authenticate();
+        //$token = $request->user()->createToken('PAT',  ['*'], now()->addWeek());
 
-        //oppure
-        /* $request->validate([
-            'email' => 'required|email',
-            'password' => 'required',
-        ]);
-        if (!Auth::attempt($request->only('email', 'password'))) {
+        $credentials = $request->only('email', 'password');
+        $remember = $request->boolean('remember', false);
+
+        if (!Auth::attempt($credentials, $remember)) {
             return response()->json(['message' => 'Invalid credentials'], 401);
-        } */
+        }
 
-        return response()->json([
-            'token' => $token->plainTextToken,
-            'expires_at' => $token->accessToken->expires_at,
-            'must_verify_email' => $request->user() instanceof MustVerifyEmail,
-            'remember' =>  $request->boolean('remember'),
-            'user' => [
-                'name' => $request->user()->name,
-                'email' => $request->user()->email,
-                'email_verified_at' => $request->user()->email_verified_at
-            ]
-        ]);
+        $request->session()->regenerate();
+
+        return response()->json(['message' => 'Login successfully'], 200);
+        // return response()->json([
+        //     'user' => Auth::user(),
+        //     'status' => session('status')
+        // ]);
     }
 
     /**
@@ -51,8 +54,26 @@ class LoginController extends Controller
     {
         // Cancella il personal access token dell'utente
         //(non uso Auth::guard('web')->logout() perchè non ho nessuna sessione da terminare)
-        $request->user()->currentAccessToken()->delete();
+        //$request->user()->currentAccessToken()->delete();
+
+        Auth::guard('web')->logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
 
         return response()->json(['message' => 'Logged out successfully'], 200);
+    }
+
+    public function getSession(): JsonResponse
+    {
+        // if (!auth()->check()) {
+        //      return response()->json(['message' => 'Unauthenticated'], 401);
+        // }
+
+        return response()->json([
+            'status' => session('status'),
+            'user' => auth()->user()
+        ], 200);
     }
 }

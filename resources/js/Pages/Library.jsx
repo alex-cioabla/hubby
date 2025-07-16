@@ -12,7 +12,7 @@ export const Library = () => {
                     <h2 className="mb-4 ">La Tua <span className="text-decoration-underline">Libreria</span></h2>
                     <div className="row gy-2 mb-4 mb-0">
                         <div className="col-12 col-sm-2 text-center">
-                            <img src="storage/images/avatar_dummy.jpg" className="img-thumbnail rounded-2" alt="..." />
+                            <img src="/storage/images/avatar_dummy.jpg" className="img-thumbnail rounded-2" alt="..." />
 
                         </div>
                         <div className="col-6 col-sm-2">

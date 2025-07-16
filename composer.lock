@@ -1783,7 +1783,7 @@
                 "ftp",
                 "s3",
                 "sftp",
-                "storage"
+                "/storage"
             ],
             "support": {
                 "issues": "https://github.com/thephpleague/flysystem/issues",

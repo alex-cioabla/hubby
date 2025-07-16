@@ -13,9 +13,37 @@ use Illuminate\Validation\Rules;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rules\Password as RulesPassword;
+use Illuminate\Contracts\View\View;
 
 class PasswordController extends Controller
 {
+
+    /**
+     * Display the password reset link request view.
+     */
+    public function forgotIndex(): View
+    {
+        return view('app');
+    }
+
+    /**
+     * Display the password reset view.
+     */
+    public function resetIndex(): View
+    {
+        return view('app');
+    }
+
+    public function confirmIndex(): View
+    {
+        return view('app');
+    }
+
+    public function updateIndex(): View
+    {
+        return view('app');
+    }
+
     /**
      * Handle an incoming password reset link request.
      *

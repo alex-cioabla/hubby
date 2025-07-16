@@ -4,10 +4,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
-        rel="stylesheet">
+    <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
     @routes
@@ -23,12 +21,12 @@
             'canResetPassword' => \Illuminate\Support\Facades\Route::has('password.request'),
         ]) !!};
 
-        document.addEventListener("DOMContentLoaded", function () {
-            const theme = localStorage.getItem('theme');
-            if (theme) {
-                document.documentElement.setAttribute('data-bs-theme', theme);
-            }
-        });
+        // document.addEventListener("DOMContentLoaded", function () {
+        //     const theme = localStorage.getItem('theme');
+        //     if (theme) {
+        //         document.documentElement.setAttribute('data-bs-theme', theme);
+        //     }
+        // });
     </script>
 
     {{-- Importo bootstrap via CDN (oppure uso package bootstrap react) perchè tramite import react non è compatibile --}}

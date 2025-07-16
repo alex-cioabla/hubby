@@ -12,6 +12,22 @@ use Illuminate\Contracts\View\View;
 
 class EmailController extends Controller
 {
+    public function index(): View
+    {
+        return view('app');
+    }
+
+
+    /**
+     * Display the email verification prompt.
+     */
+    public function request(Request $request): RedirectResponse
+    {
+        return $request->user()->hasVerifiedEmail()
+                    ? redirect()->intended('/profile')
+                    : view('app');
+    }
+
     /**
      * Mark the authenticated user's email address as verified.
      */
@@ -20,14 +36,14 @@ class EmailController extends Controller
         $user = User::findOrFail($request['id']);
 
         if ($user->hasVerifiedEmail()) {
-            return redirect()->intended(route('profile', absolute: false).'?verified=1');
+            return redirect()->intended('/user/profile?verified=1');
         }
 
         if ($user->markEmailAsVerified()) {
             event(new Verified($user));
         }
 
-        return redirect()->intended(route('profile', absolute: false).'?verified=1');
+        return redirect()->intended('/user/profile?verified=1');
     }
 
     /**

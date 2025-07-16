@@ -3,7 +3,7 @@ import { useUserUpdateMutation } from '@/Store/userApi';
 import { useEmailVerificationResendMutation } from '@/Store/authApi';
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { updateSession, setStatus } from '@/Store/authSlice';
+import { setUser, setStatus } from '@/Store/authSlice';
 
 const UserUpdate = () => {
 
@@ -13,8 +13,8 @@ const UserUpdate = () => {
     const [emailVerificationResend, { data: emailData, error: emailError, isLoading: emailIsLoading, isSuccess: emailIsSuccess }] = useEmailVerificationResendMutation();
 
     const [fields, setFields] = useState({
-        name: user.name,
-        email: user.email,
+        name: user?.name ?? '',
+        email: user?.email ?? ''
     });
 
     const nameErrors = error?.data?.errors?.name ?? [];
@@ -26,11 +26,10 @@ const UserUpdate = () => {
 
     useEffect(() => {
         document.getElementById('name').focus();
-        if (data) { //(DA VERIFICARE)
-            dispatch(updateSession(fields));
-        }
 
         if (isSuccess) {
+            dispatch(setUser(data.user));
+
             const alert = document.querySelector('#alert-user-update');
             alert.classList.add('show');
             alert.classList.remove('d-none');
@@ -39,7 +38,11 @@ const UserUpdate = () => {
                 bsAlert.close();
             }, 3000);
         }
-    }, [data, isSuccess]);
+
+        if (emailIsSuccess) {
+            dispatch(setStatus(emailData.status))
+        }
+    }, [isSuccess, emailIsSuccess]);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -56,12 +59,7 @@ const UserUpdate = () => {
 
     const click = (e) => {
         e.preventDefault();
-
         emailVerificationResend();
-
-        if (emailIsSuccess) {
-            dispatch(setStatus(emailData.status));
-        }
     }
 
     return (

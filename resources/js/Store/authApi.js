@@ -1,22 +1,31 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
+// Get CSRF token dai cookie con fetch('/sanctum/csrf-cookie')
+const getCsrfToken = () => {
+    const cookies = document.cookie.split(';');
+    for (let cookie of cookies) {
+        const [name, value] = cookie.trim().split('=');
+        if (name === 'XSRF-TOKEN') {
+            return decodeURIComponent(value);
+        }
+    }
+    return null;
+};
+
 export const authApi = createApi({
     reducerPath: 'authService',
     tagTypes: ['AUTH'],
     baseQuery: fetchBaseQuery({
-        baseUrl: 'http://localhost:8000/api',
-        prepareHeaders: (headers, { getState }) => {
-            const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+        baseUrl: 'http://localhost:8000',
+        credentials: 'include',
+        prepareHeaders: (headers) => {
+            const csrfToken = getCsrfToken();
             if (csrfToken) {
-                headers.set('X-CSRF-TOKEN', csrfToken);
+                //Aggiungo il token CSFR gettato per gli endpoints
+                headers.set('X-XSRF-TOKEN', csrfToken);
             }
-
-            const token = getState().auth?.token;
-            if (token) {
-                headers.set('Authorization', `Bearer ${token}`);
-            }
-
             headers.set('Accept', 'application/json');
+            headers.set('Content-Type', 'application/json');
             return headers;
         },
     }),
@@ -35,12 +44,6 @@ export const authApi = createApi({
                 body: body
             })
         }),
-        logout: builder.mutation({
-            query: (body) => ({
-                url: '/logout',
-                method: 'POST'
-            })
-        }),
         passwordForgot: builder.mutation({
             query: (body) => ({
                 url: '/password-forgot',
@@ -53,6 +56,12 @@ export const authApi = createApi({
                 url: '/password-reset',
                 method: 'POST',
                 body: body
+            })
+        }),
+        logout: builder.mutation({
+            query: (body) => ({
+                url: '/logout',
+                method: 'POST'
             })
         }),
         passwordConfirm: builder.mutation({
@@ -68,7 +77,7 @@ export const authApi = createApi({
                 method: 'POST',
                 body: body
             })
-        }),
+        })
     })
 });
 

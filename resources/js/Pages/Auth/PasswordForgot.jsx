@@ -8,19 +8,21 @@ import { setStatus } from '@/Store/authSlice';
 const PasswordForgot = () => {
 
     const [email, setEmail] = useState('');
-    const [passwordForgot, { data, error, isLoading }] = usePasswordForgotMutation();
+    const [passwordForgot, { data, error, isLoading, isSuccess }] = usePasswordForgotMutation();
     const dispatch = useDispatch();
     const status = useSelector((state) => state.auth.status);
-     const navigate = useNavigate();
+    const navigate = useNavigate();
+
+    const emailErrors = error?.data?.errors?.email ?? [];
 
     useEffect(() => {
 
-        if (data) { //(DA VERIFICARE)
+        if (isSuccess) {
             dispatch(setStatus(data.status));
             navigate(-1);
         }
 
-    }, [data]);
+    }, [isSuccess]);
 
     const submit = (e) => {
         e.preventDefault();
@@ -31,7 +33,7 @@ const PasswordForgot = () => {
     return (
         <>
             <a href="/" className="mb-3">
-                <img src="storage/images/logo.png" alt="logo" className="" width="190" />
+                <img src="/storage/images/logo.png" alt="logo" className="" width="190" />
             </a>
             <div className="mb-3 fw-bolder text-muted text-center">
                 Hai dimenticato la password? Nessun problema. <br />
@@ -57,7 +59,7 @@ const PasswordForgot = () => {
                         onChange={(e) => setEmail(e.target.value)}
                     />
                     <label htmlFor="floatingInput">Indirizzo email</label>
-                    <ErrorAlert message={error} className="mt-2" />
+                    <ErrorAlert messages={emailErrors} className="mt-2" />
                 </div>
 
                 <button className="btn btn-primary w-100" disabled={isLoading}>
