@@ -19,26 +19,31 @@ class UserController extends Controller
     {
         return view('app');
     }
+
     /**
      * Update the user's profile information.
      */
     public function update(ProfileUpdateRequest $request): JsonResponse
     {
-        $request->user()->fill($request->validated());
+        $user = $request->user();
+        $user->fill($request->validated());
 
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
+        if ($user->isDirty('email')) {
+            $user->email_verified_at = null;
         }
 
-        $request->user()->save();
+        $user->save();
 
-        $user = Auth::user();
+        if ($request->has('name')) {
+            $user->profile()->update(['name' => $request->input('name')]);
+        }
+        if ($request->has('surname')) {
+            $user->profile()->update(['surname' => $request->input('surname')]);
+        }
 
         return response()->json([
-            'user' => $user,
             'message' => 'Update profile success', 200
         ]);
-
     }
 
     /**

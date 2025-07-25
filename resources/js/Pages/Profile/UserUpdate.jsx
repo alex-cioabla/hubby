@@ -3,21 +3,23 @@ import { useUserUpdateMutation } from '@/Store/userApi';
 import { useEmailVerificationResendMutation } from '@/Store/authApi';
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setUser, setStatus } from '@/Store/authSlice';
+import { setStatus } from '@/Store/authSlice';
 
 const UserUpdate = () => {
 
-    const { must_verify_email, user } = useSelector((state) => state.auth);
+    const { must_verify_email, user } = useSelector((state) => state.auth); // (DA VERIFICARE)
 
     const [userUpdate, { data, error, isLoading, isSuccess }] = useUserUpdateMutation();
     const [emailVerificationResend, { data: emailData, error: emailError, isLoading: emailIsLoading, isSuccess: emailIsSuccess }] = useEmailVerificationResendMutation();
 
     const [fields, setFields] = useState({
-        name: user?.name ?? '',
+        name: user?.profile?.name ?? '',
+        surname: user?.profile?.surname ?? '',
         email: user?.email ?? ''
     });
 
     const nameErrors = error?.data?.errors?.name ?? [];
+    const surNameErrors = error?.data?.errors?.surname ?? [];
     const emailErrors = error?.data?.errors?.email ?? [];
 
     const dispatch = useDispatch();
@@ -28,8 +30,6 @@ const UserUpdate = () => {
         document.getElementById('name').focus();
 
         if (isSuccess) {
-            dispatch(setUser(data.user));
-
             const alert = document.querySelector('#alert-user-update');
             alert.classList.add('show');
             alert.classList.remove('d-none');
@@ -89,6 +89,21 @@ const UserUpdate = () => {
                                     required />
 
                                 <ErrorAlert messages={nameErrors} className="mt-2" />
+                            </div>
+
+                            <div className="mb-3">
+                                <label className="form-label" htmlFor="surname">Cognome</label>
+                                <input
+                                    name="surname"
+                                    type="text"
+                                    className="form-control"
+                                    autoComplete="surname"
+                                    id="surname"
+                                    value={fields.surname}
+                                    onChange={handleChange}
+                                    required />
+
+                                <ErrorAlert messages={surNameErrors} className="mt-2" />
                             </div>
 
                             <div className="mb-3">

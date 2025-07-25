@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\UserProfile;
 use Illuminate\Auth\Events\Registered;
 use \Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -32,14 +33,20 @@ class RegisterController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
+            'surname' => 'required|string|max:255',
             'email' => 'required|string|lowercase|email|max:255|unique:' . User::class,
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
         $user = User::create([
-            'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+        ]);
+
+        UserProfile::create([
+            'user_id' => $user->id,
+            'name' => $request->name,
+            'surname' => $request->surname
         ]);
 
         //Registered è una classe che rappresenta l'evento predefinito laravel di registrazione di un utente
@@ -52,8 +59,7 @@ class RegisterController extends Controller
         $request->session()->regenerate();
 
         return response()->json([
-            'user' => Auth::user(),
-            'status' => session('status')
-        ]);
+            'message' => 'Registered successfully'
+        ], 200);
     }
 }

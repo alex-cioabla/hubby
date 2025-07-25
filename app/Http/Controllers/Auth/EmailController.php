@@ -25,7 +25,7 @@ class EmailController extends Controller
     {
         return $request->user()->hasVerifiedEmail()
                     ? redirect()->intended('/profile')
-                    : view('app');
+                    : view(view: 'app');
     }
 
     /**
@@ -60,6 +60,7 @@ class EmailController extends Controller
 
         $request->user()->sendEmailVerificationNotification();
 
+        // return back()->with('status', 'verification-link-sent'); //(DA VERIFICARE)
         return response()->json([
             'status' => 'verification-link-sent'
         ], 200);

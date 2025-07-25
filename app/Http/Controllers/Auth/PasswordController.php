@@ -60,6 +60,7 @@ class PasswordController extends Controller
         );
 
         if ($status == Password::RESET_LINK_SENT) {
+            //return back()->with('status', __($status)); // (DA VERIFICARE)
             return response()->json([
                 'status' => __($status)
             ]);
@@ -96,10 +97,11 @@ class PasswordController extends Controller
         );
 
         if ($status == Password::PASSWORD_RESET) {
+            //return redirect()->route('login')->with('status', __($status)); // (DA VERIFICARE)
             return response()->json([
                 'status' => __($status)
             ]);
-        }
+        }-
 
         throw ValidationException::withMessages([
             'email' => [trans($status)],
@@ -121,8 +123,9 @@ class PasswordController extends Controller
             ]);
         }
 
+        //$request->session()->put('auth.password_confirmed_at', time()); //(DA VERIFICARE)
         return response()->json([
-            'password_confirmed_at' => time() //(DA VERIFICARE)
+            'password_confirmed_at' => time()
         ]);
     }
 

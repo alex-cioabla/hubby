@@ -5,30 +5,32 @@ import Preloader from '@/Components/Preloader';
 
 const Session = (props) => {
     const dispatch = useDispatch();
-    const { user } = useSelector(state => state.auth);
-    const [loading, setLoading] = useState(true);
+    const { user, status } = useSelector(state => state.auth);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         const initializeSession = async () => {
-            const hasStoredSession = document.cookie.includes('XSRF-TOKEN');
 
-            if (!user && hasStoredSession) {
+            if (status === 'authenticated' && !user) {
+                setLoading(true);
+
                 try {
                     await dispatch(fetchSession());
+                    setLoading(false);
+
                 } catch (error) {
                     console.error('Errore durante il fetch della sessione:', error);
                 }
-                setLoading(false);
             }
         };
 
         initializeSession();
 
-    }, [dispatch, user]);
+    }, [dispatch, user, status]);
 
     if (loading) {
         return (
-            <Preloader show={true}/>
+            <Preloader show={true} />
         );
     }
 

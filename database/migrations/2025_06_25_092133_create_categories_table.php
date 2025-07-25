@@ -14,14 +14,8 @@ return new class extends Migration
         Schema::create('categories', function (Blueprint $table) {
             $table->id(); //indicizzato perchè chiave primaria
             $table->string('name')->unique(); //indicizzato perchè campo univoco
-            $table->foreignId('created_by');
-            $table->foreign('created_by')->references('id')->on('users');
-            $table->foreignId('updated_by');
-            $table->foreign('updated_by')->references('id')->on('users');
-            $table->foreignId('deleted_by');
-            $table->foreign('deleted_by')->references('id')->on('users');
-            $table->softDeletes();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -50,7 +50,7 @@ const Login = () => {
         //     setMessage(error.data?.message || 'Errore durante il login');
         // }
 
-    }, [isSuccess, status]);
+    }, [isSuccess/*, status*/]); //(DA VERIFICARE)
 
     const handleChange = (e) => {
         const { name, value, type, checked } = e.target;

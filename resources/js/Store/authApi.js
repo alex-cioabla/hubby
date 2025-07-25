@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-// Get CSRF token dai cookie con fetch('/sanctum/csrf-cookie')
+// Get CSRF token dai cookie del browser
 const getCsrfToken = () => {
     const cookies = document.cookie.split(';');
     for (let cookie of cookies) {

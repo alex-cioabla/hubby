@@ -10,15 +10,17 @@ const Register = () => {
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const [register, { data, error, isLoading, isSuccess }] = useRegisterMutation();
+    const [register, { error, isLoading, isSuccess }] = useRegisterMutation();
 
     const nameErrors = error?.data?.errors?.name ?? [];
+    const surnameErrors = error?.data?.errors?.surname ?? [];
     const emailErrors = error?.data?.errors?.email ?? [];
     const passwordErrors = error?.data?.errors?.password ?? [];
     const passwordConfirmationErrors = error?.data?.errors?.password_confirmation ?? [];
 
     const [fields, setFields] = useState({
         name: '',
+        surname: '',
         email: '',
         password: '',
         password_confirmation: '',
@@ -65,7 +67,7 @@ const Register = () => {
                 <div className="form-floating mb-3">
                     <input
                         name="name"
-                        type="name"
+                        type="text"
                         className="form-control"
                         autoComplete="name"
                         id="name"
@@ -74,6 +76,19 @@ const Register = () => {
                         required />
                     <label htmlFor="name">Nome</label>
                     <ErrorAlert messages={nameErrors} className="mt-2" />
+                </div>
+                <div className="form-floating mb-3">
+                    <input
+                        name="surname"
+                        type="text"
+                        className="form-control"
+                        autoComplete="surname"
+                        id="surname"
+                        value={fields.surname}
+                        onChange={handleChange}
+                        required />
+                    <label htmlFor="surname">Cognome</label>
+                    <ErrorAlert messages={surnameErrors} className="mt-2" />
                 </div>
 
                 <div className="form-floating mb-3">

@@ -39,12 +39,9 @@ class LoginController extends Controller
         }
 
         $request->session()->regenerate();
+        //$request->session()->put('status', 'authenticated');
 
         return response()->json(['message' => 'Login successfully'], 200);
-        // return response()->json([
-        //     'user' => Auth::user(),
-        //     'status' => session('status')
-        // ]);
     }
 
     /**
@@ -63,17 +60,5 @@ class LoginController extends Controller
         $request->session()->regenerateToken();
 
         return response()->json(['message' => 'Logged out successfully'], 200);
-    }
-
-    public function getSession(): JsonResponse
-    {
-        // if (!auth()->check()) {
-        //      return response()->json(['message' => 'Unauthenticated'], 401);
-        // }
-
-        return response()->json([
-            'status' => session('status'),
-            'user' => auth()->user()
-        ], 200);
     }
 }
