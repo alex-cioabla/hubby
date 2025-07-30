@@ -37,7 +37,7 @@ const AuthRoute = (props) => {
 
     }, [user]);
 
-    if (auth === null) {
+    if (!user || auth === null) {
         return <Preloader show={true} />;
     }
 

@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 //rejectWithValue è un fx default di createAsyncThunk per gestire castum gli errori nei thunk.
-const fetchSession = createAsyncThunk("session", async (_, { rejectWithValue }) => {
+const fetchSession = createAsyncThunk("session", async (remember, { rejectWithValue }) => {
     try {
         const response = await fetch('http://localhost:8000/session', {
             method: 'GET',
@@ -21,7 +21,8 @@ const fetchSession = createAsyncThunk("session", async (_, { rejectWithValue }) 
             });
         }
 
-        return data;
+        data['remember'] = remember;
+        return data
 
     } catch (error) {
         return rejectWithValue({

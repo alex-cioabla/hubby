@@ -12,38 +12,44 @@ use Illuminate\Contracts\View\View;
 
 class EmailController extends Controller
 {
-    public function index(): View
+    public function indexRequest(): View
     {
         return view('app');
     }
 
+    public function indexVerify(): View
+    {
+        return view('app');
+    }
 
     /**
      * Display the email verification prompt.
      */
-    public function request(Request $request): RedirectResponse
+    public function request(Request $request): JsonResponse
     {
-        return $request->user()->hasVerifiedEmail()
-                    ? redirect()->intended('/profile')
-                    : view(view: 'app');
+        if ($request->user()->hasVerifiedEmail()) {
+            return response()->json('/user/profile', 200);
+        }
+
+        return response()->json('', 200);
     }
 
     /**
      * Mark the authenticated user's email address as verified.
      */
-    public function verify(Request $request): RedirectResponse
+    public function verify(Request $request): JsonResponse
     {
         $user = User::findOrFail($request['id']);
 
         if ($user->hasVerifiedEmail()) {
-            return redirect()->intended('/user/profile?verified=1');
+            return response()->json('/user/profile?verified=1', 200);
         }
 
         if ($user->markEmailAsVerified()) {
             event(new Verified($user));
         }
 
-        return redirect()->intended('/user/profile?verified=1');
+        return response()->json('/user/profile?verified=1', 200);
     }
 
     /**

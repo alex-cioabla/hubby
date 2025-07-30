@@ -9,6 +9,7 @@ use App\Http\Controllers\Auth\EmailController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Models\User;
+use Illuminate\Http\Request;
 
 Route::view('/', 'app');
 Route::view('library', 'app');
@@ -48,11 +49,9 @@ Route::post('password-reset', [PasswordController::class, 'reset']);
 //Pages
 Route::get('password-confirm', [PasswordController::class, 'conformIndex']);
 Route::get('password-update', [PasswordController::class, 'updateIndex']);
-Route::get('email-verification-request', [EmailController::class, 'index']);
-Route::get('email-verification-request', [EmailController::class, 'request']);
-Route::get('email-verification-request/{id}/{hash}', [EmailController::class, 'verify'])
-    ->middleware(['signed', 'throttle:6,1'])
-    ->name('verification.verify'); //Link email generato per la verifica dell'email
+Route::get('email-verification-request', [EmailController::class, 'indexRequest']);
+// Route::get('email-verification-request', [EmailController::class, 'request']);
+Route::get('email-verification-request/{id}/{hash}', [EmailController::class, 'indexVerify'])->name('verification.verify'); //Link email generato per la verifica dell'email
 
 //API
 Route::middleware('auth')->group(function () {
@@ -62,7 +61,7 @@ Route::middleware('auth')->group(function () {
     Route::post('password-confirm', [PasswordController::class, 'confirm']);
 });
 
-//React
+//REACT
 Route::get('session', function (): JsonResponse {
         // dd(session('status'));
         return response()->json([
@@ -72,11 +71,27 @@ Route::get('session', function (): JsonResponse {
 })->middleware(['auth']);
 
 Route::get('auth', function () : JsonResponse{
-    return response()->json(auth()->check(), 200);
+    return response()->json(true, 200); //auth()->check()
 })->middleware(['auth']);
 
-Route::get('verified', function (): JsonResponse {
-    return response()->json(auth()->user()->hasVerifiedEmail(), 200);
+Route::get('verified', function (Request $request): JsonResponse {
+
+    $refererParams = [];
+    $referer = $request->header('Referer');
+    if ($referer) {
+        $queryString = parse_url($referer, PHP_URL_QUERY);
+        if ($queryString) {
+            parse_str($queryString, $refererParams);
+        }
+    }
+    $verified_from_referer = $refererParams['verified'] ?? null;
+    if ($verified_from_referer) {
+        return response()->json( ['response' => true, 'redirect' => '/user/profile'], 200);
+    }
+
+    return response()->json( ['response' => true, 'redirect' => ''], 200); //auth()->user()->hasVerifiedEmail()
 })->middleware(['verified']);
 
-
+Route::post('/email-verification-request', [EmailController::class, 'request']);
+Route::post('/email-verification-request/{id}/{hash}', [EmailController::class, 'verify'])
+    ->middleware(['signed', 'throttle:6,1']);

@@ -27,6 +27,7 @@ import UserSettings from "./Pages/Profile/UserSettings.jsx";
 
 import "../scss/theme.scss";
 import Session from './Components/Session.jsx';
+import RedirectRoute from './Components/RedirectRoute.jsx';
 
 function App() {
 
@@ -36,26 +37,26 @@ function App() {
             <Router>
                 <Routes>
                     <Route element={<ThemeLayout></ThemeLayout>}>
-                        <Route path="/" element={<Home />} />
-                        <Route path="/rank" element={<Rank />} />
-                        <Route path="/shop" element={<Shop />} />
-                        <Route path="/user/profile" element={<AuthRoute><Profile /></AuthRoute>} />
-                        <Route path="/user/settings" element={<AuthRoute><UserSettings/></AuthRoute>} />
+                        <Route path="/" element={<Home/>} />
+                        <Route path="/rank" element={<Rank/>} />
+                        <Route path="/shop" element={<Shop/>} />
+                        <Route path="/user/profile" element={<AuthRoute><VerifiedRoute><Profile/></VerifiedRoute></AuthRoute>} />
+                        <Route path="/user/settings" element={<AuthRoute><VerifiedRoute><UserSettings/></VerifiedRoute></AuthRoute>} />
                     </Route>
                     <Route element={<AdminLayout></AdminLayout>}>
-                        <Route path="/admin/dashboard" element={<AuthRoute><VerifiedRoute><Dashboard/></VerifiedRoute></AuthRoute>} />
+                        <Route path="/admin/dashboard" element={<AuthRoute><Dashboard/></AuthRoute>} />
                     </Route>
-                    <Route path="/logout" element={<Logout />} />
+                    <Route path="/logout" element={<Logout/>} />
                     <Route element={<AuthLayout></AuthLayout>}>
-                        <Route path="/login" element={<Login />} />
-                        <Route path="/register" element={<Register />} />
+                        <Route path="/login" element={<Login/>} />
+                        <Route path="/register" element={<Register/>} />
                         <Route path="/password-forgot" element={<PasswordForgot/>} />
                         <Route path="/password-reset/:token" element={<PasswordReset/>} />
 
                         <Route path="/password-confirm" element={<AuthRoute><PasswordConfirm/></AuthRoute>}/>
                         <Route path="/password-update" element={<AuthRoute><PasswordUpdate/></AuthRoute>}/>
-                        <Route path="/email-verification-request" element={<AuthRoute><EmailVerificationRequest /></AuthRoute>} />
-                        <Route path="/email-verification-request/:id/:hash" element={<AuthRoute><EmailVerificationRequest /></AuthRoute>} />
+                        <Route path="/email-verification-request" element={<AuthRoute><RedirectRoute><EmailVerificationRequest/></RedirectRoute></AuthRoute>} />
+                        <Route path="/email-verification-request/:id/:hash" element={<AuthRoute><RedirectRoute><EmailVerificationRequest/></RedirectRoute></AuthRoute>} />
                     </Route>
                 </Routes>
             </Router>
@@ -69,6 +70,6 @@ const root = createRoot(container);
 
 root.render(
     <Provider store={store}>
-        <App />
+        <App/>
     </Provider>
 );

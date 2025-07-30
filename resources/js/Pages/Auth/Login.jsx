@@ -23,7 +23,7 @@ const Login = () => {
     useEffect(() => {
 
         if (isSuccess) {
-            dispatch(fetchSession())
+            dispatch(fetchSession(fields.remember))
                 .unwrap()
                 .then(() => {
                     document.getElementById('floatingPassword').value = '';
@@ -86,7 +86,7 @@ const Login = () => {
 
     return (
         <>
-            {status && (
+            {status && ( //(DA VERIFICARE)
                 <div className="mb-4 text-sm font-medium text-green-600">
                     {status}
                 </div>
