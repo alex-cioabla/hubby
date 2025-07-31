@@ -5,20 +5,29 @@ const authSlice = createSlice({
     name: 'auth',
     initialState: {
         user: null,
-        status: window.localStorage.getItem('status') ? window.localStorage.getItem('status') : window.sessionStorage.getItem('status'),
-        error: null
+        status: null,
+        error: null,
+        mustVerifyEmail: false,
+        authenticated: window.localStorage.getItem('authenticated') || window.sessionStorage.getItem('authenticated')
     },
     reducers: {
-        removeSession: (state) => {
-            state.user = null;
-            state.status = null;
+        setAuthenticated: (state, action) => {
+            state.authenticated = true;
 
-            window.sessionStorage.removeItem('status');
-            window.localStorage.removeItem('status');
+            const storage = action.payload ? window.localStorage : window.sessionStorage;
+            storage.setItem('authenticated', true);
         },
         setStatus: (state, action) => {
             state.status = action.payload;
-            window.sessionStorage.setItem('status', action.payload);
+        },
+        removeSession: (state) => {
+            state.user = null;
+            state.status = null;
+            state.error = null;
+            state.mustVerifyEmail = false;
+
+            window.sessionStorage.removeItem('authenticated');
+            window.localStorage.removeItem('authenticated');
         }
     },
     extraReducers: builder => {
@@ -29,15 +38,13 @@ const authSlice = createSlice({
             .addCase(fetchSession.fulfilled, (state, action) => {
                 state.user = action.payload.user;
                 state.status = action.payload.status;
-                const storage = action.payload.remember ? window.localStorage : window.sessionStorage;
-                storage.setItem('status', action.payload.status);
+                state.mustVerifyEmail = action.payload.mustVerifyEmail;
                 state.error = null;
             })
             .addCase(fetchSession.rejected, (state, action) => {
                 state.user = null;
                 state.status = null;
-                window.sessionStorage.removeItem('status');
-                window.localStorage.removeItem('status');
+                state.mustVerifyEmail = false;
                 state.error = action.payload;
             }
         )
@@ -46,5 +53,5 @@ const authSlice = createSlice({
 
 export { fetchSession };
 const { actions, reducer } = authSlice;
-export const { setUser, removeSession, setStatus } = actions;
+export const { setUser, removeSession, setStatus, setAuthenticated } = actions;
 export default reducer;

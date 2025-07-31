@@ -5,13 +5,13 @@ import Preloader from '@/Components/Preloader';
 
 const Session = (props) => {
     const dispatch = useDispatch();
-    const { user, status } = useSelector(state => state.auth);
+    const { user, authenticated } = useSelector(state => state.auth);
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         const initializeSession = async () => {
 
-            if (status === 'authenticated' && !user) {
+            if (authenticated && !user) {
                 setLoading(true);
 
                 try {
@@ -26,7 +26,7 @@ const Session = (props) => {
 
         initializeSession();
 
-    }, [dispatch, user, status]);
+    }, [dispatch, user, authenticated]);
 
     if (loading) {
         return (

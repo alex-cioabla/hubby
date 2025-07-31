@@ -14,19 +14,11 @@
 
     <script>
         const appConfig = {!! json_encode([
-            // -- DA VEDERE --
             // 'translations' => \App\Facades\HubbyLang::getAllTrans(),
             // 'locale' => \Illuminate\Support\Facades\Lang::getLocale(),
             'name' => config('app.name'),
-            'canResetPassword' => \Illuminate\Support\Facades\Route::has('password.request'), // (DA VERIFICARE)
+            'canResetPassword' => \Illuminate\Support\Facades\Route::has('password.request')
         ]) !!};
-
-        // document.addEventListener("DOMContentLoaded", function () {
-        //     const theme = localStorage.getItem('theme');
-        //     if (theme) {
-        //         document.documentElement.setAttribute('data-bs-theme', theme);
-        //     }
-        // });
     </script>
 
     {{-- Importo bootstrap via CDN (oppure uso package bootstrap react) perchè tramite import react non è compatibile --}}

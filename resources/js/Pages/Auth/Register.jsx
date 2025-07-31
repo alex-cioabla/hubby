@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 
 import ErrorAlert from '@/Components/ErrorAlert';
 import { useRegisterMutation } from '@/Store/authApi';
-import { fetchSession } from '@/Store/authSlice';
+import { setAuthenticated, /*fetchSession*/ } from '@/Store/authSlice';
 
 const Register = () => {
 
@@ -30,17 +30,22 @@ const Register = () => {
         document.getElementById('name').focus();
 
         if (isSuccess) {
-            dispatch(fetchSession())
-                .unwrap()
-                .then(() => {
-                    document.getElementById('password').value = '';
-                    document.getElementById('password_confirmation').value = '';
-                    navigate('/email-verification-request');
-                })
-                .catch((error) => {
-                    // Tutti  gli errori di rejectWithValue finiscono qui
-                    console.error('Errore fetchSession:', error);
-                });
+
+            dispatch(setAuthenticated());
+            document.getElementById('password').value = '';
+            document.getElementById('password_confirmation').value = '';
+            navigate('/email-verification-request');
+            // dispatch(fetchSession())
+            //     .unwrap()
+            //     .then(() => {
+            //         document.getElementById('password').value = '';
+            //         document.getElementById('password_confirmation').value = '';
+            //         navigate('/email-verification-request');
+            //     })
+            //     .catch((error) => {
+            //         // Tutti  gli errori di rejectWithValue finiscono qui
+            //         console.error('Errore fetchSession:', error);
+            //     });
         }
     }, [isSuccess]);
 

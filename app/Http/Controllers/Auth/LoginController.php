@@ -39,7 +39,6 @@ class LoginController extends Controller
         }
 
         $request->session()->regenerate();
-        //$request->session()->put('status', 'authenticated');
 
         return response()->json(['message' => 'Login successfully'], 200);
     }

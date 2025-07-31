@@ -8,8 +8,6 @@ use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\Auth\EmailController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
-use App\Models\User;
-use Illuminate\Http\Request;
 
 Route::view('/', 'app');
 Route::view('library', 'app');
@@ -37,7 +35,7 @@ Route::prefix('user')->group(function () {
 //Pages
 Route::get('register', [RegisterController::class, 'index']);
 Route::get('login', [LoginController::class, 'index']);
-Route::get('password-forgot', [PasswordController::class, 'forgotIndex'])->name('password.forgot');
+Route::get('password-forgot', [PasswordController::class, 'forgotIndex'])->name('password.request');
 Route::get('password-reset/{token}', [PasswordController::class, 'resetIndex'])->name('password.reset'); //Link email generato per il reset della password
 
 //API
@@ -62,11 +60,11 @@ Route::middleware('auth')->group(function () {
 });
 
 //REACT
-Route::get('session', function (): JsonResponse {
-        // dd(session('status'));
+Route::get('session', function (\Illuminate\Http\Request $request): JsonResponse {
         return response()->json([
-            'status' => 'authenticated', //session('status'),
-            'user' => User::with(['profile:user_id,name,surname'])->find(auth()->id())
+            'mustVerifyEmail' => $request->user() instanceof \Illuminate\Contracts\Auth\MustVerifyEmail,
+            'status' => session('status'),
+            'user' => \App\Models\User::with(['profile:user_id,name,surname'])->find(auth()->id())
         ], 200);
 })->middleware(['auth']);
 
@@ -74,7 +72,7 @@ Route::get('auth', function () : JsonResponse{
     return response()->json(true, 200); //auth()->check()
 })->middleware(['auth']);
 
-Route::get('verified', function (Request $request): JsonResponse {
+Route::get('verified', function (\Illuminate\Http\Request $request): JsonResponse {
 
     $refererParams = [];
     $referer = $request->header('Referer');

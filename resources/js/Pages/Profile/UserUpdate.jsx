@@ -7,7 +7,7 @@ import { setStatus } from '@/Store/authSlice';
 
 const UserUpdate = () => {
 
-    const { must_verify_email, user } = useSelector((state) => state.auth); // (DA VERIFICARE)
+    const { mustVerifyEmail, user } = useSelector((state) => state.auth);
 
     const [userUpdate, { data, error, isLoading, isSuccess }] = useUserUpdateMutation();
     const [emailVerificationResend, { data: emailData, error: emailError, isLoading: emailIsLoading, isSuccess: emailIsSuccess }] = useEmailVerificationResendMutation();
@@ -40,7 +40,7 @@ const UserUpdate = () => {
         }
 
         if (emailIsSuccess) {
-            dispatch(setStatus(emailData.status))
+            dispatch(setStatus(emailData.status)); // (DA VERIFICARE)
         }
     }, [isSuccess, emailIsSuccess]);
 
@@ -122,7 +122,7 @@ const UserUpdate = () => {
                                 <ErrorAlert messages={emailErrors} className="mt-2" />
                             </div>
 
-                            {must_verify_email && user.email_verified_at === null && (
+                            {mustVerifyEmail && user.email_verified_at === null && (
                                 <div>
                                     <p className="mt-2 fs-6 text-secondary">
                                         Your email address is unverified.

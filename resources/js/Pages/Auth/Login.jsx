@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import ErrorAlert from '@/Components/ErrorAlert';
 import { useLoginMutation } from '@/Store/authApi';
-import { fetchSession } from '@/Store/authSlice';
+import { setAuthenticated, /*fetchSession*/ } from '@/Store/authSlice';
 
 const Login = () => {
 
@@ -23,26 +23,30 @@ const Login = () => {
     useEffect(() => {
 
         if (isSuccess) {
-            dispatch(fetchSession(fields.remember))
-                .unwrap()
-                .then(() => {
-                    document.getElementById('floatingPassword').value = '';
-                    navigate('/user/profile');
-                })
-                .catch((error) => {
-                    // Tutti  gli errori di rejectWithValue finiscono qui
-                    console.error('Errore fetchSession:', error);
 
-                    if (error.status === 401) {
-                        setMessage('Sessione scaduta, effettua nuovamente il login');
-                    } else if (error.type === 'NETWORK_ERROR') {
-                        setMessage('Errore di connessione. Controlla la rete.');
-                    } else if (error.status >= 500) {
-                        setMessage('Errore del server. Riprova più tardi.');
-                    } else {
-                        setMessage(error.message || 'Errore nel caricamento della sessione');
-                    }
-                });
+            dispatch(setAuthenticated(fields.remember));
+            document.getElementById('floatingPassword').value = '';
+            navigate('/user/profile');
+            // dispatch(fetchSession(fields.remember))
+            //     .unwrap()
+            //     .then(() => {
+            //         document.getElementById('floatingPassword').value = '';
+            //         navigate('/user/profile');
+            //     })
+            //     .catch((error) => {
+            //         // Tutti  gli errori di rejectWithValue finiscono qui
+            //         console.error('Errore fetchSession:', error);
+
+            //         if (error.status === 401) {
+            //             setMessage('Sessione scaduta, effettua nuovamente il login');
+            //         } else if (error.type === 'NETWORK_ERROR') {
+            //             setMessage('Errore di connessione. Controlla la rete.');
+            //         } else if (error.status >= 500) {
+            //             setMessage('Errore del server. Riprova più tardi.');
+            //         } else {
+            //             setMessage(error.message || 'Errore nel caricamento della sessione');
+            //         }
+            //     });
         }
 
         //OPPURE
@@ -50,7 +54,7 @@ const Login = () => {
         //     setMessage(error.data?.message || 'Errore durante il login');
         // }
 
-    }, [isSuccess/*, status*/]); //(DA VERIFICARE)
+    }, [isSuccess/*, status*/]);
 
     const handleChange = (e) => {
         const { name, value, type, checked } = e.target;
@@ -86,7 +90,8 @@ const Login = () => {
 
     return (
         <>
-            {status && ( //(DA VERIFICARE)
+            {/* Status impostato da altre pagine che poi fatto il redirect qui */}
+            {status && (
                 <div className="mb-4 text-sm font-medium text-green-600">
                     {status}
                 </div>

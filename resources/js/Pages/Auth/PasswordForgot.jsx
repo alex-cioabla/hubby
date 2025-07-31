@@ -18,7 +18,7 @@ const PasswordForgot = () => {
     useEffect(() => {
 
         if (isSuccess) {
-            dispatch(setStatus(data.status));
+            dispatch(setStatus(data.status)); // (DA VERIFICARE)
             navigate(-1);
         }
 

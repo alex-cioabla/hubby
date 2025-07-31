@@ -60,7 +60,7 @@ class PasswordController extends Controller
         );
 
         if ($status == Password::RESET_LINK_SENT) {
-            //return back()->with('status', __($status)); // (DA VERIFICARE)
+            $request->session()->put('status', $status);
             return response()->json([
                 'status' => __($status)
             ]);
@@ -97,7 +97,7 @@ class PasswordController extends Controller
         );
 
         if ($status == Password::PASSWORD_RESET) {
-            //return redirect()->route('login')->with('status', __($status)); // (DA VERIFICARE)
+            $request->session()->put('status', $status);
             return response()->json([
                 'status' => __($status)
             ]);
@@ -123,9 +123,10 @@ class PasswordController extends Controller
             ]);
         }
 
-        //$request->session()->put('auth.password_confirmed_at', time()); //(DA VERIFICARE)
+        //Utilizzato dal middleware password.confirm, non implementato del progetto
+        $request->session()->put('auth.password_confirmed_at', time());
         return response()->json([
-            'password_confirmed_at' => time()
+            'auth.password_confirmed_at' => time()
         ]);
     }
 

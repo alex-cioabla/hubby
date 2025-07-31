@@ -66,7 +66,7 @@ class EmailController extends Controller
 
         $request->user()->sendEmailVerificationNotification();
 
-        // return back()->with('status', 'verification-link-sent'); //(DA VERIFICARE)
+        $request->session()->put('status', 'erification-link-sent');
         return response()->json([
             'status' => 'verification-link-sent'
         ], 200);
