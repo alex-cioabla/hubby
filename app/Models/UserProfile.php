@@ -56,12 +56,10 @@ class UserProfile extends Model
         'city',
         'province',
         'postal_code',
-        'country',
-        'user_id'
+        'country'
     ];
 
     protected $hidden = [
-        'user_id'
     ];
 
     public function user()  {

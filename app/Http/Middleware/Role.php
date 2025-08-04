@@ -14,14 +14,22 @@ class Role
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next, string $role): Response
+    public function handle(Request $request, Closure $next): Response
     {
-        if (!Auth::check()) {
-            return redirect()->route('login');
-        }
+        $referer = $request->header('Referer');
+        $path = parse_url($referer, PHP_URL_PATH);
+        $segments = explode('/', trim($path, '/'));
+        $area = $segments[0] ?? '';
 
-        if (!Auth::user()->hasRole($role)) {
-            abort(403, 'Accesso negato. Non hai i permessi necessari per accedere a questa area.');
+        // if (!Auth::check()) {
+        //     return redirect()->route('login');
+        // }
+
+        if (!Auth::user()->hasRole($area)) {
+            return response()->json([
+                'message' => 'Accesso negato. Non hai i permessi necessari per accedere a questa area.'
+            ], 403);
+            //abort(403, 'Accesso negato. Non hai i permessi necessari per accedere a questa area.');
         }
 
         return $next($request);

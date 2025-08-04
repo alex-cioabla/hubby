@@ -55,9 +55,6 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $fillable = [
         'email',
         'password',
-        'role',
-        'last_login',
-        'login_count'
     ];
 
     /**
@@ -67,7 +64,9 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     protected $hidden = [
         'password',
+        'email_verified_at',
         'remember_token',
+        'last_login'
     ];
 
     /**
@@ -83,39 +82,18 @@ class User extends Authenticatable implements MustVerifyEmail
         ];
     }
 
-    /**
-     * Check if user is admin
-     */
-    public function isAdmin(): bool
-    {
-        return $this->role === 'admin';
-    }
-
-    /**
-     * Check if user is regular user
-     */
-    public function isUser(): bool
-    {
-        return $this->role === 'user';
-    }
-
-    /**
-     * Check if user has specific role
-     */
-    public function hasRole(string $role): bool
-    {
-        return $this->role === $role;
-    }
-
     public function profile() {
         return $this->hasOne(UserProfile::class);
+    }
+
+    public function roles(){
+        return $this->hasMany(Role::class);
     }
 
     public function updateLogin() {
 
         $this->update([
-            'last_login' => now(),
-            'login_count' => $this->login_count + 1
+            'last_login' => now()
         ]);
 
     }

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate, useSearchParams } from 'react-router-dom';
 import Preloader from '@/Components/Preloader';
 
 const VerifiedRoute = (props) => {
@@ -8,11 +8,13 @@ const VerifiedRoute = (props) => {
     const [verified, setVerified] = useState(null);
     const { user } = useSelector(state => state.auth);
     const navigate = useNavigate();
+    const [url_params] = useSearchParams();
+    const verified_param = url_params.get('verified');
 
         useEffect(() => {
 
             if (user) {
-                fetch('http://localhost:8000/verified', {
+                fetch('/verified', {
                     method: 'GET',
                     credentials: 'include',
                     headers: {
@@ -29,9 +31,9 @@ const VerifiedRoute = (props) => {
                     }
                 })
                 .then(data => {
-                    setVerified(data.response);
-                    if (data.redirect) {
-                        navigate(data.redirect, { replace: true });
+                    setVerified(data);
+                    if (verified_param) {
+                        navigate('/user/profile', { replace: true });
                     }
                 })
                 .catch(error => {

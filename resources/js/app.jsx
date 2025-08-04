@@ -28,6 +28,7 @@ import UserSettings from "./Pages/Profile/UserSettings.jsx";
 import "../scss/theme.scss";
 import Session from './Components/Session.jsx';
 import RedirectRoute from './Components/RedirectRoute.jsx';
+import RoleRoute from './Components/RoleRoute.jsx';
 
 function App() {
 
@@ -40,11 +41,33 @@ function App() {
                         <Route path="/" element={<Home/>} />
                         <Route path="/rank" element={<Rank/>} />
                         <Route path="/shop" element={<Shop/>} />
-                        <Route path="/user/profile" element={<AuthRoute><VerifiedRoute><Profile/></VerifiedRoute></AuthRoute>} />
-                        <Route path="/user/settings" element={<AuthRoute><VerifiedRoute><UserSettings/></VerifiedRoute></AuthRoute>} />
+                        <Route path="/user/profile" element={
+                            <AuthRoute>
+                                <VerifiedRoute>
+                                    <RoleRoute role={'user'}>
+                                        <Profile/>
+                                    </RoleRoute>
+                                </VerifiedRoute>
+                            </AuthRoute>
+                        } />
+                        <Route path="/user/settings" element={
+                            <AuthRoute>
+                                <VerifiedRoute>
+                                    <RoleRoute role={'user'}>
+                                        <UserSettings/>
+                                    </RoleRoute>
+                                </VerifiedRoute>
+                            </AuthRoute>
+                        } />
                     </Route>
                     <Route element={<AdminLayout></AdminLayout>}>
-                        <Route path="/admin/dashboard" element={<AuthRoute><Dashboard/></AuthRoute>} />
+                        <Route path="/admin/dashboard" element={
+                            <AuthRoute>
+                                <RoleRoute role={'admin'}>
+                                    <Dashboard/>
+                                </RoleRoute>
+                            </AuthRoute>
+                        } />
                     </Route>
                     <Route path="/logout" element={<Logout/>} />
                     <Route element={<AuthLayout></AuthLayout>}>
