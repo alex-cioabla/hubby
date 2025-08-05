@@ -54,7 +54,7 @@ export default function AdminLayout() {
                                         <NavLink
                                             className="nav-link d-flex align-items-center gap-2 active"
                                             aria-current="page"
-                                            to="/dashboard"
+                                            to="/admin/dashboard"
                                         >
                                             <i className="bi bi-house-door-fill"></i>
                                             Dashboard

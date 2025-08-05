@@ -26,8 +26,6 @@ return new class extends Migration
             $table->string('country')->nullable();
             //Laravel in auto con constrained() si recura la tabella users campo id per l'associazione
             $table->foreignId('user_id')->constrained();
-            $table->timestamps();
-
         });
     }
 

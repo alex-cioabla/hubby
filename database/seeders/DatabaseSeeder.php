@@ -2,10 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
+use App\Models\User;
+use App\Models\Role;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,26 +15,35 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $admin = User::create([
-            'email' => 'admin@hubby.it',
-            'password' => Hash::make('password'),
-            'role' => 'admin',
+        $system = User::create([
+            'email' => 'system@hubby.it',
+            'password' => Hash::make('system'),
             'email_verified_at' => now(),
         ]);
+
+        $userRole = Role::create(['name' => 'user', 'created_by' => $system->id]);
+        $adminRole = Role::create(['name' => 'admin', 'created_by' => $system->id]);
+
+        $admin = User::create([
+            'email' => 'admin@hubby.it',
+            'password' => Hash::make('admin'),
+            'email_verified_at' => now(),
+        ]);
+        $admin->roles()->attach([$adminRole->id, $userRole->id]);
         $admin->profile()->create([
-            'name' => 'Mickey',
-            'surname' => 'Mouse'
+            'name' => 'Ellie',
+            'surname' => 'Williams'
         ]);
 
         $user = User::create([
             'email' => 'user@hubby.it',
-            'password' => Hash::make('password'),
-            'role' => 'user',
+            'password' => Hash::make('user'),
             'email_verified_at' => now(),
         ]);
         $user->profile()->create([
-            'name' => 'Donald',
-            'surname' => 'Duck'
+            'name' => 'Joel',
+            'surname' => 'Miller'
         ]);
+        $user->role()->create(['role_id' => $userRole->id]);
     }
 }

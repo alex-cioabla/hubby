@@ -40,6 +40,11 @@ use Illuminate\Notifications\Notifiable;
  * @property int $login_count
  * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereLastLogin($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereLoginCount($value)
+ * @property string|null $deleted_at
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\UserRole> $roles
+ * @property-read int|null $roles_count
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereDeletedAt($value)
+ * @property-read int|null $role_count
  * @mixin \Eloquent
  */
 class User extends Authenticatable implements MustVerifyEmail
@@ -82,12 +87,23 @@ class User extends Authenticatable implements MustVerifyEmail
         ];
     }
 
+    //Relazione one to one
     public function profile() {
         return $this->hasOne(UserProfile::class);
     }
 
+    //Relazione many to many
     public function roles(){
-        return $this->hasMany(Role::class);
+        return $this->belongsToMany(Role::class, 'user_roles');
+    }
+
+    //Relazione one to many
+    public function role(){
+        return $this->hasMany(UserRole::class);
+    }
+
+    public function hasRole(string $roleName): bool {
+        return $this->roles()->where('name', $roleName)->exists();
     }
 
     public function updateLogin() {

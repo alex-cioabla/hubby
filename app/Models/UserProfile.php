@@ -24,14 +24,11 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null $province
  * @property string|null $postal_code
  * @property string|null $country
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
  * @method static \Illuminate\Database\Eloquent\Builder<static>|UserProfile whereAddress($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|UserProfile whereAvatar($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|UserProfile whereBirthday($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|UserProfile whereCity($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|UserProfile whereCountry($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|UserProfile whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|UserProfile whereGender($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|UserProfile whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|UserProfile whereName($value)
@@ -39,12 +36,13 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|UserProfile wherePostalCode($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|UserProfile whereProvince($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|UserProfile whereSurname($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|UserProfile whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|UserProfile whereUserId($value)
  * @mixin \Eloquent
  */
 class UserProfile extends Model
 {
+    public $timestamps = false;
+
     protected $fillable = [
         'name',
         'surname',

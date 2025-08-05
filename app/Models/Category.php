@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 
 /**
- *
+ * 
  *
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Category newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Category newQuery()
@@ -27,6 +27,8 @@ use Illuminate\Support\Facades\Auth;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Category whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Category whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Category whereUpdatedBy($value)
+ * @property-read \App\Models\User|null $creator
+ * @property-read \App\Models\User|null $updater
  * @mixin \Eloquent
  */
 class Category extends Model
