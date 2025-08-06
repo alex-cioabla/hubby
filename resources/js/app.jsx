@@ -3,12 +3,13 @@ import { Provider } from "react-redux";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import store from "@/store";
 
-import ThemeLayout from '@/Layouts/ThemeLayout.jsx';
-import AuthLayout from "./Layouts/AuthLayout.jsx";
-import AdminLayout from "@/Layouts/AdminLayout.jsx";
+import GuestArea from './Components/Partials/GuestArea';
+import UserArea from './Components/Partials/UserArea';
+import AdminArea from './Components/Partials/AdminArea';
+import AuthLayout from "./Layouts/AuthLayout";
 
-import AuthRoute from "./Components/AuthRoute";
-import VerifiedRoute from "./Components/VerifiedRoute";
+import AuthRoute from "./Components/Middleware/AuthRoute";
+import VerifiedRoute from "./Components/Middleware/VerifiedRoute";
 
 import Home from "./Pages/Home";
 import Rank from "./Pages/Rank";
@@ -22,67 +23,63 @@ import Register from "./Pages/Auth/Register";
 import EmailVerificationRequest from "./Pages/Auth/EmailVerificationRequest";
 import PasswordConfirm from "./Pages/Auth/PasswordConfirm";
 import PasswordUpdate from "./Pages/Profile/PasswordUpdate";
-import Profile from "./Pages/Profile/Profile.jsx";
-import UserSettings from "./Pages/Profile/UserSettings.jsx";
+import Profile from "./Pages/Profile/Profile";
+import UserSettings from "./Pages/Profile/UserSettings";
 
 import "../scss/theme.scss";
-import Session from './Components/Session.jsx';
-import RedirectRoute from './Components/RedirectRoute.jsx';
-import RoleRoute from './Components/RoleRoute.jsx';
+import Session from './Components/Session';
+import RedirectRoute from './Components/RedirectRoute';
 
 function App() {
 
     return (
         <>
-        <Session>
-            <Router>
-                <Routes>
-                    <Route element={<ThemeLayout></ThemeLayout>}>
-                        <Route path="/" element={<Home/>} />
-                        <Route path="/rank" element={<Rank/>} />
-                        <Route path="/shop" element={<Shop/>} />
-                        <Route path="/user/profile" element={
-                            <AuthRoute>
-                                <VerifiedRoute>
-                                    <RoleRoute role={'user'}>
-                                        <Profile/>
-                                    </RoleRoute>
-                                </VerifiedRoute>
-                            </AuthRoute>
-                        } />
-                        <Route path="/user/settings" element={
-                            <AuthRoute>
-                                <VerifiedRoute>
-                                    <RoleRoute role={'user'}>
-                                        <UserSettings/>
-                                    </RoleRoute>
-                                </VerifiedRoute>
-                            </AuthRoute>
-                        } />
-                    </Route>
-                    <Route element={<AdminLayout></AdminLayout>}>
-                        <Route path="/admin/dashboard" element={
-                            <AuthRoute>
-                                <RoleRoute role={'admin'}>
-                                    <Dashboard/>
-                                </RoleRoute>
-                            </AuthRoute>
-                        } />
-                    </Route>
-                    <Route path="/logout" element={<Logout/>} />
-                    <Route element={<AuthLayout></AuthLayout>}>
-                        <Route path="/login" element={<Login/>} />
-                        <Route path="/register" element={<Register/>} />
-                        <Route path="/password-forgot" element={<PasswordForgot/>} />
-                        <Route path="/password-reset/:token" element={<PasswordReset/>} />
+            <Session>
+                <Router>
+                    <Routes>
+                        <Route element={<GuestArea></GuestArea>}>
+                            <Route path="/" element={<Home />} />
+                            <Route path="/rank" element={<Rank />} />
+                            <Route path="/shop" element={<Shop />} />
+                        </Route>
+                        <Route element={<UserArea></UserArea>}>
+                            <Route path="/user/profile" element={
+                                <AuthRoute>
+                                    <VerifiedRoute>
+                                        <Profile />
+                                    </VerifiedRoute>
+                                </AuthRoute>
+                            } />
+                            <Route path="/user/settings" element={
+                                <AuthRoute>
+                                    <VerifiedRoute>
+                                        <UserSettings />
+                                    </VerifiedRoute>
+                                </AuthRoute>
+                            } />
+                        </Route>
 
-                        <Route path="/password-confirm" element={<AuthRoute><PasswordConfirm/></AuthRoute>}/>
-                        <Route path="/password-update" element={<AuthRoute><PasswordUpdate/></AuthRoute>}/>
-                        <Route path="/email-verification-request" element={<AuthRoute><RedirectRoute><EmailVerificationRequest/></RedirectRoute></AuthRoute>} />
-                        <Route path="/email-verification-request/:id/:hash" element={<AuthRoute><RedirectRoute><EmailVerificationRequest/></RedirectRoute></AuthRoute>} />
-                    </Route>
-                </Routes>
-            </Router>
+                        <Route element={<AdminArea></AdminArea>}>
+                            <Route path="/admin/dashboard" element={
+                                <AuthRoute>
+                                    <Dashboard />
+                                </AuthRoute>
+                            } />
+                        </Route>
+                        <Route path="/logout" element={<Logout />} />
+                        <Route element={<AuthLayout></AuthLayout>}>
+                            <Route path="/login" element={<Login />} />
+                            <Route path="/register" element={<Register />} />
+                            <Route path="/password-forgot" element={<PasswordForgot />} />
+                            <Route path="/password-reset/:token" element={<PasswordReset />} />
+
+                            <Route path="/password-confirm" element={<AuthRoute><PasswordConfirm /></AuthRoute>} />
+                            <Route path="/password-update" element={<AuthRoute><PasswordUpdate /></AuthRoute>} />
+                            <Route path="/email-verification-request" element={<AuthRoute><RedirectRoute><EmailVerificationRequest /></RedirectRoute></AuthRoute>} />
+                            <Route path="/email-verification-request/:id/:hash" element={<AuthRoute><RedirectRoute><EmailVerificationRequest /></RedirectRoute></AuthRoute>} />
+                        </Route>
+                    </Routes>
+                </Router>
             </Session>
         </>
     )
@@ -93,6 +90,6 @@ const root = createRoot(container);
 
 root.render(
     <Provider store={store}>
-        <App/>
+        <App />
     </Provider>
 );

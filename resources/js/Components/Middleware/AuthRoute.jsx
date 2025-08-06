@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useSelector } from "react-redux";
 import { Navigate } from 'react-router-dom';
-import Preloader from '@/Components/Preloader';
+import Preloader from '@/Components/Partials/Preloader';
 
 const AuthRoute = (props) => {
 

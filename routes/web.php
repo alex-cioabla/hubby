@@ -71,10 +71,12 @@ Route::get('role', function(){
 
 //REACT GET
 Route::get('session', function (\Illuminate\Http\Request $request): JsonResponse {
+    $user = \App\Models\User::with('profile:user_id,name,surname')->find(auth()->id());
+    $user->role_names = $user->roles()->pluck('name');
     return response()->json([
         'mustVerifyEmail' => $request->user() instanceof \Illuminate\Contracts\Auth\MustVerifyEmail,
         'status' => session('status'),
-        'user' => \App\Models\User::with(['profile:user_id,name,surname'])->find(auth()->id())
+        'user' => $user
     ], 200);
 });
 

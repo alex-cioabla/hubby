@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { usePasswordConfirmMutation } from '@/Store/authApi';
 import { useNavigate  } from 'react-router-dom';
-import ErrorAlert from '@/Components/ErrorAlert';
+import ErrorAlert from '@/Components/Partials/ErrorAlert';
 
 const PasswordConfirm = () => {
 

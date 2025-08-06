@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Navigate, useLocation } from 'react-router-dom';
-import Preloader from './Preloader';
+import Preloader from './Partials/Preloader';
 
 const getCsrfToken = () => {
     const cookies = document.cookie.split(';');

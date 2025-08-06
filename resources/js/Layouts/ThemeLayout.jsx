@@ -4,7 +4,7 @@ import { NavLink, useParams, useNavigate, Outlet } from 'react-router-dom';
 
 // import { fetchTranslations } from "@/Store/translationSlice";
 import { setTheme } from '@/Store/themeSlice';
-import Preloader from '@/Components/Preloader';
+import Preloader from '@/Components/Partials/Preloader';
 
 export default function ThemeLayout() {
 

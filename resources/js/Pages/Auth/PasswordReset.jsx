@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams, useSearchParams  } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { usePasswordResetMutation } from '@/Store/authApi';
-import ErrorAlert from '@/Components/ErrorAlert';
+import ErrorAlert from '@/Components/Partials/ErrorAlert';
 import { setStatus } from '@/Store/authSlice';
 
 export default function PasswordReset() {

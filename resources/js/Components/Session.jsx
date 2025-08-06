@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchSession } from '@/Store/authSlice';
-import Preloader from '@/Components/Preloader';
+import Preloader from '@/Components/Partials/Preloader';
 
 const Session = (props) => {
     const dispatch = useDispatch();

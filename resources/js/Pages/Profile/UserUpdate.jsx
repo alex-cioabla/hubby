@@ -1,4 +1,4 @@
-import ErrorAlert from '@/Components/ErrorAlert';
+import ErrorAlert from '@/Components/Partials/ErrorAlert';
 import { useUserUpdateMutation } from '@/Store/userApi';
 import { useEmailVerificationResendMutation } from '@/Store/authApi';
 import React, { useState, useEffect } from 'react';

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate  } from 'react-router-dom';
-import ErrorAlert from '@/Components/ErrorAlert';
+import ErrorAlert from '@/Components/Partials/ErrorAlert';
 import { usePasswordForgotMutation } from '@/Store/authApi';
 import { setStatus } from '@/Store/authSlice';
 

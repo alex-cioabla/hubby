@@ -1,4 +1,4 @@
-import ErrorAlert from '@/Components/ErrorAlert';
+import ErrorAlert from '@/Components/Partials/ErrorAlert';
 import { useUserDeleteMutation } from '@/Store/userApi';
 import { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';

@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import Preloader from "@/Components/Preloader";
+import Preloader from "@/Components/Partials/Preloader";
 
 export default function AuthLayout() {
 

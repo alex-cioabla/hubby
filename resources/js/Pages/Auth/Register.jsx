@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from "react-redux";
 
-import ErrorAlert from '@/Components/ErrorAlert';
+import ErrorAlert from '@/Components/Partials/ErrorAlert';
 import { useRegisterMutation } from '@/Store/authApi';
 import { setAuthenticated, /*fetchSession*/ } from '@/Store/authSlice';
 

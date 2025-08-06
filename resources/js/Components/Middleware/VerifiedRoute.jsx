@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Navigate, useNavigate, useSearchParams } from 'react-router-dom';
-import Preloader from '@/Components/Preloader';
+import Preloader from '@/Components/Partials/Preloader';
 
 const VerifiedRoute = (props) => {
 

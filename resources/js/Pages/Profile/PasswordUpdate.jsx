@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { usePasswordUpdateMutation } from '@/Store/userApi';
-import ErrorAlert from '@/Components/ErrorAlert';
+import ErrorAlert from '@/Components/Partials/ErrorAlert';
 
 const PasswordUpdate = () => {
 

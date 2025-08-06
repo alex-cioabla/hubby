@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import Preloader from "./Preloader";
-import Error403 from "./Error403";
+import Preloader from "../Partials/Preloader";
+import Error403 from "../Pages/Error403";
 
 const RoleRoute = (props) => {
 
