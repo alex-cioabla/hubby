@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Navigate, useNavigate, useSearchParams } from 'react-router-dom';
-import Preloader from '@/Components/Partials/Preloader';
+import Spinner from '@/Components/Partials/Spinner';
 
 const VerifiedRoute = (props) => {
 
@@ -45,7 +45,7 @@ const VerifiedRoute = (props) => {
 
     if (verified === null) {
         return (
-            <Preloader show={true} />
+            <Spinner show={true} />
         );
     }
 

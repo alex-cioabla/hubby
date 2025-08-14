@@ -2,8 +2,8 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from "react-redux";
 
-import { useLogoutMutation } from '@/Store/authApi';
-import { removeSession } from '@/Store/authSlice';
+import { useLogoutMutation } from '@/Store/Api/authApi';
+import { removeSession } from '@/Store/Slice/authSlice';
 
 const Logout = () => {
 

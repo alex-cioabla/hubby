@@ -1,9 +1,9 @@
-import ErrorAlert from '@/Components/Partials/ErrorAlert';
-import { useUserUpdateMutation } from '@/Store/userApi';
-import { useEmailVerificationResendMutation } from '@/Store/authApi';
+import Alert from '@/Components/Partials/Alert';
+import { useUserUpdateMutation } from '@/Store/Api/userApi';
+import { useEmailVerificationResendMutation } from '@/Store/Api/authApi';
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setStatus } from '@/Store/authSlice';
+import { setStatus } from '@/Store/Slice/authSlice';
 
 const UserUpdate = () => {
 
@@ -88,7 +88,7 @@ const UserUpdate = () => {
                                     onChange={handleChange}
                                     required />
 
-                                <ErrorAlert messages={nameErrors} className="mt-2" />
+                                <Alert messages={nameErrors} className="mt-2" />
                             </div>
 
                             <div className="mb-3">
@@ -103,7 +103,7 @@ const UserUpdate = () => {
                                     onChange={handleChange}
                                     required />
 
-                                <ErrorAlert messages={surNameErrors} className="mt-2" />
+                                <Alert messages={surNameErrors} className="mt-2" />
                             </div>
 
                             <div className="mb-3">
@@ -119,7 +119,7 @@ const UserUpdate = () => {
                                     onChange={handleChange}
                                     required
                                 />
-                                <ErrorAlert messages={emailErrors} className="mt-2" />
+                                <Alert messages={emailErrors} className="mt-2" />
                             </div>
 
                             {mustVerifyEmail && user.email_verified_at === null && (

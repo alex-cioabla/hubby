@@ -8,7 +8,7 @@ const Dashboard = () => {
                 <h1 className="h2">Dashboard</h1>
 
             </div>
-            <p>Sei autenticato!</p>
+            <p>Benvenuto nell'area Admin della piattaforma Hubby</p>
         </>
     );
 }

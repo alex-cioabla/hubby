@@ -26,6 +26,17 @@ $headings-color-dark: #fff;
 $form-label-color: #fff;
 $card-title-color: #fff;
 
+$position-values: (
+  0: 0,
+  50: 50%,
+  100: 100%,
+  25: 25%,
+  75: 75%,
+  5: 5%,
+  10: 10%,
+  20: 20%
+);
+
 @import "bootstrap/scss/bootstrap";
 
 .input-group-text {

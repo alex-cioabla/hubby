@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchSession } from '@/Store/authSlice';
-import Preloader from '@/Components/Partials/Preloader';
+import { fetchSession } from '@/Store/Slice/authSlice';
+import Spinner from '@/Components/Partials/Spinner';
 
 const Session = (props) => {
     const dispatch = useDispatch();
@@ -30,7 +30,7 @@ const Session = (props) => {
 
     if (loading) {
         return (
-            <Preloader show={true} />
+            <Spinner show={true} />
         );
     }
 

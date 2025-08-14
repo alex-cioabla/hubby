@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams, useSearchParams  } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
-import { usePasswordResetMutation } from '@/Store/authApi';
-import ErrorAlert from '@/Components/Partials/ErrorAlert';
-import { setStatus } from '@/Store/authSlice';
+import { usePasswordResetMutation } from '@/Store/Api/authApi';
+import Alert from '@/Components/Partials/Alert';
+import { setStatus } from '@/Store/Slice/authSlice';
 
 export default function PasswordReset() {
 
@@ -66,7 +66,7 @@ export default function PasswordReset() {
                         onChange={handleChange}
                     />
                     <label htmlFor="floatingInput">Indirizzo email</label>
-                    <ErrorAlert messages={emailErrors} className="mt-2" />
+                    <Alert messages={emailErrors} className="mt-2" />
                 </div>
 
                 <div className="form-floating  mb-3">
@@ -80,7 +80,7 @@ export default function PasswordReset() {
                         onChange={handleChange}
                     />
                     <label htmlFor="floatingPassword">Password</label>
-                    <ErrorAlert messages={passwordErrors} className="mt-2" />
+                    <Alert messages={passwordErrors} className="mt-2" />
                 </div>
 
                 <div className="form-floating  mb-3">
@@ -94,7 +94,7 @@ export default function PasswordReset() {
                         onChange={handleChange}
                     />
                     <label htmlFor="floatingPasswordConfirmation">Password</label>
-                    <ErrorAlert messages={passwordConfirmationErrors} className="mt-2" />
+                    <Alert messages={passwordConfirmationErrors} className="mt-2" />
                 </div>
 
                 <button className="btn btn-primary w-100 py-2 mt-2" disabled={isLoading}>

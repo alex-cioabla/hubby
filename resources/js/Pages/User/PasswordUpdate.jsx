@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import { usePasswordUpdateMutation } from '@/Store/userApi';
-import ErrorAlert from '@/Components/Partials/ErrorAlert';
+import { usePasswordUpdateMutation } from '@/Store/Api/userApi';
+import Alert from '@/Components/Partials/Alert';
 
 const PasswordUpdate = () => {
 
@@ -88,7 +88,7 @@ const PasswordUpdate = () => {
                                     onChange={handleChange}
                                 />
                                 <label htmlFor="current_password">Password attuale</label>
-                                <ErrorAlert messages={currentPasswordErrors} className="mt-2" />
+                                <Alert messages={currentPasswordErrors} className="mt-2" />
                             </div>
 
                             <div className="form-floating mb-3">
@@ -101,7 +101,7 @@ const PasswordUpdate = () => {
                                     onChange={handleChange}
                                 />
                                 <label htmlFor="password">Nuova password</label>
-                                <ErrorAlert messages={passwordErrors} className="mt-2" />
+                                <Alert messages={passwordErrors} className="mt-2" />
                             </div>
 
                             <div className="form-floating mb-3">
@@ -114,7 +114,7 @@ const PasswordUpdate = () => {
                                     onChange={handleChange}
                                 />
                                 <label htmlFor="password_confirmation">Password di conferma</label>
-                                <ErrorAlert messages={passwordConfirmationErrors} className="mt-2" />
+                                <Alert messages={passwordConfirmationErrors} className="mt-2" />
                             </div>
 
                             <button type="submit" className="btn btn-primary" disabled={isLoading}>

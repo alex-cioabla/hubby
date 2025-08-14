@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchSession } from "./authThunk";
+import { fetchSession } from "@/Store/Thunk/authThunk";
 
 const authSlice = createSlice({
     name: 'auth',

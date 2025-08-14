@@ -1,18 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Navigate, useLocation } from 'react-router-dom';
-import Preloader from './Partials/Preloader';
-
-const getCsrfToken = () => {
-    const cookies = document.cookie.split(';');
-    for (let cookie of cookies) {
-        const [name, value] = cookie.trim().split('=');
-        if (name === 'XSRF-TOKEN') {
-            return decodeURIComponent(value);
-        }
-    }
-    return null;
-};
+import { getCsrfToken } from '@/Utils/api';
+import Spinner from './Partials/Spinner';
 
 const RedirectRoute = (props) => {
 
@@ -48,7 +38,7 @@ const RedirectRoute = (props) => {
     }, [user])
 
     if (!user || redirect === null) {
-        return <Preloader show={true}></Preloader>
+        return <Spinner show={true}></Spinner>
     }
 
     if (redirect) {

@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
-import { useEmailVerificationResendMutation } from '@/Store/authApi';
-import { setStatus } from '@/Store/authSlice';
+import { useEmailVerificationResendMutation } from '@/Store/Api/authApi';
+import { setStatus } from '@/Store/Slice/authSlice';
 
 const EmailVerificationRequest = () => {
 

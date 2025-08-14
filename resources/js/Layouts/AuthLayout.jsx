@@ -1,11 +1,11 @@
 import { Outlet } from "react-router-dom";
-import Preloader from "@/Components/Partials/Preloader";
+import Spinner from "@/Components/Partials/Spinner";
 
 export default function AuthLayout() {
 
     return (
         <>
-            <Preloader></Preloader>
+            <Spinner></Spinner>
             <div className="main h-100 d-flex flex-column justify-content-center align-items-center">
                 <Outlet />
             </div>

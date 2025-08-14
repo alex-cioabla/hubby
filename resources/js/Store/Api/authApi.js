@@ -1,16 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-
-// Get CSRF token dai cookie del browser
-const getCsrfToken = () => {
-    const cookies = document.cookie.split(';');
-    for (let cookie of cookies) {
-        const [name, value] = cookie.trim().split('=');
-        if (name === 'XSRF-TOKEN') {
-            return decodeURIComponent(value);
-        }
-    }
-    return null;
-};
+import { getCsrfToken } from '@/Utils/api';
 
 export const authApi = createApi({
     reducerPath: 'authService',
@@ -30,16 +19,16 @@ export const authApi = createApi({
         },
     }),
     endpoints: builder => ({
-        login: builder.mutation({
+        register: builder.mutation({
             query: (body) => ({
-                url: '/login',
+                url: '/register',
                 method: 'POST',
                 body: body
             })
         }),
-        register: builder.mutation({
+        login: builder.mutation({
             query: (body) => ({
-                url: '/register',
+                url: '/login',
                 method: 'POST',
                 body: body
             })

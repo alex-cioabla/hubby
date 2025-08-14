@@ -19,9 +19,9 @@ export const Profile = () => {
                             <h4><span className="badge text-bg-primary">Offline</span></h4>
                             <h4 className="mt-2">{user.name}</h4>
                             <p> Tocca il pulsante qui sotto per andare alle tue impostazioni profilo</p>
-                            <button className="btn btn-outline-primary">Impostazioni</button>
+                            <Link to="/user/settings" role="button" className="btn btn-outline-primary">Impostazioni</Link>
                             {user.role_names.includes('admin') && (
-                                <Link to="/admin/dashboard" type="button" className="btn btn-primary ms-2">Area admin</Link>
+                                <Link to="/admin/dashboard" role="button" className="btn btn-primary ms-2">Area Admin</Link>
                             )}
                         </div>
                         <div className="col-12 col-sm-4">

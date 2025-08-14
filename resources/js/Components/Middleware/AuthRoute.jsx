@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useSelector } from "react-redux";
 import { Navigate } from 'react-router-dom';
-import Preloader from '@/Components/Partials/Preloader';
+import Spinner from '@/Components/Partials/Spinner';
 
 const AuthRoute = (props) => {
 
@@ -10,7 +10,7 @@ const AuthRoute = (props) => {
 
     useEffect(() => {
         if(user){
-            fetch('http://localhost:8000/auth', {
+            fetch('/auth', {
                 method: 'GET',
                 credentials: 'include',
                 headers: {
@@ -38,7 +38,7 @@ const AuthRoute = (props) => {
     }, [user]);
 
     if (!user || auth === null) {
-        return <Preloader show={true} />;
+        return <Spinner show={true} />;
     }
 
     if (!auth) {

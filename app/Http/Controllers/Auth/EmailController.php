@@ -39,14 +39,12 @@ class EmailController extends Controller
      */
     public function verify(Request $request): JsonResponse
     {
-        $user = User::findOrFail($request['id']);
-
-        if ($user->hasVerifiedEmail()) {
+        if ($request->user()->hasVerifiedEmail()) {
             return response()->json('/user/profile?verified=1', 200);
         }
 
-        if ($user->markEmailAsVerified()) {
-            event(new Verified($user));
+        if ($request->user()->markEmailAsVerified()) {
+            event(new Verified($request->user()));
         }
 
         return response()->json('/user/profile?verified=1', 200);

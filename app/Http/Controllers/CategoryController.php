@@ -12,7 +12,11 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $categories = Category::with(['creator', 'updater'])
+            ->orderBy('name')
+            ->get();
+
+        return response()->json(['success' => true, 'data' => $categories], 200);
     }
 
     /**
@@ -28,7 +32,15 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|unique:categories,name|max:255',
+        ]);
+
+        Category::create(['name' => $request->name]);
+
+        return response()->json([
+            'message' => 'Categoria creata con successo'
+        ], 201);
     }
 
     /**

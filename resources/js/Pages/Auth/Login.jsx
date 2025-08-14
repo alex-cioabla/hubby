@@ -2,9 +2,9 @@ import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 
-import ErrorAlert from '@/Components/Partials/ErrorAlert';
-import { useLoginMutation } from '@/Store/authApi';
-import { setAuthenticated, /*fetchSession*/ } from '@/Store/authSlice';
+import Alert from '@/Components/Partials/Alert';
+import { useLoginMutation } from '@/Store/Api/authApi';
+import { setAuthenticated, /*fetchSession*/ } from '@/Store/Slice/authSlice';
 
 const Login = () => {
 
@@ -138,7 +138,7 @@ const Login = () => {
                         Ricordami
                     </label>
                 </div>
-                <ErrorAlert messages={(message ? [message] : [])} className="mt-2" />
+                <Alert messages={(message ? [message] : [])} className="mt-2" />
                 <p>
                     {appConfig.canResetPassword && (
                         <Link

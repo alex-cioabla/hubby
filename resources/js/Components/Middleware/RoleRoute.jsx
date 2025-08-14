@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import Preloader from "../Partials/Preloader";
+import Spinner from "../Partials/Spinner";
 import Error403 from "../Pages/Error403";
 
 const RoleRoute = (props) => {
@@ -32,7 +32,7 @@ const RoleRoute = (props) => {
     }, [user]);
 
     if (role === null) {
-        return (<Preloader show={true}></Preloader>)
+        return (<Spinner show={true}></Spinner>)
     }
 
     if (!role) {

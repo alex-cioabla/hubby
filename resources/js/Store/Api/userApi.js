@@ -1,15 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-
-const getCsrfToken = () => {
-    const cookies = document.cookie.split(';');
-    for (let cookie of cookies) {
-        const [name, value] = cookie.trim().split('=');
-        if (name === 'XSRF-TOKEN') {
-            return decodeURIComponent(value);
-        }
-    }
-    return null;
-};
+import { getCsrfToken } from '@/Utils/api';
 
 export const userApi = createApi({
     reducerPath: 'userService',
@@ -25,7 +15,7 @@ export const userApi = createApi({
             headers.set('Accept', 'application/json');
             headers.set('Content-Type', 'application/json');
             return headers;
-        },
+        }
     }),
     endpoints: builder => ({
         passwordUpdate: builder.mutation({

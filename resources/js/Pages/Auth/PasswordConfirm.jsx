@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { usePasswordConfirmMutation } from '@/Store/authApi';
+import { usePasswordConfirmMutation } from '@/Store/Api/authApi';
 import { useNavigate  } from 'react-router-dom';
-import ErrorAlert from '@/Components/Partials/ErrorAlert';
+import Alert from '@/Components/Partials/Alert';
 
 const PasswordConfirm = () => {
 
@@ -48,7 +48,7 @@ const PasswordConfirm = () => {
                         onChange={(e) => setPassword(e.target.value)}
                         required />
                     <label htmlFor="password">Password</label>
-                    <ErrorAlert messages={passwordErrors} className="mt-2" />
+                    <Alert messages={passwordErrors} className="mt-2" />
                 </div>
 
                 <button className="btn btn-primary w-100 py-2 mt-2" disabled={isLoading}>

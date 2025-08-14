@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate  } from 'react-router-dom';
-import ErrorAlert from '@/Components/Partials/ErrorAlert';
-import { usePasswordForgotMutation } from '@/Store/authApi';
-import { setStatus } from '@/Store/authSlice';
+import Alert from '@/Components/Partials/Alert';
+import { usePasswordForgotMutation } from '@/Store/Api/authApi';
+import { setStatus } from '@/Store/Slice/authSlice';
 
 const PasswordForgot = () => {
 
@@ -59,7 +59,7 @@ const PasswordForgot = () => {
                         onChange={(e) => setEmail(e.target.value)}
                     />
                     <label htmlFor="floatingInput">Indirizzo email</label>
-                    <ErrorAlert messages={emailErrors} className="mt-2" />
+                    <Alert messages={emailErrors} className="mt-2" />
                 </div>
 
                 <button className="btn btn-primary w-100" disabled={isLoading}>

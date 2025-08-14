@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from "react-redux";
 
-import ErrorAlert from '@/Components/Partials/ErrorAlert';
-import { useRegisterMutation } from '@/Store/authApi';
-import { setAuthenticated, /*fetchSession*/ } from '@/Store/authSlice';
+import Alert from '@/Components/Partials/Alert';
+import { useRegisterMutation } from '@/Store/Api/authApi';
+import { setAuthenticated, /*fetchSession*/ } from '@/Store/Slice/authSlice';
 
 const Register = () => {
 
@@ -80,7 +80,7 @@ const Register = () => {
                         onChange={handleChange}
                         required />
                     <label htmlFor="name">Nome</label>
-                    <ErrorAlert messages={nameErrors} className="mt-2" />
+                    <Alert messages={nameErrors} className="mt-2" />
                 </div>
                 <div className="form-floating mb-3">
                     <input
@@ -93,7 +93,7 @@ const Register = () => {
                         onChange={handleChange}
                         required />
                     <label htmlFor="surname">Cognome</label>
-                    <ErrorAlert messages={surnameErrors} className="mt-2" />
+                    <Alert messages={surnameErrors} className="mt-2" />
                 </div>
 
                 <div className="form-floating mb-3">
@@ -108,7 +108,7 @@ const Register = () => {
                         required
                     />
                     <label htmlFor="email">Indirizzo email</label>
-                    <ErrorAlert messages={emailErrors} className="mt-2" />
+                    <Alert messages={emailErrors} className="mt-2" />
                 </div>
                 <div className="form-floating mb-3">
                     <input
@@ -122,7 +122,7 @@ const Register = () => {
                         required
                     />
                     <label htmlFor="password">Password</label>
-                    <ErrorAlert messages={passwordErrors} className="mt-2" />
+                    <Alert messages={passwordErrors} className="mt-2" />
                 </div>
 
                 <div className="form-floating mb-3">
@@ -137,7 +137,7 @@ const Register = () => {
                         required
                     />
                     <label htmlFor="password_confirmation">Conferma password</label>
-                    <ErrorAlert messages={passwordConfirmationErrors} className="mt-2" />
+                    <Alert messages={passwordConfirmationErrors} className="mt-2" />
                 </div>
 
                 <Link
