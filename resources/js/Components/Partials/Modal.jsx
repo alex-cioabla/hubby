@@ -9,7 +9,7 @@ export const Modal = ({ show, id, title, body, footer, size = '', reset = false 
         if (show && modalRef.current) {
 
             const modal = new window.bootstrap.Modal(modalRef.current, {
-                backdrop: false,
+                backdrop: true,
                 keyboard: true
             });
             const handleModalClose = () => {

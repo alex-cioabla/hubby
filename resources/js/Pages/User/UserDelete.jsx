@@ -9,7 +9,13 @@ import { useUserDeleteMutation } from '@/Store/Api/userApi';
 const UserDelete = () => {
 
     const password = useRef('');
-    const [reset, setReset] = useState(null);
+    const [modal, setModal] = useState({
+        show: false,
+        title: '',
+        body: '',
+        footer: '',
+        reset: false
+    });
     const [userDelete, { data, error, isLoading, isSuccess }] = useUserDeleteMutation();
 
     const passwordErrors = error?.data?.errors?.password ?? [];
@@ -18,7 +24,7 @@ const UserDelete = () => {
 
     useEffect(() => {
 
-        password.current.focus();
+        // password.current.focus();
         history.scrollRestoration = 'auto';
 
         if (isSuccess) {
@@ -50,15 +56,11 @@ const UserDelete = () => {
                             per favore scarica ogni dato o informatizione che desideri mantenere.
                         </p>
 
-                        <button type="button" className="btn btn-danger" data-bs-toggle="modal" data-bs-target="#userDeleteModal" onClick={() => setReset(true)}>
-                            Cancella account
-                        </button>
-
-                        <Modal
-                            id={'userDeleteModal'}
-                            title={'Sei sicuro di volere cancellato il tuo account?'}
-                            reset={reset}
-                            body={
+                        <button type="button" className="btn btn-danger" data-bs-toggle="modal" data-bs-target="#userDeleteModal" onClick={() => setModal({
+                            id: 'userDeleteModal',
+                            show: true,
+                            title: 'Sei sicuro di volere cancellato il tuo account?',
+                            body: (
                                 <>
                                     <p>
                                         Una volta che l'account è cancellato, tutte le sue risors e dati
@@ -77,8 +79,8 @@ const UserDelete = () => {
                                     />
                                     <Alert message={passwordErrors} className="mt-2" />
                                 </>
-                            }
-                            footer={
+                            ),
+                            footer: (
                                 <>
                                     <button
                                         type="button"
@@ -91,8 +93,18 @@ const UserDelete = () => {
                                         Cancella account
                                     </button>
                                 </>
-                            }
-                        ></Modal>
+                            )
+                        })}>
+                            Cancella account
+                        </button>
+
+                    <Modal
+                        show={modal.show}
+                        id={modal.id}
+                        title={modal.title}
+                        body={modal.body}
+                        footer={modal.footer}
+                    ></Modal>
                     </section>
                 </div>
             </div>
