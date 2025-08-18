@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 import { NavLink, Outlet } from 'react-router-dom';
 
 // import { fetchTranslations } from "@/Store/translationSlice";
-import Spinner from '@/Components/Partials/Spinner';
 import ThemeToggle from '@/Components/Partials/ThemeToggle';
 
 export default function ThemeLayout() {
@@ -42,7 +41,6 @@ export default function ThemeLayout() {
 
     return (
         <>
-            <Spinner></Spinner>
             <header className="header">
                 <nav className="navbar navbar-expand-lg py-4">
                     <div className="container">

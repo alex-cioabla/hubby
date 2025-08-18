@@ -20,15 +20,8 @@ const Categories = () => {
         footer: '',
         reset: false
     });
-    const { data: categories, error, isLoading } = useGetCategoriesQuery();
-    const [insert, { data: category, error: errorInsert }] = useInsertCategoryMutation();
 
-    if (isLoading) {
-        return <div>Caricamento...</div>
-    }
-    if (error) {
-        return <div>Errore: {error}</div>
-    }
+    const [insert, { data: category, error: errorInsert }] = useInsertCategoryMutation();
 
     const handleInsert = async () => {
 
@@ -85,7 +78,7 @@ const Categories = () => {
                     <i className="bi bi-plus-square"></i> Inserisci
                 </button>
             </div>
-            <DataTable data={categories} columns={
+            <DataTable data={useGetCategoriesQuery()} columns={
                 [
                     { name: 'name' },
                     { name: 'inserito' },

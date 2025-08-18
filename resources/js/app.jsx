@@ -1,5 +1,6 @@
 import { createRoot } from 'react-dom/client';
 import { Provider } from "react-redux";
+import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import store from "@/Store/store";
 
@@ -30,14 +31,34 @@ import EmailVerificationRequest from "./Pages/Auth/EmailVerificationRequest";
 
 import "../scss/theme.scss";
 import Categories from './Pages/Admin/Categories';
+import Spinner from './Components/Partials/Spinner';
 
 
 function App() {
+
+    const [loading, setLoading] = useState(false);
+
+    useEffect(() => {
+        const toggleSpinner = () => {
+            setLoading(true);
+        };
+
+        if (document.readyState === "complete") {
+            toggleSpinner();
+        } else {
+            window.addEventListener('load', toggleSpinner);
+        }
+
+        return () => {
+            window.removeEventListener('load', toggleSpinner);
+        };
+    }, []);
 
     return (
         <>
             <Session>
                 <Router>
+                        <Spinner show={!loading} />
                     <Routes>
                         <Route element={<GuestArea></GuestArea>}>
                             <Route path="/" element={<Home />} />

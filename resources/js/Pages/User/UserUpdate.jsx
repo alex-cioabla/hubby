@@ -40,7 +40,7 @@ const UserUpdate = () => {
         }
 
         if (emailIsSuccess) {
-            dispatch(setStatus(emailData.status)); // (DA VERIFICARE)
+            dispatch(setStatus(emailData.status));
         }
     }, [isSuccess, emailIsSuccess]);
 

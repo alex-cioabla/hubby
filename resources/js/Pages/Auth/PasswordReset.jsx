@@ -29,7 +29,7 @@ export default function PasswordReset() {
     useEffect(() => {
 
         if (isSuccess) {
-            dispatch(setStatus(data.status)); // (DA VERIFICARE)
+            dispatch(setStatus(data.status));
             document.getElementById('floatingPassword').value = '';
             document.getElementById('floatingPasswordConfirmation').value = '';
             navigate('/login');

@@ -8,11 +8,14 @@ import {
     flexRender,
 } from '@tanstack/react-table';
 import * as utils from '@/Utils/functions';
+import Spinner from '@/Components/Partials/Spinner';
 
 export const DataTable = (props) => {
 
     const [sorting, setSorting] = useState([]);
     const [filtering, setFiltering] = useState('');
+
+    const { data, error, isLoading } = props.data;
 
     const columns = useMemo(() => {
         const config = props.columns.map((col) => ({
@@ -43,7 +46,7 @@ export const DataTable = (props) => {
     }, [props.columns]);
 
     const table = useReactTable({
-        data: props.data,
+        data: data ?? [],
         columns,
         getCoreRowModel: getCoreRowModel(),
         getSortedRowModel: getSortedRowModel(),
@@ -56,6 +59,14 @@ export const DataTable = (props) => {
         onSortingChange: setSorting,
         onGlobalFilterChange: setFiltering,
     });
+
+    if (isLoading) {
+        return <Spinner show={true}></Spinner>
+    }
+
+    if (error) {
+        return <div>Errore: {error}</div>
+    }
 
     return (
         <>

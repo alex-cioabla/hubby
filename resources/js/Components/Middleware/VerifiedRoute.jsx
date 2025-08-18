@@ -37,6 +37,7 @@ const VerifiedRoute = (props) => {
                     }
                 })
                 .catch(error => {
+                    console.error('Verified check failed:', error);
                     setVerified(false);
                 });
             }

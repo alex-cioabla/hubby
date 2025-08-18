@@ -6,7 +6,7 @@ import Spinner from './Partials/Spinner';
 
 const RedirectRoute = (props) => {
 
-    const [redirect, setRedirect] = useState(null);
+    const [url, setUrl] = useState(null);
     const { user } = useSelector(state => state.auth);
     const location = useLocation();
 
@@ -28,21 +28,21 @@ const RedirectRoute = (props) => {
                     window.alert(response.status);
                 }
             }).then(data => {
-                setRedirect(data);
+                setUrl(data);
             })
             .catch(error => {
                 console.error('Redirect failed:', error);
-                setRedirect('');
+                setUrl('');
             });
         }
     }, [user])
 
-    if (!user || redirect === null) {
+    if (!user || url === null) {
         return <Spinner show={true}></Spinner>
     }
 
-    if (redirect) {
-        return <Navigate to={redirect} replace />;
+    if (url) {
+        return <Navigate to={url} replace />;
     }
 
     return props.children;

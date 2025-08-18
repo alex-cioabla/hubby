@@ -20,11 +20,13 @@ const RoleRoute = (props) => {
                 }
             }).then(response => {
                 if (response.status === 200) {
-                     setRole(true);
-                     return response.json();
+                    setRole(true);
                 }
-                setRole(false);
+                if (response.status === 401) {
+                    setRole(false);
+                }
             }).catch(error => {
+                console.error('Verified role failed:', error);
                 setRole(false);
             });
         }
@@ -36,7 +38,6 @@ const RoleRoute = (props) => {
     }
 
     if (!role) {
-        // return <Navigate to="/error/403" replace />;
         return (<Error403/>)
     }
 
