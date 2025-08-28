@@ -54,7 +54,8 @@ class UserProfile extends Model
         'city',
         'province',
         'postal_code',
-        'country'
+        'country',
+        'user_id'
     ];
 
     protected $hidden = [

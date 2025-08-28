@@ -1,8 +1,17 @@
-import { useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useImperativeHandle, forwardRef } from 'react';
 
-export const Modal = ({ show, id, title, body, footer, size = '', reset = false }) => {
+const Modal = forwardRef(({ title, body, footer, size = '', reset = false }, ref) => {
 
     const modalRef = useRef(null);
+    const [show, setShow] = useState(false);
+
+    //useImperativeHandle è un hook che permette di gestire custom il comportamento di ref
+    useImperativeHandle(ref,() => ({
+        //chiamando il metodo focus sul ref viene eseguita questa funzione
+        open: () => setShow(true),
+        close: () => setShow(false)
+        //la chiusura tramite data attribute data-bs-dismiss="modal" viene gestita in automatica da bootstrap
+      }));
 
     useEffect(() => {
 
@@ -12,19 +21,22 @@ export const Modal = ({ show, id, title, body, footer, size = '', reset = false 
                 backdrop: true,
                 keyboard: true
             });
+            //oppure tramite date attribute data-bs-toggle="modal" data-bs-target="#idmodal"
+
+            modal.show();
+
+            //Evento chiusura del modal
             const handleModalClose = () => {
                 const forms = modalRef.current?.querySelectorAll('form');
                 forms?.forEach(form => form.reset());
             };
 
-            modal.show();
-
+            //Listener evento chiusura
             if (reset) {
-                //Eventi chiusura del modal
                 modalRef.current.addEventListener('hidden.bs.modal', handleModalClose);
             }
 
-
+            //Rimozione listener all'unmount componente
             return () => {
                 if (modal) {
                     if (reset && modalRef.current) {
@@ -41,17 +53,14 @@ export const Modal = ({ show, id, title, body, footer, size = '', reset = false 
 
     return (
         <div
+            //richiamo tutti i metodi sul ref
             ref={modalRef}
             className="modal fade"
-            id={id}
-            tabIndex={-1}
-            aria-labelledby={id + "Label"}
-            aria-hidden="true"
         >
             <div className={`modal-dialog ${size ? 'modal-' + size : ''} `}>
                 <div className="modal-content">
                     <div className="modal-header">
-                        <h1 className="modal-title fs-5" id={id + "Label"}>
+                        <h1 className="modal-title fs-5">
                             {title}
                         </h1>
                         <button
@@ -72,8 +81,7 @@ export const Modal = ({ show, id, title, body, footer, size = '', reset = false 
                 </div>
             </div>
         </div>
-    )
-}
+    );
+});
 
-
-
+export { Modal };

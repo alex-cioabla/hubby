@@ -8,6 +8,7 @@ use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\Auth\EmailController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use Illuminate\Support\Facades\Auth;
 
 Route::post('register', [RegisterController::class, 'store']);
 Route::post('login', [LoginController::class, 'store']);
@@ -40,6 +41,9 @@ Route::prefix('admin')->group(function(){
 
 //REACT MIDDLEWARE
 Route::get('auth', function () : JsonResponse{
+    //     if (Auth::check() && !Auth::viaRemember()) {
+    //         return response()->json(false, 401);
+    // }
     return response()->json(true, 200);
 })->middleware(['auth']); //auth()->check()
 
@@ -64,6 +68,4 @@ Route::get('session', function (\Illuminate\Http\Request $request): JsonResponse
 
 //REACT REDIRECT
 Route::post('/email-verification-request', [EmailController::class, 'request']);
-Route::post('/email-verification-request/{id}/{hash}', [EmailController::class, 'verify'])
-    ->middleware(['signed', 'throttle:6,1']);
-
+Route::post('/email-verification-request/{id}/{hash}', [EmailController::class, 'verify'])->middleware(['throttle:6,1']);

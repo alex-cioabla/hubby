@@ -52,6 +52,11 @@ class LoginController extends Controller
         //(non uso Auth::guard('web')->logout() perchè non ho nessuna sessione da terminare)
         //$request->user()->currentAccessToken()->delete();
 
+        if ($request->user()) {
+            $request->user()->update(['remember_token' => null]);
+        }
+
+
         Auth::guard('web')->logout();
 
         $request->session()->invalidate();

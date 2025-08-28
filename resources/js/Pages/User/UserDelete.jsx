@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useEffect } from 'react';
 import { useDispatch } from "react-redux";
 import { useNavigate } from 'react-router-dom';
 import { removeSession } from '@/Store/Slice/authSlice';
@@ -9,13 +9,7 @@ import { useUserDeleteMutation } from '@/Store/Api/userApi';
 const UserDelete = () => {
 
     const password = useRef('');
-    const [modal, setModal] = useState({
-        show: false,
-        title: '',
-        body: '',
-        footer: '',
-        reset: false
-    });
+    const modal = useRef('');
     const [userDelete, { data, error, isLoading, isSuccess }] = useUserDeleteMutation();
 
     const passwordErrors = error?.data?.errors?.password ?? [];
@@ -24,7 +18,7 @@ const UserDelete = () => {
 
     useEffect(() => {
 
-        // password.current.focus();
+        // password.current.focus(); // (DA VERIFICARE)
         history.scrollRestoration = 'auto';
 
         if (isSuccess) {
@@ -56,11 +50,14 @@ const UserDelete = () => {
                             per favore scarica ogni dato o informatizione che desideri mantenere.
                         </p>
 
-                        <button type="button" className="btn btn-danger" data-bs-toggle="modal" data-bs-target="#userDeleteModal" onClick={() => setModal({
-                            id: 'userDeleteModal',
-                            show: true,
-                            title: 'Sei sicuro di volere cancellato il tuo account?',
-                            body: (
+                        <button type="button" className="btn btn-danger" onClick={() => modal.current.open()}>
+                            Cancella account
+                        </button>
+
+                        <Modal
+                            ref={modal}
+                            title={'Sei sicuro di volere cancellato il tuo account?'}
+                            body={
                                 <>
                                     <p>
                                         Una volta che l'account è cancellato, tutte le sue risors e dati
@@ -79,8 +76,8 @@ const UserDelete = () => {
                                     />
                                     <Alert message={passwordErrors} className="mt-2" />
                                 </>
-                            ),
-                            footer: (
+                            }
+                            footer={
                                 <>
                                     <button
                                         type="button"
@@ -89,22 +86,12 @@ const UserDelete = () => {
                                     >
                                         Annulla
                                     </button>
-                                    <button type="button" className="btn btn-danger" disabled={isLoading} onClick={ () => userDelete({ password: password.current.value })}>
+                                    <button type="button" className="btn btn-danger" disabled={isLoading} onClick={() => userDelete({ password: password.current.value })}>
                                         Cancella account
                                     </button>
                                 </>
-                            )
-                        })}>
-                            Cancella account
-                        </button>
-
-                    <Modal
-                        show={modal.show}
-                        id={modal.id}
-                        title={modal.title}
-                        body={modal.body}
-                        footer={modal.footer}
-                    ></Modal>
+                            }
+                        ></Modal>
                     </section>
                 </div>
             </div>

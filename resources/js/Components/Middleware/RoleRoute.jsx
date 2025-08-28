@@ -9,7 +9,6 @@ const RoleRoute = (props) => {
     const { user } = useSelector(state => state.auth);
 
     useEffect(() => {
-
         if (user) {
             fetch('/role', {
                 method: 'GET',
@@ -33,7 +32,7 @@ const RoleRoute = (props) => {
 
     }, [user]);
 
-    if (role === null) {
+    if (role === null || !user) {
         return (<Spinner show={true}></Spinner>)
     }
 

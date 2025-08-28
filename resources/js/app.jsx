@@ -32,6 +32,7 @@ import EmailVerificationRequest from "./Pages/Auth/EmailVerificationRequest";
 import "../scss/theme.scss";
 import Categories from './Pages/Admin/Categories';
 import Spinner from './Components/Partials/Spinner';
+import { PopupProvider } from './Hooks/Popup';
 
 
 function App() {
@@ -55,43 +56,48 @@ function App() {
     }, []);
 
     return (
-        <>
-            <Session>
+       <>
+            <Spinner show={!loading} />
+            <PopupProvider>
                 <Router>
-                        <Spinner show={!loading} />
                     <Routes>
-                        <Route element={<GuestArea></GuestArea>}>
+                        <Route element={<Session><GuestArea /></Session>}>
                             <Route path="/" element={<Home />} />
                             <Route path="/rank" element={<Rank />} />
                             <Route path="/shop" element={<Shop />} />
                         </Route>
 
-                        <Route element={<UserArea></UserArea>}>
-                            <Route path="/user/profile" element={<AuthRoute><VerifiedRoute><Profile /></VerifiedRoute></AuthRoute>} />
-                            <Route path="/user/settings" element={<AuthRoute><VerifiedRoute><UserSettings /></VerifiedRoute></AuthRoute>} />
+                        <Route element={<Session><UserArea /></Session>}>
+                            <Route path="/user/profile" element={<VerifiedRoute><Profile /></VerifiedRoute>} />
+                            <Route path="/user/settings" element={<VerifiedRoute><UserSettings /></VerifiedRoute>} />
                         </Route>
 
-                        <Route element={<AdminArea></AdminArea>}>
-                            <Route path="/admin/dashboard" element={<AuthRoute><Dashboard /></AuthRoute>} />
-                            <Route path="/admin/categories" element={<Categories></Categories>}></Route>
+                        <Route element={<Session><AdminArea /></Session>}>
+                            <Route path="/admin/dashboard" element={<Dashboard />} />
+                            <Route path="/admin/categories" element={<Categories />} />
                         </Route>
 
-                        <Route element={<AuthLayout></AuthLayout>}>
-                            <Route path="/login" element={<Login />} />
-                            <Route path="/register" element={<Register />} />
-                            <Route path="/password-forgot" element={<PasswordForgot />} />
-                            <Route path="/password-reset/:token" element={<PasswordReset />} />
-
+                        <Route element={<Session><AuthLayout /></Session>}>
                             <Route path="/logout" element={<AuthRoute><Logout /></AuthRoute>} />
                             <Route path="/password-confirm" element={<AuthRoute><PasswordConfirm /></AuthRoute>} />
                             <Route path="/password-update" element={<AuthRoute><PasswordUpdate /></AuthRoute>} />
                             <Route path="/email-verification-request" element={<AuthRoute><RedirectRoute><EmailVerificationRequest /></RedirectRoute></AuthRoute>} />
-                            <Route path="/email-verification-request/:id/:hash" element={<AuthRoute><RedirectRoute><EmailVerificationRequest /></RedirectRoute></AuthRoute>} />
                         </Route>
 
+                        <Route element={<AuthLayout />}>
+                            <Route path="/login" element={<Login />} />
+                            <Route path="/register" element={<Register />} />
+                            <Route path="/password-forgot" element={<PasswordForgot />} />
+                            <Route path="/password-reset/:token" element={<PasswordReset />} />
+                        </Route>
+
+                        {/* Link esterni */}
+                        <Route element={<AuthLayout />}>
+                            <Route path="/email-verification-request/:id/:hash" element={<AuthRoute><RedirectRoute><EmailVerificationRequest /></RedirectRoute></AuthRoute>} />
+                        </Route>
                     </Routes>
                 </Router>
-            </Session>
+            </PopupProvider>
         </>
     )
 }

@@ -34,19 +34,30 @@ export const categoryApi = createApi({
                 method: 'POST',
                 body: body
             }),
-            invalidatesTags: ['CATEGORY'],
-            // transformErrorResponse: (response) => {
-            //     // Trasforma l'errore per il frontend
-            //     if (response.status === 500) {
-            //         return response.data?.message || 'Errore del server durante l\'inserimento';
-            //     }
-            //     return 'Errore sconosciuto durante l\'inserimento';
-            // }
+            invalidatesTags: ['CATEGORY']
         }),
+        updateCategory: builder.mutation({
+            query: (body) => ({
+                url: '/api/categories',
+                method: 'PATCH',
+                body: body
+            }),
+            invalidatesTags: ['CATEGORY']
+        }),
+        deleteCategory: builder.mutation({
+            query: (body) => ({
+                url: '/api/categories',
+                method: 'DELETE',
+                body: body
+            }),
+            invalidatesTags: ['CATEGORY']
+        })
     })
 });
 
 export const {
     useGetCategoriesQuery,
-    useInsertCategoryMutation
+    useInsertCategoryMutation,
+    useUpdateCategoryMutation,
+    useDeleteCategoryMutation
 } = categoryApi;

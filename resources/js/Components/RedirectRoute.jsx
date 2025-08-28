@@ -7,12 +7,13 @@ import Spinner from './Partials/Spinner';
 const RedirectRoute = (props) => {
 
     const [url, setUrl] = useState(null);
-    const { user } = useSelector(state => state.auth);
+    // const { user } = useSelector(state => state.auth);
     const location = useLocation();
 
     useEffect(()=> {
+        console.log('url', url);
 
-        if (user) {
+        // if (user) {
             fetch(location.pathname, {
                 method: 'POST',
                 credentials: 'include',
@@ -34,10 +35,10 @@ const RedirectRoute = (props) => {
                 console.error('Redirect failed:', error);
                 setUrl('');
             });
-        }
-    }, [user])
+        // }
+    }, [/*user*/])
 
-    if (!user || url === null) {
+    if (url === null /*&& || !user*/) {
         return <Spinner show={true}></Spinner>
     }
 

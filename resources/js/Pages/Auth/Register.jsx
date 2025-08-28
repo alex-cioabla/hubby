@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 
 import Alert from '@/Components/Partials/Alert';
 import { useRegisterMutation } from '@/Store/Api/authApi';
-import { setAuthenticated, /*fetchSession*/ } from '@/Store/Slice/authSlice';
+import { rememberSession, /*fetchSession*/ } from '@/Store/Slice/authSlice';
 
 const Register = () => {
 
@@ -31,7 +31,7 @@ const Register = () => {
 
         if (isSuccess) {
 
-            dispatch(setAuthenticated());
+            dispatch(rememberSession());
             document.getElementById('password').value = '';
             document.getElementById('password_confirmation').value = '';
             navigate('/email-verification-request');
@@ -57,10 +57,18 @@ const Register = () => {
         });
     };
 
-    const submit = (e) => {
+    const submit = async (e) => {
         e.preventDefault();
 
-        register(fields);
+        const result = await register(fields);
+        if (result.error) {
+            if (result.error.status === 500) {
+                 window.alert(result.error.data?.message || 'Errore durante il login');
+            }
+            if (result.error.status === 'FETCH_ERROR') {
+                window.alert('Errore di connessione. Riprova.');
+            }
+        }
     };
 
     return (

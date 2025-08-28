@@ -44,7 +44,7 @@ const VerifiedRoute = (props) => {
     }, [user]);
 
 
-    if (verified === null) {
+    if (verified === null || !user) {
         return (
             <Spinner show={true} />
         );

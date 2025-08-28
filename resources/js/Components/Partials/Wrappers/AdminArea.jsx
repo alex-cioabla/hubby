@@ -1,3 +1,4 @@
+import AuthRoute from "@/Components/Middleware/AuthRoute";
 import RoleRoute from "@/Components/Middleware/RoleRoute";
 import AdminLayout from "@/Layouts/AdminLayout";
 
@@ -5,9 +6,11 @@ const AdminArea = () => {
 
     return (
         <>
-            <RoleRoute>
-                <AdminLayout></AdminLayout>
-            </RoleRoute>
+            <AuthRoute>
+                <RoleRoute>
+                    <AdminLayout></AdminLayout>
+                </RoleRoute>
+            </AuthRoute>
         </>
     )
 }

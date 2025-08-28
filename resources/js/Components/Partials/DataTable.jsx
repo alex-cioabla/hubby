@@ -18,9 +18,10 @@ export const DataTable = (props) => {
     const { data, error, isLoading } = props.data;
 
     const columns = useMemo(() => {
+
         const config = props.columns.map((col) => ({
-            accessorKey: col.name,
-            header: utils.capitalize(col.name),
+            ...(col.accessor ? { accessorFn: col.accessor } : { accessorKey: col.name }),
+            header: col.header,
             meta: {
                 headerClassName: 'text-start',
                 cellClassName: 'text-start',
@@ -32,12 +33,10 @@ export const DataTable = (props) => {
             header: '',
             cell: ({ row }) => (
                 <div className="btn-group" role="group">
-                    <button className="btn btn-sm btn-outline-primary">
-                        <i className="bi bi-pencil"></i>
-                    </button>
-                    <button className="btn btn-sm btn-outline-danger">
-                        <i className="bi bi-trash"></i>
-                    </button>
+                    {props.actions.map((action, index) =>
+                    <button key={index} className={`btn btn-sm ${action.button}`} onClick={() => action.event(row.original)}>
+                        <i className={`bi ${action.icon}`}></i>
+                    </button> )}
                 </div>
             ),
         };

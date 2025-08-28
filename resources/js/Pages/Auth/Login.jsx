@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import Alert from '@/Components/Partials/Alert';
 import { useLoginMutation } from '@/Store/Api/authApi';
-import { setAuthenticated, /*fetchSession*/ } from '@/Store/Slice/authSlice';
+import { rememberSession, /*fetchSession*/ } from '@/Store/Slice/authSlice';
 
 const Login = () => {
 
@@ -24,7 +24,7 @@ const Login = () => {
 
         if (isSuccess) {
 
-            dispatch(setAuthenticated(fields.remember));
+            dispatch(rememberSession(fields.remember));
             document.getElementById('floatingPassword').value = '';
             navigate('/user/profile');
             // dispatch(fetchSession(fields.remember))

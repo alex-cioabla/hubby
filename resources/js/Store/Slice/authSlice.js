@@ -8,14 +8,14 @@ const authSlice = createSlice({
         status: null,
         error: null,
         mustVerifyEmail: false,
-        authenticated: window.localStorage.getItem('authenticated') || window.sessionStorage.getItem('authenticated')
+        remember: window.localStorage.getItem('remember') || window.sessionStorage.getItem('remember')
     },
     reducers: {
-        setAuthenticated: (state, action) => {
-            state.authenticated = true;
+        rememberSession: (state, action) => {
+            state.remember = true;
 
             const storage = action.payload ? window.localStorage : window.sessionStorage;
-            storage.setItem('authenticated', true);
+            storage.setItem('remember', true);
         },
         setStatus: (state, action) => {
             state.status = action.payload;
@@ -25,9 +25,10 @@ const authSlice = createSlice({
             state.status = null;
             state.error = null;
             state.mustVerifyEmail = false;
+            state.remember = false;
 
-            window.sessionStorage.removeItem('authenticated');
-            window.localStorage.removeItem('authenticated');
+            window.sessionStorage.removeItem('remember');
+            window.localStorage.removeItem('remember');
         }
     },
     extraReducers: builder => {
@@ -53,5 +54,5 @@ const authSlice = createSlice({
 
 export { fetchSession };
 const { actions, reducer } = authSlice;
-export const { setUser, removeSession, setStatus, setAuthenticated } = actions;
+export const { setUser, removeSession, setStatus, rememberSession } = actions;
 export default reducer;

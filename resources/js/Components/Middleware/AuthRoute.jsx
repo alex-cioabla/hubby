@@ -5,11 +5,10 @@ import Spinner from '@/Components/Partials/Spinner';
 
 const AuthRoute = (props) => {
 
+    const { remember } = useSelector(state => state.auth);
     const [auth, setAuth] = useState(null);
-    const { user } = useSelector(state => state.auth);
 
     useEffect(() => {
-        if(user){
             fetch('/auth', {
                 method: 'GET',
                 credentials: 'include',
@@ -33,15 +32,14 @@ const AuthRoute = (props) => {
                 console.error('Auth check failed:', error);
                 setAuth(false);
             });
-        }
 
-    }, [user]);
+    }, []);
 
-    if (!user || auth === null) {
+    if (auth === null) {
         return <Spinner show={true} />;
     }
 
-    if (!auth) {
+    if (!auth || (!auth && !remember)) {
         return <Navigate to="/login" replace />;
     }
 

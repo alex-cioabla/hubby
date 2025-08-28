@@ -15,6 +15,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class RegisterController extends Controller
 {
@@ -36,7 +37,7 @@ class RegisterController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'surname' => 'required|string|max:255',
-            'email' => 'required|string|lowercase|email|max:255|unique:' . User::class,
+            'email' => 'required|string|lowercase|email|max:255|unique:'.User::class,
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
@@ -65,18 +66,19 @@ class RegisterController extends Controller
             Auth::login($user);
             $request->session()->regenerate();
 
+            DB::commit();
+
             return response()->json([
                 'message' => 'Registered successfully'
             ], 200);
         } catch (\Throwable $th) {
             DB::rollBack();
 
-            \Log::error('Registration failed: '.$th->getMessage());
+            Log::error('Registration failed: '.$th->getMessage());
 
             return response()->json([
-                 'message' => 'Registered successfully',
-                 200
-            ]);
+                'message' => 'Registration failed: '.$th->getMessage(),
+            ], 500);
         }
 
     }

@@ -3,15 +3,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchSession } from '@/Store/Slice/authSlice';
 import Spinner from '@/Components/Partials/Spinner';
 
+//Session agisce e viene influnzata a livello di app.jsx non del singolo componente (pagina)
 const Session = (props) => {
     const dispatch = useDispatch();
-    const { user, authenticated } = useSelector(state => state.auth);
+    const { user, remember } = useSelector(state => state.auth);
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         const initializeSession = async () => {
-
-            if (authenticated && !user) {
+            if (remember && !user) {
                 setLoading(true);
 
                 try {
@@ -26,7 +26,7 @@ const Session = (props) => {
 
         initializeSession();
 
-    }, [dispatch, user, authenticated]);
+    }, [dispatch, user, remember]);
 
     if (loading) {
         return (

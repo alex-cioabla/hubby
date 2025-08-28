@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('categories', function (Blueprint $table) {
             $table->id(); //indicizzato perchè chiave primaria
             $table->string('name')->unique(); //indicizzato perchè campo univoco
-            $table->timestamps();
+            $table->nullableTimestamps();
             $table->softDeletes();
             $table->unsignedBigInteger('created_by')->nullable();
             $table->unsignedBigInteger('updated_by')->nullable();
