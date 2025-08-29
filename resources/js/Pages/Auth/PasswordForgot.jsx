@@ -38,7 +38,7 @@ const PasswordForgot = () => {
             <div className="mb-3 fw-bolder text-muted text-center">
                 Hai dimenticato la password? Nessun problema. <br />
                 Facci sapere il tuo indirizzo email
-                e ti invieremo un link per reimpostare la password che ti permetterà di sceglierne una nuova.e.
+                e ti invieremo un link per reimpostare la password che ti permetterà di sceglierne una nuova.
             </div>
 
             {status && (

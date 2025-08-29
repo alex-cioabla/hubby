@@ -39,7 +39,7 @@ const AuthRoute = (props) => {
         return <Spinner show={true} />;
     }
 
-    if (!auth || (!auth && !remember)) {
+    if (!auth || (auth && !remember)) {
         return <Navigate to="/login" replace />;
     }
 

@@ -88,11 +88,11 @@ function App() {
                             <Route path="/login" element={<Login />} />
                             <Route path="/register" element={<Register />} />
                             <Route path="/password-forgot" element={<PasswordForgot />} />
-                            <Route path="/password-reset/:token" element={<PasswordReset />} />
                         </Route>
 
                         {/* Link esterni */}
                         <Route element={<AuthLayout />}>
+                            <Route path="/password-reset/:token" element={<PasswordReset />} />
                             <Route path="/email-verification-request/:id/:hash" element={<AuthRoute><RedirectRoute><EmailVerificationRequest /></RedirectRoute></AuthRoute>} />
                         </Route>
                     </Routes>

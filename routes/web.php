@@ -23,7 +23,7 @@ Route::get('password-confirm', [PasswordController::class, 'conformIndex']);
 Route::get('password-update', [PasswordController::class, 'updateIndex']);
 Route::get('email-verification-request', [EmailController::class, 'indexRequest']);
 Route::get('email-verification-request/{id}/{hash}', [EmailController::class, 'indexVerify'])
-    //->middleware(['signed', 'throttle:6,1']) //Questo middleware non si può richiamare tramite api
+    ->middleware(['signed']) //Il middleware signed non si può richiamare tramite api
     ->name('verification.verify'); //Link email generato per la verifica dell'email
 
 //AREAS

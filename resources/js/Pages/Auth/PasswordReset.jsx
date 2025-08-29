@@ -7,7 +7,7 @@ import { setStatus } from '@/Store/Slice/authSlice';
 
 export default function PasswordReset() {
 
-    const [passwordReset, { data, error, isLoading }] = usePasswordResetMutation();
+    const [passwordReset, { data, error, isSuccess, isLoading }] = usePasswordResetMutation();
     const navigate = useNavigate();
     let { token } = useParams();
     const dispatch = useDispatch();
@@ -53,7 +53,9 @@ export default function PasswordReset() {
 
     return (
         <>
-            <a href="/" className="navbar-brand d-block mb-3"><img src="/storage/images/logo.png" alt="logo" className="img-fluid img-thumbnail" /></a>
+            <a href="/" className="mb-3">
+                <img src="/storage/images/logo.png" alt="logo" className="" width="190" />
+            </a>
             <form onSubmit={submit}>
                 <div className="form-floating  mb-3">
                     <input

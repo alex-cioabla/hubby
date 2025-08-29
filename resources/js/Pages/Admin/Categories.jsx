@@ -69,7 +69,7 @@ const Categories = () => {
 
             } catch (error) {
                 if (error.status >= 500) {
-                    setToast({
+                    setToast({ 
                         show: true,
                         message: error.data?.message,
                         type: 'error'
