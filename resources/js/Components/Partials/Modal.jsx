@@ -1,55 +1,54 @@
-import { useState, useEffect, useRef, useImperativeHandle, forwardRef } from 'react';
+import { useEffect, useRef, useImperativeHandle, forwardRef } from 'react';
 
 const Modal = forwardRef(({ title, body, footer, size = '', reset = false }, ref) => {
 
     const modalRef = useRef(null);
-    const [show, setShow] = useState(false);
+    const modal = useRef(null);
 
     //useImperativeHandle è un hook che permette di gestire custom il comportamento di ref
     useImperativeHandle(ref,() => ({
-        //chiamando il metodo focus sul ref viene eseguita questa funzione
-        open: () => setShow(true),
-        close: () => setShow(false)
-        //la chiusura tramite data attribute data-bs-dismiss="modal" viene gestita in automatica da bootstrap
+        //chiamando il metodo setshow sul ref viene eseguita questa funzione
+        open: () => {
+            if (!modal.current && modalRef.current) {
+                modal.current = new window.bootstrap.Modal(modalRef.current, {
+                    backdrop: true,
+                    keyboard: true
+                });
+            }
+            modal.current?.show();
+        },
+        //oppure tramite date attribute data-bs-toggle="modal" data-bs-target="#idmodal"
+        close: () => {
+            modal.current?.hide();
+        }
+        //oppure tramite tramite data attribute data-bs-dismiss="modal" viene gestita in automatica da bootstrap
       }));
 
     useEffect(() => {
 
-        if (show && modalRef.current) {
+        //Evento chiusura del modal
+        const handleModalClose = () => {
+            const forms = modalRef.current?.querySelectorAll('form');
+            forms?.forEach(form => form.reset());
+        };
 
-            const modal = new window.bootstrap.Modal(modalRef.current, {
-                backdrop: true,
-                keyboard: true
-            });
-            //oppure tramite date attribute data-bs-toggle="modal" data-bs-target="#idmodal"
-
-            modal.show();
-
-            //Evento chiusura del modal
-            const handleModalClose = () => {
-                const forms = modalRef.current?.querySelectorAll('form');
-                forms?.forEach(form => form.reset());
-            };
-
-            //Listener evento chiusura
-            if (reset) {
-                modalRef.current.addEventListener('hidden.bs.modal', handleModalClose);
-            }
-
-            //Rimozione listener all'unmount componente
-            return () => {
-                if (modal) {
-                    if (reset && modalRef.current) {
-                        modalRef.current.removeEventListener('hidden.bs.modal', handleModalClose);
-                    }
-                    modal.dispose();
-                }
-            }
+        //Listener evento chiusura
+        if (modalRef.current) {
+            modalRef.current.addEventListener('hidden.bs.modal', handleModalClose);
         }
 
-    }, [show, reset]);
+        //Rimozione listener all'unmount componente
+        return () => {
+        if (modalRef.current) {
+            modalRef.current.removeEventListener('hidden.bs.modal', handleModalClose);
+        }
+        if (modal.current) {
+            modal.current.dispose();
+            modal.current = null;
+        }
+        }
 
-    if (!show) return null;
+    }, [reset]);
 
     return (
         <div

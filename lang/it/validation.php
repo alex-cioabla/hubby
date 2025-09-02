@@ -9,5 +9,6 @@ return [
     ],
     'confirmed' => 'Il campo conferma :attribute non corrisponde.',
     'required' => 'Il campo :attribute è obbligatorio.',
-    'unique' => 'Il campo :attribute è stato già assegnato.'
+    'unique' => 'Il campo :attribute è stato già assegnato.',
+    'current_password' => 'La password non è corretta.',
 ];

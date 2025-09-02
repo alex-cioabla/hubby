@@ -74,7 +74,7 @@ const UserDelete = () => {
                                         placeholder="Password"
                                         ref={password}
                                     />
-                                    <Alert message={passwordErrors} className="mt-2" />
+                                    <Alert messages={passwordErrors} className="mt-2" />
                                 </>
                             }
                             footer={
@@ -83,6 +83,7 @@ const UserDelete = () => {
                                         type="button"
                                         className="btn btn-secondary"
                                         data-bs-dismiss="modal"
+                                        onClick={() => modal.current.close()}
                                     >
                                         Annulla
                                     </button>
