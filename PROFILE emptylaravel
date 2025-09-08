@@ -1,0 +1,45 @@
+PROFILE
+General
+Request URL
+http://localhost:8000/profile
+Request Method
+GET
+Status Code
+200 OK
+Remote Address
+127.0.0.1:8000
+Referrer Policy
+strict-origin-when-cross-origin
+
+Response headers
+HTTP/1.1 200 OK
+Host: localhost:8000
+Connection: close
+X-Powered-By: PHP/8.2.28
+X-Inertia: true
+Cache-Control: no-cache, private
+Date: Thu, 04 Sep 2025 07:32:53 GMT
+Content-Type: application/json
+Vary: X-Inertia
+Set-Cookie: XSRF-TOKEN=eyJpdiI6IitYTlRiRkFHRUU3cFh1ZmJ3MDlKaWc9PSIsInZhbHVlIjoiMHRJTm1xRXdvQjMzVkVhQkd6STA0NWM1S2dUalNCV3RFK3E1ZS9HYUVGN2RUY0EweHVLWkY0Z1hiU0puUDdKNWJLQkFCZEQyMFQzQ1FrWnV2VWpVUnRJS2lXRVFINFRlL09xbm03UVRPREc0cTVXVkQ2NUk2azJGcFJGcXJFODgiLCJtYWMiOiI1NzQwNzYxOWZlNTgzZWZmM2ZkYWRlYTY0ZDQyZmI4NzQ0YzM3NTMwODc2YmQ3YzhjOGM0NjQ4YmE5YmYwY2Q3IiwidGFnIjoiIn0%3D; expires=Thu, 04 Sep 2025 09:32:53 GMT; Max-Age=7200; path=/; samesite=lax
+Set-Cookie: laravel_session=eyJpdiI6IlUrWWtJT2ZiUWF0MGFsRGo1UExWVVE9PSIsInZhbHVlIjoiZ2JnRW9mNzNGZTVDSFFHWHZvQUdseU9sTmhhczJvd1NXbjloMjZhSHliMmtBbXhmNkFjMXZOTHQ4cDV6amJmU0tvbElVMWo4QVM5YmJWQ0FOMUJsUDJDanNyL0xLQi9TNXYxN0kwaFcxM0dSSTJlMWdOZHRNODlUWEVJWUpNMUQiLCJtYWMiOiI5ZmYwZDdiZDg0YmIxYWNjOGM0MmFjNGY0MTU3NGVmY2M5OGEyNTQ1N2UwNDcxZGI3ODVjODcwNDkxNWY4N2ViIiwidGFnIjoiIn0%3D; expires=Thu, 04 Sep 2025 09:32:53 GMT; Max-Age=7200; path=/; httponly; samesite=lax
+
+Request headers 
+GET /profile HTTP/1.1
+Accept: text/html, application/xhtml+xml
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-GB,en-US;q=0.9,en;q=0.8,it;q=0.7
+Connection: keep-alive
+Cookie: XSRF-TOKEN=eyJpdiI6ImVtQVd2OVF4U0RWTjVVNmRpSGNjT1E9PSIsInZhbHVlIjoiMzJFN3Rqc0FYK1dwK1BZblVtV0dyb2xBUG1vdm16V0g1UjBBeW0vR25QeUdVeUxRYXlMOHpaU2NxY0grY0l1OHRXMjQzbWFQQzlxck45aElPNitpMFdEbDBXY200MFFiTFhsdTU1RTdLcFFPU3hHR01uN3E0bWtlMWpYV0NLQ1QiLCJtYWMiOiJkMjMwYjBjMDEwYWUwODE0Y2NlMzVmODUyNDM3MjFjZjA5OWZkZTY2M2ZkZjk0ZDg3MWIyYWYzZjIwZmUzOGI4IiwidGFnIjoiIn0%3D; laravel_session=eyJpdiI6Ik9nVVZ4dEIzbjZHZElDczZ6WTJJK3c9PSIsInZhbHVlIjoiM3p2ajdIVHVjZE0vQUFaeDFSUTFlVlZLUGpldjI0bUNBVXZnWUNlMTZaVHRQV3ZkSm15L1ZrV052am5YN3l4aGRMRWxUVkRUWjlEaEJCY3h5QlM4MGs3MXRoT3BqNGdWVEZSeTU4dnllRVFQdDBNaUxNb2RMc1VpWnMwdVV2VU0iLCJtYWMiOiIyODI0YjI0ZTIxZmM0OGNmNzcxZGNkMWU3NTk1ZGNjZGM3NjBhZDJlMTQxMGM0NDM0MzQxYjBlODY1ZmNiMmM1IiwidGFnIjoiIn0%3D; remember_web_59ba36addc2b2f9401580f014c7f58ea4e30989d=eyJpdiI6Im90aGhzUmlhVm1rNlBSRm9ySlFGemc9PSIsInZhbHVlIjoiWHBtQ2FkT0Q0blBYQnJFa3RRWEVPdk4raDVTekhYWEIrcHd5OGR6RTdTdW8xZFJqSmdxTnZDRzdXT3JIT1Jwbm1iT3FvVjNkVGpEdkR6aEZzODVsVXlEbkxndTJZTmg0azZibzhKbnVqcVZkUnVBUVlWVVhNUWZZT1d1b0FrUENMZ2xPaCt3NGNpWWhodVY3VUV2Wit6VnBEb2N5MWZOQzhieGJ3UUFhNklJcEVJUFpZUmtZOHFJU3REQWIwWnhjVDV2WHVCQis1alA3ZEw1VG1qOE1zQ3h2UTA3RkVwZ2VyN21rd1lrVkZVMD0iLCJtYWMiOiI4Y2UxYjllOThkYmYwMWE4MTg5NjY0ZWU5ODE0MGI2ZjgwYWJlZTRkYTNjNjZiNWVlZThkZWFmY2ZjMDJjOWZiIiwidGFnIjoiIn0%3D
+Host: localhost:8000
+Referer: http://localhost:8000/login
+Sec-Fetch-Dest: empty
+Sec-Fetch-Mode: cors
+Sec-Fetch-Site: same-origin
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36
+X-Inertia: true
+X-Requested-With: XMLHttpRequest
+X-XSRF-TOKEN: eyJpdiI6Inc4emNiRjhBdHhLcnFjRm1aeE9DMUE9PSIsInZhbHVlIjoidzBUNjdEb1JTWFpLY0g1Ny9janlwZkhwRjJYWmtMeWVGMkN2TG52RW1aZDVmRlpBc0RVUnhHYStGa3cyQXVPYkh0K1ZxbjU5ZDN0WlNUMG5SZVZaSlZ6K09QMXlwVXluWHRZL2QrelZ2WVRxclNTYTVLQ1VILy9XVExSL3pMUGEiLCJtYWMiOiI0N2Q5NzI1MGY2MzQ4NjY3ZTkyYTc3ZGI0OGQ0NGM1NWUyOGQzNmI1N2MzZjM4ZmRlYjU2ZTFlMWI5OTE1NWJlIiwidGFnIjoiIn0=
+sec-ch-ua: "Not;A=Brand";v="99", "Google Chrome";v="139", "Chromium";v="139"
+sec-ch-ua-mobile: ?0
+sec-ch-ua-platform: "Windows"

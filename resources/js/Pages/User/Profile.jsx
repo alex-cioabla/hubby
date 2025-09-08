@@ -98,7 +98,7 @@ export const Profile = () => {
                 </div>
                 <div className="row mt-n4">
                     <div className="col-12 text-center">
-                        <Link to="/library" type="button" className="btn btn-primary">Libreria completa</Link>
+                        <Link to="/user/library" type="button" className="btn btn-primary">Libreria completa</Link>
                     </div>
                 </div>
             </section>

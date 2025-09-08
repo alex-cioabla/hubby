@@ -21,10 +21,6 @@ class Role
         $segments = explode('/', trim($path, '/'));
         $area = $segments[0] ?? '';
 
-        // if (!Auth::check()) {
-        //     return redirect()->route('login');
-        // }
-
         if (!Auth::user()->hasRole($area)) {
             return response()->json([
                 'message' => 'Accesso negato. Non hai i permessi necessari per accedere a questa area.'

@@ -2,25 +2,25 @@ import { useEffect } from 'react';
 import { useSelector } from "react-redux";
 import { NavLink, Outlet } from 'react-router-dom';
 
-// import { fetchTranslations } from "@/Store/translationSlice";
+//import { fetchTranslations } from "@/Store/translationSlice";
 import ThemeToggle from '@/Components/Partials/ThemeToggle';
 
 export default function ThemeLayout() {
 
     const user = useSelector(state => state.auth.user);
-    // const { translations, locale } = useSelector((state) => state.localization);
-    // let { lang } = useParams();
-    // lang = lang === locale ? lang : '';
+    //const { translations, locale } = useSelector((state) => state.localization);
+    //let { lang } = useParams();
+    //lang = lang === locale ? lang : '';
 
-    // const navigate = useNavigate();
-    // const dispatch = useDispatch();
-    // const changeLanguage = (event, language) => {
+    //const navigate = useNavigate();
+    //const dispatch = useDispatch();
+    //const changeLanguage = (event, language) => {
     //     event.preventDefault();
     //     if (language !== locale) {
     //         navigate(`/${language}`);
     //         dispatch(fetchTranslations(language));
     //     }
-    // };
+    //};
 
     useEffect(() => {
 
@@ -142,7 +142,7 @@ export default function ThemeLayout() {
                             <p className="text-light">Copyright © {new Date().getFullYear()} Hubby. All rights reserved.</p>
                         </div>
 
-                        {/* <div className="col mb-3 text-center text-sm-left">
+                        {/*<div className="col mb-3 text-center text-sm-left">
                             <h5>Lingue</h5>
                             <ul className="nav flex-column">
                                 <li className="nav-item mb-2">
@@ -156,7 +156,7 @@ export default function ThemeLayout() {
                                     </a>
                                 </li>
                             </ul>
-                        </div> */}
+                        </div>*/}
                         <ul className="col-md-4 list-unstyled d-flex justify-content-center justify-content-sm-end">
                             <li className="ms-3">
                                 <a href="#">

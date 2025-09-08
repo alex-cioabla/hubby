@@ -18,7 +18,7 @@ const UserDelete = () => {
 
     useEffect(() => {
 
-        // password.current.focus(); // (DA VERIFICARE)
+        //password.current.focus(); // (DA VERIFICARE)
         history.scrollRestoration = 'auto';
 
         if (isSuccess) {

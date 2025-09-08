@@ -40,20 +40,6 @@ class EmailController extends Controller
      */
     public function verify(Request $request): JsonResponse
     {
-        // // Verifica manuale della firma (equivalente al middleware 'signed')
-        // if (!URL::hasValidSignature($request)) {
-        //     return response()->json([
-        //         'message' => 'Invalid verification link.',
-        //     ], 400);
-        // }
-        // // Verifica che l'hash corrisponda
-        // $hash = $request->route('hash');
-        // if (!hash_equals((string) $hash, sha1($request->user()->getEmailForVerification()))) {
-        //     return response()->json([
-        //         'message' => 'Invalid verification hash.',
-        //     ], 400);
-        // }
-
         if ($request->user()->hasVerifiedEmail()) {
             return response()->json('/user/profile?verified=1', 200);
         }

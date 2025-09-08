@@ -27,7 +27,6 @@ class LoginController extends Controller
     {
         //Uso Auth::attempt solo per verificare l'utente
         //(la connessione dell'utente avviene tramite il personal access token)
-        //Passo remember solo per averlo nel json della response e usarlo per setSession
         //$request->authenticate();
         //$token = $request->user()->createToken('PAT',  ['*'], now()->addWeek());
 
@@ -48,7 +47,7 @@ class LoginController extends Controller
      */
     public function destroy(Request $request): JsonResponse
     {
-        // Cancella il personal access token dell'utente
+        //Cancella il personal access token dell'utente
         //(non uso Auth::guard('web')->logout() perchè non ho nessuna sessione da terminare)
         //$request->user()->currentAccessToken()->delete();
 

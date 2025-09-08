@@ -57,9 +57,9 @@ class RegisterController extends Controller
 
             UserRole::create(['user_id' => $user->id,'role_id' => 1]);
 
-            //Registered è una classe che rappresenta l'evento predefinito laravel di registrazione di un utente
-            //SendEmailVerificationNotification è una classe che rappresenta il listener predefinito lavarel che ascolta l'evento registered (
-            //event è un metodo predefinito di laravel che permette di lanciare un evento
+            // Registered è una classe che rappresenta l'evento predefinito laravel di registrazione di un utente
+            // SendEmailVerificationNotification è una classe che rappresenta il listener predefinito lavarel che ascolta l'evento registered (
+            // event è un metodo predefinito di laravel che permette di lanciare un evento
             event(new Registered($user));
             //(fa partire l'azione di notifica via email della registrazione avvenuta)
 

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  *
@@ -33,6 +34,7 @@ use Illuminate\Support\Facades\Auth;
  */
 class Category extends Model
 {
+    use SoftDeletes;
     public $timestamps = false;
     protected $fillable = [
         'name'

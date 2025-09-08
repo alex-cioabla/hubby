@@ -14,8 +14,8 @@
 
     <script>
         const appConfig = {!! json_encode([
-            // 'translations' => \App\Facades\HubbyLang::getAllTrans(),
-            // 'locale' => \Illuminate\Support\Facades\Lang::getLocale(),
+            //'translations' => \App\Facades\HubbyLang::getAllTrans(),
+            //'locale' => \Illuminate\Support\Facades\Lang::getLocale(),
             'name' => config('app.name'),
             'canResetPassword' => \Illuminate\Support\Facades\Route::has('password.request')
         ]) !!};

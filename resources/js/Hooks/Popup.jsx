@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, useCallback, useEffect, useRef } from "react";
 
-//createContext è una funzione default di react che crea un contesto dove convidere le props (dati) tra componenti
+// createContext è una funzione default di react che crea un contesto dove convidere le props (dati) tra componenti
 //(senza doverle passare come parametro tra loro)
 const PopupContext = createContext();
 
@@ -24,7 +24,7 @@ export const PopupProvider = ({ children }) => {
         }
     }, [popup]);
 
-    //usecallback è un hook default di react che memorizza una fx e la ricrea solo in caso cambino le dipendenze (le specifico nel paramentro) al render della pagina
+    // usecallback è un hook default di react che memorizza una fx e la ricrea solo in caso cambino le dipendenze (le specifico nel paramentro) al render della pagina
     //const popupFunction = useCallback(() => {}, [])
     const popupPromise = (options = {}) => {
 
@@ -92,9 +92,9 @@ export const PopupProvider = ({ children }) => {
     ) : null;
 
     return (
-        //PopupContext è l'oggetto del contesto creato
-        //Provider è il componente che fornisce i valori del contesto (value)
-        //PopupContext.Provider permette l'accesso e fornisce popupPromise del contesto PopupContext a tutti i componenti figli (<Router></Router> in app.jsx)
+        // PopupContext è l'oggetto del contesto creato
+        // Provider è il componente che fornisce i valori del contesto (value)
+        // PopupContext.Provider permette l'accesso e fornisce popupPromise del contesto PopupContext a tutti i componenti figli (<Router></Router> in app.jsx)
         <PopupContext.Provider value={{ popupPromise }}>
             {children}
             {modalPopup}
@@ -103,7 +103,7 @@ export const PopupProvider = ({ children }) => {
 }
 
 export const usePopup = () => {
-    //useContext è un hook predefinito che legge il contesto in parametro e restituisce i dati (popupPromise)
+    // useContext è un hook predefinito che legge il contesto in parametro e restituisce i dati (popupPromise)
     const context = useContext(PopupContext);
     if (!context) {
         throw new Error('usePopup must be used within a PopupContext');

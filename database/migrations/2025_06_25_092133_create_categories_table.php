@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('categories', function (Blueprint $table) {
-            $table->id(); //indicizzato perchè chiave primaria
-            $table->string('name')->unique(); //indicizzato perchè campo univoco
+            $table->id(); // indicizzato perchè chiave primaria
+            $table->string('name')->unique(); // indicizzato perchè campo univoco
             $table->nullableTimestamps();
             $table->softDeletes();
             $table->unsignedBigInteger('created_by')->nullable();

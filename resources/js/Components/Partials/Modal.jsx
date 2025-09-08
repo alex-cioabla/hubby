@@ -5,7 +5,7 @@ const Modal = forwardRef(({ title, body, footer, size = '', reset = false }, ref
     const modalRef = useRef(null);
     const modal = useRef(null);
 
-    //useImperativeHandle è un hook che permette di gestire custom il comportamento di ref
+    // useImperativeHandle è un hook che permette di gestire custom il comportamento di ref
     useImperativeHandle(ref,() => ({
         //chiamando il metodo setshow sul ref viene eseguita questa funzione
         open: () => {
@@ -62,12 +62,6 @@ const Modal = forwardRef(({ title, body, footer, size = '', reset = false }, ref
                         <h1 className="modal-title fs-5">
                             {title}
                         </h1>
-                        <button
-                            type="button"
-                            className="btn-close"
-                            data-bs-dismiss="modal"
-                            aria-label="Close"
-                        />
                     </div>
                     <form>
                         <div className="modal-body">

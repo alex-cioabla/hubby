@@ -69,4 +69,4 @@ Route::get('session', function (\Illuminate\Http\Request $request): JsonResponse
 //REACT REDIRECT
 Route::post('/email-verification-request', [EmailController::class, 'request']);
 Route::post('/email-verification-request/{id}/{hash}', [EmailController::class, 'verify'])
-    ->middleware(['throttle:6,1']);
+      ->middleware(['throttle:6,1']);

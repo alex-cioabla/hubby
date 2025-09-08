@@ -18,7 +18,7 @@ export const Rank = () => {
                                         slidesPerView={3}
                                         spaceBetween={30}
                                         navigation={true}
-                                        // autoplay={{ delay: 2500, disableOnInteraction: false }}
+                                        //autoplay={{ delay: 2500, disableOnInteraction: false }}
                                         modules={[Navigation, Autoplay]}
                                         className="mySwiper"
                                     >

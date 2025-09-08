@@ -20,6 +20,11 @@ class UserController extends Controller
         return view('app');
     }
 
+    public function library(): View
+    {
+        return view('app');
+    }
+
     /**
      * Update the user's profile information.
      */
@@ -59,7 +64,7 @@ class UserController extends Controller
 
         $user->delete();
 
-        // Logout dell'utente
+        //Logout dell'utente
         Auth::logout();
 
         return response()->json(['message' => 'Profile deleted successfully'], 200);

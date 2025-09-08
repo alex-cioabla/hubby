@@ -1,3 +1,4 @@
+import "../scss/theme.scss";
 import { createRoot } from 'react-dom/client';
 import { Provider } from "react-redux";
 import { useState, useEffect } from 'react';
@@ -13,13 +14,19 @@ import AuthRoute from "./Components/Middleware/AuthRoute";
 import VerifiedRoute from "./Components/Middleware/VerifiedRoute";
 import Session from './Components/Session';
 import RedirectRoute from './Components/RedirectRoute';
+import Spinner from './Components/Partials/Spinner';
 
 import Home from "./Pages/Home";
 import Rank from "./Pages/Rank";
 import Shop from "./Pages/Shop";
-import Dashboard from "./Pages/Dashboard";
+
 import Profile from "./Pages/User/Profile";
 import UserSettings from "./Pages/User/UserSettings";
+import Library from './Pages/User/Library';
+
+import Dashboard from "./Pages/Dashboard";
+import Categories from './Pages/Admin/Categories';
+
 import Login from "./Pages/Auth/Login";
 import Logout from "./Pages/Auth/Logout";
 import Register from "./Pages/Auth/Register";
@@ -29,9 +36,6 @@ import PasswordConfirm from "./Pages/Auth/PasswordConfirm";
 import PasswordUpdate from "./Pages/User/PasswordUpdate";
 import EmailVerificationRequest from "./Pages/Auth/EmailVerificationRequest";
 
-import "../scss/theme.scss";
-import Categories from './Pages/Admin/Categories';
-import Spinner from './Components/Partials/Spinner';
 import { PopupProvider } from './Hooks/Popup';
 
 
@@ -70,6 +74,7 @@ function App() {
                         <Route element={<Session><UserArea /></Session>}>
                             <Route path="/user/profile" element={<VerifiedRoute><Profile /></VerifiedRoute>} />
                             <Route path="/user/settings" element={<VerifiedRoute><UserSettings /></VerifiedRoute>} />
+                            <Route path="/user/library" element={<VerifiedRoute><Library /></VerifiedRoute>} />
                         </Route>
 
                         <Route element={<Session><AdminArea /></Session>}>
@@ -90,7 +95,7 @@ function App() {
                             <Route path="/password-forgot" element={<PasswordForgot />} />
                         </Route>
 
-                        {/* Link esterni */}
+                        {/*Link esterni*/}
                         <Route element={<AuthLayout />}>
                             <Route path="/password-reset/:token" element={<PasswordReset />} />
                             <Route path="/email-verification-request/:id/:hash" element={<AuthRoute><RedirectRoute><EmailVerificationRequest /></RedirectRoute></AuthRoute>} />

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchSession } from '@/Store/Slice/authSlice';
 import Spinner from '@/Components/Partials/Spinner';
 
-//Session agisce e viene influnzata a livello di app.jsx non del singolo componente (pagina)
+// Session agisce e viene influnzata a livello di app.jsx non del singolo componente (pagina)
 const Session = (props) => {
     const dispatch = useDispatch();
     const { user, remember } = useSelector(state => state.auth);

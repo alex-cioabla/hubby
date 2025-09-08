@@ -10,7 +10,6 @@ use App\Http\Controllers\Auth\RegisterController;
 
 //PAGES
 Route::view('/', 'app');
-Route::view('library', 'app');
 Route::view('rank', 'app');
 Route::view('shop', 'app');
 
@@ -35,6 +34,7 @@ Route::prefix('admin')->group(function () {
 Route::prefix('user')->group(function () {
     Route::get('profile', [UserController::class, 'index']);
     Route::get('settings', [UserController::class, 'settings']);
+    Route::get('library', [UserController::class, 'library']);
 });
 
 require __DIR__.'/web_api.php';

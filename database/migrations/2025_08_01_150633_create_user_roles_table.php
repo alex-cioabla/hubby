@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained();
             $table->foreignId('role_id')->constrained();
 
-            //Composite keys
+            // Composite keys
             $table->unique(['user_id', 'role_id']);
         });
     }

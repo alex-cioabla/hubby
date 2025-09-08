@@ -8,7 +8,7 @@ import Toast from '@/Components/Partials/Toast';
 const RedirectRoute = (props) => {
 
     const [url, setUrl] = useState(null);
-    // const { user } = useSelector(state => state.auth);
+    //const { user } = useSelector(state => state.auth);
     const location = useLocation();
     const [toast, setToast] = useState({
         show: false,
@@ -18,7 +18,7 @@ const RedirectRoute = (props) => {
 
     useEffect(() => {
 
-        // if (user) {
+        //if (user) {
         fetch(location.pathname, {
             method: 'POST',
             credentials: 'include',
@@ -45,7 +45,7 @@ const RedirectRoute = (props) => {
                 console.error('Redirect failed:', error);
                 setUrl('');
             });
-        // }
+        //}
     }, [/*user*/])
 
     if (url === null /*&& || !user*/) {

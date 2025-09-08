@@ -71,7 +71,7 @@ export const DataTable = (props) => {
         <>
             <div className="row mb-3">
                 <div className="col-12 col-sm-3">
-                    {/* Search Bar */}
+                    {/*Search Bar*/}
                     <input
                         type="text"
                         className="form-control"
@@ -82,7 +82,7 @@ export const DataTable = (props) => {
                 </div>
             </div>
 
-            {/* Table */}
+            {/*Table*/}
             <div className="table-responsive">
                 <table className="table table-hover">
                     <thead className="table-dark">
@@ -120,7 +120,7 @@ export const DataTable = (props) => {
                 </table>
             </div>
 
-            {/* Pagination */}
+            {/*Pagination*/}
             <nav>
                 <div className="d-flex justify-content-between align-items-center">
                     <div>

@@ -1,0 +1,49 @@
+LOGIN
+General
+Request URL
+http://localhost:8000/login
+Request Method
+POST
+Status Code
+302 Found
+Remote Address
+127.0.0.1:8000
+Referrer Policy
+strict-origin-when-cross-origin
+
+Response headers
+HTTP/1.1 302 Found
+Host: localhost:8000
+Connection: close
+X-Powered-By: PHP/8.2.28
+Cache-Control: no-cache, private
+Date: Thu, 04 Sep 2025 07:32:53 GMT
+Location: http://localhost:8000/profile
+Content-Type: text/html; charset=utf-8
+Vary: X-Inertia
+Set-Cookie: XSRF-TOKEN=eyJpdiI6ImVtQVd2OVF4U0RWTjVVNmRpSGNjT1E9PSIsInZhbHVlIjoiMzJFN3Rqc0FYK1dwK1BZblVtV0dyb2xBUG1vdm16V0g1UjBBeW0vR25QeUdVeUxRYXlMOHpaU2NxY0grY0l1OHRXMjQzbWFQQzlxck45aElPNitpMFdEbDBXY200MFFiTFhsdTU1RTdLcFFPU3hHR01uN3E0bWtlMWpYV0NLQ1QiLCJtYWMiOiJkMjMwYjBjMDEwYWUwODE0Y2NlMzVmODUyNDM3MjFjZjA5OWZkZTY2M2ZkZjk0ZDg3MWIyYWYzZjIwZmUzOGI4IiwidGFnIjoiIn0%3D; expires=Thu, 04 Sep 2025 09:32:53 GMT; Max-Age=7200; path=/; samesite=lax
+Set-Cookie: laravel_session=eyJpdiI6Ik9nVVZ4dEIzbjZHZElDczZ6WTJJK3c9PSIsInZhbHVlIjoiM3p2ajdIVHVjZE0vQUFaeDFSUTFlVlZLUGpldjI0bUNBVXZnWUNlMTZaVHRQV3ZkSm15L1ZrV052am5YN3l4aGRMRWxUVkRUWjlEaEJCY3h5QlM4MGs3MXRoT3BqNGdWVEZSeTU4dnllRVFQdDBNaUxNb2RMc1VpWnMwdVV2VU0iLCJtYWMiOiIyODI0YjI0ZTIxZmM0OGNmNzcxZGNkMWU3NTk1ZGNjZGM3NjBhZDJlMTQxMGM0NDM0MzQxYjBlODY1ZmNiMmM1IiwidGFnIjoiIn0%3D; expires=Thu, 04 Sep 2025 09:32:53 GMT; Max-Age=7200; path=/; httponly; samesite=lax
+Set-Cookie: remember_web_59ba36addc2b2f9401580f014c7f58ea4e30989d=eyJpdiI6Im90aGhzUmlhVm1rNlBSRm9ySlFGemc9PSIsInZhbHVlIjoiWHBtQ2FkT0Q0blBYQnJFa3RRWEVPdk4raDVTekhYWEIrcHd5OGR6RTdTdW8xZFJqSmdxTnZDRzdXT3JIT1Jwbm1iT3FvVjNkVGpEdkR6aEZzODVsVXlEbkxndTJZTmg0azZibzhKbnVqcVZkUnVBUVlWVVhNUWZZT1d1b0FrUENMZ2xPaCt3NGNpWWhodVY3VUV2Wit6VnBEb2N5MWZOQzhieGJ3UUFhNklJcEVJUFpZUmtZOHFJU3REQWIwWnhjVDV2WHVCQis1alA3ZEw1VG1qOE1zQ3h2UTA3RkVwZ2VyN21rd1lrVkZVMD0iLCJtYWMiOiI4Y2UxYjllOThkYmYwMWE4MTg5NjY0ZWU5ODE0MGI2ZjgwYWJlZTRkYTNjNjZiNWVlZThkZWFmY2ZjMDJjOWZiIiwidGFnIjoiIn0%3D; expires=Fri, 09 Oct 2026 07:32:53 GMT; Max-Age=34560000; path=/; httponly; samesite=lax
+
+Request headers
+POST /login HTTP/1.1
+Accept: text/html, application/xhtml+xml
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-GB,en-US;q=0.9,en;q=0.8,it;q=0.7
+Connection: keep-alive
+Content-Length: 73
+Content-Type: application/json
+Cookie: XSRF-TOKEN=eyJpdiI6Inc4emNiRjhBdHhLcnFjRm1aeE9DMUE9PSIsInZhbHVlIjoidzBUNjdEb1JTWFpLY0g1Ny9janlwZkhwRjJYWmtMeWVGMkN2TG52RW1aZDVmRlpBc0RVUnhHYStGa3cyQXVPYkh0K1ZxbjU5ZDN0WlNUMG5SZVZaSlZ6K09QMXlwVXluWHRZL2QrelZ2WVRxclNTYTVLQ1VILy9XVExSL3pMUGEiLCJtYWMiOiI0N2Q5NzI1MGY2MzQ4NjY3ZTkyYTc3ZGI0OGQ0NGM1NWUyOGQzNmI1N2MzZjM4ZmRlYjU2ZTFlMWI5OTE1NWJlIiwidGFnIjoiIn0%3D; laravel_session=eyJpdiI6Ii9laUtGSGJPdXV2OGJYbkwrOW52d0E9PSIsInZhbHVlIjoidVNnNEJwWXVvYVVhR21qdnMyV2dDamxuNDAyaEU3YW9TN3RSVUIvSWxjWHpLRURTQnBYc0VNZGduWGt5TCtBcEhkbEpuOXhkZXhuNmQySHM2K0wvNzIrRlFuM2tlRDBnQXo2QVRZb0w5cXhEcWVmY0ZBandxWEw0Zjd4QXkzUGMiLCJtYWMiOiI1NWNiMDgxMDdjNTI2ZGVlZjkzMjZiNDRlMWVmNDlkYWVkMzg0MGIzODMwNmQ1NDIxMTgwYjc0ZTQ5NzI3YzAzIiwidGFnIjoiIn0%3D
+Host: localhost:8000
+Origin: http://localhost:8000
+Referer: http://localhost:8000/login
+Sec-Fetch-Dest: empty
+Sec-Fetch-Mode: cors
+Sec-Fetch-Site: same-origin
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36
+X-Inertia: true
+X-Requested-With: XMLHttpRequest
+X-XSRF-TOKEN: eyJpdiI6Inc4emNiRjhBdHhLcnFjRm1aeE9DMUE9PSIsInZhbHVlIjoidzBUNjdEb1JTWFpLY0g1Ny9janlwZkhwRjJYWmtMeWVGMkN2TG52RW1aZDVmRlpBc0RVUnhHYStGa3cyQXVPYkh0K1ZxbjU5ZDN0WlNUMG5SZVZaSlZ6K09QMXlwVXluWHRZL2QrelZ2WVRxclNTYTVLQ1VILy9XVExSL3pMUGEiLCJtYWMiOiI0N2Q5NzI1MGY2MzQ4NjY3ZTkyYTc3ZGI0OGQ0NGM1NWUyOGQzNmI1N2MzZjM4ZmRlYjU2ZTFlMWI5OTE1NWJlIiwidGFnIjoiIn0=
+sec-ch-ua: "Not;A=Brand";v="99", "Google Chrome";v="139", "Chromium";v="139"
+sec-ch-ua-mobile: ?0
+sec-ch-ua-platform: "Windows"

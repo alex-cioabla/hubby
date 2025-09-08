@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('province')->nullable();
             $table->string('postal_code')->nullable();
             $table->string('country')->nullable();
-            //Laravel in auto con constrained() si recura la tabella users campo id per l'associazione
+            // Laravel in auto con constrained() si recura la tabella users campo id per l'associazione
             $table->foreignId('user_id')->constrained();
         });
     }

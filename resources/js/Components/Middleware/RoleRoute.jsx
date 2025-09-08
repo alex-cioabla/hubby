@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import Spinner from "../Partials/Spinner";
-import Error403 from "../Pages/Error403";
+import Error403 from "../../Pages/Error403";
 
 const RoleRoute = (props) => {
 

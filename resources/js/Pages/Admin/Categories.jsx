@@ -20,11 +20,12 @@ const Categories = () => {
         message: '',
         type: ''
     });
-    const { popupPromise } = usePopup();
+    const [category, setCategory] = useState(null);
 
-    const [insertCategory, { error: errorInsert }] = useInsertCategoryMutation();
-    const [deleteCategory, { error: errorDelete }] = useDeleteCategoryMutation();
-    const [updateCategory, { error: errorUpdate }] = useUpdateCategoryMutation();
+    const { popupPromise } = usePopup();
+    const [insertCategory, { error: errorInsert, reset: resetInsert }] = useInsertCategoryMutation();
+    const [deleteCategory, { error: errorDelete, reset: resetDelete }] = useDeleteCategoryMutation();
+    const [updateCategory, { error: errorUpdate, reset: resetUpdate }] = useUpdateCategoryMutation();
 
     const handleInsert = async () => {
 
@@ -48,7 +49,28 @@ const Categories = () => {
         }
     };
 
-    const handleDelete = async (categoryId) => {
+    const handleUpdate = async () => {
+
+        try {
+            const result = await updateCategory({id: category.id, name: name.current.value}).unwrap();
+            setToast({
+                show: true,
+                message: result.message,
+                type: 'success'
+            });
+            modal.current.close();
+        } catch (error) {
+            if (error.status > 500) {
+                setToast({
+                    show: true,
+                    message: error.data?.message,
+                    type: 'error'
+                });
+            }
+        }
+    }
+
+    const handleDelete = async () => {
 
         const confirm = await popupPromise({
             title: 'Elimina categoria',
@@ -60,7 +82,7 @@ const Categories = () => {
 
         if (confirm) {
             try {
-                const result = await deleteCategory({id: categoryId}).unwrap();
+                const result = await deleteCategory(category.id).unwrap();
                 setToast({
                     show: true,
                     message: result.message,
@@ -69,7 +91,7 @@ const Categories = () => {
 
             } catch (error) {
                 if (error.status >= 500) {
-                    setToast({ 
+                    setToast({
                         show: true,
                         message: error.data?.message,
                         type: 'error'
@@ -79,32 +101,12 @@ const Categories = () => {
         }
     };
 
-    // const handleUpdate = async (categoryId) => {
-
-    //     try {
-    //         const result = await updateCategory({id: categoryId});
-    //         setToast({
-    //             show: true,
-    //             message:result.message,
-    //             type: 'success'
-    //         });
-    //     } catch (error) {
-    //         if (error.status > 500) {
-    //             setToast({
-    //                 show:true,
-    //                 message:error.data?.message,
-    //                 type: 'error'
-    //             });
-    //         }
-    //     }
-    // }
-
     return (
         <>
             <div className="d-flex align-items-center pb-2 mb-3 border-bottom">
                 <h1 className="h2">Categorie</h1>
 
-                <button type="button" className="btn btn-primary ms-auto" onClick={() => modal.current.open()} >
+                <button type="button" className="btn btn-primary ms-auto" onClick={() => { resetInsert(); setCategory(null); modal.current.open(); }} >
                     <i className="bi bi-plus-square"></i> Inserisci
                 </button>
             </div>
@@ -120,21 +122,21 @@ const Categories = () => {
                 actions={[{
                     button: 'btn-outline-primary',
                     icon: 'bi-pencil',
-                    event: (row) => { handleUpdate(row.id) }
-                },{
+                    event: (row) => { resetUpdate(); setCategory(row); modal.current.open(); }
+                }, {
                     button: 'btn-outline-danger',
                     icon: 'bi-trash',
-                    event: (row) => { handleDelete(row.id) }
+                    event: (row) => { resetDelete(); handleDelete(row.id) }
                 }]}
             ></DataTable>
 
             <Modal
                 ref={modal}
                 reset={true}
-                title={'Inserimento nuova categoria'}
+                title={category ? 'Aggiornamento della categoria' : 'Inserimento nuova categoria'}
                 body={<>
                     <label className="form-label" htmlFor="name">Nome</label>
-                    <input name="category_name" type="text" className="form-control" id="category_name" ref={name}></input>
+                    <input name="category_name" type="text" className="form-control" id="category_name" ref={name} defaultValue={category ? category.name : ''}></input>
                     <Alert messages={errorInsert?.data?.errors?.name ? [errorInsert.data.errors.name] : []} />
                 </>}
                 footer={<>
@@ -145,8 +147,8 @@ const Categories = () => {
                     >
                         Annulla
                     </button>
-                    <button type="button" className="btn btn-success" onClick={() => handleInsert()}>
-                        Inserisci
+                    <button type="button" className="btn btn-primary" onClick={() => { category ? handleUpdate(category) : handleInsert() }}>
+                        {category ? 'Aggiorna' : 'Inserisci'}
                     </button>
                 </>}
             ></Modal>
