@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { getCsrfToken } from '@/Utils/api';
 
 export const categoryApi = createApi({
-    reducerPath: 'categoryService',
+    reducerPath: 'categoryApi',
     tagTypes: ['CATEGORY'],
     baseQuery: fetchBaseQuery({
         baseUrl: 'http://localhost:8000/admin',
@@ -19,7 +19,7 @@ export const categoryApi = createApi({
     }),
     endpoints: (builder) => ({
         getCategories: builder.query({
-            query: () => '/api/categories',
+            query: () => '/webapi/categories',
             providesTags: ['CATEGORY'],
             transformResponse: (response) => {
                 return response.success ? response.data : [];
@@ -30,7 +30,7 @@ export const categoryApi = createApi({
         }),
         insertCategory: builder.mutation({
             query: (body) => ({
-                url: '/api/categories',
+                url: '/webapi/categories',
                 method: 'POST',
                 body: body
             }),
@@ -38,7 +38,7 @@ export const categoryApi = createApi({
         }),
         updateCategory: builder.mutation({
             query: ({id, ...body}) => ({
-                url: '/api/categories/'+id,
+                url: '/webapi/categories/'+id,
                 method: 'PATCH',
                 body: body
             }),
@@ -46,7 +46,7 @@ export const categoryApi = createApi({
         }),
         deleteCategory: builder.mutation({
             query: (id) => ({
-                url: '/api/categories/'+id,
+                url: '/webapi/categories/'+id,
                 method: 'DELETE',
                 body: id
             }),

@@ -33,7 +33,7 @@ const RoleRoute = (props) => {
     }, [user]);
 
     if (role === null || !user) {
-        return (<Spinner show={true}></Spinner>)
+        return (<Spinner />)
     }
 
     if (!role) {

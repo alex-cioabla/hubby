@@ -30,12 +30,19 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Category whereUpdatedBy($value)
  * @property-read \App\Models\User|null $creator
  * @property-read \App\Models\User|null $updater
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\UserHobbies> $userHobbies
+ * @property-read int|null $user_hobbies_count
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Category onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Category withTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Category withoutTrashed()
  * @mixin \Eloquent
  */
 class Category extends Model
 {
     use SoftDeletes;
-    public $timestamps = false;
+
+    //public $timestamps = false;
+
     protected $fillable = [
         'name'
     ];
@@ -54,30 +61,35 @@ class Category extends Model
         ];
     }
 
-    protected static function boot(){
+    // protected static function boot(){
 
-        parent::boot();
+    //     parent::boot();
 
-        static::creating(function($model){
-            $model->created_by = Auth::id();
-            $model->created_at = now();
-        });
+    //     static::creating(function($model){
+    //         $model->created_by = Auth::id();
+    //         $model->created_at = now();
+    //     });
 
-        static::updating(function($model){
-            $model->updated_by = Auth::id();
-            $model->updated_at = now();
-        });
+    //     static::updating(function($model){
+    //         $model->updated_by = Auth::id();
+    //         $model->updated_at = now();
+    //     });
+    // }
+
+    public function userHobbies(){
+        return $this->hasMany(UserHobbies::class, 'category_id');
     }
 
+    //Relazione many to one
     public function creator(){
         return $this->belongsTo(User::class, 'created_by')
             ->select(['id'])
-            ->with(['profile:user_id,name,surname']);
+            ->with(['detail:user_id,name,surname']);
     }
 
     public function updater(){
         return $this->belongsTo(User::class, 'updated_by')
             ->select(['id'])
-            ->with(['profile:user_id,name,surname']);
+            ->with(['detail:user_id,name,surname']);
     }
 }

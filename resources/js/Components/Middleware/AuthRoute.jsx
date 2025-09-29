@@ -36,7 +36,7 @@ const AuthRoute = (props) => {
     }, []);
 
     if (auth === null) {
-        return <Spinner show={true} />;
+        return <Spinner/>;
     }
 
     if (!auth || (auth && !remember)) {

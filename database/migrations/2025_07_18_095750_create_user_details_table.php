@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('user_profiles', function (Blueprint $table) {
+        Schema::create('user_details', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('surname');
@@ -24,7 +24,9 @@ return new class extends Migration
             $table->string('province')->nullable();
             $table->string('postal_code')->nullable();
             $table->string('country')->nullable();
-            // Laravel in auto con constrained() si recura la tabella users campo id per l'associazione
+
+            //Foreign key contraints
+            // constrained() crea il campo user_id, lo assegna come chiave esterna e crea il vincolo con il campo id (_id) della tabella users (user_)
             $table->foreignId('user_id')->constrained();
         });
     }
@@ -34,6 +36,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('user_profiles');
+        Schema::dropIfExists('user_details');
     }
 };

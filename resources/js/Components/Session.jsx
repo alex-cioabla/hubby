@@ -30,7 +30,7 @@ const Session = (props) => {
 
     if (loading) {
         return (
-            <Spinner show={true} />
+            <Spinner/>
         );
     }
 

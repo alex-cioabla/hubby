@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ProfileUpdateRequest;
+use App\Http\Requests\UserDetailUpdateRequest;
 use Illuminate\Http\Request;
 use \Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
@@ -28,7 +28,7 @@ class UserController extends Controller
     /**
      * Update the user's profile information.
      */
-    public function update(ProfileUpdateRequest $request): JsonResponse
+    public function update(UserDetailUpdateRequest $request): JsonResponse
     {
         $user = $request->user();
         $user->fill($request->validated());
@@ -40,10 +40,10 @@ class UserController extends Controller
         $user->save();
 
         if ($request->has('name')) {
-            $user->profile()->update(['name' => $request->input('name')]);
+            $user->detail()->update(['name' => $request->input('name')]);
         }
         if ($request->has('surname')) {
-            $user->profile()->update(['surname' => $request->input('surname')]);
+            $user->detail()->update(['surname' => $request->input('surname')]);
         }
 
         return response()->json([

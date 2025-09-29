@@ -1,13 +1,16 @@
 import { useEffect, useRef, useImperativeHandle, forwardRef } from 'react';
 
+// forwardRef è una funzione di react che permette ad solo ad un componente di accettare una ref come parametro
+//(poterla gestire con hook appositi (useImperativeHandle) e usarla con le nuova gestione nel DOM)
 const Modal = forwardRef(({ title, body, footer, size = '', reset = false }, ref) => {
 
     const modalRef = useRef(null);
     const modal = useRef(null);
 
+    // GESTIONE EVENTI ESTERNA (SENZA LISTENERS)
     // useImperativeHandle è un hook che permette di gestire custom il comportamento di ref
     useImperativeHandle(ref,() => ({
-        //chiamando il metodo setshow sul ref viene eseguita questa funzione
+        //chiamando il metodo open sul ref viene eseguita questa funzione
         open: () => {
             if (!modal.current && modalRef.current) {
                 modal.current = new window.bootstrap.Modal(modalRef.current, {
@@ -26,26 +29,23 @@ const Modal = forwardRef(({ title, body, footer, size = '', reset = false }, ref
 
     useEffect(() => {
 
+        const modalElement = modalRef.current;
+        if (!modalElement) return;
+
         //Evento chiusura del modal
         const handleModalClose = () => {
-            const forms = modalRef.current?.querySelectorAll('form');
+            const forms = modalElement.querySelectorAll('form');
             forms?.forEach(form => form.reset());
         };
 
         //Listener evento chiusura
-        if (modalRef.current) {
-            modalRef.current.addEventListener('hidden.bs.modal', handleModalClose);
-        }
+        modalElement.addEventListener('hidden.bs.modal', handleModalClose);
 
         //Rimozione listener all'unmount componente
         return () => {
-        if (modalRef.current) {
-            modalRef.current.removeEventListener('hidden.bs.modal', handleModalClose);
-        }
-        if (modal.current) {
-            modal.current.dispose();
+            modalElement.removeEventListener('hidden.bs.modal', handleModalClose);
+            modal.current?.dispose();
             modal.current = null;
-        }
         }
 
     }, [reset]);

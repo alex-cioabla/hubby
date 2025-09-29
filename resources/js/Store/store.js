@@ -7,6 +7,7 @@ import themeReducer from "@/Store/Slice/themeSlice"
 import { authApi } from "@/Store/Api/authApi";
 import { userApi } from "@/Store/Api/userApi";
 import { categoryApi } from "./Api/categoryApi";
+import { IGDBApi } from "./Api/IGDBApi";
 
 const store = configureStore({
     reducer: {
@@ -15,12 +16,14 @@ const store = configureStore({
         theme: themeReducer,
         [authApi.reducerPath]: authApi.reducer,
         [userApi.reducerPath]: userApi.reducer,
-        [categoryApi.reducerPath]: categoryApi.reducer
+        [categoryApi.reducerPath]: categoryApi.reducer,
+        [IGDBApi.reducerPath]: IGDBApi.reducer
     },
     middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(
         authApi.middleware,
         userApi.middleware,
-        categoryApi.middleware
+        categoryApi.middleware,
+        IGDBApi.middleware
       ),
 });
 

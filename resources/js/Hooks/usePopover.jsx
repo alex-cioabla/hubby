@@ -1,0 +1,65 @@
+import { useRef, useEffect } from 'react';
+
+export const usePopover = ({ title = '', content, placement = 'top', trigger = 'hover' }) => {
+
+    const popoverRef = useRef(null);
+    const popover = useRef(null);
+
+    useEffect(() => {
+
+        const handlers = [];
+        const popoverElement = popoverRef.current;
+        if (!popoverElement) return;
+
+        popover.current = new window.bootstrap.Popover(popoverRef.current, {
+            title: title,
+            content: content,
+            placement: placement,
+            trigger: 'manual', //trigger: trigger,
+            html: true
+        });
+
+        switch (trigger) {
+            case 'click':
+                const onClick = (event) =>{
+                    event.preventDefault();
+                    popover.current.toggle();
+                };
+                popoverElement.addEventListener('click', onClick);
+                handlers.push(() => popoverElement.removeEventListener('click', onClick));
+                break;
+            case 'focus':
+                const onFocus = () => (popover.current.show());
+                const onBlur = () => (popover.current.hide());
+                popoverElement.addEventListener('focus', onFocus);
+                popoverElement.addEventListener('blur', onBlur);
+                handlers.push(() => popoverElement.removeEventListener('focus', onFocus));
+                handlers.push(() => popoverElement.removeEventListener('blur', onBlur));
+                break;
+            default:
+                const onEnter = () =>{
+                    popover.current?.show();
+                };
+                const onLeave = () =>{
+                    popover.current?.hide();
+                };
+                popoverElement.addEventListener('mouseenter', onEnter);
+                popoverElement.addEventListener('mouseleave', onLeave);
+                handlers.push(() => popoverElement.removeEventListener('mouseenter', onEnter));
+                handlers.push(() => popoverElement.removeEventListener('mouseleave', onLeave));
+                break;
+        }
+
+        return () => {
+            handlers.forEach((off) => off());
+            popover.current?.dispose();
+        }
+    }, []);
+
+    const show = () => popover.current.show();
+    const hide = () => popover.current.hide();
+    const toggle = () => popover.current.toggle();
+    const dispose = () => popover.current.dispose();
+
+    return { popoverRef, show, hide, toggle, dispose };
+}

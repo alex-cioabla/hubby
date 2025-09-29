@@ -11,15 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('user_roles', function (Blueprint $table) {
+        Schema::create('user_lists', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->timestamps();
 
             //Foreign key contraints
             $table->foreignId('user_id')->constrained();
-            $table->foreignId('role_id')->constrained();
-
-            // Composite keys
-            $table->unique(['user_id', 'role_id']);
+            //Composite keys
+            $table->unique(['name', 'user_id']);
         });
     }
 
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('user_roles');
+        Schema::dropIfExists('user_lists');
     }
 };

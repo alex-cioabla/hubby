@@ -35,4 +35,9 @@ return [
         ],
     ],
 
+    'igdb' => [
+        'client_id' => env('IGDB_CLIENT_ID'),
+        'access_token' => env('IGDB_ACCESS_TOKEN')
+    ]
+
 ];

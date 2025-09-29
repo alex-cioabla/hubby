@@ -33,9 +33,7 @@ Route::prefix('user')->group(function () {
 
 Route::prefix('admin')->group(function(){
     Route::middleware(['auth', 'role'])->group(function(){
-        // Route::get('get/categories', [CategoryController::class, 'index']);
-        // Route::post('insert/category', [CategoryController::class, 'store']);
-       Route::resource('api/categories', CategoryController::class);
+       Route::resource('webapi/categories', CategoryController::class);
     });
 });
 
@@ -57,7 +55,7 @@ Route::get('role', function(){
 
 //REACT GET
 Route::get('session', function (\Illuminate\Http\Request $request): JsonResponse {
-    $user = \App\Models\User::with('profile:user_id,name,surname')->find(auth()->id());
+    $user = \App\Models\User::with('detail:user_id,name,surname')->find(auth()->id());
     $user->role_names = $user->roles()->pluck('name');
     return response()->json([
         'mustVerifyEmail' => $request->user() instanceof \Illuminate\Contracts\Auth\MustVerifyEmail,

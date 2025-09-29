@@ -17,6 +17,8 @@ export const DataTable = (props) => {
 
     const { data, error, isLoading } = props.data;
 
+    // useMemo è un hook di react che memorizza operazioni esose
+    //(vengono rifatte e renderizzate solo se cambia la dipendenza nel paramentro (props.columns))
     const columns = useMemo(() => {
 
         const config = props.columns.map((col) => ({
@@ -60,7 +62,7 @@ export const DataTable = (props) => {
     });
 
     if (isLoading) {
-        return <Spinner show={true}></Spinner>
+        return <Spinner />
     }
 
     if (error) {

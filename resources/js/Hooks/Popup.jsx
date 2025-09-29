@@ -8,6 +8,7 @@ export const PopupProvider = ({ children }) => {
     const [popup, setPopup] = useState(null);
     const modalRef = useRef();
 
+    // GESTIONE EVENTI ESTERNA (SENZA LISTENERS)
     useEffect(() => {
         if (popup) {
 
@@ -34,15 +35,17 @@ export const PopupProvider = ({ children }) => {
     };
 
     const closeModal = () => {
-        if (modalRef.current) {
-            const modalInstance = window.bootstrap.Modal.getInstance(modalRef.current);
-            if (modalInstance) {
-                modalInstance.hide();
+        const modalElement = modalRef.current;
 
-                modalRef.current.addEventListener('hidden.bs.modal', () => {
+        if (modalElement) {
+            const modalInstance = window.bootstrap.Modal.getInstance(modalElement);
+            if (modalInstance) {
+                modalElement.addEventListener('hidden.bs.modal', () => {
                     setPopup(null);
                 // once:true l'evento viene rimosso dopo che è stato eseguito una sola volta
                 }, { once: true });
+
+                modalInstance.hide();
                 return;
             }
         }

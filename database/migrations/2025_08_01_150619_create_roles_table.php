@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('name')->unique();
             $table->timestamps();
-            $table->unsignedBigInteger('created_by')->nullable();
 
             //Foreign key contraints
+            $table->unsignedBigInteger('created_by')->nullable();
             $table->foreign('created_by')->references('id')->on('users');
         });
     }

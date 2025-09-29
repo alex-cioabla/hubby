@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { getCsrfToken } from '@/Utils/api';
 
 export const authApi = createApi({
-    reducerPath: 'authService',
+    reducerPath: 'authApi',
     tagTypes: ['AUTH'],
     baseQuery: fetchBaseQuery({
         baseUrl: 'http://localhost:8000',

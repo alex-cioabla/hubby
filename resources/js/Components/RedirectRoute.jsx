@@ -49,7 +49,7 @@ const RedirectRoute = (props) => {
     }, [/*user*/])
 
     if (url === null /*&& || !user*/) {
-        return <Spinner show={true}></Spinner>
+        return <Spinner />
     }
 
     if (url) {

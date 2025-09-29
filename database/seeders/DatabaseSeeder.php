@@ -30,7 +30,7 @@ class DatabaseSeeder extends Seeder
             'email_verified_at' => now(),
         ]);
         $admin->roles()->attach([$adminRole->id, $userRole->id]);
-        $admin->profile()->create([
+        $admin->detail()->create([
             'name' => 'Ellie',
             'surname' => 'Williams'
         ]);
@@ -40,7 +40,7 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('user'),
             'email_verified_at' => now(),
         ]);
-        $user->profile()->create([
+        $user->detail()->create([
             'name' => 'Joel',
             'surname' => 'Miller'
         ]);

@@ -11,15 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('user_roles', function (Blueprint $table) {
+        Schema::create('list_hobby_items', function (Blueprint $table) {
             $table->id();
 
             //Foreign key contraints
-            $table->foreignId('user_id')->constrained();
-            $table->foreignId('role_id')->constrained();
+            $table->foreignId('user_list_id')->constrained();
+            $table->foreignId('user_hobby_id')->constrained();
 
-            // Composite keys
-            $table->unique(['user_id', 'role_id']);
+            //Composite keys
+            $table->unique(['user_list_id', 'user_hobby_id']);
         });
     }
 
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('user_roles');
+        Schema::dropIfExists('list_hobby_items');
     }
 };

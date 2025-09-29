@@ -36,7 +36,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereUpdatedAt($value)
  * @property string $role
  * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereRole($value)
- * @property-read \App\Models\UserProfile|null $profile
+ * @property-read \App\Models\UserDetail|null $detail
  * @property string|null $last_login
  * @property int $login_count
  * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereLastLogin($value)
@@ -46,6 +46,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property-read int|null $roles_count
  * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereDeletedAt($value)
  * @property-read int|null $role_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\UserHobbies> $hobbies
+ * @property-read int|null $hobbies_count
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|User onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|User withTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|User withoutTrashed()
  * @mixin \Eloquent
  */
 class User extends Authenticatable implements MustVerifyEmail
@@ -90,8 +95,8 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     //Relazione one to one
-    public function profile() {
-        return $this->hasOne(UserProfile::class);
+    public function detail() {
+        return $this->hasOne(UserDetail::class);
     }
 
     //Relazione many to many
@@ -102,6 +107,10 @@ class User extends Authenticatable implements MustVerifyEmail
     //Relazione one to many
     public function role(){
         return $this->hasMany(UserRole::class);
+    }
+
+    public function hobbies(){
+        return $this->hasMany(UserHobbies::class, 'user_id');
     }
 
     public function hasRole(string $roleName): bool {

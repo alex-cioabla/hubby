@@ -1,4 +1,4 @@
-const Spinner = ({show = false}) => {
+const Spinner = ({show = true}) => {
 
     if (!show) { return null;}
 

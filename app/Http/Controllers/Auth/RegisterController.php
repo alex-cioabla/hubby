@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use App\Models\UserProfile;
+use App\Models\UserDetail;
 use App\Models\UserRole;
 use Illuminate\Auth\Events\Registered;
 use \Illuminate\Http\JsonResponse;
@@ -49,7 +49,7 @@ class RegisterController extends Controller
                 'password' => Hash::make($request->password),
             ]);
 
-            UserProfile::create([
+            UserDetail::create([
                 'user_id' => $user->id,
                 'name' => $request->name,
                 'surname' => $request->surname
