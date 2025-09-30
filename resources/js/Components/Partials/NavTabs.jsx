@@ -4,7 +4,9 @@ import { usePopover } from '@/Hooks/Popover';
 const NavTabs = ({ id, tabs, actions = false }) => {
 
     const nav = useRef(null);
-    const { popoverRef } = usePopover({ content: 'Aggiungi un elemento alla lista', placement: 'right' });
+    const popoverRef = useRef(null);
+    
+    usePopover(popoverRef, { content: 'Aggiungi un elemento alla lista', placement: 'right' });
 
     // GESTIONE EVENTI INTERNA (CON LISTENERS)
     useEffect(() => {

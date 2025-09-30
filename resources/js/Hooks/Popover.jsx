@@ -1,8 +1,7 @@
 import { useRef, useEffect } from 'react';
 
-export const usePopover = ({ title = '', content, placement = 'top', trigger = 'hover' }) => {
+export const usePopover = (popoverRef, { title = '', content, placement = 'top', trigger = 'hover' }) => {
 
-    const popoverRef = useRef(null);
     const popover = useRef(null); //oppure window.bootstrap.Popover.getInstance(popoverRef);
 
     useEffect(() => {
@@ -61,5 +60,5 @@ export const usePopover = ({ title = '', content, placement = 'top', trigger = '
     const toggle = () => popover.current.toggle();
     const dispose = () => popover.current.dispose();
 
-    return { popoverRef, show, hide, toggle, dispose };
+    return { show, hide, toggle, dispose };
 }
