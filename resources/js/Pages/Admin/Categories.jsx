@@ -9,7 +9,7 @@ import {
 } from '@/Store/Api/categoryApi';
 import Alert from '@/Components/Partials/Alert';
 import Toast from '@/Components/Partials/Toast';
-import { usePopup } from '@/Hooks/Popup';
+import { usePopupContext } from '@/Hooks/PopupContext';
 
 const Categories = () => {
 
@@ -22,7 +22,7 @@ const Categories = () => {
     });
     const [category, setCategory] = useState(null);
 
-    const { popupPromise } = usePopup();
+    const { confirmPopup } = usePopupContext();
     const [insertCategory, { error: errorInsert, reset: resetInsert }] = useInsertCategoryMutation();
     const [deleteCategory, { error: errorDelete, reset: resetDelete }] = useDeleteCategoryMutation();
     const [updateCategory, { error: errorUpdate, reset: resetUpdate }] = useUpdateCategoryMutation();
@@ -72,7 +72,7 @@ const Categories = () => {
 
     const handleDelete = async () => {
 
-        const confirm = await popupPromise({
+        const response = await confirmPopup({
             title: 'Elimina categoria',
             message: 'Confermi l\'eliminazione categoria',
             confirmText: 'Cancella',
@@ -80,7 +80,7 @@ const Categories = () => {
             confirmType: 'danger'
         });
 
-        if (confirm) {
+        if (response) {
             try {
                 const result = await deleteCategory(category.id).unwrap();
                 setToast({

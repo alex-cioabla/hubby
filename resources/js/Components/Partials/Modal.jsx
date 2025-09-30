@@ -5,7 +5,7 @@ import { useEffect, useRef, useImperativeHandle, forwardRef } from 'react';
 const Modal = forwardRef(({ title, body, footer, size = '', reset = false }, ref) => {
 
     const modalRef = useRef(null);
-    const modal = useRef(null);
+    const modal = useRef(null); //oppure window.bootstrap.Modal.getInstance(modalRef);
 
     // GESTIONE EVENTI ESTERNA (SENZA LISTENERS)
     // useImperativeHandle è un hook che permette di gestire custom il comportamento di ref
@@ -21,10 +21,11 @@ const Modal = forwardRef(({ title, body, footer, size = '', reset = false }, ref
             modal.current?.show();
         },
         //oppure tramite date attribute data-bs-toggle="modal" data-bs-target="#idmodal"
+
         close: () => {
             modal.current?.hide();
         }
-        //oppure tramite tramite data attribute data-bs-dismiss="modal" viene gestita in automatica da bootstrap
+        //oppure tramite tramite data attribute data-bs-dismiss="modal" viene gestita in automatica da bootstrap (non ha bisogno di un id sul modal)
       }));
 
     useEffect(() => {

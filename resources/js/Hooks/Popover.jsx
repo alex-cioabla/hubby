@@ -3,7 +3,7 @@ import { useRef, useEffect } from 'react';
 export const usePopover = ({ title = '', content, placement = 'top', trigger = 'hover' }) => {
 
     const popoverRef = useRef(null);
-    const popover = useRef(null);
+    const popover = useRef(null); //oppure window.bootstrap.Popover.getInstance(popoverRef);
 
     useEffect(() => {
 
@@ -54,7 +54,7 @@ export const usePopover = ({ title = '', content, placement = 'top', trigger = '
             handlers.forEach((off) => off());
             popover.current?.dispose();
         }
-    }, []);
+    }, [title, content, placement, trigger]);
 
     const show = () => popover.current.show();
     const hide = () => popover.current.hide();

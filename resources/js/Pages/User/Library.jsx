@@ -38,10 +38,11 @@ export const Library = () => {
                     </DataTable> */}
 
                         <NavTabs
+                            id={'liste'}
                             tabs={[
-                                {id: 'tab1', label: 'TAB1', content: <p>CIAO</p>},
-                                {id: 'tab2', label: 'TAB2', content: <p>CIAO 2</p>},
-                                {id: 'tab3', label: 'TAB3', content: <p>CIAO 3</p>},
+                                {label: 'TAB1', content: <p>CIAO</p>},
+                                {label: 'TAB2', content: <p>CIAO 2</p>},
+                                {label: 'TAB3', content: <p>CIAO 3</p>},
                             ]}
                             actions={true}
                         >

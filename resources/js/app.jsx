@@ -36,7 +36,7 @@ import PasswordConfirm from "./Pages/Auth/PasswordConfirm";
 import PasswordUpdate from "./Pages/User/PasswordUpdate";
 import EmailVerificationRequest from "./Pages/Auth/EmailVerificationRequest";
 
-import { PopupProvider } from './Hooks/Popup';
+import { PopupProvider } from '@/Providers/PopupProvider';
 
 
 function App() {

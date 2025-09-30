@@ -1,18 +1,18 @@
-import { createContext, useContext, useState, useCallback, useEffect, useRef } from "react";
+import { useState, /*useCallback,*/ useEffect, useRef } from "react";
+import PopupContext from '@/Hooks/PopupContext';
 
-// createContext è una funzione default di react che crea un contesto dove convidere le props (dati) tra componenti
-//(senza doverle passare come parametro tra loro)
-const PopupContext = createContext();
+// usecallback è un hook default di react che memorizza una fx e la ricrea solo in caso cambino le dipendenze (le specifico nel paramentro) al render della pagina
+//const functionName = useCallback(() => {}, [])
 
 export const PopupProvider = ({ children }) => {
     const [popup, setPopup] = useState(null);
-    const modalRef = useRef();
+    const popupRef = useRef();
 
     // GESTIONE EVENTI ESTERNA (SENZA LISTENERS)
     useEffect(() => {
         if (popup) {
 
-            const modal = new window.bootstrap.Modal(modalRef.current, {
+            const modal = new window.bootstrap.Modal(popupRef.current, {
                 backdrop: 'static',
                 keyboard: true
             });
@@ -25,32 +25,12 @@ export const PopupProvider = ({ children }) => {
         }
     }, [popup]);
 
-    // usecallback è un hook default di react che memorizza una fx e la ricrea solo in caso cambino le dipendenze (le specifico nel paramentro) al render della pagina
-    //const popupFunction = useCallback(() => {}, [])
-    const popupPromise = (options = {}) => {
+    const confirmPopup = (options = {}) => {
 
         return new Promise((resolve) => {
             setPopup({ ...options, resolve });
         });
     };
-
-    const closeModal = () => {
-        const modalElement = modalRef.current;
-
-        if (modalElement) {
-            const modalInstance = window.bootstrap.Modal.getInstance(modalElement);
-            if (modalInstance) {
-                modalElement.addEventListener('hidden.bs.modal', () => {
-                    setPopup(null);
-                // once:true l'evento viene rimosso dopo che è stato eseguito una sola volta
-                }, { once: true });
-
-                modalInstance.hide();
-                return;
-            }
-        }
-        setPopup(null);
-    }
 
     const handleConfirm = () => {
         if (popup?.resolve) {
@@ -66,8 +46,27 @@ export const PopupProvider = ({ children }) => {
         closeModal();
     };
 
-    const modalPopup = popup ? (
-        <div className="modal fade" ref={modalRef}>
+    //Funzione eventi chiusura popup
+    const closeModal = () => {
+        const popupElement = popupRef.current;
+
+        if (popupElement) {
+            const popupInstance = window.bootstrap.Modal.getInstance(popupElement);
+            if (popupInstance) {
+                popupElement.addEventListener('hidden.bs.modal', () => {
+                    setPopup(null);
+                // once:true l'evento viene rimosso dopo che è stato eseguito una sola volta
+                }, { once: true });
+
+                popupInstance.hide();
+                return;
+            }
+        }
+        setPopup(null);
+    }
+
+    const popupHtml = popup ? (
+        <div className="modal fade" ref={popupRef}>
             <div className="modal-dialog modal-dialog-centered modal-sm">
                 <div className="modal-content">
                     <div className="modal-body text-center">
@@ -97,19 +96,10 @@ export const PopupProvider = ({ children }) => {
     return (
         // PopupContext è l'oggetto del contesto creato
         // Provider è il componente che fornisce i valori del contesto (value)
-        // PopupContext.Provider permette l'accesso e fornisce popupPromise del contesto PopupContext a tutti i componenti figli (<Router></Router> in app.jsx)
-        <PopupContext.Provider value={{ popupPromise }}>
+        // PopupContext.Provider permette l'accesso e fornisce confirmPopup del contesto PopupContext a tutti i componenti figli (<Router></Router> in app.jsx)
+        <PopupContext.Provider value={{ confirmPopup }}>
             {children}
-            {modalPopup}
+            {popupHtml}
         </PopupContext.Provider>
     );
-}
-
-export const usePopup = () => {
-    // useContext è un hook predefinito che legge il contesto in parametro e restituisce i dati (popupPromise)
-    const context = useContext(PopupContext);
-    if (!context) {
-        throw new Error('usePopup must be used within a PopupContext');
-    }
-    return context;
 }
